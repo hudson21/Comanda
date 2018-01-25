@@ -13,8 +13,9 @@
      	=            CSS            =
      ======================================-->     
 	<link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
-	<link rel="stylesheet" href="vistas/css/plugins/font-awesome.css">
-    <link rel="stylesheet" href="vistas/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" src="vistas/css/plugins/font-awesome.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    
 	<!--=====================================
 		=            JS            =
 	======================================-->
@@ -24,6 +25,7 @@
 	<title>Comanda Electrónica</title>
 </head>
 <body>
+	
 	
 
 	<!--Para generar comentarios va a ser con 

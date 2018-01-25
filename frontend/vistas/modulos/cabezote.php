@@ -55,6 +55,7 @@
                 	<li>
                 		<a href="http://instagram.com/" target="_blank">
                 			<i class="fa fa-instagram redSocial instagramBlanco" aria-hidden="true"></i>
+
                 		</a>
                 	</li>
                 	
@@ -102,7 +103,7 @@
 			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="logotipo">
               
               <a href="">
-              	<img src="http://localhost/comanda/backend/vistas/img/plantilla/logo.jpg" alt=""   height="50px" width="250px">
+              	<img src="http://localhost/Comanda/backend/vistas/img/plantilla/logo.jpg" alt=""   height="50px" width="250px">
               </a>
 
 			</div>
