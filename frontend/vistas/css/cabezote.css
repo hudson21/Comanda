@@ -1,0 +1,216 @@
+/*------------------------------------------------
+   TOP
+------------------------------------------------*/
+
+#top ul{
+	padding-top:8px;
+}
+
+#top ul li{
+	display:inline;
+	line-height:30px;
+	margin:0px 5px;
+	color:white;
+}
+
+.social ul li a i {
+	font-size:18px;
+	margin:0 1px;
+}
+
+.registro ul{
+	text-align: right;
+	font-size:12px;
+}
+
+/*------------------------------------------------
+   HEADER
+------------------------------------------------*/
+
+header #logotipo img{
+	padding:20px 60px;
+	padding-left:0px;
+}
+
+header #btnCategorias{
+	margin:20px 0;
+}
+
+header #btnCategorias p{
+	line-height: 40px;
+	margin-bottom: 0px;
+}
+
+header #btnCategorias p span {
+	cursor:pointer;
+}
+
+header #buscador{
+	margin:20px 0;
+}
+
+header #buscador input {
+	padding:19px;
+	border-radius:0;
+}
+
+header #buscador  button{
+	padding:9px;
+	border:1px solid silver;
+	border-radius:0;
+}
+
+header #carrito {
+	margin:20px 0;
+}
+
+header #carrito button{
+	padding:9px 15px;
+	border:1px solid silver;
+	border-radius:0;
+}
+
+header #carrito p{
+	padding:2px;
+	padding-left:60px;
+	border:1px solid #aaa;
+	font-size:12px;
+}
+
+header #categorias{
+	display:none;
+	margin-top:-10px;
+	position:relative;
+}
+
+header #categorias h4{
+	margin-top:20px;
+	margin-bottom:-10px;
+}
+
+header #categorias hr{
+	border :1px solid rgba(255,255,255,.3);
+}
+
+/*
+Para generar un nuevo snippet nos vamos a Tools-Developer-New Snippet
+Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de atrás para adelante
+*/
+/*Estamos configurando las resloluciones para lg, md, sm y xm*/
+/*------------------------------------------------
+   ESCRITORIO GRANDE (LG revisamos en 1366px en adelante)
+------------------------------------------------*/
+@media (min-width:1200px){
+
+	/*------------------------------------------------
+       HEADER
+    ------------------------------------------------*/
+    header #logotipo img{
+	padding:20px 60px;
+	padding-left:0px;
+	height:80px;
+	width:280px;
+    }
+
+    header #carrito{
+    	padding-left:100px;
+    	padding-right:15px;
+    }
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+
+    /*------------------------------------------------
+      HEADER
+     ------------------------------------------------*/
+	header #logotipo img{
+	padding:25px 60px;
+	padding-left:0px;
+	height:82px;
+	width:240px;
+    }
+
+    header #carrito {
+    	padding-left:70px;
+    }
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+    /*------------------------------------------------
+      HEADER
+     ------------------------------------------------*/
+	header #logotipo img{
+	padding:20px 30px;
+	height:58px;
+	width:150px;
+	padding-left:0px;
+	padding-bottom:10px;
+	
+    }
+
+    header #carrito {
+    	padding-left:55px;
+    }
+
+    header #carrito p{
+    	display:none;
+    }
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+	/*------------------------------------------------
+       TOP
+     ------------------------------------------------*/
+     #top ul{
+     	text-align:center;
+     }
+
+     #top #registro{
+     	border-top:1px solid #222;
+     }
+	
+	/*------------------------------------------------
+       HEADER
+     ------------------------------------------------*/
+	header #logotipo img{
+	padding:30px;
+	padding-bottom:10px;
+	height:82px;
+	width:260px;
+	
+    }
+
+    header #carrito {
+	padding:2px;
+	padding-left:15px;
+	padding-right:15px;
+	border:none;
+	font-size:12px
+
+    }
+
+    header #carrito p{
+    	margin:0px;
+    }
+
+    header #categorias{
+       margin-bottom:10px;
+    }
+
+    header #buscador{
+      margin-bottom:10px;
+    }
+
+
+    
+}

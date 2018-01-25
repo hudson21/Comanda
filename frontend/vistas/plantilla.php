@@ -15,6 +15,10 @@
 	<link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" src="vistas/css/plugins/font-awesome.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
+    <link rel="stylesheet" href="vistas/css/plantilla.css">
+    <link rel="stylesheet" href="vistas/css/cabezote.css">
     
 	<!--=====================================
 		=            JS            =
@@ -46,10 +50,10 @@
   		=            CABEZOTE            =
   =============================================*/
   include "modulos/cabezote.php";
-  
-  
-  
+    
 ?>
+
+<script src="vistas/js/cabezote.js"></script>
 	
 </body>
 </html>

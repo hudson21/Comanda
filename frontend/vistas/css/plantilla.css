@@ -1,0 +1,163 @@
+/*------------------------------------------------
+   GLOBAL
+------------------------------------------------*/
+
+*{
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	text-decoration:none;
+	font-family: 'Ubuntu', sans-serif;
+}
+
+ul,ol{
+	padding:0;
+}
+
+a:visited, a:link, a:focus, a:hover, a:active{
+	list-style:none;
+	text-decoration:none;
+}
+
+.barraSuperior{
+	background:black;
+}
+
+.barraSuperior a{
+	color:white;
+}
+
+.backColor, .backColor a{
+	background:#C1CA2C;
+	color:white;
+}
+
+/*------------------------------------------------
+   REDES SOCIALES
+------------------------------------------------*/
+
+.redSocial{
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+
+}
+
+/*FACEBOOK*/
+
+.facebookBlanco{
+	color:white;
+}
+
+.facebookNegro{
+	color:black;
+}
+
+.facebookColor{
+	color:white;
+	background:#46639f;
+}
+
+/*YOUTUBE*/
+
+.youtubeBlanco{
+	color:white;
+}
+
+.youtubeNegro{
+	color:black;
+}
+
+.youtubeColor{
+	color:white;
+	background:#d6513e;
+}
+
+
+/*TWITTER*/
+
+.twitterBlanco{
+	color:white;
+}
+
+.twitterNegro{
+	color:black;
+}
+
+.twitterColor{
+	color:white;
+	background:#0ab2e6;
+}
+
+/*GOOGLE PLUS*/
+
+.googleBlanco{
+	color:white;
+}
+
+.googleNegro{
+	color:black;
+}
+
+.googleColor{
+	color:white;
+	background:#d71617;
+}
+
+/*INSTAGRAM*/
+
+.instagramBlanco{
+	color:white;
+}
+.instagramNegro{
+	color:black;
+}
+.instagramColor{
+	color:white;
+	background:linear-gradient(45deg, #fca925, #6350a2);
+}
+
+/*
+Para generar un nuevo snippet nos vamos a Tools-Developer-New Snippet
+Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de atrás para adelante
+*/
+/*Estamos configurando las resloluciones para lg, md, sm y xm*/
+/*------------------------------------------------
+   ESCRITORIO GRANDE (LG revisamos en 1366px en adelante)
+------------------------------------------------*/
+@media (min-width:1200px){
+
+/*Esta es una clase que estamos creando, la cual no existe en Bootstrap*/
+  .col-lg-0{
+  	display:none;
+  }
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+  
+  .col-md-0{
+  	display:none;
+  }
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+.col-sm-0{
+  	display:none;
+  }
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+	
+	.col-xs-0{
+  	display:none;
+  }
+}

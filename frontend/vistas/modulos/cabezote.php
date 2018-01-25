@@ -103,7 +103,7 @@
 			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="logotipo">
               
               <a href="">
-              	<img src="http://localhost/Comanda/backend/vistas/img/plantilla/logo.jpg" alt=""   height="50px" width="250px">
+              	<img src="http://localhost/Comanda/backend/vistas/img/plantilla/logo.jpg" alt=""   >
               </a>
 
 			</div>
@@ -113,7 +113,7 @@
 			======================================-->	
     	 	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12" >
 
-    	 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backcolor" id="btnCategorias">
+    	 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
 
     	 			<p>CATEGORIAS
 
@@ -127,15 +127,15 @@
     	 		<!--=====================================
 	            		=    BUSCADOR      =
 			       ======================================-->
-			       <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-12 backcolor" id="buscador">	
+			       <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-12 backColor" id="buscador">	
                      
                      <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
 
-                     <span class="input-group-btn">
+                     <span class="input-group-btn ">
                      	
                      	<a href="">
                      
-                        <button class="btn btn-default backColor" type="submit">
+                        <button class="btn btn-default backColor" type="submit" style="background:#C1CA2C;color:white;">
                         	
                         	<i class="fa fa-search"></i>
 
@@ -152,13 +152,13 @@
     	 	 <!--=====================================
 	            		=    CARRITO DE COMPRAS     =
 			  ======================================-->
-			 <div class="input-group col-lg-3 col-md-3 col-sm-2 col-xs-12 backcolor" id="carrito">
+			 <div class="input-group col-lg-3 col-md-3 col-sm-2 col-xs-12 " id="carrito">
 
 			      <a href="#">
 
-			      	<button class="btn btn-default pull-left backColor">
+			      	<button class="btn backColor btn-default pull-left " style="background:#C1CA2C;color:white;">
                         	
-                        	<i class="fa fa-shopping-cart"></i>
+                        	<i class="fa fa-shopping-cart "></i>
 
                         </button>
 			      	
@@ -173,7 +173,83 @@
     	 <!--=====================================
     	    =            CATEGORIAS            =
     	 ======================================-->   
-    	 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 backcolor" id="btnCategorias">
+    	 <div class="col-xs-12 backColor" id="categorias">
+
+    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+
+    	 		<h4>
+    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
+    	 		</h4>
+
+    	 		<hr>
+
+    	 		<ul>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+
+    	 		</ul>
+    	 		
+    	 	</div>
+
+    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+
+    	 		<h4>
+    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
+    	 		</h4>
+
+    	 		<hr>
+
+    	 		<ul>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+
+    	 		</ul>
+    	 		
+    	 	</div>
+
+    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+
+    	 		<h4>
+    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
+    	 		</h4>
+
+    	 		<hr>
+
+    	 		<ul>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+
+    	 		</ul>
+    	 		
+    	 	</div>
+
+    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+
+    	 		<h4>
+    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
+    	 		</h4>
+
+    	 		<hr>
+
+    	 		<ul>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+
+    	 		</ul>
+    	 		
+    	 	</div>
     	 	
 
     	 </div> 	 
