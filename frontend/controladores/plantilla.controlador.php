@@ -12,13 +12,16 @@ class ControladorPlantilla{//Aquí tenemos la clase ControladorPlantilla
 	}
 
 	/*----------------------------------------------
-	  TRAEMOS LOS ESTILOS DINÁMICOS DE LA PLANTILLA
+	  TRAEMOS LOS ESTILOS DINÁMICOS DE LA PLANTILLA (platilla.modelo.php)
 	  ----------------------------------------------*/
 
-	  public function ctrEstiloPlantillaI(){
+	  public function ctrEstiloPlantilla(){
 
-	  	$tabla = "plantilla";
+	  	$tabla="plantilla";
 
-	  	$respuesta = ModeloPlantilla::mdlEstiloPlantilla($tabla);
+     /*Llamamos a la clase de ModeloPlantilla y dentro de ella a la función de mdlEstiloPlantilla()*/
+	  	$respuesta = ModeloPlantilla::mdlEstiloPlantilla($tabla); //Necesitamos el parámetro de la tabla para poder usar esta función
+
+	  	return $respuesta;
 	  }
 }

@@ -1,16 +1,20 @@
 <?php
+
 require_once "conexion.php";
 
-class modeloPlantilla{
+class ModeloPlantilla{
 
-  static public function mdlEstiloPlantilla($tabla){
+	static public function mdlEstiloPlantilla($tabla){
 
-  		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+  /*Estamos llamando a la clase conexion y dentro de ella a la función de conectar que estan dentro conexion.php*/
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
 
-  		$stmt -> execute();
+		$stmt -> execute();//La ejecutamos 
 
-  		return $stmt -> fetch();
+		return $stmt -> fetch(); //Y retornamos el valor con un fetch porque es una sola fila, si fueran mas sería con un forEach
 
-  		$stmt -> close();
-  }	
-}
+		$stmt -> close();//Cerramos la conexión 
+
+	}
+
+}	
