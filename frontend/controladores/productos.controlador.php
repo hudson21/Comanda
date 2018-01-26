@@ -8,7 +8,7 @@ class ControladorProductos{
 	  MOSTRAR CATEGORIAS
 	===============================================*/
 
-	public function ctrMostrarCategorias(){
+	static public function ctrMostrarCategorias(){
 
 		$tabla="categorias";
 
@@ -32,5 +32,7 @@ class ControladorProductos{
 
 		return $respuesta;
 	}
+
+  
 
 }
