@@ -80,6 +80,20 @@
 
   		$rutas= explode ("/", $_GET["ruta"]);
 
+  		$item="ruta";
+
+  		$valor=$_GET["ruta"];
+
+  		$rutaCategorias=ControladorProductos::ctrMostrarCategorias($item,$valor);
+
+  		if($rutas[0]=="vinos" ){
+
+  			include "modulos/productos.php";
+  		}else{
+  			include "modulos/error404.php";
+
+  		}
+
   		//var_dump($rutas[0]); //Las rutas que están en la posición 0 son las amigables
   }
     

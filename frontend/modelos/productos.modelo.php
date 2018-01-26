@@ -10,17 +10,30 @@ class ModeloProductos{
         ===============================================*/
 
 	//El método debe de ser estático porque traemos parámetros
-	static public function mdlMostrarCategorias($tabla){
+	static public function mdlMostrarCategorias($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		if($item != null){
 
-		$stmt-> execute();
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item =:$item");
 
-		return $stmt -> fetchAll();
+			//EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
+			$stmt -> bindParam(":".$item,$valor, $id, PDO::PARAM_STR);
+
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+
+			$stmt-> execute();
+
+			return $stmt -> fetchAll();	
+
+		}
 
 		$stmt -> close();
 
 		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+		
 	}
 
 
