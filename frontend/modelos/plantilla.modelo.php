@@ -11,7 +11,7 @@ class ModeloPlantilla{
 
 		$stmt -> execute();//La ejecutamos 
 
-		return $stmt -> fetch(); //Y retornamos el valor con un fetch porque es una sola fila, si fueran mas sería con un forEach
+		return $stmt -> fetch(); //Y retornamos el valor con un fetch porque es una sola fila, si fueran mas sería con un fetchAll
 
 		$stmt -> close();//Cerramos la conexión 
 

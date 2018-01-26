@@ -31,6 +31,13 @@
 	
 
 	<title>Comanda Electrónica</title>
+	
+
+	<?php
+	       $icono = ControladorPlantilla::ctrEstiloPlantilla();
+
+	       echo '<link rel="icon" href="http://localhost/Comanda/backend/'.$icono["icono"].'">';
+	?>
 </head>
 <body>
 	

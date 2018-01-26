@@ -28,37 +28,24 @@
 
                 <ul>
 
-                	<li>
-                		<a href="http://facebook.com/" target="_blank">
-                			<i class="fa fa-facebook-square redSocial facebookBlanco" aria-hidden="true"> </i>
-                		</a>	
-                	</li>
+                    <?php
 
-                	<li>
-                		<a href="http://youtube.com" target="_blank">
-                			<i class="fa fa-youtube redSocial youtubeBlanco" aria-hidden="true"></i>
-                		</a>
-                	</li>
+                    $social = ControladorPlantilla::ctrEstiloPlantilla();
 
-                	<li>
-                		<a href="http://twitter.com/" target="_blank">
-                			<i class="fa fa-twitter redSocial twitterBlanco" area-hidden="true"></i>
-                		</a>
-                	</li>
+                    $jsonRedesSociales = json_decode($social["redesSociales"],true);
 
-                	<li>
-                		<a href="http://google.com/" target="_blank">
-                			<i class="fa fa-google-plus redSocial googleBlanco" aria-hidden="true"></i>
-                		</a>
-                	</li>
 
-                	<li>
-                		<a href="http://instagram.com/" target="_blank">
-                			<i class="fa fa-instagram redSocial instagramBlanco" aria-hidden="true"></i>
+                   //Estamos haciendo un forEach al JSON 
+                    foreach($jsonRedesSociales as $key =>$value){
 
-                		</a>
-                	</li>
-                	
+                     echo '<li>
+                              <a href="'.$value["url"].'" target="_blank">
+                               <i class="fa '.$value["red"].' redSocial '.$value["estilo"].'" aria-hidden="true"> </i>
+                              </a>    
+                          </li>';
+
+                   }
+                    ?>
 
                 </ul>
 
@@ -103,7 +90,7 @@
 			<div class="col-lg-3 col-md-3 col-sm-2 col-xs-12" id="logotipo">
               
               <a href="">
-              	<img src="http://localhost/Comanda/backend/vistas/img/plantilla/logo.jpg" alt=""   >
+              	<img src="http://localhost/Comanda/backend/<?php echo $social["logo"];?>" >
               </a>
 
 			</div>
@@ -175,83 +162,40 @@
     	 ======================================-->   
     	 <div class="col-xs-12 backColor" id="categorias">
 
-    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+            <?php
 
-    	 		<h4>
-    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
-    	 		</h4>
+                $categorias = ControladorProductos::ctrMostrarCategorias();
 
-    	 		<hr>
+                forEach($categorias as $key => $value){
 
-    	 		<ul>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+                    echo '<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
 
-    	 		</ul>
-    	 		
-    	 	</div>
+                             <h4>
+                                 <a href="#" class="pixelCategorias">'.$value["categoria"].'</a>
+                             </h4>
 
-    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+                            <hr>
 
-    	 		<h4>
-    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
-    	 		</h4>
+                          <ul>';
 
-    	 		<hr>
+                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
+                         $subcategorias = ControladorProductos::ctrMostrarSubCategorias($value["id"]);
 
-    	 		<ul>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
+                         foreach($subcategorias as $key => $value){
 
-    	 		</ul>
-    	 		
-    	 	</div>
+                             echo '<li><a href="#" class="pixelSubCategorias tamañoFuenteSubCategorias">'.$value["subcategoria"].'</a></li>';
 
-    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
+                         }
 
-    	 		<h4>
-    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
-    	 		</h4>
+                     echo '</ul>
+                
+                        </div>';
 
-    	 		<hr>
+                       
+                }
 
-    	 		<ul>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-
-    	 		</ul>
-    	 		
-    	 	</div>
-
-    	 	<div class=" col-lg-2 col-md-3 col-sm-4 col-xs-12 ">
-
-    	 		<h4>
-    	 			<a href="#" class="pixelCategorias">Lorem Ipsum</a>
-    	 		</h4>
-
-    	 		<hr>
-
-    	 		<ul>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-    	 			<li><a href="#" class="pixelSubCategorias">Lorem Ipsum</a></li>
-
-    	 		</ul>
-    	 		
-    	 	</div>
+            ?>
     	 	
-
     	 </div> 	 
 
 

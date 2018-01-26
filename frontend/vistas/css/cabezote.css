@@ -23,6 +23,10 @@
 	font-size:12px;
 }
 
+.tamañoFuenteSubCategorias{
+	font-size: 14px;
+}
+
 /*------------------------------------------------
    HEADER
 ------------------------------------------------*/
@@ -81,6 +85,7 @@ header #categorias{
 	display:none;
 	margin-top:-10px;
 	position:relative;
+	padding-bottom:20px;
 }
 
 header #categorias h4{

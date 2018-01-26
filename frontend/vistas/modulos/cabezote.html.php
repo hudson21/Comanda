@@ -28,24 +28,37 @@
 
                 <ul>
 
-                    <?php
+                	<li>
+                		<a href="http://facebook.com/" target="_blank">
+                			<i class="fa fa-facebook-square redSocial facebookBlanco" aria-hidden="true"> </i>
+                		</a>	
+                	</li>
 
-                    $social = ControladorPlantilla::ctrEstiloPlantilla();
+                	<li>
+                		<a href="http://youtube.com" target="_blank">
+                			<i class="fa fa-youtube redSocial youtubeBlanco" aria-hidden="true"></i>
+                		</a>
+                	</li>
 
-                    $jsonRedesSociales = json_decode($social["redesSociales"],true);
+                	<li>
+                		<a href="http://twitter.com/" target="_blank">
+                			<i class="fa fa-twitter redSocial twitterBlanco" area-hidden="true"></i>
+                		</a>
+                	</li>
 
+                	<li>
+                		<a href="http://google.com/" target="_blank">
+                			<i class="fa fa-google-plus redSocial googleBlanco" aria-hidden="true"></i>
+                		</a>
+                	</li>
 
-                   //Estamos haciendo un forEach al JSON 
-                    foreach($jsonRedesSociales as $key =>$value){
+                	<li>
+                		<a href="http://instagram.com/" target="_blank">
+                			<i class="fa fa-instagram redSocial instagramBlanco" aria-hidden="true"></i>
 
-                     echo '<li>
-                              <a href="'.$value["url"].'" target="_blank">
-                               <i class="fa '.$value["red"].' redSocial '.$value["estilo"].'" aria-hidden="true"> </i>
-                              </a>    
-                          </li>';
-
-                   }
-                    ?>
+                		</a>
+                	</li>
+                	
 
                 </ul>
 
