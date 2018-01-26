@@ -1,0 +1,24 @@
+1366 * 449
+1024 * 436
+768  * 436
+320  * 436
+
+id
+barraSuperior
+textoSuperior
+colorFondo
+logo
+icono
+redesSociales
+fecha
+
+red:facebook
+estilo: facebookColor
+url: http://facebook.com/tutorialesatualcance
+
+red:google
+estilo: googleColor
+url: http://google-plus.com/tutorialesatualcance
+
+
+C:\Users\trainee.saim\AppData\Roaming\Sublime Text 3\Packages\User
