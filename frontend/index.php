@@ -7,6 +7,8 @@ require_once "controladores/productos.controlador.php";
 require_once "modelos/plantilla.modelo.php";
 require_once "modelos/productos.modelo.php";
 
+require_once "modelos/rutas.php";
+
 
 $plantilla = new ControladorPlantilla();//Digo que la plantilla va a ser instanciada con la clase de ControladorPlantilla
 $plantilla -> plantilla(); //Le asigno la función que hay dentro de la clase plantilla

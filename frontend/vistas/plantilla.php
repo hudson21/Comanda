@@ -8,36 +8,47 @@
 	<meta name="keyword" content="tienda, vinos, licores,etc">
 
 
+
+
+	<?php
+	       $icono = ControladorPlantilla::ctrEstiloPlantilla();
+
+	       echo '<link rel="icon" href="http://localhost/Comanda/backend/'.$icono["icono"].'">';
+
+
+	       /*==============================================
+	        MANTENER  LA RUTA FIJA  DEL PROYECTO 
+	         ===============================================*/
+	         //Esto me sirve para establecer una ruta uniforme en todo el proyecto
+
+	         $url = Ruta::ctrRuta();
+	         
+	?>
     
      <!--=====================================
      	=            CSS            =
      ======================================-->     
-	<link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
-    <link rel="stylesheet" src="vistas/css/plugins/font-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
+    <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
-    <link rel="stylesheet" href="vistas/css/plantilla.css">
-    <link rel="stylesheet" href="vistas/css/cabezote.css">
+
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plantilla.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/cabezote.css">
     
 	<!--=====================================
 		=            JS            =
 	======================================-->
-    <script src="vistas/js/plugins/jquery.min.js"></script>
-	<script src="vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url;?>vistas/js/plugins/jquery.min.js"></script>
+	<script src="<?php echo $url;?>vistas/js/plugins/bootstrap.min.js"></script>
 
 	
 
 	<title>Comanda Electrónica</title>
 	
 
-	<?php
-	       $icono = ControladorPlantilla::ctrEstiloPlantilla();
-
-	       echo '<link rel="icon" href="http://localhost/Comanda/backend/'.$icono["icono"].'">';
-	?>
 </head>
 <body>
 	
@@ -61,11 +72,19 @@
   		=            CABEZOTE            =
   =============================================*/
   include "modulos/cabezote.php";
+
+  
+
+  //De esta manera estamos obteniendo las urls amigables del sitio
+  if(isset($_GET["ruta"])){
+
+  		echo $_GET["ruta"];
+  }
     
 ?>
 
-<script src="vistas/js/cabezote.js"></script>
-<script src="vistas/js/plantilla.js"></script>
+<script src="<?php echo $url;?>vistas/js/cabezote.js"></script>
+<script src="<?php echo $url;?>vistas/js/plantilla.js"></script>
 
 </body>
 </html>
