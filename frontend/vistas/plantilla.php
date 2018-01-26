@@ -73,12 +73,14 @@
   =============================================*/
   include "modulos/cabezote.php";
 
-  
+  $rutas = array();
 
   //De esta manera estamos obteniendo las urls amigables del sitio
   if(isset($_GET["ruta"])){
 
-  		echo $_GET["ruta"];
+  		$rutas= explode ("/", $_GET["ruta"]);
+
+  		//var_dump($rutas[0]); //Las rutas que están en la posición 0 son las amigables
   }
     
 ?>
