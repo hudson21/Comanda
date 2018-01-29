@@ -17,7 +17,11 @@ class ModeloProductos{
 			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item =:$item");
 
 			//EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
-			$stmt -> bindParam(":".$item,$valor, $id, PDO::PARAM_STR);
+			$stmt -> bindParam(":".$item,$valor, PDO::PARAM_STR);
+
+			$stmt-> execute();
+
+			return $stmt -> fetch();	
 
 		}else{
 

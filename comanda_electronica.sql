@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-01-2018 a las 21:04:04
+-- Tiempo de generación: 29-01-2018 a las 19:03:22
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -25,6 +25,18 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `barsol`
+--
+
+CREATE TABLE `barsol` (
+  `no_mesero` int(11) NOT NULL,
+  `no_palapa` int(11) NOT NULL,
+  `no_habitacion` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `categorias`
 --
 
@@ -40,11 +52,15 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id`, `categoria`, `ruta`, `fecha`) VALUES
-(1, 'VINOS', 'vinos', '2018-01-26 15:07:03'),
-(2, 'PLATILLOS', 'platillos', '2018-01-26 15:07:03'),
-(3, 'POSTRES', 'postres', '2018-01-26 15:07:03'),
-(4, 'ACCESORIOS', 'accesorios', '2018-01-26 15:07:03'),
-(5, 'ROPA', 'ropa', '2018-01-26 15:07:03');
+(1, 'RON', 'ron', '2018-01-29 14:59:25'),
+(2, 'VODKA', 'vodka', '2018-01-29 14:59:25'),
+(3, 'TEQUILA', 'tequila', '2018-01-29 14:59:25'),
+(4, 'GINEBRA', 'ginebra', '2018-01-29 14:59:25'),
+(5, 'APERITIVOS Y DIGESTIVOS', 'aperitivos-digestivos', '2018-01-29 15:02:40'),
+(6, 'CERVEZAS', 'cervezas', '2018-01-29 15:02:06'),
+(7, 'VINOS', 'vinos', '2018-01-29 15:02:06'),
+(8, 'WHISKIS', 'whiskis', '2018-01-29 15:02:06'),
+(9, 'REFRESCOS, JUGOS Y OTROS', 'refrecos-jugos-y-otros', '2018-01-29 15:27:03');
 
 -- --------------------------------------------------------
 
@@ -74,6 +90,29 @@ INSERT INTO `plantilla` (`id`, `barraSuperior`, `textoSuperior`, `colorFondo`, `
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `productos`
+--
+
+CREATE TABLE `productos` (
+  `id` int(11) NOT NULL,
+  `nombre_producto` text COLLATE utf8_spanish_ci NOT NULL,
+  `id_subcategoria` int(11) NOT NULL,
+  `ruta` text COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `productos`
+--
+
+INSERT INTO `productos` (`id`, `nombre_producto`, `id_subcategoria`, `ruta`, `fecha`) VALUES
+(1, 'LIMÓN', 1, 'limon', '2018-01-29 17:40:40'),
+(2, 'FRESA', 1, 'fresa', '2018-01-29 17:40:40'),
+(3, 'MANGO', 1, 'mango', '2018-01-29 17:44:34');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `subcategorias`
 --
 
@@ -90,27 +129,43 @@ CREATE TABLE `subcategorias` (
 --
 
 INSERT INTO `subcategorias` (`id`, `subcategoria`, `id_categoria`, `ruta`, `fecha`) VALUES
-(1, 'Vinos de Cosecha 1883', 1, 'vinos-de-cosecha-1883', '2018-01-26 15:30:29'),
-(2, 'Vinos de Cosecha 1700', 1, 'vinos-de-cosecha-1700', '2018-01-26 15:30:29'),
-(3, 'Platillos de Carnes', 2, 'platillos-de-carnes', '2018-01-26 15:32:21'),
-(4, 'Platillos de Pescado', 2, 'platillos-de-pescado', '2018-01-26 15:32:21'),
-(5, 'Postres de la Mañana', 3, 'postres-de-la-mañana', '2018-01-26 15:33:38'),
-(6, 'Postres de la Noche', 3, 'postres-de-la-noche', '2018-01-26 15:33:38'),
-(7, 'Accesorios de Relojes', 4, 'accesorios-de-relojes', '2018-01-26 15:34:22'),
-(8, 'Accesorios de zapatos', 4, 'accesorios-de-zapatos', '2018-01-26 15:34:22'),
-(9, 'Ropa de Verano', 5, 'ropa-de-verano', '2018-01-26 15:35:08'),
-(10, 'Ropa de Invierno', 5, 'ropa-de-invierno', '2018-01-26 15:35:08'),
-(11, 'Vinos de Cosecha 1600', 1, 'vinos-de-cosecha-1600', '2018-01-26 15:41:38'),
-(12, 'Vinos de Cosecha 1500', 1, 'vinos-de-cosecha-1500', '2018-01-26 15:41:50'),
-(13, 'Carnes de Estilo Holanda', 2, 'carnes-de-estilo-holanda', '2018-01-26 15:42:43'),
-(14, 'Carnes de Estilo Mexico', 2, 'carnes-de-estilo-mexico', '2018-01-26 15:42:43'),
-(15, 'Platillos al Estilo Europeo', 2, 'platillos-al-estilo-europeo', '2018-01-26 15:45:00'),
-(16, 'Platillos al Estilo Asiático', 2, 'platillos-al-estilo-asiatico', '2018-01-26 15:45:00'),
-(17, 'Postres del Mediodía', 3, 'postres-de-mediodia', '2018-01-26 17:12:54');
+(1, 'DAIQUIRÍS', 1, 'daiquiris', '2018-01-29 15:07:15'),
+(2, 'MOJITOS', 1, 'mojitos', '2018-01-29 15:09:41'),
+(3, 'MARCA', 1, 'marca', '2018-01-29 15:09:41'),
+(4, 'CÓCTEL', 2, 'coctel', '2018-01-29 15:11:13'),
+(5, 'FROZZEN', 2, 'frozzen', '2018-01-29 15:11:13'),
+(6, 'MARCA', 2, 'marca', '2018-01-29 15:11:13'),
+(7, 'CÓCTEL', 3, 'coctel', '2018-01-29 15:13:41'),
+(8, 'MARGARITAS', 3, 'margaritas', '2018-01-29 15:13:41'),
+(9, 'MARCA', 3, 'marca', '2018-01-29 15:13:41'),
+(10, 'CÓCTEL', 4, 'coctel', '2018-01-29 15:14:58'),
+(11, 'MARCA', 4, 'marca', '2018-01-29 15:14:58'),
+(12, 'APERITIVOS', 5, 'aperitivos', '2018-01-29 15:18:50'),
+(13, 'DIGESTIVOS', 5, 'digestivos', '2018-01-29 15:18:50'),
+(14, 'CÓCTEL', 6, 'coctel', '2018-01-29 15:20:28'),
+(15, 'XX LAGER', 6, 'xx-lager', '2018-01-29 15:20:28'),
+(16, 'XX AMBAR', 6, 'xx-ambar', '2018-01-29 15:20:28'),
+(17, 'SOL CERO', 6, 'sol-cero', '2018-01-29 15:20:28'),
+(18, 'TINTOS', 7, 'tintos', '2018-01-29 15:23:30'),
+(19, 'BLANCOS', 7, 'blancos', '2018-01-29 15:23:05'),
+(20, 'ESPUMOSO', 7, 'espumoso', '2018-01-29 15:23:05'),
+(21, 'ROSADO', 7, 'rosado', '2018-01-29 15:24:16'),
+(22, 'CÓCTEL', 7, 'coctel', '2018-01-29 15:24:16'),
+(23, 'CÓCTEL', 8, 'coctel', '2018-01-29 15:25:24'),
+(24, 'MARCA', 8, 'marca', '2018-01-29 15:25:24'),
+(25, 'REFRESCOS', 9, 'refrescos', '2018-01-29 15:28:35'),
+(26, 'JUGOS', 9, 'jugos', '2018-01-29 15:28:35'),
+(27, 'OTROS', 9, 'otros', '2018-01-29 15:31:08');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `barsol`
+--
+ALTER TABLE `barsol`
+  ADD PRIMARY KEY (`no_mesero`);
 
 --
 -- Indices de la tabla `categorias`
@@ -125,20 +180,35 @@ ALTER TABLE `plantilla`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_subcategoria` (`id_subcategoria`);
+
+--
 -- Indices de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`) USING BTREE,
+  ADD UNIQUE KEY `id_categorias` (`id`),
+  ADD KEY `id_categoria` (`id_categoria`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
+-- AUTO_INCREMENT de la tabla `barsol`
+--
+ALTER TABLE `barsol`
+  MODIFY `no_mesero` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
@@ -147,10 +217,32 @@ ALTER TABLE `plantilla`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT de la tabla `productos`
+--
+ALTER TABLE `productos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `productos`
+--
+ALTER TABLE `productos`
+  ADD CONSTRAINT `productos_ibfk_1` FOREIGN KEY (`id_subcategoria`) REFERENCES `subcategorias` (`id`);
+
+--
+-- Filtros para la tabla `subcategorias`
+--
+ALTER TABLE `subcategorias`
+  ADD CONSTRAINT `subcategorias_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

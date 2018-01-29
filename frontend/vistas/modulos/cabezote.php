@@ -164,7 +164,10 @@
 
             <?php
 
-                $categorias = ControladorProductos::ctrMostrarCategorias();
+            $item=null;
+            $valor=null;
+
+                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
 
                 forEach($categorias as $key => $value){
 
