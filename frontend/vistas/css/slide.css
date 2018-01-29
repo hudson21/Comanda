@@ -35,11 +35,14 @@
 	opacity:1;
 	top:15%;
 	right:10%;
-	width:45%;*/
+	width:45%;
 }
 
 #slide .slideOpcion1 .textosSlide{
 	position:absolute;
+	width:40%;
+	top:20%;
+	left:10%; 
 }
 
 #slide .slideOpcion1 h1{
