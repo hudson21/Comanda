@@ -118,6 +118,17 @@ a:visited, a:link, a:focus, a:hover, a:active{
 	background:linear-gradient(45deg, #fca925, #6350a2);
 }
 
+/*------------------------------------------------
+  ERROR 404
+------------------------------------------------*/
+.error404{
+	color:#333;
+}
+
+
+
+
+
 /*
 Para generar un nuevo snippet nos vamos a Tools-Developer-New Snippet
 Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de atrás para adelante
@@ -132,6 +143,11 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   .col-lg-0{
   	display:none;
   }
+
+  .error404 h1{
+  	  font-size:300px;
+  	  text-shadow:8px 8px 1px #dadada;
+  }
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -140,6 +156,11 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   
   .col-md-0{
   	display:none;
+  }
+
+  .error404 h1{
+  	  font-size:200px;
+  	  text-shadow:6px 6px 1px #dadada;
   }
 
 }
@@ -151,13 +172,24 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 .col-sm-0{
   	display:none;
   }
+
+.error404 h1{
+  	font-size:150px;
+  	text-shadow:4px 4px 1px #dadada;
+}
+
 }
 /*------------------------------------------------
   MOVIL (XS revisamos en 320px)
 ------------------------------------------------*/
 @media (max-width:767px){
 	
-	.col-xs-0{
+  .col-xs-0{
   	display:none;
   }
+
+  .error404 h1{
+  	font-size:75px;
+  	text-shadow:2px 2px 1px #dadada;
+}
 }

@@ -45,12 +45,12 @@ class ModeloProductos{
 	  	MOSTRAR SUBCATEGORÍA
 	  ===============================================*/
 
-	  static public function mdlMostrarSubCategorias($tabla, $id){
+	  static public function mdlMostrarSubCategorias($tabla, $item, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_categoria = :id_categoria");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
        //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
-		$stmt -> bindParam(":id_categoria", $id, PDO::PARAM_INT);
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
 
 		$stmt-> execute();
 

@@ -37,6 +37,7 @@
 
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plantilla.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/cabezote.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/slide.css">
     
 	<!--=====================================
 		=            JS            =
@@ -73,30 +74,68 @@
   =============================================*/
   include "modulos/cabezote.php";
 
+  /*======================================
+      CONTENIDO DINÁMICO      
+  ========================================*/
+
   $rutas = array();
+  $ruta = null;
 
   //De esta manera estamos obteniendo las urls amigables del sitio
   if(isset($_GET["ruta"])){
 
-  		$rutas= explode ("/", $_GET["ruta"]);
+  		$rutas= explode ("/", $_GET["ruta"]);//El explode es para separar las palabras cada que vea un '/'
+  		//A través del parámetro GET obtenemos lo que hay en la url
 
   		$item="ruta";
 
-  		$valor=$_GET["ruta"];
+  		$valor=$rutas[0];
 
+
+/*======================================
+      URL'S AMIGABLES DE CATEGORÍA      
+  ========================================*/
   		$rutaCategorias=ControladorProductos::ctrMostrarCategorias($item,$valor);
 
-  		var_dump($rutaCategorias);
+  		if($rutas[0]== $rutaCategorias["ruta"]){
 
-  /*		if($rutas[0]=="vinos" ){
+  			$ruta = $rutas[0];
+  		}
+
+  		//var_dump($rutaCategorias["ruta"]);
+
+  		/*======================================
+      URL'S AMIGABLES DE SUBCATEGORÍA      
+  ========================================*/
+  $rutaSubCategorias=ControladorProductos::ctrMostrarSubCategorias($item,$valor);
+
+  foreach($rutaSubCategorias as $key =>$value){
+
+  	if($rutas[0]== $value["ruta"]){
+
+  			$ruta = $rutas[0];
+  		}
+
+  }
+
+
+  /*======================================
+      LISTA BLANCA URL'S AMIGABLES    
+  ========================================*/
+
+  		if($ruta != null ){
 
   			include "modulos/productos.php";
   		}else{
-  			include "modulos/error404.php";
 
-  		}*/
+  			include "modulos/error404.php";//Que el slide aparezca solamente en la página de inicio
+
+  		}
 
   		//var_dump($rutas[0]); //Las rutas que están en la posición 0 son las amigables
+  }else{
+
+  	  include "modulos/slide.php";
   }
     
 ?>

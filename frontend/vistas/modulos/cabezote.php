@@ -181,8 +181,12 @@
 
                           <ul>';
 
+                          $item = "id_categoria";
+
+                          $valor = $value["id"];
+
                          //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
-                         $subcategorias = ControladorProductos::ctrMostrarSubCategorias($value["id"]);
+                         $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
 
                          foreach($subcategorias as $key => $value){
 

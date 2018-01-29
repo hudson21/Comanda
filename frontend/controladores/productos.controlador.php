@@ -24,11 +24,11 @@ class ControladorProductos{
      ===============================================*/
 
     //Recuerda que es static porque estamos trayendo valores
-	static public function ctrMostrarSubCategorias($id){
+	static public function ctrMostrarSubCategorias($item,$valor){
 
 		$tabla="subcategorias";
 
-		$respuesta = ModeloProductos::mdlMostrarSubCategorias($tabla,$id);
+		$respuesta = ModeloProductos::mdlMostrarSubCategorias($tabla,$item, $valor);
 
 		return $respuesta;
 	}
