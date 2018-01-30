@@ -28,10 +28,11 @@
      <!--=====================================
      	=            CSS            =
      ======================================-->     
-	<link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
+	  <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
 
@@ -42,10 +43,9 @@
 	<!--=====================================
 		=            JS            =
 	======================================-->
-    <script src="<?php echo $url;?>vistas/js/plugins/jquery.min.js"></script>
-	<script src="<?php echo $url;?>vistas/js/plugins/bootstrap.min.js"></script>
-
-	
+    <script src="<?php echo $url;?>vistas/js/plugins/jquery.min.js"></script>  
+	  <script src="<?php echo $url;?>vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url;?>vistas/js/plugins/jquery.easing.js"></script>
 
 	<title>Comanda Electrónica</title>
 	

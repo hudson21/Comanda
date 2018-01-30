@@ -4,7 +4,32 @@
 
 var item=0;
 var itemPaginacion = $("#paginacion li"); //Me esta trayendo todos los li que están dentro de paginacion
+var interrumpirCiclo=false;
+var imgProducto = $(".imgProducto");
+var titulos1 = $("#slide h1");
+var titulos2 = $("#slide h2");
+var titulos3 = $("#slide h3");
+var btnVerProducto = $("#slide button");
+var detenerIntervalo = false;
+var toggle = false;
 
+/*======================================
+  ANIMACIÓN INICIAL        
+========================================*/
+$(imgProducto[item]).animate({"top":-15+"%", "opacity":0},100);
+$(imgProducto[item]).animate({"top":30+"px", "opacity":1},600);
+
+$(titulos1[item]).animate({"top":-15+"%", "opacity":0},100);
+$(titulos1[item]).animate({"top":30+"px", "opacity":1},600);
+
+$(titulos2[item]).animate({"top":-15+"%", "opacity":0},100);
+$(titulos2[item]).animate({"top":30+"px", "opacity":1},600);
+
+$(titulos3[item]).animate({"top":-15+"%", "opacity":0},100);
+$(titulos3[item]).animate({"top":30+"px", "opacity":1},600);
+
+$(btnVerProducto[item]).animate({"top":-15+"%", "opacity":0},100);
+$(btnVerProducto[item]).animate({"top":30+"px", "opacity":1},600);
 
 /*======================================
   PAGINACIÓN        
@@ -73,13 +98,32 @@ $("#slide #retroceder").click(function(){
 
 function movimientoSlide(item){
 
+	//http://easings.net/es
+
 	$("#slide ul").animate({"left":item * -100 + "%"}, 700);
 
 	$("#paginacion li").css({"opacity":0.5});
 
 	$(itemPaginacion[item]).css({"opacity":1});
 
-	console.log("itemPaginacion",itemPaginacion);
+	interrumpirCiclo=true;
+
+	//console.log("itemPaginacion",itemPaginacion);
+
+	$(imgProducto[item]).animate({"top":-15+"%", "opacity":0},100);
+    $(imgProducto[item]).animate({"top":30+"px", "opacity":1},700);
+
+	$(titulos1[item]).animate({"top":-15+"%", "opacity":0},100);
+	$(titulos1[item]).animate({"top":30+"px", "opacity":1},700);
+	
+	$(titulos2[item]).animate({"top":-15+"%", "opacity":0},100);
+	$(titulos2[item]).animate({"top":30+"px", "opacity":1},700);
+	
+	$(titulos3[item]).animate({"top":-15+"%", "opacity":0},100);
+	$(titulos3[item]).animate({"top":30+"px", "opacity":1},700);
+
+	$(btnVerProducto[item]).animate({"top":-15+"%", "opacity":0},100);
+	$(btnVerProducto[item]).animate({"top":30+"px", "opacity":1},700);
 
 }
 /*======================================
@@ -88,6 +132,69 @@ function movimientoSlide(item){
 
 setInterval(function(){
 
-	avanzar();
+	if(interrumpirCiclo){
+
+		interrumpirCiclo = false;
+	
+	}else{
+
+		if (detenerIntervalo==false){
+			avanzar();
+		}
+
+	}
 
 },3000)
+
+
+/*======================================
+  APARECER FLECHAS     
+========================================*/
+
+$("#slide").mouseover(function(){
+
+	$("#slide #retroceder").css({"opacity":1});
+	$("#slide #avanzar").css({"opacity":1});
+
+    detenerIntervalo = true;
+
+
+});
+
+/*======================================
+  DESAPARECER FLECHAS     
+========================================*/
+
+$("#slide").mouseout(function(){
+
+	$("#slide #retroceder").css({"opacity":0});
+	$("#slide #avanzar").css({"opacity":0});
+
+   detenerIntervalo = false;
+});
+
+/*======================================
+  ESCONDER SLIDE    
+========================================*/
+
+$("#btnSlide").click(function(){
+
+	if(toggle==false){
+
+		toggle=true;
+		
+		$("#slide").slideUp("fast");
+
+		$("#btnSlide").html('<i class="fa fa-angle-down"></i>');
+	
+	}else{
+
+		toggle=false;
+
+		$("#slide").slideDown("fast");
+
+		$("#btnSlide").html('<i class="fa fa-angle-up"></i>');
+	}
+
+	
+})
