@@ -29,26 +29,31 @@
 	?>
     
      <!--=====================================
-     	=            CSS            =
+     	      =  PLUGINS DE CSS  =
      ======================================-->     
 	  <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
     <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" rel="stylesheet">
+    <!--===============================================
+     (CSS) HOJAS DE ESTILO PERSONALIZADAS
+    ===================================================-->
 
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plantilla.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/cabezote.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/slide.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/productos.css">
+
     
 	<!--=====================================
-		=            JS            =
+	    	=  PLUGINS DE JAVASCRIPT    =
 	======================================-->
     <script src="<?php echo $url;?>vistas/js/plugins/jquery.min.js"></script>  
 	  <script src="<?php echo $url;?>vistas/js/plugins/bootstrap.min.js"></script>
     <script src="<?php echo $url;?>vistas/js/plugins/jquery.easing.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript">
 
 	<title>Comanda Electrónica</title>
 	
@@ -139,9 +144,15 @@
   }else{
 
   	  include "modulos/slide.php";
+
+      include "modulos/destacados.php";
   }
     
 ?>
+
+<!--===============================================
+     (JS) JAVASCRIPT PERSONALIZADAS
+===================================================-->
 
 <script src="<?php echo $url;?>vistas/js/cabezote.js"></script>
 <script src="<?php echo $url;?>vistas/js/plantilla.js"></script>
