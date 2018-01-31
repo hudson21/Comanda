@@ -22,3 +22,58 @@ url: http://google-plus.com/tutorialesatualcance
 
 
 C:\Users\trainee.saim\AppData\Roaming\Sublime Text 3\Packages\User
+
+la tabla de slide va a tener 
+
+
+---------Segundo Registro-------
+id
+imgFondo : vistas/img/slide/default/back_default.jpg
+tipoSlide : slideOpcion2
+imgProducto: vistas/img/slide/slide2/curso.png
+estiloImgProducto:{"top": "5%","right":"","width":"25%","left":"15%"}
+estiloTextoSlide:{"top": "15%","right":"15%","width":"40%","left":""}
+titulo1: {"texto":"CURSO A TU ALCANCE","color":"#333"}
+titulo2: {"texto":"30% DESCUENTO","color":"#777"}
+titulo3: {"texto":"COMPRALO YA","color":"#888"}
+boton: <button class="btn btn-default backColor text-uppercase">
+								
+								VER PRODUCTO <span class="fa fa-chevron-right"></span>
+								
+								</button>
+url:#
+fecha:
+
+---------Tercer Registro-------
+id
+imgFondo : vistas/img/slide/slide3/fondoplaya.jpg
+tipoSlide : slideOpcion2
+imgProducto: vistas/img/slide/slide3/iphone.png
+estiloImgProducto:{"top": "5%","right":"","width":"25%","left":"15%"}
+estiloTextoSlide:{"top": "20%","right":"10%","width":"40%","left":""}
+titulo1: {"texto":"VIVE LA MEJOR EXPERIENCIA","color":"#eee"}
+titulo2: {"texto":"LA VIDA ES BELLA","color":"#ccc"}
+titulo3: {"texto":"DISFRUTA","color":"#aaa"}
+boton: <button class="btn btn-default backColor text-uppercase">
+								
+								VER PRODUCTO <span class="fa fa-chevron-right"></span>
+								
+								</button>
+url:#
+fecha:
+
+---------Cuart Registro-------
+id
+imgFondo : vistas/img/slide/slide4/fondo4.jpg
+tipoSlide : slideOpcion1
+imgProducto: 
+estiloImgProducto:
+estiloTextoSlide:{"top": "20%","right":"","width":"40%","left":"10%"}
+titulo1: {"texto":"VINOS","color":"#333"}
+titulo2: {"texto":"LA ESCENCIA DEL SABOR","color":"#777"}
+titulo3: {"texto":"COMPRALO YA","color":"#888"}
+boton: 
+url:
+fecha:
+
+

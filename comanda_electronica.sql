@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-01-2018 a las 22:42:31
+-- Tiempo de generación: 31-01-2018 a las 17:46:09
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -113,6 +113,37 @@ INSERT INTO `productos` (`id`, `nombre_producto`, `id_subcategoria`, `ruta`, `fe
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `slide`
+--
+
+CREATE TABLE `slide` (
+  `id` int(11) NOT NULL,
+  `imgFondo` text COLLATE utf8_spanish_ci NOT NULL,
+  `tipoSlide` text COLLATE utf8_spanish_ci NOT NULL,
+  `imgProducto` text COLLATE utf8_spanish_ci NOT NULL,
+  `estiloImgProducto` text COLLATE utf8_spanish_ci NOT NULL,
+  `estiloTextoSlide` text COLLATE utf8_spanish_ci NOT NULL,
+  `titulo1` text COLLATE utf8_spanish_ci NOT NULL,
+  `titulo2` text COLLATE utf8_spanish_ci NOT NULL,
+  `titulo3` text COLLATE utf8_spanish_ci NOT NULL,
+  `boton` text COLLATE utf8_spanish_ci NOT NULL,
+  `url` text COLLATE utf8_spanish_ci NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `slide`
+--
+
+INSERT INTO `slide` (`id`, `imgFondo`, `tipoSlide`, `imgProducto`, `estiloImgProducto`, `estiloTextoSlide`, `titulo1`, `titulo2`, `titulo3`, `boton`, `url`, `fecha`) VALUES
+(1, 'vistas/img/slide/default/back_default.jpg', 'slideOpcion1', 'vistas/img/slide/slide1/calzado.png', '{\"top\": \"15%\",\"right\": \"10%\",\"width\":\"45%\",\r\n\"left\":\"\"}', '{\"top\": \"20%\",\"right\": \"\",\"width\":\"40%\",\r\n\"left\":\"10%\"}', '{\"texto\":\"OFERTA ESPECIAL\",\"color\":\"#333\"}', '{\"texto\":\"50% DESCUENTO\",\"color\":\"#777\"}', '{\"texto\":\"ZAPATO DE PLAYA\",\"color\":\"#888\"}', '<button class=\"btn btn-default backColor text-uppercase\">\r\n								\r\n								VER PRODUCTO <span class=\"fa fa-chevron-right\"></span>\r\n								\r\n								</button>', '#', '2018-01-31 15:04:31'),
+(2, 'vistas/img/slide/default/back_default.jpg', 'slideOpcion2', 'vistas/img/slide/slide2/curso.png', '{\"top\":\"5%\",\"right\":\"\",\"width\":\"25%\",\"left\":\"15%\"}', '{\"top\": \"15%\",\"right\":\"15%\",\"width\":\"40%\",\"left\":\"\"}', '{\"texto\":\"CURSO A TU ALCANCE\",\"color\":\"#333\"}', '{\"texto\":\"30% DESCUENTO\",\"color\":\"#777\"}', '{\"texto\":\"COMPRALO YA\",\"color\":\"#888\"}', '<button class=\"btn btn-default backColor text-uppercase\">\r\n								\r\n								VER PRODUCTO <span class=\"fa fa-chevron-right\"></span>\r\n								\r\n								</button>', '#', '2018-01-31 15:21:38'),
+(3, 'vistas/img/slide/slide3/fondoplaya.jpg', 'slideOpcion2', 'vistas/img/slide/slide3/iphone.png', '{\"top\":\"5%\",\"right\":\"\",\"width\":\"25%\",\"left\":\"15%\"}', '{\"top\":\"20%\",\"right\":\"10%\",\"width\":\"40%\",\"left\":\"\"}', '{\"texto\":\"VIVE LA MEJOR EXPERIENCIA\",\"color\":\"#eee\"}', '{\"texto\":\"LA VIDA ES BELLA\",\"color\":\"#eee\"}', '{\"texto\":\"DISFRUTA\",\"color\":\"#eee\"}', '<button class=\"btn btn-default backColor text-uppercase\">\r\n								\r\n								VER PRODUCTO <span class=\"fa fa-chevron-right\"></span>\r\n								\r\n								</button>', '#', '2018-01-31 15:29:39'),
+(4, 'vistas/img/slide/slide4/fondo4.jpg', 'slideOpcion1', '', '', '{\"top\":\"20%\",\"right\":\"\",\"width\":\"40%\",\"left\":\"10%\"}', '{\"texto\":\"VINOS\",\"color\":\"#333\"}', '{\"texto\":\"LA ESCENCIA DEL SABOR\",\"color\":\"#777\"}', '{\"texto\":\"COMPRALO YA\",\"color\":\"#888\"}', '', '', '2018-01-31 15:35:20');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `subcategorias`
 --
 
@@ -187,6 +218,12 @@ ALTER TABLE `productos`
   ADD KEY `id_subcategoria` (`id_subcategoria`);
 
 --
+-- Indices de la tabla `slide`
+--
+ALTER TABLE `slide`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
@@ -223,10 +260,16 @@ ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT de la tabla `slide`
+--
+ALTER TABLE `slide`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT de la tabla `subcategorias`
 --
 ALTER TABLE `subcategorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas
