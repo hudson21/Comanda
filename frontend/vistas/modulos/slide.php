@@ -81,7 +81,7 @@
 	  
 			<li>
 
-				<img src="http://localhost/Comanda/backend/vistas/img/slide/slide3/fondo2.jpg" >
+				<img src="http://localhost/Comanda/backend/vistas/img/slide/slide3/fondoplaya.jpg" >
 
 					<div class="slideOpciones slideOpcion2">
 						
@@ -116,7 +116,7 @@
 	  
 			<li>
 
-				<img src="http://localhost/Comanda/backend/vistas/img/slide/slide4/fondo3.jpg" >
+				<img src="http://localhost/Comanda/backend/vistas/img/slide/slide4/fondo4.jpg" width="1600px" height="500px">
 
 					<div class="slideOpciones slideOpcion1">
 						
