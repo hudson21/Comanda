@@ -673,7 +673,7 @@ VITRINA DE PRODUCTOS GRATIS
 
                       <span class="label label-warning fontSize">Nuevo</span>
 
-                      <span class="label label-warning fontSize">50% Off</span>
+            
 
 	 			</a>
 
@@ -685,13 +685,7 @@ VITRINA DE PRODUCTOS GRATIS
 	 		
 	 		 <h2>
 	 		 
-	 		 	<small>
-	 		 	
-	 		 		<strong class="oferta">$30 USD</strong>
-	 		 	
-	 		 	</small>
-
-	 		 	<small>$9</small>
+	 		 	<small>$ 25 USD</small>
 	 		 
 	 		 </h2>
 
@@ -750,8 +744,6 @@ VITRINA DE PRODUCTOS GRATIS
 	 			<a href="#" class="pixelProducto">
 	 				
                       Costras de papas botaneras<br>
-
-                      <span class="label label-warning fontSize">Nuevo</span>
 
                       <span class="label label-warning fontSize">20% Off</span>
 
