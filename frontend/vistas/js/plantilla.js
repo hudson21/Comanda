@@ -40,6 +40,9 @@ $("#btnGrid"+i).click(function(){
 	$(".list"+numero).hide();
 	$(".grid"+numero).show();
 
+	$("#btnGrid"+numero).addClass("backColor");
+	$("#btnList"+numero).removeClass("backColor");	
+
 })
 
 $("#btnList"+i).click(function(){
@@ -49,9 +52,15 @@ $("#btnList"+i).click(function(){
 	$(".list"+numero).show();
 	$(".grid"+numero).hide();	
 
+	$("#btnGrid"+numero).removeClass("backColor");
+	$("#btnList"+numero).addClass("backColor");
+
 })
 
 }
+
+
+
 
 
 
