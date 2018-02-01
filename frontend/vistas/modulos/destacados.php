@@ -65,7 +65,7 @@ BARRA DE PRODUCTOS GRATIS
 </div>
 
 <!--===============================================
-VITRINA DE PRODUCTOS GRATIS
+VITRINA DE PRODUCTOS CON DESCUENTO
 ===================================================-->
 
 <div class="container-fluid productos">
@@ -120,7 +120,7 @@ VITRINA DE PRODUCTOS GRATIS
 	 VITRINA PRODUCTOS EN CUADRÍCULA
 	 ===================================================-->
 
-	 <ul class="grid0">
+	 <ul class="grid0" >
 
 	 	<!--===============================================
 	 	   PRODUCTO 1
@@ -382,6 +382,333 @@ VITRINA DE PRODUCTOS GRATIS
 
 </ul>
 
+		<!--===============================================
+		VITRINA DE PRODUCTOS EN LISTA
+		===================================================-->
+
+		<ul class="list0" style="display:none;">
+			
+			<!--===============================================
+			     PRODUCTO 1
+			===================================================-->
+
+			<li class="col-sx-12">
+				
+					<!--========================================================================-->
+					
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+						<figure>
+							
+							<a href="#" class="pixelProducto"><img src="http://localhost/Comanda/backend/vistas/img/productos/accesorios/mojito.jpg" class="img-responsive"></a>
+
+						</figure>
+						
+
+					</div>
+
+					<!--========================================================================-->
+
+					<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+
+						<h1>
+							
+							<small>
+								
+									<a href="#" class="pixelProducto">Mojito al estilo cubano</a>
+
+							</small>
+
+						</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis est ipsum soluta 
+							ducimus enim, perferendis rem sint similique amet, aspernatur quod repellendus dolor
+							quas eveniet. Nisi odio inventore at ipsa.
+						</p>
+
+						<h2><small>GRATIS</small></h2>
+
+						<div class="btn-group pull-left enlaces">
+							
+							<button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" 
+							title="Agregar a mi lista de deseos">
+
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							
+							</button>
+
+							<a href="#" class="pixelProducto">
+								
+								<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+									<i class="fa fa-eye" ara-hidden="true"></i>
+									
+								</button>							
+
+							</a>
+
+						</div>
+						
+
+					</div>
+
+                     <!--========================================================================-->
+
+                     <div class="col-xs-12">
+
+                     	<hr>
+                     	
+                     </div>
+
+                     <!--========================================================================-->
+
+
+			</li>
+
+
+			<!--===============================================
+			     PRODUCTO 2
+			===================================================-->
+
+			<li class="col-sx-12">
+				
+					<!--========================================================================-->
+					
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+						<figure>
+							
+							<a href="#" class="pixelProducto"><img src="http://localhost/Comanda/backend/vistas/img/productos/accesorios/martini.jpg" class="img-responsive"></a>
+
+						</figure>
+						
+
+					</div>
+
+					<!--========================================================================-->
+
+					<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+
+						<h1>
+							
+							<small>
+								
+									<a href="#" class="pixelProducto">Martini de sandía</a>
+
+							</small>
+
+						</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis est ipsum soluta 
+							ducimus enim, perferendis rem sint similique amet, aspernatur quod repellendus dolor
+							quas eveniet. Nisi odio inventore at ipsa.
+						</p>
+
+						<h2><small>GRATIS</small></h2>
+
+						<div class="btn-group pull-left enlaces">
+							
+							<button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" 
+							title="Agregar a mi lista de deseos">
+
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							
+							</button>
+
+							<a href="#" class="pixelProducto">
+								
+								<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+									<i class="fa fa-eye" ara-hidden="true"></i>
+									
+								</button>							
+
+							</a>
+
+						</div>
+						
+
+					</div>
+
+                     <!--========================================================================-->
+
+                     <div class="col-xs-12">
+
+                     	<hr>
+                     	
+                     </div>
+
+                     <!--========================================================================-->
+                     
+
+			</li>
+
+
+			<!--===============================================
+			     PRODUCTO 3
+			===================================================-->
+
+			<li class="col-sx-12">
+				
+					<!--========================================================================-->
+					
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+						<figure>
+							
+							<a href="#" class="pixelProducto"><img src="http://localhost/Comanda/backend/vistas/img/productos/accesorios/bebida.jpg" 
+								class="img-responsive"></a>
+
+						</figure>
+						
+
+					</div>
+
+					<!--========================================================================-->
+
+					<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+
+						<h1>
+							
+							<small>
+								
+									<a href="#" class="pixelProducto">Bebida de piña, menta y canela</a>
+
+							</small>
+
+						</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis est ipsum soluta 
+							ducimus enim, perferendis rem sint similique amet, aspernatur quod repellendus dolor
+							quas eveniet. Nisi odio inventore at ipsa.
+						</p>
+
+						<h2><small>GRATIS</small></h2>
+
+						<div class="btn-group pull-left enlaces">
+							
+							<button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" 
+							title="Agregar a mi lista de deseos">
+
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							
+							</button>
+
+							<a href="#" class="pixelProducto">
+								
+								<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+									<i class="fa fa-eye" ara-hidden="true"></i>
+									
+								</button>							
+
+							</a>
+
+						</div>
+						
+
+					</div>
+
+                     <!--========================================================================-->
+
+                     <div class="col-xs-12">
+
+                     	<hr>
+                     	
+                     </div>
+
+                     <!--========================================================================-->
+                     
+
+			</li>
+
+
+			<!--===============================================
+			     PRODUCTO 4
+			===================================================-->
+
+			<li class="col-sx-12">
+				
+					<!--========================================================================-->
+					
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+						<figure>
+							
+							<a href="#" class="pixelProducto"><img src="http://localhost/Comanda/backend/vistas/img/productos/accesorios/margarita.jpg" 
+								class="img-responsive"></a>
+
+						</figure>
+						
+
+					</div>
+
+					<!--========================================================================-->
+
+					<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+
+						<h1>
+							
+							<small>
+								
+									<a href="#" class="pixelProducto">Margarita roja</a>
+
+							</small>
+
+						</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis est ipsum soluta 
+							ducimus enim, perferendis rem sint similique amet, aspernatur quod repellendus dolor
+							quas eveniet. Nisi odio inventore at ipsa.
+						</p>
+
+						<h2><small>GRATIS</small></h2>
+
+						<div class="btn-group pull-left enlaces">
+							
+							<button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" 
+							title="Agregar a mi lista de deseos">
+
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							
+							</button>
+
+							<a href="#" class="pixelProducto">
+								
+								<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+									<i class="fa fa-eye" ara-hidden="true"></i>
+									
+								</button>							
+
+							</a>
+
+						</div>
+						
+
+					</div>
+
+                     <!--========================================================================-->
+
+                     <div class="col-xs-12">
+
+                     	<hr>
+                     	
+                     </div>
+
+                     <!--========================================================================-->
+                     
+
+			</li>
+
+
+
+		</ul>
+
  </div>
 	
 
@@ -436,7 +763,7 @@ BARRA DE PRODUCTOS MÁS VENDIDOS
 </div>
 
 <!--===============================================
-VITRINA DE PRODUCTOS GRATIS
+VITRINA DE PRODUCTOS MAS VENDIDOS
 ===================================================-->
 
 <div class="container-fluid productos">
@@ -490,7 +817,7 @@ VITRINA DE PRODUCTOS GRATIS
 	 VITRINA PRODUCTOS EN CUADRÍCULA
 	 ===================================================-->
 
-	 <ul class="grid1">
+	 <ul class="grid1" >
 
 	 	<!--===============================================
 	 	   PRODUCTO 1
@@ -802,10 +1129,109 @@ VITRINA DE PRODUCTOS GRATIS
 	 	
 	 	</li>
 
-	 	
-
-
+	 
 </ul>
+
+		<!--===============================================
+			VITRINA DE PRODUCTOS EN LISTA
+		===================================================-->
+
+		<ul class="list1" style="display:none;">
+
+			<!--===============================================
+			     PRODUCTO 1
+			===================================================-->
+
+			<li class="col-sx-12">
+				
+					<!--========================================================================-->
+					
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+						<figure>
+							
+							<a href="#" class="pixelProducto"><img src="http://localhost/Comanda/backend/vistas/img/productos/platillos/botana.jpg" class="img-responsive"></a>
+
+						</figure>
+						
+
+					</div>
+
+					<!--========================================================================-->
+
+					<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+
+						<h1>
+							
+							<small>
+								
+									<a href="#" class="pixelProducto">Botana de camarón y elote</a>
+
+									<span class="label label-warning fontSize">Nuevo</span>
+
+                     				<span class="label label-warning fontSize">30% Off</span>
+
+							</small>
+
+						</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis est ipsum soluta 
+							ducimus enim, perferendis rem sint similique amet, aspernatur quod repellendus dolor
+							quas eveniet. Nisi odio inventore at ipsa.
+						</p>
+
+						<h2>
+							<small>
+							
+									<strong class="oferta">$29 USD</strong>
+							
+							</small>
+
+							<small>$11 USD</small>
+
+						</h2>
+
+						<div class="btn-group pull-left enlaces">
+							
+							<button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" 
+							title="Agregar a mi lista de deseos">
+
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							
+							</button>
+
+							<a href="#" class="pixelProducto">
+								
+								<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+									<i class="fa fa-eye" ara-hidden="true"></i>
+									
+								</button>							
+
+							</a>
+
+						</div>
+						
+
+					</div>
+
+                     <!--========================================================================-->
+
+                     <div class="col-xs-12">
+
+                     	<hr>
+                     	
+                     </div>
+
+                     <!--========================================================================-->
+
+
+			</li>
+
+		
+			
+		</ul>
 
  </div>
 	
@@ -915,7 +1341,7 @@ VITRINA DE PRODUCTOS MÁS VISTOS
 	 VITRINA PRODUCTOS EN CUADRÍCULA
 	 ===================================================-->
 
-	 <ul class="grid1">
+	 <ul class="grid2">
 
 	 	<!--===============================================
 	 	   PRODUCTO 1
@@ -1261,11 +1687,115 @@ VITRINA DE PRODUCTOS MÁS VISTOS
 
 	 	
 	 	</li>
-	 	
-	 	
-
-
+	 
 </ul>
+
+     <!--===============================================
+			VITRINA DE PRODUCTOS EN LISTA
+		===================================================-->
+
+		<ul class="list2" style="display:none;" >
+
+			<!--===============================================
+			     PRODUCTO 1
+			===================================================-->
+
+			<li class="col-sx-12">
+				
+					<!--========================================================================-->
+					
+					<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+
+						<figure>
+							
+							<a href="#" class="pixelProducto"><img src="http://localhost/Comanda/backend/vistas/img/productos/platillos/hamburguesa.jpg" class="img-responsive"></a>
+
+						</figure>
+						
+
+					</div>
+
+					<!--========================================================================-->
+
+					<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+
+						<h1>
+							
+							<small>
+								
+									<a href="#" class="pixelProducto">Hamburguesa de res con piña</a>
+
+                     				<span class="label label-warning fontSize">90% Off</span>
+
+							</small>
+
+						</h1>
+
+						<p>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis est ipsum soluta 
+							ducimus enim, perferendis rem sint similique amet, aspernatur quod repellendus dolor
+							quas eveniet. Nisi odio inventore at ipsa.
+						</p>
+
+						<h2>
+							<small>
+							
+									<strong class="oferta">$100 USD</strong>
+							
+							</small>
+
+							<small>$10 USD</small>
+
+						</h2>
+
+						<div class="btn-group pull-left enlaces">
+							
+							<button type="button" class="btn btn-default btn-xs deseos" idProducto="470" data-toggle="tooltip" 
+							title="Agregar a mi lista de deseos">
+
+							<i class="fa fa-heart" aria-hidden="true"></i>
+							
+							</button>
+
+							<button type="button" class="btn btn-default btn-xs agregarCarrito" idProducto="404" 
+									imagen="http://localhost/Comanda/backend/vistas/img/productos/platillos/hamburguesa.jpg"
+									titulo="Hamburguesa de res con piña" precio="10" tipo="fisico" peso="13" data-toggle="tooltip" title="Agregar al carrito de compras">
+						
+								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+							</button>
+
+							<a href="#" class="pixelProducto">
+								
+								<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+
+									<i class="fa fa-eye" ara-hidden="true"></i>
+									
+								</button>							
+
+							</a>
+
+						</div>
+						
+
+					</div>
+
+                     <!--========================================================================-->
+
+                     <div class="col-xs-12">
+
+                     	<hr>
+                     	
+                     </div>
+
+                     <!--========================================================================-->
+
+
+			</li>
+
+		
+			
+		</ul>
 
  </div>
 	

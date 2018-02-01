@@ -5,7 +5,7 @@
 .banner{
 	position:relative;
 	overflow:hidden; /*El overflow es para esconder lo que queda de la imagen y no se vea de mala calidad*/
-	height:280px 
+	
 }
 
 .banner .textoBanner{
@@ -88,6 +88,7 @@ VITRINA PRODUCTOS CUADRÍCULA
 
 .productos ul li h4 small a{
 	color:#777;
+	text-decoration:none;
 }
 
 .productos ul li div.precio{
@@ -110,6 +111,25 @@ VITRINA PRODUCTOS CUADRÍCULA
 	font-size:12px;
 }
 
+/*======================================
+VITRINA PRODUCTOS EN LISTA        
+========================================*/
+
+.productos ul li h1{
+	margin-top:-10px;
+}
+
+.productos ul li h1 small{
+	text-transform:uppercase;
+	font-size:20px;
+	font-weight:700;
+}
+
+.productos ul li h1 small a{
+	color:#777;
+	text-decoration:none;
+}
+
 .oferta{
 	text-decoration:line-through;
 	color:#ccc;
@@ -118,4 +138,119 @@ VITRINA PRODUCTOS CUADRÍCULA
 
 h4 small a span.fontSize{
 	font-size:12px;
+}
+
+
+		/*Estamos configurando las resloluciones para lg, md, sm y xm*/
+/*------------------------------------------------
+   ESCRITORIO GRANDE (LG revisamos en 1366px en adelante)
+------------------------------------------------*/
+@media (min-width:1200px){
+
+	.banner{
+			height:280px 
+		}
+
+	
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+		
+	.banner{
+			height:250px 
+		}
+   
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+    .banner{
+		height:220px 
+	}
+
+	.textoBanner h1{
+		font-size:30px;
+		line-height:20px;
+		margin-top:-5px;
+	}
+
+	.textoBanner h2{
+		font-size:30px;
+		line-height:35px; 
+	}
+
+	.textoBanner h3{
+		font-size:30px;
+		line-height:15px;
+	}
+
+	.banner .textoDer, .banner .textoIzq, .banner .textoCentro {
+		top:35px;
+	}
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+	.banner{
+			height:120px 
+		}
+
+	.banner .textoDer,.banner .textoIzq, .banner .textoCentro{
+		top:7px;
+		left:50%;
+		width:800px;
+		margin-left:-400px;
+		text-align:center;
+		text-shadow:2px 2px 20px black;
+	}
+
+	.textoBanner h1{
+		font-size:20px;
+		line-height:5px;
+	}
+
+	.textoBanner h2{
+		font-size:20px;
+		line-height:5px; 
+	}
+
+	.textoBanner h3{
+		font-size:15px;
+		line-height:5px;
+	}
+
+	.banner .textoIzq{
+		top:60px;
+		left:50%;
+		width:800px;
+		margin-left:-400px;
+		text-align:center;
+	}
+
+	.tituloDestacado h1{
+		
+		text-align:center;
+	}
+
+	.tituloDestacado button{
+		position:absolute;
+		left:50%;
+		width:40%;
+		margin-left:-20%;
+	}
+
+	.productos ul li h1 small{
+		text-transform:uppercase;
+		font-size:14px;
+		font-weight:700;
+	}
+    
 }
