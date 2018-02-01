@@ -71,11 +71,11 @@ $(window).scroll(function(){
 
 	//console.log("scrollY",scrollY);
 
-	if(scrollY < ($(".banner").offset().top)-80){ //Mientras que la posición del banner sea mejor que la del top
+	if(scrollY < ($(".banner").offset().top)-140){ //Mientras que la posición del banner sea mejor que la del top
 
 		//console.log("El valor es menor");
 
-		$(".banner img").css({"margin-top":-scrollY/2+"px"});
+		$(".banner img").css({"margin-top":-scrollY/2.5+"px"});
 	
 	}else{
 
