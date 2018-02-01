@@ -61,6 +61,32 @@ $("#btnList"+i).click(function(){
 
 
 
+/*======================================
+  EFECTOS CON EL SCROLL        
+========================================*/
+
+$(window).scroll(function(){
+
+	var scrollY = window.pageYOffset;//Con esto yo puedo calcular la posición del scroll
+
+	//console.log("scrollY",scrollY);
+
+	if(scrollY < ($(".banner").offset().top)-80){ //Mientras que la posición del banner sea mejor que la del top
+
+		//console.log("El valor es menor");
+
+		$(".banner img").css({"margin-top":-scrollY/2+"px"});
+	
+	}else{
+
+		scrollY=0;
+
+	}
+
+})
+
+
+
 
 
 
