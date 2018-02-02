@@ -50,18 +50,18 @@
 	<!--=====================================
 	    	=  PLUGINS DE JAVASCRIPT    =
 	======================================-->
-    <script src="<?php echo $url;?>vistas/js/plugins/jquery.min.js"></script>  
-	  <script src="<?php echo $url;?>vistas/js/plugins/bootstrap.min.js"></script>
-    <script src="<?php echo $url;?>vistas/js/plugins/jquery.easing.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>  
+	  <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript">
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
 
 	<title>Comanda Electrónica</title>
 	
 
 </head>
 <body>
-	
-	
+
 
 	<!--Para generar comentarios va a ser con 
   
@@ -131,7 +131,7 @@
       LISTA BLANCA URL'S AMIGABLES    
   ========================================*/
 
-  		if($ruta != null ){
+  		if($ruta != null || $rutas[0] == "articulos-con-descuento" || $rutas[0] == "lo-mas-vendido" || $rutas[0] == "lo-mas-visto"){
 
   			include "modulos/productos.php";
   		}else{

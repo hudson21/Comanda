@@ -60,4 +60,35 @@ class ModeloProductos{
 
 		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
 	}
+
+	/*==============================================
+	  	MOSTRAR PRODUCTOS
+	  ===============================================*/
+
+	  static public function mdlMostrarProductos($tabla, $ordenar, $item, $valor){
+
+	  	if($item != null){
+
+	  			$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla WHERE $item= :$item ORDER BY $ordenar LIMIT 4");
+
+	  			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+
+	  			$stmt-> execute();
+
+				return $stmt -> fetchAll();
+
+
+	  	}else{
+
+			  	$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla ORDER BY $ordenar LIMIT 4");
+
+	  			$stmt-> execute();
+
+				return $stmt -> fetchAll();
+		}
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	  }
 }

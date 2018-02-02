@@ -2,6 +2,10 @@
     PLANTILLA
 =====================================================*/
 
+//Herramienta TOOLTIP
+
+ 
+
 $.ajax({
 
 	url:"ajax/plantilla.ajax.php",
@@ -28,6 +32,7 @@ $.ajax({
 var btnList = $(".btnList");
 //console.log("btnList",btnList.length);
 //Imprimimos la variable para ver cuantos elementos con la clase btnList hay en el archivo de destacados.php
+
 
 
 for (var i = 0; i < btnList.length; i++) {
@@ -71,19 +76,36 @@ $(window).scroll(function(){
 
 	//console.log("scrollY",scrollY);
 
-	if(scrollY < ($(".banner").offset().top)-140){ //Mientras que la posición del banner sea mejor que la del top
+	if(window.matchMedia("(min-width:768px)").matches){
+
+		if(scrollY < ($(".banner").offset().top)-140){ //Mientras que la posición del banner sea mejor que la del top
 
 		//console.log("El valor es menor");
 
-		$(".banner img").css({"margin-top":-scrollY/2.5+"px"});
+		$(".banner img").css({"margin-top":-scrollY/3+"px"});
 	
 	}else{
 
 		scrollY=0;
 
 	}
+	}
 
 })
+
+
+$(function(){
+
+	 $.scrollUp({
+
+ 		scrollText:"",
+ 		scrollSpeed: 2000,
+ 		easingType: "easeOutQuint"
+ 	});
+
+});
+
+$('[data-toggle="tooltip"]').tooltip();
 
 
 
