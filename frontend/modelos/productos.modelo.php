@@ -50,7 +50,7 @@ class ModeloProductos{
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
 
        //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 		$stmt-> execute();
 
@@ -91,4 +91,24 @@ class ModeloProductos{
 
 		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
 	  }
+
+	  /*==============================================
+	  	MOSTRAR INFO PRODUCTO
+	  ===============================================*/
+
+	  static public function mdlMostrarInfoProducto($tabla, $item, $valor){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+
+       //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
+		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+		$stmt-> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	}
 }

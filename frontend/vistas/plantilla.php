@@ -88,6 +88,7 @@
 
   $rutas = array();
   $ruta = null;
+  $infoProducto=null;
 
   //De esta manera estamos obteniendo las urls amigables del sitio
   if(isset($_GET["ruta"])){
@@ -114,7 +115,7 @@
 
   		/*======================================
       URL'S AMIGABLES DE SUBCATEGORÍA      
-  ========================================*/
+      ========================================*/
   $rutaSubCategorias=ControladorProductos::ctrMostrarSubCategorias($item,$valor);
 
   foreach($rutaSubCategorias as $key =>$value){
@@ -126,6 +127,17 @@
 
   }
 
+    /*======================================
+      URL'S AMIGABLES DE PRODUCTOS      
+      ========================================*/
+
+      $rutaProductos = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
+
+      if($rutas[0]== $rutaProductos["ruta"]){
+
+        $infoProducto = $rutas[0];
+      }
+
 
   /*======================================
       LISTA BLANCA URL'S AMIGABLES    
@@ -134,7 +146,14 @@
   		if($ruta != null || $rutas[0] == "articulos-con-descuento" || $rutas[0] == "lo-mas-vendido" || $rutas[0] == "lo-mas-visto"){
 
   			include "modulos/productos.php";
-  		}else{
+  		
+      }else if($infoProducto != null){
+
+        include "modulos/infoproducto.php";
+
+      }
+
+      else{
 
   			include "modulos/error404.php";//Que el slide aparezca solamente en la página de inicio
 
