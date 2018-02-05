@@ -2,10 +2,10 @@
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 02-02-2018 a las 22:38:59
--- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 05-02-2018 a las 06:08:15
+-- Versión del servidor: 5.7.19
+-- Versión de PHP: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -28,10 +28,12 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `barsol`
 --
 
-CREATE TABLE `barsol` (
-  `no_mesero` int(11) NOT NULL,
+DROP TABLE IF EXISTS `barsol`;
+CREATE TABLE IF NOT EXISTS `barsol` (
+  `no_mesero` int(11) NOT NULL AUTO_INCREMENT,
   `no_palapa` int(11) NOT NULL,
-  `no_habitacion` int(11) NOT NULL
+  `no_habitacion` int(11) NOT NULL,
+  PRIMARY KEY (`no_mesero`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 -- --------------------------------------------------------
@@ -40,12 +42,14 @@ CREATE TABLE `barsol` (
 -- Estructura de tabla para la tabla `categorias`
 --
 
-CREATE TABLE `categorias` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `categorias`;
+CREATE TABLE IF NOT EXISTS `categorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `categoria` text COLLATE utf8_spanish_ci NOT NULL,
   `ruta` text COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `categorias`
@@ -68,8 +72,9 @@ INSERT INTO `categorias` (`id`, `categoria`, `ruta`, `fecha`) VALUES
 -- Estructura de tabla para la tabla `plantilla`
 --
 
-CREATE TABLE `plantilla` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `plantilla`;
+CREATE TABLE IF NOT EXISTS `plantilla` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `barraSuperior` text COLLATE utf8_spanish_ci NOT NULL,
   `textoSuperior` text COLLATE utf8_spanish_ci NOT NULL,
   `colorFondo` text COLLATE utf8_spanish_ci NOT NULL,
@@ -77,8 +82,9 @@ CREATE TABLE `plantilla` (
   `logo` text COLLATE utf8_spanish_ci NOT NULL,
   `icono` text COLLATE utf8_spanish_ci NOT NULL,
   `redesSociales` text COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `plantilla`
@@ -93,8 +99,9 @@ INSERT INTO `plantilla` (`id`, `barraSuperior`, `textoSuperior`, `colorFondo`, `
 -- Estructura de tabla para la tabla `productos`
 --
 
-CREATE TABLE `productos` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `productos`;
+CREATE TABLE IF NOT EXISTS `productos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_categoria` int(11) NOT NULL,
   `id_subcategoria` int(11) NOT NULL,
   `tipo` text COLLATE utf8_spanish_ci NOT NULL,
@@ -120,8 +127,9 @@ CREATE TABLE `productos` (
   `peso` float NOT NULL,
   `entrega` float NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `comentarios` text COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `comentarios` text COLLATE utf8_spanish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=501 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `productos`
@@ -645,8 +653,9 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 -- Estructura de tabla para la tabla `slide`
 --
 
-CREATE TABLE `slide` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `slide`;
+CREATE TABLE IF NOT EXISTS `slide` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `imgFondo` text COLLATE utf8_spanish_ci NOT NULL,
   `tipoSlide` text COLLATE utf8_spanish_ci NOT NULL,
   `imgProducto` text COLLATE utf8_spanish_ci NOT NULL,
@@ -657,8 +666,9 @@ CREATE TABLE `slide` (
   `titulo3` text COLLATE utf8_spanish_ci NOT NULL,
   `boton` text COLLATE utf8_spanish_ci NOT NULL,
   `url` text COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `slide`
@@ -676,13 +686,17 @@ INSERT INTO `slide` (`id`, `imgFondo`, `tipoSlide`, `imgProducto`, `estiloImgPro
 -- Estructura de tabla para la tabla `subcategorias`
 --
 
-CREATE TABLE `subcategorias` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `subcategorias`;
+CREATE TABLE IF NOT EXISTS `subcategorias` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `subcategoria` text COLLATE utf8_spanish_ci NOT NULL,
   `id_categoria` int(11) NOT NULL,
   `ruta` text COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `id_categorias` (`id`),
+  KEY `id_categoria` (`id_categoria`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `subcategorias`
@@ -716,88 +730,6 @@ INSERT INTO `subcategorias` (`id`, `subcategoria`, `id_categoria`, `ruta`, `fech
 (25, 'REFRESCOS', 9, 'refrescos', '2018-01-29 15:28:35'),
 (26, 'JUGOS', 9, 'jugos', '2018-01-29 15:28:35'),
 (27, 'OTROS', 9, 'otros', '2018-01-29 15:31:08');
-
---
--- Índices para tablas volcadas
---
-
---
--- Indices de la tabla `barsol`
---
-ALTER TABLE `barsol`
-  ADD PRIMARY KEY (`no_mesero`);
-
---
--- Indices de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `plantilla`
---
-ALTER TABLE `plantilla`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `productos`
---
-ALTER TABLE `productos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `slide`
---
-ALTER TABLE `slide`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `subcategorias`
---
-ALTER TABLE `subcategorias`
-  ADD PRIMARY KEY (`id`) USING BTREE,
-  ADD UNIQUE KEY `id_categorias` (`id`),
-  ADD KEY `id_categoria` (`id_categoria`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `barsol`
---
-ALTER TABLE `barsol`
-  MODIFY `no_mesero` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `categorias`
---
-ALTER TABLE `categorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT de la tabla `plantilla`
---
-ALTER TABLE `plantilla`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `productos`
---
-ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
-
---
--- AUTO_INCREMENT de la tabla `slide`
---
-ALTER TABLE `slide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT de la tabla `subcategorias`
---
-ALTER TABLE `subcategorias`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- Restricciones para tablas volcadas

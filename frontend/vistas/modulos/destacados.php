@@ -122,11 +122,13 @@ for ($i=0; $i < count($titulosModulos); $i ++){
 				 				
 											VER MÁS <span class="fa fa-chevron-right"></span>
 
-				 					</button>
+				 						</button>
 
 				 					</a>	
 				 		
 				 				</div>
+
+
 
 				 				</div>
 
@@ -152,50 +154,56 @@ for ($i=0; $i < count($titulosModulos); $i ++){
 
 	 											</a>
 
-	 										</figure>
+	 										 </figure>
 
-	 										<h4>
+
+
+	 										 <h4>
 
 	 											<small>
 	 			
 	 												<a href="#" class="pixelProducto">
 	 				
-                     								 '.$value["titulo"].'<br> <span class="label label-warning fontSize">Nuevo</span>
+                     								 '.$value["titulo"].'<br> 
 
 	 												</a> 
 
 	 											</small>
 
-	 										</h4>
+	 										 </h4>
+
+
 	 										
-												<div class="col-xs-6 precio">
+										  <div class="col-xs-6 precio">
 	 		
-	 		 										<h2><small>'.$value["precio"].'</small></h2>
+	 		 									<h2><small>'.$value["precio"].'</small></h2>
 
-	 											</div>
+	 									  </div>
 	 										
 
-	 												<div class="col-xs-6 enlaces">	
+	 									  
+	 									  <div class="col-xs-6 enlaces">	
 
-	 													<div class="btn-group pull-right">
+	 											<div class="btn-group pull-right">
 	 			
-															<button type="button" class="btn btn-default btn-xs deseos" idProducto="'.$value["id"].'" 
-															data-toggle="tooltip" title="Agregar a mi lista de deseos">
+													<button type="button" class="btn btn-default btn-xs deseos" idProducto="'.$value["id"].'" 
+													 data-toggle="tooltip" title="Agregar a mi lista de deseos">
 						
-															<i class="fa fa-heart" aria-hidden="true"></i>
+													<i class="fa fa-heart" aria-hidden="true"></i>
 
-															</button>
+													</button>
 
-													<a href="#" class="pixelProducto">
+
+												<a href="#" class="pixelProducto">
 						
-															<button type="button" class="btn btn-default btn-xs" 
-															data-toggle="tooltip" title="Ver producto">
+													<button type="button" class="btn btn-default btn-xs" 
+													data-toggle="tooltip" title="Ver producto">
 							
-															<i class="fa fa-eye" aria-hidden="true"></i>
+													<i class="fa fa-eye" aria-hidden="true"></i>
 														
-														</button>
+													</button>
 
-													</a>
+												</a>
 
 	 										</div>
 
@@ -203,6 +211,7 @@ for ($i=0; $i < count($titulosModulos); $i ++){
 
 	 	
 	 							</li>';
+
 	 							}
 
 	 							echo '</ul>

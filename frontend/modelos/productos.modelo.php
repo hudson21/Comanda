@@ -69,9 +69,9 @@ class ModeloProductos{
 
 	  	if($item != null){
 
-	  			$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla WHERE $item= :$item ORDER BY $ordenar LIMIT 4");
+	  			$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla WHERE $item = :$item ORDER BY $ordenar DESC LIMIT 4");
 
-	  			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_INT);
+	  			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
 	  			$stmt-> execute();
 
@@ -80,7 +80,7 @@ class ModeloProductos{
 
 	  	}else{
 
-			  	$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla ORDER BY $ordenar LIMIT 4");
+			  	$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla ORDER BY $ordenar DESC LIMIT 4");
 
 	  			$stmt-> execute();
 
