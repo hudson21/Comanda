@@ -1,3 +1,8 @@
+<?php
+
+$servidor = Ruta::ctrRutaServidor();
+?>
+
 <!--===============================================
 BANNER
 ===================================================-->
@@ -150,7 +155,7 @@ for ($i=0; $i < count($titulosModulos); $i ++){
 	 		
 	 											<a href="'.$value["ruta"].'" class="pixelProducto">
 	 			
-	 											<img src="http://localhost/Comanda/backend/'.$value["portada"].'" class="img-responsive">
+	 											<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
 	 											</a>
 
@@ -158,27 +163,68 @@ for ($i=0; $i < count($titulosModulos); $i ++){
 
 
 
-	 										 <h4>
+	 								<h4>
 
-	 											<small>
+	 								 	<small>
 	 			
-	 												<a href="#" class="pixelProducto">
-	 				
-                     								 '.$value["titulo"].'<br> 
+	 										<a href="'.$value["ruta"].'" class="pixelProducto">
 
-	 												</a> 
+	 										'.$value["titulo"].' <br>
 
-	 											</small>
+	 										<span style="color:rgba(0,0,0,0)">-</span>';
 
-	 										 </h4>
+	 										if($value["nuevo"] != 0){
+
+	 											echo '<span class="label label-warning fontSize">Nuevo</span> ';
+	 										}
+
+	 										if($value["oferta"] != 0){
+
+	 								echo '<span class="label label-warning fontSize">'.$value["descuentoOferta"].'% Off</span>';
+
+	 										}
+
+
+	 								echo'</a> 
+
+	 									</small>
+
+	 							   </h4>
 
 
 	 										
-										  <div class="col-xs-6 precio">
-	 		
-	 		 									<h2><small>'.$value["precio"].'</small></h2>
+										  <div class="col-xs-6 precio">';
 
-	 									  </div>
+										  if($value["precio"] == 0){
+
+										  	echo '<h2><small>GRATIS</small></h2>';
+
+										  }else{
+
+										  if($value["oferta"] != 0){
+
+										  	echo ' <h2>
+
+	 		 										<small>
+	 		 	
+	 		 		<strong class="oferta" style="font-size:15px;">USD $'.$value["precio"].'</strong>
+	 		 	
+	 		 										</small>
+
+	 		 		<small style="font-size:20px;font-weight:bold;">$'.$value["precioOferta"].'</small>
+
+	 		 									  </h2>';
+
+										   }else{
+
+										  	echo '<h2>
+					<small style="font-size:20px;font-weight:bold;">USD $'.$value["precio"].'</small></h2>';
+
+										  	}
+
+										  }
+	 	
+	 								echo '</div>
 	 										
 
 	 									  
@@ -191,10 +237,41 @@ for ($i=0; $i < count($titulosModulos); $i ++){
 						
 													<i class="fa fa-heart" aria-hidden="true"></i>
 
-													</button>
+													</button>';
+
+											if($value["tipo"] == "virtual"){
 
 
-												<a href="#" class="pixelProducto">
+												if($value["oferta"] != 0){
+
+						echo '<button type="button" class="btn btn-default btn-xs agregarCarrito" idProducto="'.$value["id"].'" 
+							  imagen="'.$servidor.$value["portada"].'"
+							  titulo="'.$value["titulo"].'" precio="'.$value["precioOferta"].'" tipo="'.$value["tipo"].'" 
+							  peso="'.$value["peso"].'" data-toggle="tooltip" 
+					          title="Agregar al carrito de compras">
+						
+						      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+					          </button>';
+
+
+												}else{
+
+						echo '<button type="button" class="btn btn-default btn-xs agregarCarrito" idProducto="'.$value["id"].'" 
+							  imagen="'.$servidor.$value["portada"].'"
+							  titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" 
+							  peso="'.$value["peso"].'" data-toggle="tooltip" 
+					          title="Agregar al carrito de compras">
+						
+						      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+
+					          </button>';
+							}
+
+						
+						}
+
+										  echo '<a href="'.$value["ruta"].'" class="pixelProducto">
 						
 													<button type="button" class="btn btn-default btn-xs" 
 													data-toggle="tooltip" title="Ver producto">
