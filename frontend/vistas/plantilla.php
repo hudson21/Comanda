@@ -36,6 +36,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <!--===============================================
      (CSS) HOJAS DE ESTILO PERSONALIZADAS
@@ -50,11 +51,14 @@
 	<!--=====================================
 	    	=  PLUGINS DE JAVASCRIPT    =
 	======================================-->
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>  
+    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>  
 	  <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript"></script>
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 	<title>Comanda Electrónica</title>
 	

@@ -37,11 +37,11 @@ class ControladorProductos{
 	  MOSTRAR PRODUCTOS
 	===============================================*/
 
-	static public function ctrMostrarProductos($ordenar, $item, $valor){
+	static public function ctrMostrarProductos($ordenar, $item, $valor, $base, $tope){
 
 		$tabla="productos";
 
-		$respuesta= ModeloProductos::mdlMostrarProductos($tabla, $ordenar, $item, $valor);
+		$respuesta= ModeloProductos::mdlMostrarProductos($tabla, $ordenar, $item, $valor, $base, $tope);
 
 		return $respuesta;
 	}
@@ -55,6 +55,20 @@ class ControladorProductos{
 		$tabla = "productos";
 
 		$respuesta= ModeloProductos::mdlMostrarInfoProducto($tabla, $item, $valor);
+
+		return $respuesta;
+
+	}
+
+	/*==============================================
+	  LISTAR PRODUCTOS
+	===============================================*/
+
+	static public function ctrListarProductos($ordenar, $item, $valor){
+
+		$tabla = "productos";
+
+		$respuesta = ModeloProductos::mdlListarProductos($tabla, $ordenar, $item, $valor);
 
 		return $respuesta;
 

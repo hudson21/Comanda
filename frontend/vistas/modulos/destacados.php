@@ -29,13 +29,16 @@ BANNER
 $titulosModulos = array("ARTÍCULOS CON DESCUENTO", "LO MÁS VENDIDO", "LO MÁS VISTO");
 $rutaModulos = array("articulos-con-descuento","lo-mas-vendido","lo-mas-visto");
 
+$base = 0;
+$tope = 4;
+
 if ($titulosModulos[0] == "ARTÍCULOS CON DESCUENTO"){
 
 $ordenar = "id"; //En este campo puedo solicitar por que columna quiero que se organicen las filas de la tabla productos
 $item="precio";
 $valor=0;
 
-$descuento = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor);
+$descuento = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope);
 
 }
 
@@ -45,7 +48,7 @@ $ordenar = "ventas"; //En este campo puedo solicitar por que columna quiero que 
 $item=null;
 $valor=null;
 
-$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor);
+$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope);
 
 }
 
@@ -55,7 +58,7 @@ $ordenar = "vistas"; //En este campo puedo solicitar por que columna quiero que 
 $item=null;
 $valor=null;
 
-$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor);
+$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope);
 
 }
 

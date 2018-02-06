@@ -4,6 +4,9 @@
 
 //Herramienta TOOLTIP
 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
  
 
 $.ajax({
@@ -105,7 +108,22 @@ $(function(){
 
 });
 
-$('[data-toggle="tooltip"]').tooltip();
+//$('[data-toggle="tooltip"]').tooltip();
+
+/*======================================
+  MIGAS DE PAN        
+========================================*/
+
+var pagActiva = $(".pagActiva").html();
+
+if(pagActiva != null){
+
+	var regPagActiva = pagActiva.replace(/-/g, " ");
+
+	$(".pagActiva").html(regPagActiva);
+}
+
+
 
 
 
