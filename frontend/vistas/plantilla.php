@@ -53,13 +53,13 @@
 	======================================-->
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>  
+  crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>  
 	  <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript"></script>
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+    
 	<title>Comanda Electrónica</title>
 	
 
@@ -172,6 +172,8 @@
   }
     
 ?>
+
+<input type="hidden" value="<?php echo $url;?>" id="rutaOculta">
 
 <!--===============================================
      (JS) JAVASCRIPT PERSONALIZADAS
