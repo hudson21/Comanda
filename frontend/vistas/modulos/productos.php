@@ -46,6 +46,8 @@ BARRA DE PRODUCTOS
 
 					<ul class="dropdown-menu" role="menu">
 
+
+
 						<li><a href="#">Más reciente</a></li>
 						<li><a href="#">Más antiguo</a></li>
 						
@@ -187,7 +189,9 @@ LISTAR PRODUCTOS
 						}
 					} 
 
-					$productos = ControladorProductos::ctrMostrarProductos($ordenar, $item2, $valor2, $base, $tope);
+					$modo = "ASC";
+
+					$productos = ControladorProductos::ctrMostrarProductos($ordenar, $item2, $valor2, $base, $tope, $modo);
 
 					$listaProductos = ControladorProductos::ctrListarProductos($ordenar, $item2, $valor2);
 

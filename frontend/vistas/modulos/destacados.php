@@ -31,6 +31,7 @@ $rutaModulos = array("articulos-con-descuento","lo-mas-vendido","lo-mas-visto");
 
 $base = 0;
 $tope = 4;
+$modo = "DESC";
 
 if ($titulosModulos[0] == "ARTÍCULOS CON DESCUENTO"){
 
@@ -38,7 +39,7 @@ $ordenar = "id"; //En este campo puedo solicitar por que columna quiero que se o
 $item="precio";
 $valor=0;
 
-$descuento = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope);
+$descuento = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
 }
 
@@ -48,7 +49,7 @@ $ordenar = "ventas"; //En este campo puedo solicitar por que columna quiero que 
 $item=null;
 $valor=null;
 
-$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope);
+$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
 }
 
@@ -58,7 +59,7 @@ $ordenar = "vistas"; //En este campo puedo solicitar por que columna quiero que 
 $item=null;
 $valor=null;
 
-$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope);
+$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
 }
 
