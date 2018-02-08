@@ -144,4 +144,25 @@ class ModeloProductos{
 		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
 
 	  }
+
+
+	  /*==============================================
+	  	MOSTRAR BANNER
+	  ===============================================*/
+
+	  static public function mdlMostrarBanner($tabla, $ruta){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE ruta = :ruta");
+
+       //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
+		$stmt -> bindParam(":ruta",$ruta, PDO::PARAM_STR);
+
+		$stmt-> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	}
 }

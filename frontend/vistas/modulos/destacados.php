@@ -1,43 +1,50 @@
-<?php
-
-$servidor = Ruta::ctrRutaServidor();
-?>
 
 <!--===============================================
 BANNER
 ===================================================-->
 
-<figure class="banner">
+<?php
+
+$servidor = Ruta::ctrRutaServidor();
+
+$ruta = "sin-categoria";
+
+$banner = ControladorProductos::ctrMostrarBanner($ruta);
+
+$titulo1 = json_decode($banner["titulo1"],true);
+$titulo2 = json_decode($banner["titulo2"],true);
+$titulo3 = json_decode($banner["titulo3"],true);
+
+echo '<figure class="banner">
 	
-	<img src="http://localhost/Comanda/backend/vistas/img/banner/casaPalapaDefault.jpg" class="img-responsive" width="100%" >
+	<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%" >
 
-	<div class="textoBanner textoDer">	
+	<div class="textoBanner '.$banner["estilo"].'">	
 
-		<h1 style="color:#fff">OFERTAS ESPECIALES</h1>
+		<h1 style="color:'.$titulo1["color"].'">'.$titulo1["texto"].'</h1>
 
-		<h2 style="color:#fff"><strong>50% Off</strong></h2>
+		<h2 style="color:'.$titulo2["color"].'"><strong>'.$titulo2["texto"].'</strong></h2>
 
-		<h3 style="color:#fff">Termina el 2 de Febrero</h3>
+		<h3 style="color:'.$titulo3["color"].'">'.$titulo3["texto"].'</h3>
 
 
 	</div>
 
-</figure>
-
-<?php
+</figure>';
 
 $titulosModulos = array("ARTÍCULOS CON DESCUENTO", "LO MÁS VENDIDO", "LO MÁS VISTO");
 $rutaModulos = array("articulos-con-descuento","lo-mas-vendido","lo-mas-visto");
 
 $base = 0;
 $tope = 4;
-$modo = "DESC";
+
 
 if ($titulosModulos[0] == "ARTÍCULOS CON DESCUENTO"){
 
 $ordenar = "id"; //En este campo puedo solicitar por que columna quiero que se organicen las filas de la tabla productos
 $item="precio";
 $valor=0;
+$modo = "DESC";
 
 $descuento = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
@@ -48,6 +55,7 @@ if ($titulosModulos[1] == "LO MÁS VENDIDO"){
 $ordenar = "ventas"; //En este campo puedo solicitar por que columna quiero que se organicen las filas de la tabla productos
 $item=null;
 $valor=null;
+$modo = "DESC";
 
 $ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
@@ -58,6 +66,7 @@ if ($titulosModulos[2] == "LO MÁS VISTO"){
 $ordenar = "vistas"; //En este campo puedo solicitar por que columna quiero que se organicen las filas de la tabla productos
 $item=null;
 $valor=null;
+$modo = "DESC";
 
 $vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 

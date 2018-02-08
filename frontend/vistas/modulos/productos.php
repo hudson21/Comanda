@@ -1,30 +1,59 @@
+<!--===============================================
+BANNER
+===================================================-->
+
 <?php
 
 $servidor = Ruta::ctrRutaServidor();
 
 $url = Ruta::ctrRuta();
 
-?>
+$ruta = $rutas[0];
 
-<!--===============================================
-BANNER
-===================================================-->
-<figure class="banner">
+$banner = ControladorProductos::ctrMostrarBanner($ruta);
+
+$titulo1 = json_decode($banner["titulo1"],true);
+$titulo2 = json_decode($banner["titulo2"],true);
+$titulo3 = json_decode($banner["titulo3"],true);
+
+if($banner != null){
+
+echo '<figure class="banner">
 	
-	<img src="http://localhost/Comanda/backend/vistas/img/banner/casaPalapaDefault.jpg" class="img-responsive" width="100%" >
+	<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%" >
 
-	<div class="textoBanner textoDer">	
+	<div class="textoBanner '.$banner["estilo"].'">	
 
-		<h1 style="color:#fff">OFERTAS ESPECIALES</h1>
+		<h1 style="color:'.$titulo1["color"].'">'.$titulo1["texto"].'</h1>
 
-		<h2 style="color:#fff"><strong>50% Off</strong></h2>
+		<h2 style="color:'.$titulo2["color"].'"><strong>'.$titulo2["texto"].'</strong></h2>
 
-		<h3 style="color:#fff">Termina el 2 de Febrero</h3>
+		<h3 style="color:'.$titulo3["color"].'">'.$titulo3["texto"].'</h3>
 
 
 	</div>
 
-</figure>
+</figure>';
+}
+
+?>
+
+<head>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<script>
+
+      var url = window.location.href;
+      var indice = url.split("/");
+      //console.log("indice",indice);
+      
+      if(indice[7]=="recientes" || indice[7]=="antiguos"){
+
+      }
+ </script>
 
 <!--===============================================
 BARRA DE PRODUCTOS
@@ -46,11 +75,11 @@ BARRA DE PRODUCTOS
 
 					<ul class="dropdown-menu" role="menu">
 
+                    <?php
 
-
-						<li><a href="#">Más reciente</a></li>
-						<li><a href="#">Más antiguo</a></li>
-						
+						echo'<li><a href="'.$url.$rutas[0].'/1/recientes">Más reciente</a></li>
+						     <li><a href="'.$url.$rutas[0].'/1/antiguos">Más antiguo</a></li>';
+					?>						
 					</ul>
 
 				</div>
@@ -130,6 +159,29 @@ LISTAR PRODUCTOS
 
 					if(isset($rutas[1])){
 
+						//$_SESSION["ordenar"] = "DESC";
+
+						if(isset($rutas[2])){
+
+							if($rutas[2] == "antiguos"){
+
+								$modo = "ASC";
+								$_SESSION["ordenar"] == $modo;
+								//var_dump($_SESSION["ordenar"]);
+								
+							}else{
+
+								$modo = "DESC";
+								$_SESSION["ordenar"] == $modo;
+								//var_dump($_SESSION["ordenar"]);
+
+							}
+
+						}else{
+								$modo = $_SESSION["ordenar"];
+								//var_dump($_SESSION["ordenar"]);
+						     }
+
 						$base = ($rutas[1] - 1)*12;
 						$tope = 12;
 					}else{
@@ -137,6 +189,8 @@ LISTAR PRODUCTOS
 						$rutas[1] = 1;
 						$base = 0;
 						$tope = 12;
+						$modo = "DESC";
+						
 					}
 
 					/*===============================================================
@@ -189,7 +243,7 @@ LISTAR PRODUCTOS
 						}
 					} 
 
-					$modo = "ASC";
+					
 
 					$productos = ControladorProductos::ctrMostrarProductos($ordenar, $item2, $valor2, $base, $tope, $modo);
 
@@ -224,7 +278,7 @@ LISTAR PRODUCTOS
 
 			 		</figure>
 
-
+					'.$value["id"].'
 
 			 	<h4>
 
