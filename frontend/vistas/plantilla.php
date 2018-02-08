@@ -37,6 +37,7 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
@@ -188,6 +189,7 @@
 <script src="<?php echo $url;?>vistas/js/cabezote.js"></script>
 <script src="<?php echo $url;?>vistas/js/plantilla.js"></script>
 <script src="<?php echo $url;?>vistas/js/slide.js"></script>
+<script src="<?php echo $url;?>vistas/js/buscador.js"></script>
 
 </body>
 </html>

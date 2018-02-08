@@ -128,7 +128,7 @@ $url = Ruta::ctrRuta();
 
                      <span class="input-group-btn ">
                      	
-                     	<a href="">
+                     	<a href="<?php echo $url;?>buscador">
                      
                         <button class="btn btn-default backColor" type="submit" style="background:#C1CA2C;color:white;">
                         	
