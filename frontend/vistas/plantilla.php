@@ -162,6 +162,10 @@
 
         include "modulos/infoproducto.php";
 
+      }else if($rutas[0] == "buscador"){
+
+        include "modulos/buscador.php";
+      
       }
 
       else{
