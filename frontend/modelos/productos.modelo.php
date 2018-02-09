@@ -165,4 +165,43 @@ class ModeloProductos{
 
 		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
 	}
+
+	 /*==============================================
+	  	BUSCADOR
+	  ===============================================*/
+
+	  static public function mdlBuscarProductos($tabla, $busqueda, $ordenar, $modo, $base, $tope){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE ruta like '%$busqueda%' OR titulo like '%$busqueda%'
+	  		OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+
+	  }
+
+	  /*==============================================
+	  	LISTAR PRODUCTOS BUSCADOR
+	  ===============================================*/
+
+	  static public function mdlListarProductosBusqueda($tabla, $busqueda){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE ruta like '%$busqueda%' OR titulo like '%$busqueda%' OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+
+	  }
 }
