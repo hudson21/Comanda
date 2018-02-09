@@ -139,7 +139,7 @@ LISTAR PRODUCTOS
 					BREADCRUMB O MIGAS DE PAN
 					===================================================-->
 
-					<ul class="breadcrumb fondoBreadcrumb lead text-uppercase"
+					<ul class="breadcrumb fondoBreadcrumb  text-uppercase"
 					style="margin-bottom:0px; background:rgba(0,0,0,0);"> 
 
 					  <!--La clase lead es para colocar el texto más grande-->

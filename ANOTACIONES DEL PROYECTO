@@ -89,4 +89,21 @@ admin.tiendaonline.com -> backend
 
 Debo de arreglar lo del boton del scrollUp
 
+www.bestjquery.com
+
+jquery flexslider
+
+/*$(function(){
+
+	 $.scrollUp({
+
+ 		scrollText:"",
+ 		scrollSpeed: 2000,
+ 		easingType: "easeOutQuint"
+ 	});
+
+});*/
+
+//$('[data-toggle="tooltip"]').tooltip();
+
 
