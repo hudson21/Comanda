@@ -106,4 +106,6 @@ jquery flexslider
 
 //$('[data-toggle="tooltip"]').tooltip();
 
+git checkout -b rama_nueva origin/rama_nueva
+
 

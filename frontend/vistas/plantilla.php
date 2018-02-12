@@ -38,7 +38,7 @@
 
     
     <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
-    <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/flexslider.css">
+  
 
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -72,7 +72,7 @@
 
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.flexslider.js"></script>
+   
     
 	<title>Comanda Electrónica</title>
 	
