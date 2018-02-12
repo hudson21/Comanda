@@ -200,6 +200,10 @@ INFO PRODUCTOS
 			 ===================================================-->
 
 			 <?php
+
+			 /*======================================
+			    TITULO DEL PRODUCTO       
+			 ========================================*/
 			 		
 			 		if($infoproducto["oferta"] == 0){
 
@@ -209,26 +213,263 @@ INFO PRODUCTOS
 
 			 			}else{
 
-			 				
+			 				echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
+			 			
+			 				<br>
+
+							<small>
+						
+								<span class="label label-warning">Nuevo</span>
+			 			    
+			 			    </small>
+
+			 				</h1>';	
 			 			}
 
 			 			
 
 			 		}else{
 
-			 			echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
+			 			if($infoproducto["nuevo"] == 0){
 
-			 			<br>
+			 			   echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
 
-			 			<small>
+			 			     <br>
+
+			 			    <small>
 						
-							<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% Off</span>
-			 			</small>
-			 			</h1>';
+								<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% Off</span>
+			 			   
+			 			   </small>
+
+			 			   </h1>';
+
+			 			}else{
+
+			 				echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'
+
+			 			     <br>
+
+			 			    <small>
+
+			 			    	<span class="label label-warning">Nuevo</span>
+						
+								<span class="label label-warning">'.$infoproducto["descuentoOferta"].'% Off</span>
+
+			 			   </small>
+
+			 			   </h1>';
+
+
+			 			}
+
+			 			
 			 		}
+
+
+			 /*======================================
+			    PRECIO DEL PRODUCTO       
+			 ========================================*/
+
+			 if($infoproducto["precio"] == 0){
+
+			 	echo '<h2 class="text-muted">GRATIS</h2>';
+
+			 }else{
+
+			 	if($infoproducto["oferta"] == 0){
+
+			 		echo '<h2 class="text-muted">USD $'.$infoproducto["precio"].'</h2>';
+
+			 	}else{
+
+			 		echo '<h2 class="text-muted">
+
+						<span>
+
+							<strong class="oferta">USD $'.$infoproducto["precio"].'</strong>
+
+						</span>
+
+						<span>
+
+							$'.$infoproducto["precioOferta"].'
+
+						</span>
+
+			 		
+
+			 		</h2>';
+			 	}
+
+			 	
+			 }
+
+			 /*======================================
+			    DESCRIPCION DEL PRODUCTO       
+			 ========================================*/
+
+			 echo '<p>'.$infoproducto["descripcion"].'</p>'
+
 			 ?>
 
-			 
+			 <!--===============================================
+		     CARACTERÍSTICAS DEL PRODUCTO
+		     ===================================================-->
+
+		     <hr>
+
+		     <div class="form-group row">
+		     	
+		     	<?php
+
+		     	if($infoproducto["detalles"] != null){
+
+		     		$detalles = json_decode($infoproducto["detalles"],true);
+
+		     		if($infoproducto["tipo"] == "fisico"){
+
+		     			if($detalles["Talla"] != null){
+
+		     				echo '<div class="col-md-3 col-xs-12">
+
+		     				<select class="form-control seleccionarDetalle" id="seleccionarTalla">
+						
+								<option value="">Talla</option>';
+
+								for($i = 0; $i <= count($detalles["Talla"]); $i++){
+
+									echo '<option value="'.$detalles["Talla"][$i].'">'.$detalles["Talla"][$i].'</option>';
+
+
+								}
+	
+		     				echo'</select>
+
+		     				</div>';
+		     			}
+
+		     			if($detalles["Color"] != null){
+
+		     				echo '<div class="col-md-3 col-xs-12">
+
+		     				<select class="form-control seleccionarDetalle" id="seleccionarTalla">
+						
+								<option value="">Color</option>';
+
+								for($i = 0; $i <= count($detalles["Color"]); $i++){
+
+									echo '<option value="'.$detalles["Color"][$i].'">'.$detalles["Color"][$i].'</option>';
+
+
+								}
+	
+		     				echo'</select>
+
+		     				</div>';
+		     			}
+
+
+		     			if($detalles["Marca"] != null){
+
+		     				echo '<div class="col-md-3 col-xs-12">
+
+		     				<select class="form-control seleccionarDetalle" id="seleccionarTalla">
+						
+								<option value="">Marca</option>';
+
+								for($i = 0; $i <= count($detalles["Marca"]); $i++){
+
+									echo '<option value="'.$detalles["Marca"][$i].'">'.$detalles["Marca"][$i].'</option>';
+
+
+								}
+	
+		     				echo'</select>
+
+		     				</div>';
+		     			}
+
+
+
+		     		}else{
+
+		     			echo '<div class="col-xs-12">
+
+		     			<li>
+							<i style="margin-right:10px;" class="fa fa-play-circle"></i>'.$detalles["Clases"].'
+		     			</li>
+
+		     			<li>
+							<i style="margin-right:10px;" class="fa fa-clock-o"></i>'.$detalles["Tiempo"].'
+		     			</li> 
+
+		     			<li>
+							<i style="margin-right:10px;" class="fa fa-check-circle"></i>'.$detalles["Nivel"].'
+		     			</li> 
+
+		     			<li>
+							<i style="margin-right:10px;" class="fa fa-info-circle"></i>'.$detalles["Acceso"].'
+		     			</li> 
+
+		     			<li>
+							<i style="margin-right:10px;" class="fa fa-desktop"></i>'.$detalles["Dispositivo"].'
+		     			</li>
+
+		     			<li>
+							<i style="margin-right:10px;" class="fa fa-trophy"></i>'.$detalles["Certificado"].'
+		     			</li>  
+
+		     			</div>';
+
+
+		     		}
+		     	}
+
+
+		     /*--===============================================
+		     ENTREGA
+		     ===================================================*/
+
+		     if($infoproducto["entrega"] == 0){
+
+		     	echo '<h4 class="col-xs-12">
+
+					 <hr>
+
+					 <span class="label label-default" style="font-weight:100">
+
+					   <i class="fa fa-clock-o" style="margin-right:5px"></i> Entrega Inmediata |
+					   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+					   '.$infoproducto["ventas"].' ventas |
+					   <i class="fa fa-eye" style="margin:0px 5px"></i>
+					   visto por '.$infoproducto["vistas"].' personas
+					 </span>
+
+		     	</h4>';
+
+		     }else{
+
+		     	echo '<h4 class="col-xs-12">
+
+					 <hr>
+
+					 <span class="label label-default" style="font-weight:100">
+
+					   <i class="fa fa-clock-o" style="margin:0px 5px"></i>
+					   '.$infoproducto["entrega"].' días hábiles para la entrega |
+					   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+					   '.$infoproducto["ventas"].' ventas |
+					   <i class="fa fa-eye" style="margin:0px 5px"></i>
+					   visto por '.$infoproducto["vistas"].' personas
+					 </span>
+
+		     	</h4>';
+		     }
+
+		     	?>
+
+		     </div>
 
 
 		    <!--===============================================
