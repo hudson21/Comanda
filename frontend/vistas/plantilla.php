@@ -27,7 +27,8 @@
 	         //Esto me sirve para establecer una ruta uniforme en todo el proyecto
 
 	         $url = Ruta::ctrRuta();
-	         
+
+	        // require $_SERVER['DOCUMENT_ROOT'].'/comanda/frontend/vistas/css/plugins/bootstrap.min.css';
 	?>
     
      <!--=====================================
@@ -72,8 +73,7 @@
 
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
     <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
-   
-    
+ 
 	<title>Comanda Electrónica</title>
 	
 

@@ -53,6 +53,10 @@ INFO PRODUCTOS
 
 				$infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
 
+				$multimedia = json_decode($infoproducto["multimedia"], true);
+
+				//var_dump($multimedia[0]["foto"]);
+
 				/*======================================
 				   VISOR DE IMAGENES       
 				========================================*/
@@ -61,53 +65,45 @@ INFO PRODUCTOS
 
 					echo '<div class="col-md-5 col-sm-6 col-xs-12 visorImg"> <!-- -->
 		  		
-					  		<figure class="visor">
+					  		<figure class="visor">';
 
-				           		<img id ="lupa1" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-01.jpg" alt="tennis verder 11">
+					  		for($i = 0; $i < count($multimedia); $i++){
 
-				           		<img id ="lupa2" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-02.jpg" alt="tennis verder 11">
+					  			echo'<img id ="lupa'.($i + 1).'" class="img-thumbnail" src="'.$servidor.$multimedia[$i]["foto"].'" alt="'.$infoproducto["titulo"].'">';
 
-				           		<img id ="lupa3" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-03.jpg" alt="tennis verder 11">
-
-				           		<img id ="lupa4" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-04.jpg" alt="tennis verder 11">
-
-				           		<img id ="lupa5" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-05.jpg" alt="tennis verder 11">			
-			            	</figure>
+					  		}
+			
+			            	
+			              echo'</figure>
 
 			           <!-- 	<div class="flexslider">
 
-							  <ul class="slides">
+							  <ul class="slides"> (punto y coma del echo)
 
-							    <li>
-							      <img value="2" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-02.jpg">
+							  for($i = 0; $i < count($multimedia); $i++){
+
+							  	<li>
+							      <img value="".($i + 1)." class="img-thumbnail" src="".$servidor.$multimedia[$i]["foto"]."">
 							    </li>
 
-							    <li>
-							      <img value="3" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-03.jpg">
-							    </li>
-
-							    <li>
-							      <img value="4" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-04.jpg">
-							    </li>
-
-							    <li>
-							      <img value="5" class="img-thumbnail" src="http://localhost/Comanda/backend/vistas/img/multimedia/tennis-verde/img-05.jpg">
-							    </li>
+							  }
 							    
-							  </ul>
+							(Inicio del otro echo)  </ul>
 
 							</div> -->
 					
-					 </div>';
+					 </div>  (Final del otro echo)'; 
 		}else{
 
 			/*======================================
 			  VISOR DE VIDEO
 			========================================*/
 
+			var_dump($infoproducto["multimedia"]);
+
 			echo '<div class="col-sm-6 col-xs-12">
 
-			<iframe class="videoPresentacion" src="https://www.youtube.com/embed/N4aY6yX-MaM?rel=0&autoplay=0" width="100%" frameborder="0" allowfullscreen></iframe>
+			<iframe class="videoPresentacion" src="https://www.youtube.com/embed/'.$infoproducto["multimedia"].'?rel=0&autoplay=0" width="100%" frameborder="0" allowfullscreen></iframe>
 
 
 			</div>';
@@ -433,41 +429,233 @@ INFO PRODUCTOS
 
 		     if($infoproducto["entrega"] == 0){
 
-		     	echo '<h4 class="col-xs-12">
+		     	if($infoproducto["precio"] == 0){ //Significa que es gratis
 
-					 <hr>
+		     		echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
 
-					 <span class="label label-default" style="font-weight:100">
+					 		<hr>
 
-					   <i class="fa fa-clock-o" style="margin-right:5px"></i> Entrega Inmediata |
-					   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-					   '.$infoproducto["ventas"].' ventas |
-					   <i class="fa fa-eye" style="margin:0px 5px"></i>
-					   visto por '.$infoproducto["vistas"].' personas
-					 </span>
+							 <span class="label label-default" style="font-weight:100">
 
-		     	</h4>';
+							   <i class="fa fa-clock-o" style="margin-right:5px"></i> Entrega Inmediata |
+							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+							   '.$infoproducto["ventasGratis"].' inscritos |
+							   <i class="fa fa-eye" style="margin:0px 5px"></i>
+							   visto por '.$infoproducto["vistasGratis"].' personas
+					 		 </span>
+
+		     		   	 </h4>
+
+		     		   	 <h4 class="col-lg-0 col-md-0 col-xs-12">
+
+					 		<hr>
+
+							 <small>
+
+							   <i class="fa fa-clock-o" style="margin-right:5px"></i> Entrega Inmediata<br>
+							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+							   '.$infoproducto["ventasGratis"].' inscritos<br>
+							   <i class="fa fa-eye" style="margin:0px 5px"></i>
+							   visto por '.$infoproducto["vistasGratis"].' personas
+
+					 		 </small>
+
+		     		   	 </h4>';
+
+		     	
+		     	}else{
+
+		     		echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
+
+					 		<hr>
+
+					 		<span class="label label-default" style="font-weight:100">
+
+							   <i class="fa fa-clock-o" style="margin-right:5px"></i> Entrega Inmediata |
+							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+							   '.$infoproducto["ventas"].' ventas |
+							   <i class="fa fa-eye" style="margin:0px 5px"></i>
+							   visto por '.$infoproducto["vistas"].' personas
+						   
+						   </span>
+
+		     			</h4>
+
+		     			<h4 class="col-lg-0 col-md-0 col-xs-12">
+
+					 		<hr>
+
+					 		<small>
+
+							   <i class="fa fa-clock-o" style="margin-right:5px"></i> Entrega Inmediata<br>
+							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+							   '.$infoproducto["ventas"].' ventas<br>
+							   <i class="fa fa-eye" style="margin:0px 5px"></i>
+							   visto por '.$infoproducto["vistas"].' personas
+						   
+						   </small>
+
+		     			</h4>';
+
+		     	}
+
+		     	
 
 		     }else{
 
-		     	echo '<h4 class="col-xs-12">
+		     	if($infoproducto["precio"] == 0){
 
-					 <hr>
+		     	echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
 
-					 <span class="label label-default" style="font-weight:100">
+					 	<hr>
 
-					   <i class="fa fa-clock-o" style="margin:0px 5px"></i>
-					   '.$infoproducto["entrega"].' días hábiles para la entrega |
-					   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-					   '.$infoproducto["ventas"].' ventas |
-					   <i class="fa fa-eye" style="margin:0px 5px"></i>
-					   visto por '.$infoproducto["vistas"].' personas
-					 </span>
+					 	<span class="label label-default" style="font-weight:100">
 
-		     	</h4>';
+						   <i class="fa fa-clock-o" style="margin:0px 5px"></i>
+						   '.$infoproducto["entrega"].' días hábiles para la entrega |
+						   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+						   '.$infoproducto["ventasGratis"].' solicitudes |
+						   <i class="fa fa-eye" style="margin:0px 5px"></i>
+						   visto por '.$infoproducto["vistasGratis"].' personas
+					 	</span>
+
+		     		</h4>
+
+		     		<h4 class="col-lg-0 col-md-0 col-xs-12">
+
+					 	<hr>
+
+					 	<small>
+
+						   <i class="fa fa-clock-o" style="margin:0px 5px"></i>
+						   '.$infoproducto["entrega"].' días hábiles para la entrega<br>
+						   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+						   '.$infoproducto["ventasGratis"].' solicitudes<br>
+						   <i class="fa fa-eye" style="margin:0px 5px"></i>
+						   visto por '.$infoproducto["vistasGratis"].' personas 
+
+					 	</small>
+
+		     		</h4>';
+
+
+		     }else{
+
+		     	echo '<h4 class="col-md-12 col-sm-0 col-xs-0">
+
+					 	<hr>
+
+					 	<span class="label label-default" style="font-weight:100">
+
+					   	<i class="fa fa-clock-o" style="margin:0px 5px"></i>
+					   	'.$infoproducto["entrega"].' días hábiles para la entrega |
+					   	<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+					   	'.$infoproducto["ventas"].' ventas |
+					   	<i class="fa fa-eye" style="margin:0px 5px"></i>
+					  	 visto por '.$infoproducto["vistas"].' personas
+					 	</span>
+
+		     	     </h4>
+
+		     	     <h4 class="col-lg-0 col-md-0 col-xs-12">
+
+					 	<hr>
+
+					 	<small>
+
+						   	<i class="fa fa-clock-o" style="margin:0px 5px"></i>
+						   	'.$infoproducto["entrega"].' días hábiles para la entrega<br>
+						   	<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+						   	'.$infoproducto["ventas"].' ventas<br>
+						   	<i class="fa fa-eye" style="margin:0px 5px"></i>
+						  	 visto por '.$infoproducto["vistas"].' personas 
+
+					 	</small>
+
+		     	     </h4>';
+
+
+
 		     }
+		  }
 
 		     	?>
+
+		     </div>
+
+		     <!--===============================================
+		     BOTONES DE COMPRA
+		     ===================================================-->
+
+		     <div class="row botonesCompra">
+
+		     	<?php
+
+		     		if($infoproducto["precio"] == 0){
+
+		     			echo '<div class="col-md-6 col-xs-12">';
+
+		     			if($infoproducto["tipo"] == "virtual"){
+
+						   echo'<button class="btn btn-default btn-block btn-lg backColor">ACCEDER AHORA</button>';
+					    
+					     }else{
+
+					       echo'<button class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>';
+
+					     }
+							  echo'</div>';
+					     
+		     		}else{
+
+		     		    if($infoproducto["tipo"] == "virtual"){
+
+		     		    	echo '<div class="col-md-6 col-xs-12">
+
+								<button class="btn btn-default btn-block btn-lg ">
+
+								<small>COMPRAR AHORA</small></button>
+					
+							  </div>
+
+		     				  
+		     				  <div class="col-md-6 col-xs-12">
+					
+								<button class="btn btn-default btn-block btn-lg backColor">
+
+								<small>AGREGAR AL CARRITO</small>
+
+								<i class="fa fa-shopping-cart col-md-0"></i>
+
+								</button>
+
+							 </div>';
+
+		     		    }else{
+
+		     		    	echo '<div class="col-lg-6 col-md-8 col-xs-12">
+					
+									<button class="btn btn-default btn-block btn-lg backColor">
+
+									AGREGAR AL CARRITO
+
+									<i class="fa fa-shopping-cart col-xs-0"></i>
+
+									</button>
+
+								  </div>';
+
+
+		     		    }
+
+		     			
+		     		}
+		     	?>
+		     	
+				
+
+				
+
 
 		     </div>
 
