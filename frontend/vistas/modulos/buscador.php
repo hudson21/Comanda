@@ -150,6 +150,7 @@ LISTAR PRODUCTOS
 						$busqueda = $rutas[3];
 
 					   $productos = ControladorProductos::ctrBuscarProductos($busqueda, $ordenar, $modo, $base, $tope);
+					   
 					   $listaProductos = ControladorProductos::ctrListarProductosBusqueda($busqueda);
 					}
 

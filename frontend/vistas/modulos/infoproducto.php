@@ -99,7 +99,7 @@ INFO PRODUCTOS
 			  VISOR DE VIDEO
 			========================================*/
 
-			var_dump($infoproducto["multimedia"]);
+			//var_dump($infoproducto["multimedia"]);
 
 			echo '<div class="col-sm-6 col-xs-12">
 
@@ -672,7 +672,149 @@ INFO PRODUCTOS
 
 		 </div>
 		
-		</div>
+	   </div>
+		 
+		 <!--===============================================
+		  COMENTARIOS
+		  ===================================================-->
+
+		  <br>
+
+		  <div class="row">
+		  	
+			<ul class="nav nav-tabs">
+				
+				<li class="active"><a> COMENTARIOS 4</a></li>
+				<li><a href="#">VER MÁS</a></li>
+				<li class="pull-right"><a class="text-muted" href="#">PROMEDIO DE CALIFICACIÓN: 3.5 |
+
+				<i class="fa fa-star text-success"></i>
+				<i class="fa fa-star text-success"></i>
+				<i class="fa fa-star text-success"></i>
+				<i class="fa fa-star-half-o text-success"></i> <!--  fa-star-half-o es una estrella mitad vacía -->
+				<i class="fa fa-star-o text-success"></i> <!--  fa-star-o es una estrella vacía -->
+
+				</a></li>
+			</ul>
+
+			<br>
+
+
+
+		  </div>
+
+		  <div class="row comentarios">
+
+		  	<div class="panel-group col-md-3 col-sm-6 col-xs-12">
+
+		  		<div class="panel panel-default">
+
+		  			<div class="panel-heading text-uppercase">
+
+		  				Carlos Hudson
+						<span class="text-right">
+							<img class="img-circle" src="<?php echo $url;?>vistas/img/usuarios/40/944.jpg" width="20%">
+						</span>
+		  			</div>
+		  			<div class="panel-body"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut nemo ratione dignissimos, nam eos eaque, non deleniti ipsam nulla culpa distinctio fuga ducimus saepe consequuntur sequi ullam explicabo sed provident!</small></div>
+
+		  			<div class="panel-footer">
+
+					  	<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star-half-o text-success"></i> <!--  fa-star-half-o es una estrella mitad vacía -->
+						<i class="fa fa-star-o text-success"></i> <!--  fa-star-o es una estrella vacía -->
+
+					</div>
+
+		  		</div>
+		  		
+		  	</div>
+
+		  	<div class="panel-group col-md-3 col-sm-6 col-xs-12">
+
+		  		<div class="panel panel-default">
+
+		  			<div class="panel-heading text-uppercase">
+
+		  				Carlos Hudson
+						<span class="text-right">
+							<img class="img-circle" src="<?php echo $url;?>vistas/img/usuarios/40/944.jpg" width="20%">
+						</span>
+		  			</div>
+		  			<div class="panel-body"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut nemo ratione dignissimos, nam eos eaque, non deleniti ipsam nulla culpa distinctio fuga ducimus saepe consequuntur sequi ullam explicabo sed provident!</small></div>
+
+		  			<div class="panel-footer">
+
+					  	<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star-half-o text-success"></i> <!--  fa-star-half-o es una estrella mitad vacía -->
+						<i class="fa fa-star-o text-success"></i> <!--  fa-star-o es una estrella vacía -->
+
+					</div>
+
+		  		</div>
+		  		
+		  	</div>
+
+		  	<div class="panel-group col-md-3 col-sm-6 col-xs-12">
+
+		  		<div class="panel panel-default">
+
+		  			<div class="panel-heading text-uppercase">
+
+		  				Carlos Hudson
+						<span class="text-right">
+							<img class="img-circle" src="<?php echo $url;?>vistas/img/usuarios/40/944.jpg" width="20%">
+						</span>
+		  			</div>
+		  			<div class="panel-body"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut nemo ratione dignissimos, nam eos eaque, non deleniti ipsam nulla culpa distinctio fuga ducimus saepe consequuntur sequi ullam explicabo sed provident!</small></div>
+
+		  			<div class="panel-footer">
+
+					  	<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star-half-o text-success"></i> <!--  fa-star-half-o es una estrella mitad vacía -->
+						<i class="fa fa-star-o text-success"></i> <!--  fa-star-o es una estrella vacía -->
+
+					</div>
+
+		  		</div>
+		  		
+		  	</div>
+
+		  	<div class="panel-group col-md-3 col-sm-6 col-xs-12">
+
+		  		<div class="panel panel-default">
+
+		  			<div class="panel-heading text-uppercase">
+
+		  				Carlos Hudson
+						<span class="text-right">
+							<img class="img-circle" src="<?php echo $url;?>vistas/img/usuarios/40/944.jpg" width="20%">
+						</span>
+		  			</div>
+		  			<div class="panel-body"><small>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut nemo ratione dignissimos, nam eos eaque, non deleniti ipsam nulla culpa distinctio fuga ducimus saepe consequuntur sequi ullam explicabo sed provident!</small></div>
+
+		  			<div class="panel-footer">
+
+					  	<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star text-success"></i>
+						<i class="fa fa-star-half-o text-success"></i> <!--  fa-star-half-o es una estrella mitad vacía -->
+						<i class="fa fa-star-o text-success"></i> <!--  fa-star-o es una estrella vacía -->
+
+					</div>
+
+		  		</div>
+		  		
+		  	</div>
+		  	
+		  </div>
+
 
 	</div>
 	
