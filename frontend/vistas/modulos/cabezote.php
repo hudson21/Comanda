@@ -68,7 +68,7 @@ $url = Ruta::ctrRuta();
 				<ul>
 					<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
 					<li></li>
-					<li><a href="modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
+					<li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
 				</ul>
 
 
@@ -217,6 +217,43 @@ $url = Ruta::ctrRuta();
     </div>
 
 </header>
+
+<!--===============================================
+VENTANA MODAL PARA EL REGISTRO
+===================================================-->
+
+<div id="modalRegistro" class="modal fade" role="dialog">
+
+  <div class=" modal-content modal-dialog">
+
+
+      <div class="modal-header">
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+
+     </div>
+
+      <div class="modal-body">
+
+        <p>Some text in the modal.</p>
+
+      </div>
+
+      <div class="modal-footer">
+
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+      </div>
+
+  </div>
+
+</div>
+
+
+
+
+
 
 
 

@@ -1,3 +1,10 @@
+<?php
+
+$servidor = Ruta::ctrRutaServidor();
+
+$url = Ruta::ctrRuta();
+?>
+
 <!--===============================================
 BARRA DE PRODUCTOS
 ===================================================-->
@@ -177,7 +184,7 @@ LISTAR PRODUCTOS
 
 			 		<figure>
 			 		
-			 			<a href="'.$value["ruta"].'" class="pixelProducto">
+			 			<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 			 			
 			 			<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
@@ -191,7 +198,7 @@ LISTAR PRODUCTOS
 
 			 		<small>
 			 			
-			 			<a href="'.$value["ruta"].'" class="pixelProducto">
+			 			<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 
 			 			'.$value["titulo"].' <br>
 
@@ -306,7 +313,7 @@ LISTAR PRODUCTOS
 										}
 
 									    
-									  echo '<a href="'.$value["ruta"].'" class="pixelProducto">
+									  echo '<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
 											   <button type="button" class="btn btn-default btn-xs" 
 												data-toggle="tooltip" title="Ver producto">
@@ -343,7 +350,7 @@ LISTAR PRODUCTOS
 
 				   <figure>
 							
-					 <a href="'.$value["ruta"].'" class="pixelProducto">
+					 <a href="'.$url.$value["ruta"].'" class="pixelProducto">
 					 <img src="'.$servidor.$value["portada"].'" class="img-responsive"></a>
 
 				   </figure>
@@ -357,7 +364,7 @@ LISTAR PRODUCTOS
 							
 					<small>
 
-					 <a href="'.$value["ruta"].'" class="pixelProducto">'.$value["titulo"].' <br>';
+					 <a href="'.$url.$value["ruta"].'" class="pixelProducto">'.$value["titulo"].' <br>';
 
 					 if($value["nuevo"] != 0){
 
@@ -462,7 +469,7 @@ LISTAR PRODUCTOS
 						
 						}
 
-			    echo'<a href="'.$value["ruta"].'" class="pixelProducto">
+			    echo'<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 								
 						  <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
 
