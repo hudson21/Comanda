@@ -6,22 +6,6 @@ $url = Ruta::ctrRuta();
 
 ?>
 
-<!--=====================================
-=            TOP            =
-======================================-->
-
- <!--=====================================
-     	=            CSS            =
-     ======================================-->     
-	<link rel="stylesheet" href="vistas/css/plugins/bootstrap.min.css">
-	<link rel="stylesheet" href="vistas/css/plugins/font-awesome.css">
-
-	<!--=====================================
-		=            JS            =
-	======================================-->
-	<script src="vistas/js/plugins/bootstrap.min.js"></script>
-	<script src="vistas/js/plugins/jquery.min.js"></script>
-
 <div class="container-fluid barraSuperior" id="top">
 
 	<div class="container">
@@ -69,6 +53,7 @@ $url = Ruta::ctrRuta();
 					<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
 					<li></li>
 					<li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
+
 				</ul>
 
 
@@ -222,33 +207,25 @@ $url = Ruta::ctrRuta();
 VENTANA MODAL PARA EL REGISTRO
 ===================================================-->
 
+<!-- Modal -->
 <div id="modalRegistro" class="modal fade" role="dialog">
-
-  <div class=" modal-content modal-dialog">
-
+  <div class="modal-content modal-dialog">
 
       <div class="modal-header">
-
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Modal Header</h4>
-
-     </div>
-
+      </div>
       <div class="modal-body">
-
         <p>Some text in the modal.</p>
-
       </div>
-
       <div class="modal-footer">
-
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-
       </div>
+    
 
   </div>
-
 </div>
+
 
 
 

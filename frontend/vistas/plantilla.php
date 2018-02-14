@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 	<meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 	<meta name="title" content="Comanda Electrónica">
+
 	<meta name="description" content="Esta es una página para un proyecto de residencia bla bla bla">
+
 	<meta name="keyword" content="tienda, vinos, licores,etc">
 
-
+  <title>Comanda Electrónica</title>
 
 
 	<?php
@@ -37,16 +42,20 @@
 	  
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
 
-    
     <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
   
+    <link rel="stylesheet" href="<?php echo $url; ?>vistas/css/plugins/flexslider.css">
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
+  
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+
     <link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/flexslider@2.7.0/flexslider.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
+    
     
 
     <!--===============================================
@@ -63,21 +72,24 @@
 	<!--=====================================
 	    	=  PLUGINS DE JAVASCRIPT    =
 	======================================-->
-  
+   <script src="<?php echo $url; ?>/vistas/js/plugins/jquery.min.js"></script>
+
+   <script src="<?php echo $url; ?>/vistas/js/plugins/bootstrap.min.js"></script>
+
+   <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
+
+   <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
+
+   <script src="<?php echo $url; ?>vistas/js/plugins/jquery.flexslider.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/flexslider@2.7.0/jquery.flexslider.min.js"></script>
+    
 
-    <script src="<?php echo $url; ?>../vistas/js/plugins/jquery.min.js"></script>
-    <script src="<?php echo $url; ?>../vistas/js/plugins/bootstrap.min.js"></script>
-
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
- 
-	<title>Comanda Electrónica</title>
-	
-
+   
 </head>
+
+
 <body>
 
 

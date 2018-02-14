@@ -9,11 +9,6 @@ $url = Ruta::ctrRuta();
 <!--===============================================
 BREADCRUMB DE INFO PRODUCTOS
 ===================================================-->
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
-<link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/flexslider.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
-
 
 <div class="container-fluid well well-sm">
 
@@ -1069,11 +1064,4 @@ INFO PRODUCTOS
 
 	</div>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-<script src="<?php echo $url; ?>vistas/js/plugins/jquery.flexslider.js"></script>
-<script src="<?php echo $url; ?>../vistas/js/plugins/jquery.min.js"></script>
-<script src="<?php echo $url; ?>../vistas/js/plugins/bootstrap.min.js"></script>
 
