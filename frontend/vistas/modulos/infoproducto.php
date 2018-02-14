@@ -67,11 +67,16 @@ INFO PRODUCTOS
 		  		
 					  		<figure class="visor">';
 
-					  		for($i = 0; $i < count($multimedia); $i++){
+					  		if($multimedia != null){
+
+					  			for($i = 0; $i < count($multimedia); $i++){
 
 					  			echo'<img id ="lupa'.($i + 1).'" class="img-thumbnail" src="'.$servidor.$multimedia[$i]["foto"].'" alt="'.$infoproducto["titulo"].'">';
 
 					  		}
+					  	}
+
+					  		
 			
 			            	
 			              echo'</figure>
@@ -441,7 +446,7 @@ INFO PRODUCTOS
 							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 							   '.$infoproducto["ventasGratis"].' inscritos |
 							   <i class="fa fa-eye" style="margin:0px 5px"></i>
-							   visto por '.$infoproducto["vistasGratis"].' personas
+							   visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas
 					 		 </span>
 
 		     		   	 </h4>
@@ -456,7 +461,7 @@ INFO PRODUCTOS
 							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 							   '.$infoproducto["ventasGratis"].' inscritos<br>
 							   <i class="fa fa-eye" style="margin:0px 5px"></i>
-							   visto por '.$infoproducto["vistasGratis"].' personas
+							   visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas
 
 					 		 </small>
 
@@ -475,7 +480,7 @@ INFO PRODUCTOS
 							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 							   '.$infoproducto["ventas"].' ventas |
 							   <i class="fa fa-eye" style="margin:0px 5px"></i>
-							   visto por '.$infoproducto["vistas"].' personas
+							   visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistas"].'</span> personas
 						   
 						   </span>
 
@@ -491,7 +496,7 @@ INFO PRODUCTOS
 							   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 							   '.$infoproducto["ventas"].' ventas<br>
 							   <i class="fa fa-eye" style="margin:0px 5px"></i>
-							   visto por '.$infoproducto["vistas"].' personas
+							   visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistas"].'</span> personas
 						   
 						   </small>
 
@@ -516,7 +521,7 @@ INFO PRODUCTOS
 						   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 						   '.$infoproducto["ventasGratis"].' solicitudes |
 						   <i class="fa fa-eye" style="margin:0px 5px"></i>
-						   visto por '.$infoproducto["vistasGratis"].' personas
+						   visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas
 					 	</span>
 
 		     		</h4>
@@ -532,7 +537,7 @@ INFO PRODUCTOS
 						   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 						   '.$infoproducto["ventasGratis"].' solicitudes<br>
 						   <i class="fa fa-eye" style="margin:0px 5px"></i>
-						   visto por '.$infoproducto["vistasGratis"].' personas 
+						   visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistasGratis"].'</span> personas 
 
 					 	</small>
 
@@ -552,7 +557,7 @@ INFO PRODUCTOS
 					   	<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 					   	'.$infoproducto["ventas"].' ventas |
 					   	<i class="fa fa-eye" style="margin:0px 5px"></i>
-					  	 visto por '.$infoproducto["vistas"].' personas
+					  	 visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistas"].'</span> personas
 					 	</span>
 
 		     	     </h4>
@@ -568,7 +573,7 @@ INFO PRODUCTOS
 						   	<i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
 						   	'.$infoproducto["ventas"].' ventas<br>
 						   	<i class="fa fa-eye" style="margin:0px 5px"></i>
-						  	 visto por '.$infoproducto["vistas"].' personas 
+						  	 visto por <span class="vistas" tipo="'.$infoproducto["precio"].'">'.$infoproducto["vistas"].'</span> personas 
 
 					 	</small>
 
