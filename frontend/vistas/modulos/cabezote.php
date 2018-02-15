@@ -301,13 +301,42 @@ VENTANA MODAL PARA EL REGISTRO
                 
              </div>
 
+            <!--=========================================================================
+            https://www.iubenda.com/en     CONDICIONES DE USO Y POLÍTICAS  DE PRIVADIDAD
+            =============================================================================-->
 
-            
+            <div class="checkBox">
+                
+                <label >
+                    
+                    <input id="regTerminos" type="checkBox">
+
+                        <small>
+                            
+                            Al registrarse, usted acepta nuestras condiciones de uso y políticas de privacidad
+
+                            <br>
+
+                            <a  href="//www.iubenda.com/privacy-policy/81720415" class="iubenda-white iubenda-embed" title="Condiciones de uso y Políticas de privacidad">Leer más</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src = "//cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+                           
+                        </small>
+
+                </label>
+
+            </div>
+
+            <input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
+          
         </form>
         
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+        ¿Ya tienes una cuenta registrada? | <strong><a href="#modalIngreso" data-dismiss="modal" data-toggle="modal">Ingresar</a></strong>
+        <!--Con el href="#modalIngreso estamos abriendo el modal de ingreso de usuarios
+            Con el data-dismiss estamos cerrando el modal actual       
+            Con el data-toggle modal estamos abriendo el nuevo modal"-->
+
       </div>
     
 

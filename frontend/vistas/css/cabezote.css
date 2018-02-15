@@ -149,6 +149,28 @@ header #categorias hr{
 	font-size:25px;
 }
 
+.modalFormulario form{
+	padding:20px;
+}
+
+.modalFormulario form hr{
+	border:1px solid #eee;
+}
+
+.modalFormulario form input[type="text"], 
+.modalFormulario form input[type="email"], 
+.modalFormulario form input[type="password"]{
+	padding:25px;
+}
+
+.modalFormulario form input[type="submit"]{
+	padding:15px;
+}
+
+.iubenda{
+	margin-top:10px;
+}
+
 /*
 Para generar un nuevo snippet nos vamos a Tools-Developer-New Snippet
 Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de atrás para adelante
