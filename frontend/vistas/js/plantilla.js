@@ -6,7 +6,7 @@ var rutaOculta = $("#rutaOculta").val();
 
 //Herramienta TOOLTIP
 
-//$('[data-toggle="tooltip"]').tooltip(); 
+$('[data-toggle="tooltip"]').tooltip(); 
 
  
 

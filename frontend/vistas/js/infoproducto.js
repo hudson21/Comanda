@@ -2,7 +2,7 @@
 CARRUSEL          
 ========================================*/
 
-$(".flexslider").flexslider({
+/*$(".flexslider").flexslider({
 
 	animation: "slide",
 	controlNav:true,
@@ -21,7 +21,7 @@ $(".flexslider ul li img").click(function(){
 
    $("#lupa"+capturaIndice).show();
 
-})
+})*/
 
 /*======================================
   EFECTO LUPA        

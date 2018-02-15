@@ -159,7 +159,7 @@ LISTAR PRODUCTOS
 
 					if(isset($rutas[1])){
 
-						//$_SESSION["ordenar"] = "DESC";
+						$_SESSION["ordenar"] = "DESC";
 
 						if(isset($rutas[2])){
 
