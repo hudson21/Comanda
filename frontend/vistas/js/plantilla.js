@@ -6,7 +6,9 @@ var rutaOculta = $("#rutaOculta").val();
 
 //Herramienta TOOLTIP
 
-$('[data-toggle="tooltip"]').tooltip(); 
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip(); 
+});
 
  
 
@@ -68,6 +70,16 @@ $("#btnList"+i).click(function(){
 
 }
 
+(function(){
+
+	 $.scrollUp({
+
+ 		scrollText:"",
+ 		scrollSpeed: 2000,
+ 		easingType: "easeOutQuint"
+ 	});
+
+});
 
 
 /*======================================

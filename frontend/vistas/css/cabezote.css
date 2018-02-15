@@ -97,6 +97,58 @@ header #categorias hr{
 	border :1px solid rgba(255,255,255,.3);
 }
 
+/*------------------------------------------------
+   VENTANAS MODALES
+------------------------------------------------*/
+
+.modalTitulo{
+	padding:5px 0px;
+}
+
+.modalTitulo h3{
+	text-align:center;
+	margin-top:-5px;
+	padding:15px 0px;
+	border-radius:5px 5px 0px 0px;
+}
+
+.modalFormulario .close{
+	position:absolute; /*La posición absoluta permite que podamos establecer coordenadas de ubicación a los elementos que queramos 
+	su posición*/
+	right:27px;
+	top:15px;
+	color:white;
+}
+
+.moddalFormulario .facebook, .modalFormulario .google{
+	cursor:pointer;
+}
+
+.modalFormulario .facebook p{
+	background:#46639f;
+}
+
+.modalFormulario .google p{
+ 	background:#d6513e;
+}
+
+.modalFormulario .facebook p, .modalFormulario .google p {
+	
+	color:white;
+	text-align:center;
+	line-height:40px;
+	padding:8px;
+	font-size:18px;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.modalFormulario p i{
+	margin-left:-25px;
+	margin-right:25px;
+	font-size:25px;
+}
+
 /*
 Para generar un nuevo snippet nos vamos a Tools-Developer-New Snippet
 Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de atrás para adelante
@@ -121,6 +173,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     	padding-left:100px;
     	padding-right:15px;
     }
+
+    .modalFormulario .facebook p{
+	margin-right:-15px;
+	}
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -140,6 +196,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     header #carrito {
     	padding-left:70px;
     }
+
+    .modalFormulario .facebook p{
+	margin-right:-15px;
+	}
 
 }
 /*------------------------------------------------
@@ -166,6 +226,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     header #carrito p{
     	display:none;
     }
+
+    .modalFormulario .facebook p{
+	margin-right:-15px;
+	}
 
 }
 /*------------------------------------------------
@@ -215,6 +279,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     header #buscador{
       margin-bottom:10px;
     }
+
+    .modalFormulario .google p{
+	margin-top:-15px;
+	}
 
 
     

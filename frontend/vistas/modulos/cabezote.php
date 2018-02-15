@@ -208,15 +208,103 @@ VENTANA MODAL PARA EL REGISTRO
 ===================================================-->
 
 <!-- Modal -->
-<div id="modalRegistro" class="modal fade" role="dialog">
-  <div class="modal-content modal-dialog">
+<div class="modal fade modalFormulario" id="modalRegistro"  role="dialog">
 
-      <div class="modal-header">
+  <div class="modal-content modal-dialog ">
+
+      <div class="modal-body modalTitulo">
+
+         <h3 class="backColor">REGISTRARSE</h3>
+
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div class="modal-body">
-        <p>Some text in the modal.</p>
+
+        <!--===============================================
+        REGISTRO FACEBOOK
+        ===================================================-->
+        <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro">   
+            <p>
+              <i class="fa fa-facebook"></i>
+              Registro con Facebook
+            </p>
+        </div>
+
+        <!--===============================================
+        REGISTRO GOOGLE
+        ===================================================-->
+        <div class="col-sm-6 col-xs-12 google" id="btnGoogleRegistro">   
+            <p>
+              <i class="fa fa-google"></i>
+              Registro con Google
+            </p>
+        </div>
+
+        <!--===============================================
+        REGISTRO DIRECTO
+        ===================================================-->
+
+        <form method="POST" onsubmit="return registroUsuario()">
+
+            <hr>
+
+            <!--===============================================
+            CAMPO DE NOMBRE
+            ===================================================-->
+
+             <div class="form-group">
+
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-user"></i>
+
+                    </span>
+
+                    <input type="text" class="form-control text-uppercase" id="regUsuario" name="regUsuario" placeholder="Nombre Completo" required>
+                </div>
+                
+             </div>
+
+            <!--===============================================
+            CAMPO DE CORREO ELECTRÓNICO
+            ===================================================-->
+             <div class="form-group">
+
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-envelope"></i>
+
+                    </span>
+
+                    <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Correro Electrónico" required>
+                </div>
+                
+             </div>
+
+             <!--===============================================
+            CAMPO DE CONTRASEÑA
+            ===================================================-->
+             <div class="form-group">
+
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-lock"></i>
+
+                    </span>
+
+                    <input type="password" class="form-control" id="regPassword" name="regPassword" placeholder="Contraseña" required>
+                </div>
+                
+             </div>
+
+
+            
+        </form>
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

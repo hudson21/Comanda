@@ -103,7 +103,7 @@ function movimientoSlide(item){
 
 	//http://easings.net/es
 
-	$("#slide ul").animate({"left":item * -100 + "%"}, 700);
+	$("#slide ul").animate({"left":item * -100 + "%"}, 700, "easeOutBounce");
 
 	$("#paginacion li").css({"opacity":0.5});
 
