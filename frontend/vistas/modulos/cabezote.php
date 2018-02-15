@@ -242,7 +242,7 @@ VENTANA MODAL PARA EL REGISTRO
         REGISTRO DIRECTO
         ===================================================-->
 
-        <form method="POST" onsubmit="return registroUsuario()">
+        <form method="POST"  > <!--  onsubmit="return registroUsuario()"  action="formulario.php" -->
 
             <hr>
 
@@ -261,6 +261,7 @@ VENTANA MODAL PARA EL REGISTRO
                     </span>
 
                     <input type="text" class="form-control text-uppercase" id="regUsuario" name="regUsuario" placeholder="Nombre Completo" required>
+
                 </div>
                 
              </div>
@@ -309,7 +310,7 @@ VENTANA MODAL PARA EL REGISTRO
                 
                 <label >
                     
-                    <input id="regTerminos" type="checkBox">
+                    <input id="regPoliticas" type="checkBox">
 
                         <small>
                             
@@ -324,6 +325,13 @@ VENTANA MODAL PARA EL REGISTRO
                 </label>
 
             </div>
+
+            <?php
+
+                $registro = new ControladorUsuarios();
+                $registro -> ctrRegistroUsuario();
+
+            ?>
 
             <input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
           
