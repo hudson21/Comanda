@@ -242,7 +242,7 @@ VENTANA MODAL PARA EL REGISTRO
         REGISTRO DIRECTO
         ===================================================-->
 
-        <form method="POST"  > <!--  onsubmit="return registroUsuario()"  action="formulario.php" -->
+        <form method="POST" onsubmit="return registroUsuario()" > <!--    action="formulario.php" -->
 
             <hr>
 
