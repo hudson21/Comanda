@@ -132,9 +132,9 @@ h6 a{
 }
 
 /*------------------------------------------------
-  ERROR 404
+  ERROR 404, VERIFICAR
 ------------------------------------------------*/
-.error404{
+.error404 .verificar{
 	color:#333;
 }
 
@@ -172,6 +172,12 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	  font-size:300px;
   	  text-shadow:8px 8px 1px #dadada;
   }
+
+  .verificar h3{
+  	margin-top:30px;
+  	  font-size:100px;
+  	  text-shadow:4px 4px 1px #dadada;
+  }
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -185,6 +191,12 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   .error404 h1{
   	  font-size:200px;
   	  text-shadow:6px 6px 1px #dadada;
+  }
+
+  .verificar h3{
+  	margin-top:30px;
+  	  font-size:100px;
+  	  text-shadow:4px 4px 1px #dadada;
   }
 
 }
@@ -202,6 +214,12 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	text-shadow:4px 4px 1px #dadada;
 }
 
+.verificar h3{
+  	margin-top:30px;
+  	  font-size:100px;
+  	  text-shadow:4px 4px 1px #dadada;
+  }
+
 }
 /*------------------------------------------------
   MOVIL (XS revisamos en 320px)
@@ -215,5 +233,11 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   .error404 h1{
   	font-size:75px;
   	text-shadow:2px 2px 1px #dadada;
-}
+  }
+
+  .verificar h3{
+  	margin-top:30px;
+  	  font-size:50px;
+  	  text-shadow:2px 2px 1px #dadada;
+  }
 }

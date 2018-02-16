@@ -166,7 +166,34 @@ class ControladorUsuarios{
 			}
 
 		}
+	
+	  }
+ 
+  }
+
+  /*==========================================================
+     MOSTRAR USUARIO       
+  ============================================================*/
+  	static public function ctrMostrarUsuario($item, $valor){
+
+  		$tabla = "usuarios";
+
+  		$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+
+  		return $respuesta;
+
+  }
+
+  /*==========================================================
+     ACTUALIZAR USUARIO       
+  ============================================================*/
+	static public function ctrActualizarUsuario($id, $item, $valor){
+
+		$tabla = "usuarios";
+
+  		$respuesta = ModeloUsuarios::mdlActualizarUsuario($tabla, $id, $item, $valor);
+
+  		return $respuesta;
 
 	}
-  }
 }
