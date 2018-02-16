@@ -97,3 +97,29 @@ function registroUsuario(){
 /*======================================
 VALIDAR EMAIL REPETIDO          
 ========================================*/
+
+var validarEmailRepetido = false;
+
+$("#regEmail").change(function(){
+
+	var email = $("#regEmail").val();
+
+	var datos = new FormData();
+
+	datos.append("validarEmail", email);
+
+	$.ajax({
+
+		url:rutaOculta+"ajax/usuarios.ajax.php";
+		method:"POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(respuesta){
+
+				console.log("respuesta",respuesta);
+
+		}
+	})
+})
