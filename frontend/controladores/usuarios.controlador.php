@@ -44,6 +44,8 @@ class ControladorUsuarios{
 
 			    	$mail = new PHPMailer;
 
+			    	$mail->CharSet = 'UTF-8';
+
 			    	$mail->isMail();
 
 			    	$mail->setFrom('carlosmigu27@hotmail.com','Comanda Electrónica');

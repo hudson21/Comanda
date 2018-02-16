@@ -93,3 +93,7 @@ function registroUsuario(){
 
 	return true;
 }
+
+/*======================================
+VALIDAR EMAIL REPETIDO          
+========================================*/

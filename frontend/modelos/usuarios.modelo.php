@@ -35,9 +35,10 @@ class ModeloUsuarios{
 
 	}
 
-	/*==========================================================
-     MOSTRAR USUARIO       
-  	============================================================*/
+	/*=============================================
+	MOSTRAR USUARIO
+	=============================================*/
+
 	static public function mdlMostrarUsuario($tabla, $item, $valor){
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
@@ -48,22 +49,22 @@ class ModeloUsuarios{
 
 		return $stmt -> fetch();
 
-		$stmt -> close();
+		$stmt-> close();
 
 		$stmt = null;
 
 	}
 
-	/*==========================================================
-     ACTUALIZAR USUARIO       
-  ============================================================*/
-  	static public function mdlActualizarUsuario($tabla, $id, $item, $valor){
+	/*=============================================
+	ACTUALIZAR USUARIO
+	=============================================*/
+
+	static public function mdlActualizarUsuario($tabla, $id, $item, $valor){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item = :$item WHERE id = :id");
 
 		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
-		$stmt -> bindParam(":id", $id, PDO::PARAM_STR);
-
+		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
@@ -72,9 +73,10 @@ class ModeloUsuarios{
 		}else{
 
 			return "error";
+
 		}
 
-		$stmt -> close();
+		$stmt-> close();
 
 		$stmt = null;
 

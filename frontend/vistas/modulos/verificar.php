@@ -4,30 +4,35 @@
 
 <?php
 
+	
+
 	$url = Ruta::ctrRuta();
 	$servidor = Ruta::ctrRutaServidor(); 
 
-	$item = "emailEncriptado";
-	$valor = $rutas[1];
+	$usuarioVerificado = false;
+	
+	$item = "EmailEncriptado";
+	$valor =  $rutas[1];
 
 	$respuesta = ControladorUsuarios::ctrMostrarUsuario($item, $valor);
 
-	$id = $respuesta["id"];
+	if($valor == $respuesta["emailEncriptado"]){
 
-	$item2 = "verificacion";
+		$id = $respuesta["id"];
+		$item2 = "verificacion";
+		$valor2 = 0;
 
-	$valor2 = 0;
+		$respuesta2 = ControladorUsuarios::ctrActualizarUsuario($id, $item2, $valor2);
 
-	$respuesta2 = ControladorUsuarios::ctrActualizarUsuario($id, $item2, $valor2);
+		if($respuesta2 == "ok"){
 
-	//var_dump($respuesta2);
+			$usuarioVerificado = true;
 
-	$usuarioVerificado = false;
+		}
 
-	if($respuesta2 == "ok"){
-
-		$usuarioVerificado = true;
 	}
+
+		
 
 ?>
 
@@ -41,25 +46,26 @@
 
 			if($usuarioVerificado){
 
-				echo '<h3>Gracias</h3>
+					echo '<h3>Gracias</h3>
+						<h2><small>¡Hemos verificado su correo electrónico, ya puede ingresar al sistema!</small></h2>
 
-				<h2><small>¡Hemos verificado su correo electrónico, ya puede ingresar al sistema!</small></h2>
+						<br>
 
-				<br>
+						<a href="#modalIngreso" data-toggle="modal"><button class="btn btn-default backColor btn-lg">INGRESAR</button></a>';
+				
 
-				<a href="#modalIngreso" data-toggle="modal"><button class="btn btn-default backColor btn-lg">INGRESAR</button></a>';
-			
-			}else{
+				}else{
 
-				echo '<h3>Error</h3>
+					echo '<h3>Error</h3>
 
-				<h2><small>¡No se ha podido verificar el correo electrónico, vuelva a registrarse!</small></h2>
+					<h2><small>¡No se ha podido verificar el correo electrónico,  vuelva a registrarse!</small></h2>
 
-				<br>
+					<br>
 
-				<a href="#modalRegistro" data-toggle="modal"><button class="btn btn-default backColor btn-lg">REGISTRO</button></a>';
+					<a href="#modalRegistro" data-toggle="modal"><button class="btn btn-default backColor btn-lg">REGISTRO</button></a>';
 
-			}
+
+				}
 
 
 			?>
