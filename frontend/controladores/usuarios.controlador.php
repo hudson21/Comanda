@@ -17,11 +17,14 @@ class ControladorUsuarios{
 				$encriptar = crypt($_POST["regPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 			//El crypt es un modo para encriptar las contraseñas a través de PHP
 
+				$encriptarEmail = md5($_POST["regEmail"]);
+
 				$datos = array("nombre"=>$_POST["regUsuario"],
 			                   "password"=>$encriptar,
 			                   "email"=>$_POST["regEmail"],
 			                   "modo"=>"directo",
-			               	   "verificacion"=>1);
+			               	   "verificacion"=>1,
+			               	   "emailEncriptado"=>$encriptarEmail);
 
 			    $tabla = "usuarios";
 
@@ -36,6 +39,8 @@ class ControladorUsuarios{
 			    	==============================================================*/
 
 			    	date_default_timezone_set("America/Cancun");
+
+			    	$url = Ruta::ctrRuta();
 
 			    	$mail = new PHPMailer;
 
@@ -69,7 +74,7 @@ class ControladorUsuarios{
 
 										<h4 style="font-weight:100; color:#999; padding:0 20px">Para comenzar a usar su cuenta de Tienda Virtual, debe  confirmar su dirección de correo electrónico</h4>
 
-										<a href="http://localhost/comanda/frontend/verificar/1254es527362396756shftiwq8763qhgiwq65e" target="_blank" style="text-decoration:none">
+										<a href="'.$url.'verificar/'.$encriptarEmail.'" target="_blank" style="text-decoration:none">
 											<div style="line-height:60px; background:#0aa; width:60%; color:white; ">Verifique su dirección de correo electrónico </div>
 										</a>
 
@@ -85,29 +90,57 @@ class ControladorUsuarios{
 
 									</div>');
 
-			    	echo '<script> 
+			    	$envio = $mail->Send();
 
-				swal({
+			    	if(!$envio){ //Si el mensaje no se envió
 
-					title: "¡OK!",
-					text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para verificar la cuenta",
-					type:"success",
-					confirmButtonText:"Cerrar",
-					closeOnConfirm: false,
-					icon: "success"
-							  
-				},
+			    				echo '<script> 
 
-				function(isConfirm){
+										swal({
+										  title: "¡ERROR!",
+										  text: "¡Ha ocurrido un problema enviando verificación de correo electrónico a '.$_POST["regEmail"].$mail->ErrorInfo.'!",
+										  type:"error",
+										  confirmButtonText:"Cerrar",
+										  closeOnConfirm: false,
+										  icon: "error"
+										},
 
-					if(isConfirm){
-					  history.back();
-					}
-				});
+										function(isConfirm){
 
-				</script>';
+											if(isConfirm){
+												history.back();
+											}
+										});
 
-			    }
+										</script>';
+
+
+
+			    	}else{
+
+						    	echo '<script> 
+
+							swal({
+
+								title: "¡OK!",
+								text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para verificar la cuenta",
+								type:"success",
+								confirmButtonText:"Cerrar",
+								closeOnConfirm: false,
+								icon: "success"
+										  
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+								  history.back();
+								}
+							});
+
+							</script>';
+
+			    		}
 
 			}else{
 
@@ -135,4 +168,5 @@ class ControladorUsuarios{
 		}
 
 	}
+  }
 }

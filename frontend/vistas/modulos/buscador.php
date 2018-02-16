@@ -114,31 +114,31 @@ LISTAR PRODUCTOS
 							if($rutas[2] == "antiguos"){
 
 								$modo = "ASC";
-								$_SESSION["ordenar"] == $modo;
-								//var_dump($_SESSION["ordenar"]);
-								
+								$_SESSION["ordenar"] = "ASC";
+
 							}else{
 
 								$modo = "DESC";
-								$_SESSION["ordenar"] == $modo;
-								//var_dump($_SESSION["ordenar"]);
+								$_SESSION["ordenar"] = "DESC";
+
+								}
+
+						}else{
+
+							$modo = $_SESSION["ordenar"];
 
 							}
 
-						}else{
-								$modo = $_SESSION["ordenar"];
-								//var_dump($_SESSION["ordenar"]);
-						     }
-
 						$base = ($rutas[1] - 1)*12;
 						$tope = 12;
+
 					}else{
 
 						$rutas[1] = 1;
 						$base = 0;
 						$tope = 12;
 						$modo = "DESC";
-						
+
 					}
 
 					/*======================================
@@ -647,3 +647,6 @@ LISTAR PRODUCTOS
 			  </div>
 		</div>
 </div>
+
+
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
