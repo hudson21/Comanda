@@ -112,4 +112,9 @@ iubenda.com
 
 sweetalert
 
+En el archivo de php.ini ubicado en xampp2/php/php.ini  
+Vas a buscar la palabra sendmail y vamos agregar esta línea
+
+sendmail_path="C:\xampp2\mailtodisk\mailtodisk.exe"
+
 
