@@ -27,26 +27,29 @@ class ControladorUsuarios{
 
 			    $respuesta = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
 
+			    //var_dump($respuesta);
+
 			    if($respuesta == "ok"){
 
 			    	echo '<script> 
 
-							swal({
-							  title: "¡OK!",
-							  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para 
-							  verificar la cuenta",
-							  type:"success",
-							  confirmButtonText:"Cerrar",
-							  closeOnConfirm: false,
-							  icon: "success"
-							},
+				swal({
 
-							function(isConfirm){
+					title: "¡OK!",
+					text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo electrónico '.$_POST["regEmail"].' para verificar la cuenta",
+					type:"success",
+					confirmButtonText:"Cerrar",
+					closeOnConfirm: false,
+					icon: "success"
+							  
+				},
 
-								if(isConfirm){
-									history.back();
-								}
-							});
+				function(isConfirm){
+
+					if(isConfirm){
+					  history.back();
+					}
+				});
 
 				</script>';
 
@@ -62,7 +65,7 @@ class ControladorUsuarios{
 							  type:"error",
 							  confirmButtonText:"Cerrar",
 							  closeOnConfirm: false,
-							  icon: "error",
+							  icon: "error"
 							},
 
 							function(isConfirm){
