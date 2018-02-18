@@ -110,7 +110,7 @@ $("#regEmail").change(function(){
 
 	$.ajax({
 
-		url:rutaOculta+"ajax/usuarios.ajax.php";
+		url:rutaOculta+"ajax/usuarios.ajax.php",
 		method:"POST",
 		data: datos,
 		cache: false,
