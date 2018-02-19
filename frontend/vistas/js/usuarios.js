@@ -1,6 +1,70 @@
 /*======================================
-VALIDAR EL REGISTRO DEL USUARIO          
+FORMATEAR LOA INPUTS         
 ========================================*/
+
+$("input").focus(function(){
+
+	$(".alert").remove();//Cuando se esté arriba de cualquier input y se esté escribiendo se removerán las alertas que estén en la pantalla
+})
+
+
+
+/*======================================
+VALIDAR EMAIL REPETIDO          
+========================================*/
+
+var validarEmailRepetido = false;
+
+$("#regEmail").change(function(){
+
+	var email = $("#regEmail").val();
+	var datos = new FormData();
+
+	datos.append("validarEmail", email);
+
+	$.ajax({
+		
+		url:rutaOculta+"ajax/usuarios.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success:function(respuesta){
+
+			//console.log("respuesta",respuesta);
+
+			if(respuesta == "false"){ //Si respuesta es false
+
+				$(".alert").remove();
+				validarEmailRepetido = false;
+
+			}else{//Si es verdadero
+
+				var modo = JSON.parse(respuesta).modo;//De esta manera podemos accesar a los atributos que hay dentro del JSON que está dentro de la respuesta
+				//console.log(modo);
+
+				if(modo == "directo"){
+
+					modo = "esta página";
+				}
+		
+				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue resgistrado a través de '+modo+', por favor ingrese otro diferente</div>');	
+			
+					validarEmailRepetido = true;
+			}
+			
+		}
+
+	 })
+
+});
+
+
+
+/*=============================================================================================================
+VALIDAR EL REGISTRO DEL USUARIO          
+===============================================================================================================*/
 function registroUsuario(){
 	/*============================================================
 	VALIDAR EL NOMBRE        
@@ -40,6 +104,13 @@ function registroUsuario(){
 
 			$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
 			
+			return false;
+		}
+
+		if(validarEmailRepetido){ //Si validarEmailRepetido es igual a true o verdadero
+
+			$("#regEmail").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, por favor ingrese otro diferente</div>');
+
 			return false;
 		}
 
@@ -92,46 +163,3 @@ function registroUsuario(){
 	return true;
 }
 
-
-
-/*======================================
-VALIDAR EMAIL REPETIDO          
-========================================*/
-
-var validarEmailRepetido = false;
-
-$("#regEmail").change(function(){
-
-	var email = $("#regEmail").val();
-	var datos = new FormData();
-
-	datos.append("validarEmail", email);
-
-	$.ajax({
-		
-		url:rutaOculta+"ajax/usuarios.ajax.php",
-		method: "POST",
-		data: datos,
-		cache: false,
-		contentType: false,
-		processData: false,
-		success:function(respuesta){
-
-			//console.log("respuesta",respuesta);
-
-			if(!respuesta){ //Si respuesta es false
-
-
-			}else{//Si es verdadero
-
-				var modo = JSON.parse(respuesta).modo;
-				console.log(modo);
-		
-				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue resgistrado a través de </div>');	
-			}
-			
-		}
-
-	 })
-
-});
