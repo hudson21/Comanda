@@ -185,7 +185,7 @@
 
         include "modulos/infoproducto.php";
 
-      }else if($rutas[0] == "buscador" ||  $rutas[0] == "verificar"){
+      }else if($rutas[0] == "buscador" ||  $rutas[0] == "verificar" ||  $rutas[0] == "salir"){
 
         include "modulos/".$rutas[0].".php";
       

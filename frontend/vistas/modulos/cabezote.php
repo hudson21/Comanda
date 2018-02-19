@@ -485,7 +485,15 @@ VENTANA MODAL PARA EL INGRESO
             ?>
 
             <input type="submit" class="btn btn-default backColor btn-block btnIngreso" value="ENVIAR">
-          
+
+            <br>
+
+            <center> 
+
+                <a href="#modalPassword" data-dismiss="modal" data-toggle="modal">¿Olvidaste tu contraseña?</a>
+
+            </center>          
+       
         </form>
         
       </div>
@@ -497,9 +505,80 @@ VENTANA MODAL PARA EL INGRESO
             Con el data-toggle modal estamos abriendo el nuevo modal"-->
 
       </div>
-    
-
+  
   </div>
+
+</div>
+
+
+<!--===============================================
+VENTANA MODAL PARA OLVIDO DE CONTRASEÑA
+===================================================-->
+
+<!-- Modal -->
+<div class="modal fade modalFormulario" id="modalPassword"  role="dialog">
+
+  <div class="modal-content modal-dialog ">
+
+      <div class="modal-body modalTitulo">
+
+         <h3 class="backColor">SOLICITUD DE NUEVA CONTRASEÑA</h3>
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <!--===============================================
+         OLVIDO DE CONTRASEÑA
+        ===================================================-->
+      
+        <form method="POST"  > <!--    action="formulario.php"    -->
+
+           <label class="text-muted" for="passEmail">Escribe el correo electrónico con el que estás 
+            registrado y allí te enviaremos una nueva contraseña:</label>
+
+            <!--===============================================
+            CAMPO DE CORREO ELECTRÓNICO
+            ===================================================-->
+             <div class="form-group">
+
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-envelope"></i>
+
+                    </span>
+
+
+
+                    <input type="email" class="form-control" id="passEmail" name="passEmail" placeholder="Correro Electrónico" required>
+                </div>
+                
+             </div>
+
+            <?php
+
+                $password = new ControladorUsuarios();
+                $password -> ctrOlvidoPassword();
+
+            ?>
+
+            <input type="submit" class="btn btn-default backColor btn-block " value="ENVIAR">
+
+        </form>
+        
+      </div>
+
+      <div class="modal-footer">
+        
+        ¿No tienes una cuenta registrada? | <strong><a href="#modalRegistro" data-dismiss="modal" data-toggle="modal">Registrarse</a></strong>
+        <!--Con el href="#modalIngreso estamos abriendo el modal de ingreso de usuarios
+            Con el data-dismiss estamos cerrando el modal actual       
+            Con el data-toggle modal estamos abriendo el nuevo modal"-->
+
+      </div>
+  
+  </div>
+
 </div>
 
 
