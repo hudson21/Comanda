@@ -50,18 +50,59 @@ $url = Ruta::ctrRuta();
 			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">	
 
 				<ul>
-					<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
-					<li></li>
-					<li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
+
+          <?php
+
+            if(isset($_SESSION["validarSesion"])){
+
+                if($_SESSION["validarSesion"] == "ok"){
+
+                  if($_SESSION["modo"] == "directo"){
+
+                    if($_SESSION["foto"] != ""){
+
+                      echo '<li>
+
+                          <img class="img-circle" src="'.$url.$_SESSION["foto"].'" width="10%">
+
+                         </li>';
+
+                    }else{
+
+                      echo '<li>
+
+                        <img class="img-circle" src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" width="10%">
+
+                      </li>';
+
+                    }
+
+                    echo '<li>|</li>
+                     <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                     <li>|</li>
+                     <li><a href="'.$url.'salir">Salir</a></li>';
+
+
+                  }
+
+                }
+
+            }else{
+
+              echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
+                    <li>|</li>
+                    <li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>';
+
+            }
+
+          ?>
 
 				</ul>
 
-
 			</div>
-			
-			
-			
+				
 		</div>
+
 	</div>
 	
 </div>
@@ -443,7 +484,7 @@ VENTANA MODAL PARA EL INGRESO
 
             ?>
 
-            <input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
+            <input type="submit" class="btn btn-default backColor btn-block btnIngreso" value="ENVIAR">
           
         </form>
         

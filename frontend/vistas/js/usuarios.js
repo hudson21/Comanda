@@ -1,4 +1,17 @@
 /*======================================
+CAPTURA DE RUTA         
+========================================*/
+
+var rutaActual = location.href; //Aquí estamos tomando la ruta actual con la propiedad de location.href
+
+$(".btnIngreso").click(function(){
+
+localStorage.setItem("rutaActual", rutaActual);/*De esta manera estamos alamacenando en el localStorage del navegador la ruta actual
+											    de donde se encuentra el usuario actualmente*/
+})
+
+
+/*======================================
 FORMATEAR LOA INPUTS         
 ========================================*/
 

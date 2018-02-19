@@ -116,8 +116,6 @@ class ControladorUsuarios{
 
 										</script>';
 
-
-
 			    	}else{
 
 						    	echo '<script> 
@@ -203,7 +201,7 @@ class ControladorUsuarios{
 	/*==========================================================
      INGRESO DE  USUARIO       
     ============================================================*/
-    static public function ctrIngresoUsuario($id, $item, $valor){
+     public function ctrIngresoUsuario(){
 
     	if(isset($_POST["ingEmail"])){
 
@@ -261,6 +259,29 @@ class ControladorUsuarios{
 
 
 			    	}
+
+			    }else{
+
+			    	echo '<script> 
+
+							swal({
+							  title: "¡ERROR AL INGRESAR!",
+							  text: "¡Por favor revise que el email exista o la contraseña coincida con la registrada!",
+							  type:"error",
+							  confirmButtonText:"Cerrar",
+							  closeOnConfirm: false,
+							  icon: "error"
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									window.location = localStorage.getItem("rutaActual");
+								}
+							});
+
+						</script>';
+
 
 			    }
 
