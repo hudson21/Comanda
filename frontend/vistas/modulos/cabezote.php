@@ -355,6 +355,116 @@ VENTANA MODAL PARA EL REGISTRO
 
 
 
+<!--===============================================
+VENTANA MODAL PARA EL INGRESO
+===================================================-->
+
+<!-- Modal -->
+<div class="modal fade modalFormulario" id="modalIngreso"  role="dialog">
+
+  <div class="modal-content modal-dialog ">
+
+      <div class="modal-body modalTitulo">
+
+         <h3 class="backColor">INGRESAR</h3>
+
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+        <!--===============================================
+        INGRESO FACEBOOK
+        ===================================================-->
+        <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro">   
+            <p>
+              <i class="fa fa-facebook"></i>
+              Ingreso con Facebook
+            </p>
+        </div>
+
+        <!--===============================================
+        INGRESO GOOGLE
+        ===================================================-->
+        <div class="col-sm-6 col-xs-12 google" id="btnGoogleRegistro">   
+            <p>
+              <i class="fa fa-google"></i>
+              Ingreso con Google
+            </p>
+        </div>
+
+        <!--===============================================
+        INGRESO DIRECTO
+        ===================================================-->
+
+        <form method="POST"  > <!--    action="formulario.php"    -->
+
+            <hr>
+
+            <!--===============================================
+            CAMPO DE CORREO ELECTRÓNICO
+            ===================================================-->
+             <div class="form-group">
+
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-envelope"></i>
+
+                    </span>
+
+                    <input type="email" class="form-control" id="ingEmail" name="ingEmail" placeholder="Correro Electrónico" required>
+                </div>
+                
+             </div>
+
+             <!--===============================================
+            CAMPO DE CONTRASEÑA
+            ===================================================-->
+             <div class="form-group">
+
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-lock"></i>
+
+                    </span>
+
+                    <input type="password" class="form-control" id="ingPassword" name="ingPassword" placeholder="Contraseña" required>
+                </div>
+                
+             </div>
+
+           
+
+            <?php
+
+                $ingreso = new ControladorUsuarios();
+                $ingreso -> ctrIngresoUsuario();
+
+            ?>
+
+            <input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
+          
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        
+        ¿No tienes una cuenta registrada? | <strong><a href="#modalRegistro" data-dismiss="modal" data-toggle="modal">Registrarse</a></strong>
+        <!--Con el href="#modalIngreso estamos abriendo el modal de ingreso de usuarios
+            Con el data-dismiss estamos cerrando el modal actual       
+            Con el data-toggle modal estamos abriendo el nuevo modal"-->
+
+      </div>
+    
+
+  </div>
+</div>
+
+
+
+
+
 
 
 
