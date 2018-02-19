@@ -89,10 +89,10 @@ function registroUsuario(){
 		return false;
 	}
 
-
-
 	return true;
 }
+
+
 
 /*======================================
 VALIDAR EMAIL REPETIDO          
@@ -103,23 +103,35 @@ var validarEmailRepetido = false;
 $("#regEmail").change(function(){
 
 	var email = $("#regEmail").val();
-
 	var datos = new FormData();
 
 	datos.append("validarEmail", email);
 
 	$.ajax({
-
+		
 		url:rutaOculta+"ajax/usuarios.ajax.php",
-		method:"POST",
+		method: "POST",
 		data: datos,
 		cache: false,
 		contentType: false,
 		processData: false,
-		success: function(respuesta){
+		success:function(respuesta){
 
-				console.log("respuesta",respuesta);
+			//console.log("respuesta",respuesta);
 
+			if(!respuesta){ //Si respuesta es false
+
+
+			}else{//Si es verdadero
+
+				var modo = JSON.parse(respuesta).modo;
+				console.log(modo);
+		
+				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue resgistrado a través de </div>');	
+			}
+			
 		}
-	})
-})
+
+	 })
+
+});
