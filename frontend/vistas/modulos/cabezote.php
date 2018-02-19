@@ -414,7 +414,7 @@ VENTANA MODAL PARA EL INGRESO
         <!--===============================================
         INGRESO FACEBOOK
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro">   
+        <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookIngreso">   
             <p>
               <i class="fa fa-facebook"></i>
               Ingreso con Facebook
@@ -424,7 +424,7 @@ VENTANA MODAL PARA EL INGRESO
         <!--===============================================
         INGRESO GOOGLE
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 google" id="btnGoogleRegistro">   
+        <div class="col-sm-6 col-xs-12 google" id="btnGoogleIngreso">   
             <p>
               <i class="fa fa-google"></i>
               Ingreso con Google
