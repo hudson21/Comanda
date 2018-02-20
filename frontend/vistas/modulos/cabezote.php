@@ -77,13 +77,21 @@ $url = Ruta::ctrRuta();
 
                     }
 
-                    echo '<li>|</li>
+                  } 
+
+                  if($_SESSION["modo"] == "facebook"){
+
+                      echo '<li>
+
+                          <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%">
+
+                         </li>';
+                     }
+
+                     echo '<li>|</li>
                      <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                      <li>|</li>
-                     <li><a href="'.$url.'salir">Salir</a></li>';
-
-
-                  }
+                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
 
                 }
 

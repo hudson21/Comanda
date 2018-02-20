@@ -99,10 +99,85 @@ function testApi(){
 				processData:false,
 				success:function(respuesta){
 
-						console.log("respuesta",respuesta);
+						if(respuesta == "ok"){
+
+							window.location = localStorage.getItem("rutaActual");
+						
+						}else{
+
+							swal({
+									title: "¡ERROR!",
+									text: "¡El correo electrónico"+email+"ya está registrado con un método diferente a Facebook!",
+									type:"error",
+									confirmButtonText:"Cerrar",
+									closeOnConfirm: false,
+									icon: "error"
+									},
+
+								function(isConfirm){
+								if(isConfirm){
+									
+									FB.getLoginStatus(function(response){
+
+										if(response.status === 'connected'){
+
+											FB.logout(function(response){
+
+												deleteCookie("fblo_398752310585470");
+
+												setTimeout(function(){
+
+													window.location=rutaOculta+"salir";
+
+												},500)
+											});
+
+											function deleteCookie(name){
+
+												document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GTM;';
+
+											}
+										}
+									})
+								}
+							});
+
+						}
 				}
 
 			})
 		}
 	})
 }
+
+/*==========================================
+ SALIR DE FACEBOOK    
+============================================*/ 
+$(".salir").click(function(e){
+
+	e.preventDefault();
+
+	FB.getLoginStatus(function(response){
+
+										if(response.status === 'connected'){
+
+											FB.logout(function(response){
+
+												deleteCookie("fblo_398752310585470");
+
+												setTimeout(function(){
+
+													window.location=rutaOculta+"salir";
+
+												},500)
+											});
+
+											function deleteCookie(name){
+
+												document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GTM;';
+
+											}
+										}
+									})
+
+})
