@@ -22,6 +22,7 @@ class ControladorUsuarios{
 				$datos = array("nombre"=>$_POST["regUsuario"],
 			                   "password"=>$encriptar,
 			                   "email"=>$_POST["regEmail"],
+			                   "foto"=>"",
 			                   "modo"=>"directo",
 			               	   "verificacion"=>1,
 			               	   "emailEncriptado"=>$encriptarEmail);
@@ -324,7 +325,7 @@ class ControladorUsuarios{
     			 GENERAR CONTRASEÑA ALEATORIA       
    				 ===========================================================*/
    				 function generarPassword($longitud){
-//--------------------------------------De esta manera podemos generar contraseñas aleatorias----------------------------------------------------
+//======================================De esta manera podemos generar contraseñas aleatorias====================================================
    				 	$key = "";
    				 	$pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
 
@@ -518,9 +519,7 @@ class ControladorUsuarios{
    				 
   				return $respuesta;
 
-
-//-----------------------------------------------------------------------------------------------------------------------------------------------		 
-
+//===============================================================================================================================================
     	}else{
 
     		echo '<script> 
@@ -547,4 +546,16 @@ class ControladorUsuarios{
     	}
     }
  }
+
+/*====================================================
+	  REGISTRO CON REDES SOCIALES        
+======================================================*/
+	static public function ctrRegistroRedesSociales($datos){
+
+		$tabla = "usuarios";
+
+		$respuesta = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
+
+		return $respuesta;
+	} 
 }

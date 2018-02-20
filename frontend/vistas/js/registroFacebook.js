@@ -1,7 +1,7 @@
 /*======================================
  BOTON DE FACEBOOK      
 ========================================*/
-$("#btnFacebookRegistro").click(function(){
+$(".facebook").click(function(){
 
 	FB.login(function(response){
 
@@ -27,7 +27,7 @@ function statusChangeCallback(response){
 
 	if(response.status === 'connected'){
 
-		textApi();
+		testApi();
 	
 	}else{
 
@@ -56,7 +56,7 @@ function testApi(){
 
 	FB.api('/me?fields=id,name,email,picture', function(response){
 
-		if(response.email == "undefined"){
+		if(response.email == null){
 
 			swal({
 				title: "¡ERROR!",
@@ -76,13 +76,13 @@ function testApi(){
 		}else{
 
 			var email = response.email;
-			console.log("email",email);
+			//console.log("email",email);
 
-			var nombre = response.nombre;
-			console.log("nombre",nombre);
+			var nombre = response.name;
+			//console.log("nombre",nombre);
 
 			var foto = "http://graph.facebook.com/"+response.id+"/picture?type=large";
-			console.log("foto",foto);
+			//console.log("foto",foto);
 
 			var datos = new FormData();
 			datos.append("email",email);
@@ -91,7 +91,16 @@ function testApi(){
 
 			$.ajax({
 
+				url:rutaOculta+"ajax/usuarios.ajax.php",
+				method:"POST",
+				data:datos,
+				cache:false,
+				contentType:false,
+				processData:false,
+				success:function(respuesta){
 
+						console.log("respuesta",respuesta);
+				}
 
 			})
 		}

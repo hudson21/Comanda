@@ -302,7 +302,7 @@ VENTANA MODAL PARA EL REGISTRO
         <!--===============================================
         REGISTRO FACEBOOK
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookRegistro">   
+        <div class="col-sm-6 col-xs-12 facebook" style="cursor:pointer" id="btnFacebookRegistro">   
             <p>
               <i class="fa fa-facebook"></i>
               Registro con Facebook
@@ -454,7 +454,7 @@ VENTANA MODAL PARA EL INGRESO
         <!--===============================================
         INGRESO FACEBOOK
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 facebook" id="btnFacebookIngreso">   
+        <div class="col-sm-6 col-xs-12 facebook"  style="cursor:pointer" id="btnFacebookIngreso">   
             <p>
               <i class="fa fa-facebook"></i>
               Ingreso con Facebook
