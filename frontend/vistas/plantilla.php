@@ -200,9 +200,9 @@
   		//var_dump($rutas[0]); //Las rutas que están en la posición 0 son las amigables
   }else{
 
-  	  include "modulos/slide.php";
+  	// include "modulos/slide.php";
 
-      include "modulos/destacados.php";
+     include "modulos/destacados.php";
   }
     
 ?>
@@ -219,15 +219,16 @@
 <script src="<?php echo $url;?>vistas/js/buscador.js"></script>
 <script src="<?php echo $url;?>vistas/js/infoproducto.js"></script>
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
+<script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 
 
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '{your-app-id}',
+      appId      : '398752310585470',
       cookie     : true,
       xfbml      : true,
-      version    : '{latest-api-version}'
+      version    : 'v2.12'
     });
       
     FB.AppEvents.logPageView();   
@@ -241,7 +242,7 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
-</script>Copiar código
+</script>
 
 
 </body>

@@ -240,4 +240,8 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	  font-size:50px;
   	  text-shadow:2px 2px 1px #dadada;
   }
+
+  a img{
+    width:200px;
+  }
 }

@@ -244,6 +244,46 @@ $url = Ruta::ctrRuta();
 
 </header>
 
+
+
+ <!--<div class="container">
+
+            <nav class="navbar navbar-default">
+              
+              <div class="container-fluid ">
+                
+                <div class="navbar-header">
+                  
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+
+                  </button>
+                  <a class="disabled navbar-brand " style="font-weight:bold;" href="#">CATEGORIAS</a>
+
+                </div>
+
+                
+                <div class="collapse navbar-collapse">
+
+                  <ul class="nav navbar-nav">
+                      <li class="<?php //echo $pagina == 'hamburguesa' ? 'active' : ''; ?>"><a style="font-weight:bold;" href="?p=hamburguesa">HAMBURGUESA</a></li>
+                      <li class="<?php //echo $pagina == 'toalla' ? 'active' : ''; ?>"><a style="font-weight:bold;" href="?p=toalla">TOALLA</a></li>
+                      <li class="<?php //echo $pagina == 'refresco' ? 'active' : ''; ?>"><a style="font-weight:bold;"  href="?p=refresco">REFRESCO</a></li>
+                      <li class="<?php //echo $pagina == 'pedidos' ? 'active' : ''; ?>"><a style="font-weight:bold;" href="?p=pedidos">PEDIDOS</a></li>
+                  </ul>
+
+                </div>
+
+              </div>
+
+            </nav>
+
+          </div>-->
+
 <!--===============================================
 VENTANA MODAL PARA EL REGISTRO
 ===================================================-->
