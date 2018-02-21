@@ -91,6 +91,10 @@ class Google_Service_Dataproc extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
+                'clusterUuid' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
               ),
             ),'diagnose' => array(
               'path' => 'v1/projects/{projectId}/regions/{region}/clusters/{clusterName}:diagnose',
@@ -182,6 +186,10 @@ class Google_Service_Dataproc extends Google_Service
                   'location' => 'query',
                   'type' => 'string',
                 ),
+                'gracefulDecommissionTimeout' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
               ),
             ),
           )
@@ -267,14 +275,6 @@ class Google_Service_Dataproc extends Google_Service
                   'type' => 'string',
                   'required' => true,
                 ),
-                'pageSize' => array(
-                  'location' => 'query',
-                  'type' => 'integer',
-                ),
-                'clusterName' => array(
-                  'location' => 'query',
-                  'type' => 'string',
-                ),
                 'filter' => array(
                   'location' => 'query',
                   'type' => 'string',
@@ -284,6 +284,14 @@ class Google_Service_Dataproc extends Google_Service
                   'type' => 'string',
                 ),
                 'pageToken' => array(
+                  'location' => 'query',
+                  'type' => 'string',
+                ),
+                'pageSize' => array(
+                  'location' => 'query',
+                  'type' => 'integer',
+                ),
+                'clusterName' => array(
                   'location' => 'query',
                   'type' => 'string',
                 ),

@@ -16,7 +16,7 @@ use Psr\Http\Message\RequestInterface;
 class CurlFactory implements CurlFactoryInterface
 {
     /** @var array */
-    private $handles;
+    private $handles = []; //Se le cambió aquí por un array
 
     /** @var int Total number of idle handles to keep in cache */
     private $maxHandles;

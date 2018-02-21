@@ -325,7 +325,7 @@ class ControladorUsuarios{
     			 GENERAR CONTRASEÑA ALEATORIA       
    				 ===========================================================*/
    				 function generarPassword($longitud){
-//======================================De esta manera podemos generar contraseñas aleatorias====================================================
+//======================================De esta manera podemos generar contraseñas aleatorias=============================================
    				 	$key = "";
    				 	$pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
 
@@ -556,10 +556,36 @@ class ControladorUsuarios{
 
 		$item = "email";
 		$valor = $datos["email"];
+		$emailRepetido = false;
 
 		$respuesta0 = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
 
 		if($respuesta0){
+
+			if($respuesta0["modo"] != $datos["modo"]){//Si el modo es diferente al que ya está en la base de datos
+
+				echo '<script> 
+
+							swal({
+							  title: "¡ERROR!",
+							  text: "¡El correo electrónico '.$datos["email"].', ya está registrado en el sistema con un método diferente a Google",
+							  type:"error",
+							  confirmButtonText:"Cerrar",
+							  closeOnConfirm: false,
+							  icon: "error"
+							},
+
+							function(isConfirm){
+
+								if(isConfirm){
+									history.back();
+								}
+							});
+
+				</script>';
+
+				$emailRepetido = false;
+			}
 
 			$emailRepetido = true;
 		
@@ -568,8 +594,6 @@ class ControladorUsuarios{
 			$respuesta1 = ModeloUsuarios::mdlRegistroUsuario($tabla, $datos);
 
 		}
-
-		
 
 		if($emailRepetido || $respuesta1 == "ok"){
 
@@ -591,6 +615,19 @@ class ControladorUsuarios{
 			    $_SESSION["modo"] = $respuesta2["modo"];
 
 			    echo "ok"; 
+
+			}else if($respuesta2["modo"] == "google"){
+
+				$_SESSION["validarSesion"] = "ok";
+			    $_SESSION["id"] = $respuesta2["id"];
+			    $_SESSION["nombre"] = $respuesta2["nombre"];
+			    $_SESSION["foto"] = $respuesta2["foto"];
+			    $_SESSION["email"] = $respuesta2["email"]; 
+			    $_SESSION["password"] = $respuesta2["password"]; 
+			    $_SESSION["modo"] = $respuesta2["modo"];
+
+			     echo "ok";
+			     //echo "<span style='color:white; display:none;'>ok</span>"; 
 
 			}else{
 

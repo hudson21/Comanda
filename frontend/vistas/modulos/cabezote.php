@@ -4,6 +4,76 @@ $servidor = Ruta::ctrRutaServidor();
 
 $url = Ruta::ctrRuta();
 
+/*
+
+https://getcomposer.org/download/ -->Para descargar e instalar el composer de PHP
+
+https://github.com/google/google-api-php-client  -->Instrucciones para instalar la API de google en nuestra web
+
+*/
+
+/*======================================
+    CREAR EL OBJETO DE LA API DE GOOGLE    
+========================================*/
+$cliente = new Google_Client(); //Estamos instanciando una clase de google que esta dentro de la API
+$cliente->setAuthConfig('modelos/client_secret.json');
+$cliente->setAccessType('offline');
+$cliente->setScopes(['profile','email']);
+
+/*======================================
+    RUTA PARA EL LOGIN DE GOOGLE    
+========================================*/
+$rutaGoogle = $cliente->createAuthUrl();
+
+/*==================================================================
+    RECIBIMOS LA VARIABLE GET DE GOOGLE LLAMADA CODE  
+====================================================================*/
+if(isset($_GET["code"])){
+
+  $token = $cliente->authenticate($_GET["code"]);
+
+  $cliente->setAccessToken($token);
+
+}
+
+/*==================================================================
+    RECIBIMOS LOS DATOS CIFRADOS DE GOOGLE EN UN ARRAY 
+====================================================================*/
+
+if($cliente->getAccessToken()){
+
+  $item = $cliente->verifyIdToken();
+
+  //var_dump($item["email"]);
+
+  $datos = array();
+
+  $datos = array("nombre"=>$item["name"],
+                         "email"=>$item["email"],
+                         "foto"=>$item["picture"],
+                         "password"=>"null",
+                         "modo"=>"google",
+                         "verificacion"=>0,
+                         "emailEncriptado"=>"null");
+
+  $respuesta = ControladorUsuarios::ctrRegistroRedesSociales($datos);
+
+    echo '<script>
+
+    setTimeout(function(){
+
+      window.location = localStorage.getItem("rutaActual");
+
+    },1000);
+
+      
+
+    </script>';
+  
+
+}
+
+
 ?>
 
 <div class="container-fluid barraSuperior" id="top">
@@ -57,7 +127,7 @@ $url = Ruta::ctrRuta();
 
                 if($_SESSION["validarSesion"] == "ok"){
 
-                  if($_SESSION["modo"] == "directo"){
+                  if($_SESSION["modo"] == "directo"){ //Si viene en modo directo
 
                     if($_SESSION["foto"] != ""){
 
@@ -77,9 +147,7 @@ $url = Ruta::ctrRuta();
 
                     }
 
-                  } 
-
-                  if($_SESSION["modo"] == "facebook"){
+                  }else{//Si viene en modo de facebook o de google
 
                       echo '<li>
 
@@ -320,12 +388,14 @@ VENTANA MODAL PARA EL REGISTRO
         <!--===============================================
         REGISTRO GOOGLE
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 google" >   
-            <p>
-              <i class="fa fa-google"></i>
-              Registro con Google
-            </p>
-        </div>
+        <a href="<?php echo $rutaGoogle; ?>">
+          <div class="col-sm-6 col-xs-12 google" >   
+              <p>
+                <i class="fa fa-google"></i>
+                Registro con Google
+              </p>
+          </div>
+        </a>
 
         <!--===============================================
         REGISTRO DIRECTO
@@ -472,12 +542,14 @@ VENTANA MODAL PARA EL INGRESO
         <!--===============================================
         INGRESO GOOGLE
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 google" >   
-            <p>
-              <i class="fa fa-google"></i>
-              Ingreso con Google
-            </p>
-        </div>
+        <a href="<?php echo $rutaGoogle; ?>">
+          <div class="col-sm-6 col-xs-12 google" >   
+              <p>
+                <i class="fa fa-google"></i>
+                Ingreso con Google
+              </p>
+          </div>
+       </a>
 
         <!--===============================================
         INGRESO DIRECTO

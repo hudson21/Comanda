@@ -16,6 +16,7 @@ require_once "modelos/usuarios.modelo.php";
 require_once "modelos/rutas.php";
 
 require_once "extensiones/PHPMailer/PHPMailerAutoload.php";//Esto es para poder utilizar la opción de PHPMailer en nuestor proyecto
+require_once "extensiones/vendor/autoload.php";
 
 
 $plantilla = new ControladorPlantilla();//Digo que la plantilla va a ser instanciada con la clase de ControladorPlantilla

@@ -50,14 +50,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
-  
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
-
-    <link rel="stylesheet" src="https://cdn.jsdelivr.net/npm/flexslider@2.7.0/flexslider.min.css">
-    
-    
+  
 
     <!--===============================================
      (CSS) HOJAS DE ESTILO PERSONALIZADAS
@@ -85,11 +80,7 @@
 
    <script src="<?php echo $url;?>vistas/js/plugins/sweetalert.min.js"></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
-
-   
+     
 </head>
 
 

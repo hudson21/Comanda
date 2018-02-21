@@ -118,3 +118,11 @@ Vas a buscar la palabra sendmail y vamos agregar esta línea
 sendmail_path="C:\xampp2\mailtodisk\mailtodisk.exe"
 
 
+https://getcomposer.org/download/ -->Para descargar e instalar el composer de PHP
+
+https://github.com/google/google-api-php-client  -->Instrucciones para instalar la API de google en nuestra web
+
+
+$jwtClass::$leeway = 1000; //Se modificó a 1000 segundos  en el verify.php línea 209
+
+

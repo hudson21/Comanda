@@ -15,7 +15,7 @@ BARRA DE PRODUCTOS
 
 	  	<div class="row">
 
-	  		<!--<div class="col-sm-6 col-xs-12">
+	  		<div class="col-sm-6 col-xs-12">
 	  			
 				<div class="btn-group">
 
@@ -24,19 +24,17 @@ BARRA DE PRODUCTOS
 						Ordenar Productos <span class="caret"></span></button>
 
 					<ul class="dropdown-menu" role="menu">
-
                     <?php
-
-						//echo'<li><a href="'.$url.$rutas[0].'/1/recientes/'.$rutas[3].'">Más reciente</a></li>
-						//<li><a href="'.$url.$rutas[0].'/1/antiguos/'.$rutas[3].'">Más antiguo</a></li>';
+						echo'<li><a href="'.$url.$rutas[0].'/1/recientes/'.$rutas[3].'">Más reciente</a></li>
+						      <li><a href="'.$url.$rutas[0].'/1/antiguos/'.$rutas[3].'">Más antiguo</a></li>';
 					?>						
 					</ul>
 
 				</div>
 
-	  		</div> -->
+	  		</div>
 
-	    	<div class="col-sm-12 col-xs-12 organizarProductos"> 
+	    	<div class="col-sm-6 col-xs-12 organizarProductos"> 
 		
 			<!--Con solo colocar la clase mas pequeña de tamaño
 		 	estamos diciento que esta clase va abarcar toda la 
