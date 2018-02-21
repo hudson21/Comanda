@@ -68,8 +68,7 @@ if($cliente->getAccessToken()){
 
     //},1000);
 
-    </script>';
-  
+    </script>'; 
 
 }
 
