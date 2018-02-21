@@ -320,7 +320,7 @@ VENTANA MODAL PARA EL REGISTRO
         <!--===============================================
         REGISTRO GOOGLE
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 google" id="btnGoogleRegistro">   
+        <div class="col-sm-6 col-xs-12 google" >   
             <p>
               <i class="fa fa-google"></i>
               Registro con Google
@@ -472,7 +472,7 @@ VENTANA MODAL PARA EL INGRESO
         <!--===============================================
         INGRESO GOOGLE
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 google" id="btnGoogleIngreso">   
+        <div class="col-sm-6 col-xs-12 google" >   
             <p>
               <i class="fa fa-google"></i>
               Ingreso con Google

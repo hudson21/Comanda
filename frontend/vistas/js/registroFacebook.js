@@ -107,7 +107,7 @@ function testApi(){
 
 							swal({
 									title: "¡ERROR!",
-									text: "¡El correo electrónico"+email+"ya está registrado con un método diferente a Facebook!",
+									text: "¡El correo electrónico"+email+" ya está registrado con un método diferente a Facebook!",
 									type:"error",
 									confirmButtonText:"Cerrar",
 									closeOnConfirm: false,
@@ -159,25 +159,25 @@ $(".salir").click(function(e){
 
 	FB.getLoginStatus(function(response){
 
-										if(response.status === 'connected'){
+			if(response.status === 'connected'){
 
-											FB.logout(function(response){
+				FB.logout(function(response){
 
-												deleteCookie("fblo_398752310585470");
+					deleteCookie("fblo_398752310585470");
 
-												setTimeout(function(){
+					setTimeout(function(){
 
-													window.location=rutaOculta+"salir";
+						window.location=rutaOculta+"salir";
 
-												},500)
-											});
+					},500)
+				});
 
-											function deleteCookie(name){
+				function deleteCookie(name){
 
-												document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GTM;';
+					document.cookie = name +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GTM;';
 
-											}
-										}
-									})
+				}
+			}
+		})
 
 })
