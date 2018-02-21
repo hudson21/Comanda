@@ -626,8 +626,8 @@ class ControladorUsuarios{
 			    $_SESSION["password"] = $respuesta2["password"]; 
 			    $_SESSION["modo"] = $respuesta2["modo"];
 
-			     echo "ok";
-			     //echo "<span style='color:white; display:none;'>ok</span>"; 
+			     //echo "ok";
+			     echo "<span style='color:white; display:none;'>ok</span>"; 
 
 			}else{
 

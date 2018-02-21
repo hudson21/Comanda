@@ -32,6 +32,8 @@ if(isset($_GET["code"])){
 
   $token = $cliente->authenticate($_GET["code"]);
 
+  $_SESSION['id_token_google'] = $token;
+
   $cliente->setAccessToken($token);
 
 }
@@ -60,13 +62,11 @@ if($cliente->getAccessToken()){
 
     echo '<script>
 
-    setTimeout(function(){
+    //setTimeout(function(){
 
       window.location = localStorage.getItem("rutaActual");
 
-    },1000);
-
-      
+    //},1000);
 
     </script>';
   
@@ -147,21 +147,46 @@ if($cliente->getAccessToken()){
 
                     }
 
-                  }else{//Si viene en modo de facebook o de google
+                    echo '<li>|</li>
+                     <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                     <li>|</li>
+                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
+
+                  } 
+
+                  if($_SESSION["modo"] == "facebook"){
 
                       echo '<li>
 
                           <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%">
 
-                         </li>';
-                     }
+                         </li>
 
-                     echo '<li>|</li>
-                     <li><a href="'.$url.'perfil">Ver Perfil</a></li>
-                     <li>|</li>
-                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
+                         <li>|</li>
+                         <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                         <li>|</li>
+                         <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
 
-                }
+
+                  }//Si viene en modo de facebook o de google
+
+                  if($_SESSION["modo"] == "google"){
+
+                      echo '<li>
+
+                          <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%">
+
+                         </li>
+
+                         <li>|</li>
+                         <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                         <li>|</li>
+                         <li><a href="'.$url.'salir" >Salir</a></li>';
+
+                  }
+
+              }         
+            
 
             }else{
 
