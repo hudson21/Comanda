@@ -644,6 +644,57 @@ class ControladorUsuarios{
 
 		if(isset($_POST["editarNombre"])){
 
+
+			/*====================================================
+	 		 VALIDAR LA IMAGEN     
+			======================================================*/
+			$ruta = "";
+
+			if(isset($_FILES["datosImagen"]["tmp_name"])){//Con la propiedad de tmp_name preguntamos si hay algún archivo dentro de 
+
+				/*====================================================
+	 		 	PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD     
+				======================================================*/
+
+				$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
+
+				if(!empty($_POST["fotoUsuario"])){ //Si la variable $_POST["fotoUsuario"] no viene vacía
+
+					unlink($_POST["fotoUsuario"]);
+				
+				}else{
+
+					mkdir($directorio, 0755); //0755 significa permisos de lectura y escritura
+
+				}
+
+				/*====================================================
+	 		 	GUARDAMOS LA IMAGEN EN EL DIRECTORIO     
+				======================================================*/
+				$aleatorio = mt_rand(100,999);
+
+				$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
+
+
+				/*====================================================
+	 		 	MODIFICAMOS TAMAÑO DE LA FOTO   
+				======================================================*/
+				list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]); //Este método de PHP es para tomar el tamaño de la foto
+
+				$nuevoAncho = 500;
+				$nuevoAlto = 500;
+
+				$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
+
+				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+				imagejpeg($destino, $ruta);
+
+			}
+
+
 			if($_POST["editarPassword"] == ""){
 
 				$password = $_POST["passUsuario"];
