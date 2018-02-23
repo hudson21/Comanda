@@ -125,4 +125,18 @@ https://github.com/google/google-api-php-client  -->Instrucciones para instalar 
 
 $jwtClass::$leeway = 1000; //Se modificó a 1000 segundos  en el verify.php línea 209
 
+Dentro de la tabla de compras vamos a tener los siguientes atributos
+
+id
+id_usuario
+id_producto
+envio 0  virtual
+envio 1  primera fase de entrega (despachando)
+envio 2  segunda fase de entrega (preparando)
+envio 3  tercera fase de entrega (listo)
+metodo
+direccion
+país
+fecha
+
 

@@ -78,8 +78,47 @@ if(!isset($_SESSION["validarSesion"])){
 			   PESTAÑA COMPRAS
 			===================================================-->
 		  <div id="compras" class="tab-pane fade in active">
-		    <h3>HOME</h3>
-		    <p>Some content.</p>
+
+		  	<div class="panel-group">
+
+		  		<?php 
+
+		  		$item = "id_usuario";
+		  		$valor = $_SESSION["id"];
+
+		  		$compras = ControladorUsuarios::ctrMostrarCompras($item, $valor);
+
+		  		//var_dump($compras);
+		  		if(!$compras){
+
+		  			echo '<div class="col-xs-12 text-center" id="error404">
+
+						<h1><small>¡Oops!</small></h1>
+
+						<h2>Aún no tienes compras realizadas en esta tienda</h2>
+
+		  			</div>';
+
+		  		}else {
+
+		  			foreach($compras as $key => $value){
+
+		  				echo '<div class="panel panel-default">
+							    <div class="panel-body">Panel Content</div>
+							  </div>
+
+							  <div class="panel panel-default">
+							    <div class="panel-body">Panel Content</div>
+							  </div>';
+		  			}
+		  		}
+
+		  		?>
+
+			  
+
+			</div>
+		    
 		  </div>
 
 		  <!--===============================================
