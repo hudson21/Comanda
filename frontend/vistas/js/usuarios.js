@@ -71,7 +71,7 @@ $("#regEmail").change(function(){
 
 	 })
 
-});
+})
 
 
 
@@ -176,3 +176,74 @@ function registroUsuario(){
 	return true;
 }
 
+/*=============================================
+CAMBIAR FOTO
+=============================================*/
+$("#btnCambiarFoto").click(function(){
+
+	$("#imgPerfil").toggle();
+	$("#subirImagen").toggle();
+
+})
+
+$("#datosImagen").change(function(){
+
+	var imagen = this.files[0];
+
+	/*===================================================
+	     VALIDAMOS EL FORMATO DE LA IMAGEN     
+	=====================================================*/
+
+	if(imagen["type"] != "image/jpeg"){
+
+		$("#datosImagen").val("");
+
+		swal({
+				title: "Error al subir la imagen",
+				text: "¡La imagen debe de estar en formato JPG!",
+				type:"error",
+				confirmButtonText:"Cerrar",
+				closeOnConfirm: false,
+				icon: "error"
+		    },
+
+		function(isConfirm){
+
+			if(isConfirm){
+				 window.location = rutaOculta+"perfil";
+			}
+		})
+	}
+
+	else if(Number(imagen["size"]) > 2000000){
+
+		$("#datosImagen").val("");
+
+		swal({
+				title: "Error al subir la imagen",
+				text: "¡La imagen la imagen no debe de pesar mas de 2 MB!",
+				type:"error",
+				confirmButtonText:"Cerrar",
+				closeOnConfirm: false,
+				icon: "error"
+		    },
+
+		function(isConfirm){
+
+			if(isConfirm){
+				 window.location = rutaOculta+"perfil";
+			}
+		})
+
+	}else{
+
+		var datosImagen = new FileReader;
+		datosImagen.readAsDataURL(imagen); //Convierte el archivo que está dentro de imagen en una cadena de código que se pueda visualizar
+
+		$(datosImagen).on("load",function(event){
+
+			var rutaImagen = event.target.result;
+			$(".previsualizar").attr("src", rutaImagen);
+		})
+	}
+})

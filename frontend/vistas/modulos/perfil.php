@@ -106,7 +106,10 @@ if(!isset($_SESSION["validarSesion"])){
 								
 							<?php
 
-								echo '<input type="hidden" value="'.$_SESSION["id"].'" name="idUsuario">';
+								echo '<input type="hidden" value="'.$_SESSION["id"].'" id="idUsuario" name="idUsuario">
+							      	  <input type="hidden" value="'.$_SESSION["password"].'" name="passUsuario">
+							          <input type="hidden" value="'.$_SESSION["foto"].'" name="fotoUsuario" id="fotoUsuario">
+							          <input type="hidden" value="'.$_SESSION["modo"].'" name="modoUsuario" id="modoUsuario">';
 
 								if($_SESSION["modo"] == "directo"){
 
@@ -131,104 +134,122 @@ if(!isset($_SESSION["validarSesion"])){
 							</figure>
 
 							<br>
+
 							<?php 
+							
+							if($_SESSION["modo"] == "directo"){
+							
+							echo '<button type="button" class="btn btn-default" id="btnCambiarFoto">
+									
+									Cambiar foto de perfil
+									
+									</button>';
 
-								if($_SESSION["modo"]=="directo"){
-
-									echo '<button class="btn btn-default" id="btnCambiarFoto">
-
-										Cambiar foto de perfil
-										</button>';
-								}
+							}
 
 							?>
 
-						</div>
+							<div id="subirImagen">
+								
+								<input type="file" class="form-control" id="datosImagen" name="datosImagen">
+
+								<img class="previsualizar">
+
+							</div>
+
+						</div>	
 
 						<div class="col-md-9 col-sm-8 col-xs-12">
 
-							<br>
-
-							<?php 
-
-								if($_SESSION["modo"] != "directo"){
-
-									echo '<label class="control-label text-muted text-uppercase">Nombre:</label>
-
-											<div class="input-group">
-
-												<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-												<input type="text" class="form-control"  value="'.$_SESSION["nombre"].'" readonly>
-
-											</div>
-
-											<br>
-
-											<label class="control-label text-muted text-uppercase">Correo Electrónico:</label>
-
-											<div class="input-group">
-
-												<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-												<input type="text" class="form-control" value="'.$_SESSION["email"].'" readonly>
-
-											</div>
-
-											<br>
-
-											<label class="control-label text-muted text-uppercase">Modo de registro en el sistema:</label>
-
-											<div class="input-group">
-
-												<span class="input-group-addon"><i class="fa fa-'.$_SESSION["modo"].'"></i></span>
-												<input type="text" class="form-control text-uppercase"  value="'.$_SESSION["modo"].'" readonly>
-
-											</div>
-
-											<br>';
-
-								}else{ //Si es en modo directo
-
-									echo '<label class="control-label text-muted text-uppercase" for="editarNombre">Cambiar Nombre:</label>
-
-										<div class="input-group">
-
-											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-											<input type="text" class="form-control" id="editarNombre name="editarNombre" value="'.$_SESSION["nombre"].'">
-
-										</div>
-
-										<br>
-
-										<label class="control-label text-muted text-uppercase" for="editarEmail">Cambiar Correo Electrónico</label>
-
-										<div class="input-group">
-
-											<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-											<input type="text" class="form-control" id="editarEmail name="editarEmail" value="'.$_SESSION["email"].'">
-
-										</div>
-
-
-										<br>
-
-										<label class="control-label text-muted text-uppercase" for="editarPassword">Cambiar Contraseña</label>
-
-										<div class="input-group">
-
-											<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-											<input type="text" class="form-control" id="editarPassword name="editarPassword" placeholder="Escribe la nueva contraseña">
-
-										</div>
-
-										<br>
-
-										<button type="submit" class="btn btn-default backColor btn-md pull-left">Actualizar Datos</button>';
-								}
-
-							?>
+						<br>
 							
+						<?php
+
+						if($_SESSION["modo"] != "directo"){
+
+							echo '<label class="control-label text-muted text-uppercase">Nombre:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input type="text" class="form-control"  value="'.$_SESSION["nombre"].'" readonly>
+
+									</div>
+
+									<br>
+
+									<label class="control-label text-muted text-uppercase">Correo electrónico:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input type="text" class="form-control"  value="'.$_SESSION["email"].'" readonly>
+
+									</div>
+
+									<br>
+
+									<label class="control-label text-muted text-uppercase">Modo de registro en el sistema:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="fa fa-'.$_SESSION["modo"].'"></i></span>
+										<input type="text" class="form-control text-uppercase"  value="'.$_SESSION["modo"].'" readonly>
+
+									</div>
+
+									<br>';
+		
+
+						}else{
+
+							echo '<label class="control-label text-muted text-uppercase" for="editarNombre">Cambiar Nombre:</label>
+									
+									<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+										<input type="text" class="form-control" id="editarNombre" name="editarNombre" value="'.$_SESSION["nombre"].'">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="editarEmail">Cambiar Correo Electrónico:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+										<input type="text" class="form-control" id="editarEmail" name="editarEmail" value="'.$_SESSION["email"].'">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="editarPassword">Cambiar Contraseña:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+										<input type="text" class="form-control" id="editarPassword" name="editarPassword" placeholder="Escribe la nueva contraseña">
+
+									</div>
+
+								<br>
+
+								<button type="submit" class="btn btn-default backColor btn-md pull-left">Actualizar Datos</button>';
+
+						}
+
+						?>
 
 						</div>
+
+						<?php
+
+							$actualizarPerfil = new ControladorUsuarios();
+							$actualizarPerfil->ctrActualizarPerfil();
+
+						?>					
 
 
 		    		</form>
@@ -243,4 +264,7 @@ if(!isset($_SESSION["validarSesion"])){
 	</div>
 
 </div>
+
+
+
 
