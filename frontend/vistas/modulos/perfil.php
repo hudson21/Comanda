@@ -104,7 +104,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 							<figure id="imgPerfil">
 								
-							<?php 
+							<?php
+
+								echo '<input type="hidden" value="'.$_SESSION["id"].'" name="idUsuario">';
 
 								if($_SESSION["modo"] == "directo"){
 
