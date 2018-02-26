@@ -14,6 +14,8 @@
 
   <title>Comanda Electrónica</title>
 
+ 
+
 	<?php
 
          session_start(); 

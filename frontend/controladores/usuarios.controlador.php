@@ -768,5 +768,18 @@ class ControladorUsuarios{
 
   }
 
+  /*==========================================================
+     MOSTRAR COMENTARIOS EN PERFIL       
+  ============================================================*/
+  	static public function ctrMostrarComentariosPerfil($datos){
+
+  		$tabla = "comentarios";
+
+  		$respuesta = ModeloUsuarios::mdlMostrarComentariosPerfil($tabla, $datos);
+
+  		return $respuesta;
+
+  }
+
 
 }

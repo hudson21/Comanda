@@ -202,8 +202,151 @@ if(!isset($_SESSION["validarSesion"])){
 												  	}
 												  }
 
-									  	
-									  	echo'</div>
+									  	//Con el substr estamos substrayendo ciertos caracteres de una cadena de String
+									  	echo'<h4 class="pull-right"><small>Comprado el '.substr($value1["fecha"],0,-8).'</small></h4>
+
+									  	</div>
+
+									  		<div class="col-md-4 col-xs-12">';
+
+									  		$datos = array("idUsuario"=>$_SESSION["id"],
+									  						"idProducto"=>$value2["id"]); 
+
+									  		$comentarios = ControladorUsuarios::ctrMostrarComentariosPerfil($datos);
+
+									  		//var_dump($comentarios);
+
+									  		
+									  		echo'<div class="pull-right">
+
+													<a href="#modalComentarios" data-toggle="modal" idComentario="'.$comentarios["id"].'">
+
+														<button class="btn btn-default backColor">Calificar Producto</button>
+
+													</a>
+
+									  			</div>
+
+									  			<br><br>
+
+									  			<div class="pull-right">
+
+									  				<h3 class="text-right">';
+
+									  				if($comentarios["calificacion"] == 0 && $comentarios["comentario"] == ""){
+
+										  			  echo '<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+
+									  				}else{
+
+									  					switch($comentarios["calificacion"]){
+
+									  						case 0.5:
+									  						echo '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 1.0:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 1.5:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 2.0:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 2.5:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 3.0:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 3.5:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 4.0:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 4.5:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-startext-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>';
+											  			     break;
+
+											  			    case 5.0:
+									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
+											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>';
+											  			     break;
+
+
+									  					}
+									  				}
+
+										  				
+
+										  	    echo'</h3>
+
+										  			<p class="panel panel-default" style="padding:5px">
+
+										  				<small>
+	
+															'.$comentarios["comentario"].'
+														 
+														 </small>
+
+										  			</p>
+
+									  			</div>
+
+
+									  		</div>
 							
 								   	  </div>
 	
@@ -407,6 +550,68 @@ if(!isset($_SESSION["validarSesion"])){
 
 </div>
 
+<!--===============================================
+     VENTANA MODAL PARA COMENTARIOS
+===================================================-->
+<div id="modalComentarios" class="modal fade modalFormulario" role="dialog">
+
+	<div class="modal-content modal-dialog">
+
+		<div class="modal-body modalTitulo">
+
+			<h3 class="backColor">CALIFICA ESTE PRODUCTO</h3>
+
+			<button type="button" class="close" data-dismiss="modal">&times;</button>
+
+			<form method="POST">
+				
+				<h1 class="text-center" id="estrellas">
+
+					<i class="fa fa-star text-success" aria-hidden="true"></i>
+					<i class="fa fa-star text-success" aria-hidden="true"></i>
+					<i class="fa fa-star text-success" aria-hidden="true"></i>
+					<i class="fa fa-star text-success" aria-hidden="true"></i>
+					<i class="fa fa-star text-success" aria-hidden="true"></i>
+					
+				</h1>
+
+				<div class="form-group text-center">
+
+		       		<label class="radio-inline"><input type="radio" name="puntaje" value="0.5">0.5</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="1.0">1.0</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="1.5">1.5</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="2.0">2.0</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="2.5">2.5</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="3.0">3.0</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="3.5">3.5</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="4.0">4.0</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="4.5">4.5</label>
+					<label class="radio-inline"><input type="radio" name="puntaje" value="5.0" checked>5.0</label>
+
+				</div>
+
+				<div class="form-group">
+					
+					<label for="comment" class="text-muted">Tu opinión de este producto: <span><small>(Máximo 300 caracteres)</small></span></label>
+
+					<textarea class="form-control" rows="5" id="comentario" name="comentario" maxlength="300" required></textarea>
+					
+					<br>
+					<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
+
+				</div>
+
+			</form>
+			
+		</div>
+
+		<div class="modal-footer">
+			
+		</div>
+		
+	</div>	
+
+</div>
 
 
 

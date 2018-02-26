@@ -139,4 +139,13 @@ direccion
 país
 fecha
 
+Dentro de la tabla de compras vamos a tener los siguientes atributos
+
+id
+id_usuario
+id_producto
+calificacion
+comentario
+fecha
+
 
