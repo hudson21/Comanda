@@ -81,52 +81,48 @@ if(!isset($_SESSION["validarSesion"])){
 
 		  	<div class="panel-group">
 
-		  		<?php 
+		  		<?php
 
-		  		$item = "id_usuario";
-		  		$valor = $_SESSION["id"];
+					$item = "id_usuario";
+					$valor = $_SESSION["id"];
 
-		  		$compras = ControladorUsuarios::ctrMostrarCompras($item, $valor);
+					$compras = ControladorUsuarios::ctrMostrarCompras($item, $valor);
 
-		  		//var_dump($compras);
-		  		if(!$compras){
+					if(!$compras){
 
-		  			echo '<div class="col-xs-12 text-center" id="error404">
+						echo '<div class="col-xs-12 text-center error404">
+				               
+				    		<h1><small>¡Oops!</small></h1>
+				    
+				    		<h2>Aún no tienes compras realizadas en esta tienda</h2>
 
-						<h1><small>¡Oops!</small></h1>
+				  		</div>';
 
-						<h2>Aún no tienes compras realizadas en esta tienda</h2>
+					}else{
 
-		  			</div>';
+						foreach ($compras as $key => $value1) {
 
-		  		}else {
+							$ordenar = "id";
+							$item = "id";
+							$valor = $value1["id_producto"];
 
-		  			foreach($compras as $key => $value1){
+							$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
 
-		  				$ordenar = "id";
-		  				$item = "id";
-		  				$valor = $value1["id_producto"];
+							foreach ($productos as $key => $value2) {
+							
+								echo '<div class="panel panel-default">
+									    
+									    <div class="panel-body">
 
-		  				$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+											<div class="col-md-2 col-sm-6 col-xs-12">
 
-		  				//var_dump($productos);
+												<figure>
+												
+													<img class="img-thumbnail" src="'.$servidor.$value2["portada"].'">
 
+												</figure>
 
-		  				foreach($productos as $key  => $value2){
-
-		  					echo '<div class="panel panel-default">
-							   		
-							   		 <div class="panel-body">
-
-										<div class="col-md-2 col-sm-6 col-xs-12">
-
-											<figure>
-										
-												<img class="img-thumbnail" src="'.$servidor.$value2["portada"].'" alt="">
-
-											</figure>
-
-										</div>
+											</div>
 
 											<div class="col-sm-6 col-xs-12">
 
@@ -134,232 +130,228 @@ if(!isset($_SESSION["validarSesion"])){
 
 												<p>'.$value2["titular"].'</p>';
 
-												  if($value2["tipo"] == "virtual"){
+												if($value2["tipo"] == "virtual"){
 
-												  	echo '<a href="'.$url.'/curso">
-												  		<button class="btn btn-default pull-left">Ir al Curso</button>
-												  		</a>';
+													echo '<a href="'.$url.'/curso">
+														<button class="btn btn-default pull-left">Ir al curso</button>
+														</a>';
 
-												  }else{
+												}else{
 
-												  	echo '<h6>Proceso de Entrega: '.$value2["entrega"].' días hábiles</h6>';
+													echo '<h6>Proceso de entrega: '.$value2["entrega"].' días hábiles</h6>';
 
-												  	if ($value1["envio"] == 0) {
-												  		
-												  		echo '<div class="progress">
+													if($value1["envio"] == 0){
+
+														echo '<div class="progress">
+
+															<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+																<i class="fa fa-check"></i> Despachado
+															</div>
+
+															<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+																<i class="fa fa-clock-o"></i> Enviando
+															</div>
+
+															<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+																<i class="fa fa-clock-o"></i> Entregado
+															</div>
+
+														</div>';
+
+													}
+
+													if($value1["envio"] == 1){
+
+														echo '<div class="progress">
+
+															<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+																<i class="fa fa-check"></i> Despachado
+															</div>
+
+															<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+																<i class="fa fa-check"></i> Enviando
+															</div>
+
+															<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+																<i class="fa fa-clock-o"></i> Entregado
+															</div>
+
+														</div>';
+
+													}
+
+													if($value1["envio"] == 2){
+
+														echo '<div class="progress">
+
+															<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+																<i class="fa fa-check"></i> Despachado
+															</div>
+
+															<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+																<i class="fa fa-check"></i> Enviando
+															</div>
+
+															<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+																<i class="fa fa-check"></i> Entregado
+															</div>
+
+														</div>';
+
+													}
+
+												}
+
+												echo '<h4 class="pull-right"><small>Comprado el '.substr($value1["fecha"],0,-8).'</small></h4>
 																
-																<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-																    <i class="fa fa-check"></i> Despachado
-																</div>
+											</div>
 
-																<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-																	<i class="fa fa-clock-o"></i> Enviando
-																</div>
+											<div class="col-md-4 col-xs-12">';
 
-																<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-																	<i class="fa fa-clock-o"></i> Entregado
-																</div>
+											$datos = array("idUsuario"=>$_SESSION["id"],
+															"idProducto"=>$value2["id"] );
 
-												  			</div>';
-												  	}
+											$comentarios = ControladorUsuarios::ctrMostrarComentariosPerfil($datos);
 
-												  	if ($value1["envio"] == 1) {
-												  		
-												  		echo '<div class="progress">
-																
-																<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-																    <i class="fa fa-check"></i> Despachado
-																</div>
+												echo '<div class="pull-right">
 
-																<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-																	<i class="fa fa-check"></i> Enviando
-																</div>
-
-																<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-																	<i class="fa fa-clock-o"></i> Entregado
-																</div>
-
-												  			</div>';
-												  	}
-
-												  	if ($value1["envio"] == 2) {
-												  		
-												  		echo '<div class="progress">
-																
-																<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-																    <i class="fa fa-check"></i> Despachado
-																</div>
-
-																<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-																	<i class="fa fa-check"></i> Enviando
-																</div>
-
-																<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-																	<i class="fa fa-check"></i> Entregado
-																</div>
-
-												  			</div>';
-												  	}
-												  }
-
-									  	//Con el substr estamos substrayendo ciertos caracteres de una cadena de String
-									  	echo'<h4 class="pull-right"><small>Comprado el '.substr($value1["fecha"],0,-8).'</small></h4>
-
-									  	</div>
-
-									  		<div class="col-md-4 col-xs-12">';
-
-									  		$datos = array("idUsuario"=>$_SESSION["id"],
-									  						"idProducto"=>$value2["id"]); 
-
-									  		$comentarios = ControladorUsuarios::ctrMostrarComentariosPerfil($datos);
-
-									  		//var_dump($comentarios);
-
-									  		
-									  		echo'<div class="pull-right">
-
-													<a href="#modalComentarios" data-toggle="modal" idComentario="'.$comentarios["id"].'">
-
+													<a class="calificarProducto" href="#modalComentarios" data-toggle="modal" idComentario="'.$comentarios["id"].'">
+													
 														<button class="btn btn-default backColor">Calificar Producto</button>
 
 													</a>
 
-									  			</div>
+												</div>
 
-									  			<br><br>
+												<br><br>
 
-									  			<div class="pull-right">
+												<div class="pull-right">
 
-									  				<h3 class="text-right">';
+													<h3 class="text-right">';
 
-									  				if($comentarios["calificacion"] == 0 && $comentarios["comentario"] == ""){
+													if($comentarios["calificacion"] == 0 && $comentarios["comentario"] == ""){
 
-										  			  echo '<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  				<i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+														echo '<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																<i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																<i class="fa fa-star-o text-success" aria-hidden="true"></i>';
 
-									  				}else{
+													}else{
 
-									  					switch($comentarios["calificacion"]){
+														switch($comentarios["calificacion"]){
 
-									  						case 0.5:
-									  						echo '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 0.5:
+															echo '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 1.0:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 1.0:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 1.5:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 1.5:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 2.0:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 2.0:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 2.5:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 2.5:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 3.0:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 3.0:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 3.5:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 3.5:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 4.0:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 4.0:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 4.5:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-startext-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 4.5:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>';
+															break;
 
-											  			    case 5.0:
-									  						echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>
-											  					  <i class="fa fa-star text-success" aria-hidden="true"></i>';
-											  			     break;
+															case 5.0:
+															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>
+																  <i class="fa fa-star text-success" aria-hidden="true"></i>';
+															break;
 
-
-									  					}
-									  				}
-
-										  				
-
-										  	    echo'</h3>
-
-										  			<p class="panel panel-default" style="padding:5px">
-
-										  				<small>
-	
-															'.$comentarios["comentario"].'
-														 
-														 </small>
-
-										  			</p>
-
-									  			</div>
+														}
 
 
-									  		</div>
+													}
+												
+														
+													echo '</h3>
+
+													<p class="panel panel-default text-right" style="padding:5px">
+
+														<small>
+
+														'.$comentarios["comentario"].'
+
+														</small>
+													
+													</p>
+
+												</div>
+
+											</div>
+
+									    </div>
+
+									</div>';
+
+							}
 							
-								   	  </div>
-	
-								  </div>';
-
-
-								  
-		  				  
-		  				}		  				
-		  			}
-		  		}
-
-		  		?>
+						}
+					}
+				?>
 
 			  
 
@@ -563,7 +555,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 
-			<form method="POST">
+			<form method="POST" onsubmit="return validarComentario()">
+
+				<input type="hidden" value="" id="idComentario" name="idComentario">
 				
 				<h1 class="text-center" id="estrellas">
 
@@ -601,6 +595,13 @@ if(!isset($_SESSION["validarSesion"])){
 
 				</div>
 
+				<?php
+
+					$actualizarComentario = new ControladorUsuarios();
+					$actualizarComentario ->ctrActualizarComentario();
+
+				?>
+
 			</form>
 			
 		</div>
@@ -612,6 +613,157 @@ if(!isset($_SESSION["validarSesion"])){
 	</div>	
 
 </div>
+
+<script>
+
+/*======================================
+FORMATEAR LOA INPUTS         
+========================================*/
+
+$("input").focus(function(){
+
+	$(".alert").remove();//Cuando se esté arriba de cualquier input y se esté escribiendo se removerán las alertas que estén en la pantalla
+})
+
+	
+/*=============================================
+COMENTARIOS ID
+=============================================*/
+
+$(".calificarProducto").click(function(){
+
+	var idComentario = $(this).attr("idComentario");
+
+	$("#idComentario").val(idComentario);
+
+})
+
+/*=============================================
+COMENTARIOS CAMBIO DE ESTRELLAS
+=============================================*/
+
+$("input[name='puntaje']").change(function(){
+
+	var puntaje = $(this).val();
+	
+	switch(puntaje){
+
+		case "0.5":
+		$("#estrellas").html('<i class="fa fa-star-half-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "1.0":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "1.5":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "2.0":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "2.5":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "3.0":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "3.5":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "4.0":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "4.5":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i>');
+		break;
+
+		case "5.0":
+		$("#estrellas").html('<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i> '+
+							 '<i class="fa fa-star text-success" aria-hidden="true"></i>');
+		break;
+
+	}
+
+})
+
+/*============================================================
+	VALIDAR EL COMENTARIO       
+==============================================================*/
+function validarComentario(){
+
+	var comentario = $("#comentario").val();
+
+	if(comentario != ""){
+
+		var expresion = /^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]*$/;
+
+		if(!expresion.test(comentario)){//Si el comentario no cumple con la estructura de la expresión regular
+
+			$("#comentario").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> No se permiten'+
+				                              ' caracteres especiales como por ejemplo !$%&/?¡¿[]*</div>');
+
+			return false;
+
+		}
+	
+	}else{//Si el comentario viene vacío
+
+			$("#comentario").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> Campo obligatorio</div>');
+
+			return false;
+	}
+
+	return true;
+
+}
+
+</script>
 
 
 

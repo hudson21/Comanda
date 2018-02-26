@@ -151,6 +151,33 @@ class ModeloUsuarios{
 
 	}
 
+	/*==========================================================
+     ACTUALIZAR COMENTARIOS EN PERFIL       
+  	============================================================*/
+  	static public function mdlActualizarComentario($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET calificacion = :calificacion, comentario = :comentario WHERE id = :id");
+
+		$stmt->bindParam(":calificacion", $datos["calificacion"], PDO::PARAM_STR);
+		$stmt->bindParam(":comentario", $datos["comentario"], PDO::PARAM_STR);
+		$stmt->bindParam(":id", $datos["id"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
 
 }
 

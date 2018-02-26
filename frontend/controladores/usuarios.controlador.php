@@ -781,5 +781,96 @@ class ControladorUsuarios{
 
   }
 
+ /*=============================================
+	ACTUALIZAR COMENTARIOS
+	=============================================*/
+
+	public function ctrActualizarComentario(){
+
+		if(isset($_POST["idComentario"])){
+
+			if(preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["comentario"])){
+
+				if($_POST["comentario"] != ""){
+
+					$tabla = "comentarios";
+
+					$datos = array("id"=>$_POST["idComentario"],
+								   "calificacion"=>$_POST["puntaje"],
+								   "comentario"=>$_POST["comentario"]);
+
+					$respuesta = ModeloUsuarios::mdlActualizarComentario($tabla, $datos);
+
+					if($respuesta == "ok"){
+
+						echo'<script>
+
+								swal({
+									  title: "¡GRACIAS POR COMPARTIR SU OPINIÓN!",
+									  text: "¡Su calificación y comentario ha sido guardado!",
+									  type: "success",
+									  confirmButtonText: "Cerrar",
+									  closeOnConfirm: false
+								},
+
+								function(isConfirm){
+										 if (isConfirm) {	   
+										   history.back();
+										  } 
+								});
+
+							  </script>';
+
+					}
+
+				}else{
+
+					echo'<script>
+
+						swal({
+							  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
+							  text: "¡El comentario no puede estar vacío!",
+							  type: "error",
+							  confirmButtonText: "Cerrar",
+							  closeOnConfirm: false
+						},
+
+						function(isConfirm){
+								 if (isConfirm) {	   
+								   history.back();
+								  } 
+						});
+
+					  </script>';
+
+				}	
+
+			}else{
+
+				echo'<script>
+
+					swal({
+						  title: "¡ERROR AL ENVIAR SU CALIFICACIÓN!",
+						  text: "¡El comentario no puede llevar caracteres especiales!",
+						  type: "error",
+						  confirmButtonText: "Cerrar",
+						  closeOnConfirm: false
+					},
+
+					function(isConfirm){
+							 if (isConfirm) {	   
+							   history.back();
+							  } 
+					});
+
+				  </script>';
+
+			}
+
+		}
+
+	}
+
+
 
 }
