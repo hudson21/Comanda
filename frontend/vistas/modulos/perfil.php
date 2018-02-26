@@ -101,15 +101,118 @@ if(!isset($_SESSION["validarSesion"])){
 
 		  		}else {
 
-		  			foreach($compras as $key => $value){
+		  			foreach($compras as $key => $value1){
 
-		  				echo '<div class="panel panel-default">
-							    <div class="panel-body">Panel Content</div>
-							  </div>
+		  				$ordenar = "id";
+		  				$item = "id";
+		  				$valor = $value1["id_producto"];
 
-							  <div class="panel panel-default">
-							    <div class="panel-body">Panel Content</div>
-							  </div>';
+		  				$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+
+		  				//var_dump($productos);
+
+
+		  				foreach($productos as $key  => $value2){
+
+		  					echo '<div class="panel panel-default">
+							   		
+							   		 <div class="panel-body">
+
+										<div class="col-md-2 col-sm-6 col-xs-12">
+
+											<figure>
+										
+												<img class="img-thumbnail" src="'.$servidor.$value2["portada"].'" alt="">
+
+											</figure>
+
+										</div>
+
+											<div class="col-sm-6 col-xs-12">
+
+												<h1><small>'.$value2["titulo"].'</small></h1>
+
+												<p>'.$value2["titular"].'</p>';
+
+												  if($value2["tipo"] == "virtual"){
+
+												  	echo '<a href="'.$url.'/curso">
+												  		<button class="btn btn-default pull-left">Ir al Curso</button>
+												  		</a>';
+
+												  }else{
+
+												  	echo '<h6>Proceso de Entrega: '.$value2["entrega"].' días hábiles</h6>';
+
+												  	if ($value1["envio"] == 0) {
+												  		
+												  		echo '<div class="progress">
+																
+																<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+																    <i class="fa fa-check"></i> Despachado
+																</div>
+
+																<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+																	<i class="fa fa-clock-o"></i> Enviando
+																</div>
+
+																<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+																	<i class="fa fa-clock-o"></i> Entregado
+																</div>
+
+												  			</div>';
+												  	}
+
+												  	if ($value1["envio"] == 1) {
+												  		
+												  		echo '<div class="progress">
+																
+																<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+																    <i class="fa fa-check"></i> Despachado
+																</div>
+
+																<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+																	<i class="fa fa-check"></i> Enviando
+																</div>
+
+																<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+																	<i class="fa fa-clock-o"></i> Entregado
+																</div>
+
+												  			</div>';
+												  	}
+
+												  	if ($value1["envio"] == 2) {
+												  		
+												  		echo '<div class="progress">
+																
+																<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+																    <i class="fa fa-check"></i> Despachado
+																</div>
+
+																<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+																	<i class="fa fa-check"></i> Enviando
+																</div>
+
+																<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+																	<i class="fa fa-check"></i> Entregado
+																</div>
+
+												  			</div>';
+												  	}
+												  }
+
+									  	
+									  	echo'</div>
+							
+								   	  </div>
+	
+								  </div>';
+
+
+								  
+		  				  
+		  				}		  				
 		  			}
 		  		}
 
