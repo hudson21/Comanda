@@ -61,6 +61,20 @@ class AjaxUsuarios{
 		echo $respuesta;
 	}
 
+
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE DESEOS      
+	=================================================*/
+	public function ajaxQuitarDeseo(){
+
+		$datos = $this->idDeseo;
+
+		$respuesta = ControladorUsuarios::ctrQuitarDeseo($datos);
+
+		echo $respuesta;
+	}
+
+
 }
 
 /*===============================================
@@ -96,5 +110,16 @@ class AjaxUsuarios{
 		$deseo -> idUsuario = $_POST["idUsuario"];
 		$deseo -> idProducto = $_POST["idProducto"];
 		$deseo -> ajaxAgregarDeseo();
+
+	}
+
+/*===============================================
+	QUITAR PRODUCTO DE LISTA DE DESEOS      
+=================================================*/
+	if(isset($_POST["idDeseo"])){
+
+		$quitarDeseo = new AjaxUsuarios();
+		$quitarDeseo -> idDeseo = $_POST["idDeseo"];
+		$quitarDeseo -> ajaxQuitarDeseo();
 
 	}

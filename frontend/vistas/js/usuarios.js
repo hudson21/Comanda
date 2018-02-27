@@ -411,9 +411,11 @@ $(".deseos").click(function(){
 
 	}else{
 
+			$(this).addClass("btn-danger");
+
 			var datos = new FormData();
-			datos.append("id_usuario", idUsuario);
-			datos.append("id_producto", idProducto);
+			datos.append("idUsuario", idUsuario);
+			datos.append("idProducto", idProducto);
 
 			$.ajax({
 					url:rutaOculta+"ajax/usuarios.ajax.php",
@@ -423,12 +425,45 @@ $(".deseos").click(function(){
 					contentType: false,
 					processData: false,
 					success:function(respuesta){
-						console.log("respuesta",respuesta);
+						
 					}
 
 			})
 
 	}
 })
+
+
+/*============================================================
+	QUITAR PRODUCTO DE LISTA DE DESEOS       
+==============================================================*/
+$(".quitarDeseo").click(function(){
+
+	var idDeseo = $(this).attr("idDeseo");
+
+	$(this).parent().parent().parent().remove();
+
+	var datos = new FormData();
+	datos.append("idDeseo", idDeseo);
+
+	$.ajax({
+			 url:rutaOculta+"ajax/usuarios.ajax.php",
+			 method:"POST",
+			 data: datos,
+			 cache: false,
+			 contentType: false,
+			 processData: false,
+			 success:function(respuesta){
+				console.log("respuesta",respuesta);
+			 }
+
+			})
+
+})
+
+
+
+
+
 
 

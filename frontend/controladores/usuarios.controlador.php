@@ -884,6 +884,32 @@ class ControladorUsuarios{
 
 	}
 
+	/*===============================================
+		MOSTRAR A LISTA DE DESEOS       
+	=================================================*/
+	static public function ctrMostrarDeseos($item){
+
+		$tabla = "deseos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarDeseos($tabla, $item);
+
+		return $respuesta;
+
+	}
+
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE DESEOS       
+	=================================================*/
+	static public function ctrQuitarDeseo($datos){
+
+		$tabla = "deseos";
+
+		$respuesta = ModeloUsuarios::mdlQuitarDeseo($tabla, $datos);
+
+		return $respuesta;
+
+	}
+
 
 
 }
