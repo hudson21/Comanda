@@ -136,14 +136,29 @@ class ModeloUsuarios{
   	============================================================*/
   	static public function mdlMostrarComentariosPerfil($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_usuario = :id_usuario AND id_producto = :id_producto");
+  		if($datos["idUsuario"] != ""){
 
-		$stmt -> bindParam(":id_usuario", $datos["idUsuario"], PDO::PARAM_INT);
-		$stmt -> bindParam(":id_producto", $datos["idProducto"], PDO::PARAM_INT);
+  			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_usuario = :id_usuario AND id_producto = :id_producto");
 
-		$stmt -> execute();
+			$stmt -> bindParam(":id_usuario", $datos["idUsuario"], PDO::PARAM_INT);
+			$stmt -> bindParam(":id_producto", $datos["idProducto"], PDO::PARAM_INT);
 
-		return $stmt -> fetch();
+			$stmt -> execute();
+
+			return $stmt -> fetch();
+
+  		}else{
+
+  			$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_producto = :id_producto ORDER BY Rand()");
+
+			$stmt -> bindParam(":id_producto", $datos["idProducto"], PDO::PARAM_INT);
+
+			$stmt -> execute();
+
+			return $stmt -> fetchAll();
+  		}
+
+		
 
 		$stmt-> close();
 

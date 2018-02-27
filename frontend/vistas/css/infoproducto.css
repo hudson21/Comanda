@@ -344,6 +344,10 @@ INFOPRODUCTO
 	background:#d6513e; 
 }
 
+.alturaComentarios{
+  height:300px;
+}
+
 
 		/*Estamos configurando las resloluciones para lg, md, sm y xm*/
 /*------------------------------------------------

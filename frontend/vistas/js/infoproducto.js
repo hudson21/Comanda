@@ -116,8 +116,20 @@ $(window).on("load", function(){
 			
 		}
 
-	});
+	})
 
+})
+
+/*=============================================
+ALTURA COMENTARIOS
+=============================================*/
+$(".comentarios").css({"height":$(".comentarios .alturaComentarios").height()+"px",
+						"overflow":"hidden",
+						"margin-bottom":"20px"})
+
+$("#verMas").click(function(e){
+
+	e.preventDefault();
 })
 
 
