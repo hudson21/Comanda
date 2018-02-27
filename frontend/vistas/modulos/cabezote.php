@@ -4,6 +4,22 @@ $servidor = Ruta::ctrRutaServidor();
 
 $url = Ruta::ctrRuta();
 
+/*======================================
+    INICIO DE SESIÓN USUARIO    
+========================================*/
+if(isset($_SESSION["validarSesion"])){
+
+  if($_SESSION["validarSesion"] == "ok"){
+
+    echo '<script>
+
+            localStorage.setItem("usuario","'.$_SESSION["id"].'")
+
+          </script>';
+  }
+
+}
+
 /*
 
 https://getcomposer.org/download/ -->Para descargar e instalar el composer de PHP

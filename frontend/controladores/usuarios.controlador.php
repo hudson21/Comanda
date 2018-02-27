@@ -871,6 +871,19 @@ class ControladorUsuarios{
 
 	}
 
+	/*===============================================
+		AGREGAR A LISTA DE DESEOS       
+	=================================================*/
+	static public function ctrAgregarDeseo($datos){
+
+		$tabla = "deseos";
+
+		$respuesta  = ModeloUsuarios::mdlAgregarDeseo($tabla, $datos);
+
+		return $respuesta;
+
+	}
+
 
 
 }

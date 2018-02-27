@@ -21,8 +21,6 @@ $("input").focus(function(){
 })
 
 
-
-
 /*======================================
 VALIDAR EMAIL REPETIDO          
 ========================================*/
@@ -73,7 +71,6 @@ $("#regEmail").change(function(){
 	 })
 
 })
-
 
 
 /*=============================================================================================================
@@ -176,6 +173,8 @@ function registroUsuario(){
 
 	return true;
 }
+
+
 
 /*=============================================
 CAMBIAR FOTO
@@ -384,5 +383,52 @@ function validarComentario(){
 
 }
 
+/*============================================================
+	LISTA DE DESEOS       
+==============================================================*/
+$(".deseos").click(function(){
+
+	var idProducto = $(this).attr("idProducto");
+	console.log("idProducto",idProducto);
+	var idUsuario = localStorage.getItem("usuario");
+	console.log("idUsuario",idUsuario);
+
+	if(idUsuario == null){
+
+		swal({
+				title: "¡Debe ingresar al sistema!",
+				text: "¡Para agregar un producto a la 'lista de deseos' debe primero ingresar al sistema!",
+				type: "warning",
+				confirmButtonText: "¡Cerrar!",
+				closeOnConfirm: false
+			},
+
+		function(isConfirm){
+			  if (isConfirm) {	   
+				window.location = rutaOculta;
+			} 
+		});
+
+	}else{
+
+			var datos = new FormData();
+			datos.append("id_usuario", idUsuario);
+			datos.append("id_producto", idProducto);
+
+			$.ajax({
+					url:rutaOculta+"ajax/usuarios.ajax.php",
+					method:"POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+						console.log("respuesta",respuesta);
+					}
+
+			})
+
+	}
+})
 
 

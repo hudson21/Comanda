@@ -44,6 +44,23 @@ class AjaxUsuarios{
 		echo $respuesta;
 
 	}
+
+	/*===============================================
+		AGREGAR A LISTA DE DESEOS       
+	=================================================*/
+	public $idUsuario;
+	public $idProducto;
+
+	public function ajaxAgregarDeseo(){
+
+		$datos = array("idUsuario"=>$this->idUsuario,
+					   "idProducto"=>$this->idProducto);
+
+		$respuesta = ControladorUsuarios::ctrAgregarDeseo($datos);
+
+		echo $respuesta;
+	}
+
 }
 
 /*===============================================
@@ -67,5 +84,17 @@ class AjaxUsuarios{
 		$regFacebook -> nombre = $_POST["nombre"];
 		$regFacebook -> foto = $_POST["foto"];
 		$regFacebook -> ajaxRegistroFacebook();
+
+	}
+
+/*===============================================
+	AGREGAR A LISTA DE DESEOS       
+=================================================*/
+	if(isset($_POST["idUsuario"])){
+
+		$deseo = new AjaxUsuarios();
+		$deseo -> idUsuario = $_POST["idUsuario"];
+		$deseo -> idProducto = $_POST["idProducto"];
+		$deseo -> ajaxAgregarDeseo();
 
 	}
