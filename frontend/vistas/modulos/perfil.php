@@ -722,6 +722,14 @@ if(!isset($_SESSION["validarSesion"])){
 		    		
 		    		<button class="btn btn-danger btn-md pull-right" id="eliminarUsuario">Eliminar Cuenta</button>
 
+		    		<?php 
+
+		    			$borrarUsuario = new ControladorUsuarios();
+		    			$borrarUsuario -> ctrEliminarUsuario();
+
+
+		    		?>
+
 		    	</div>
   		  </div>
 		

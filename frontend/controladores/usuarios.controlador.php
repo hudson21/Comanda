@@ -925,6 +925,12 @@ class ControladorUsuarios{
 
 			$id = $_GET["id"];
 
+			if($_GET["foto"] != ""){
+
+				unlink($_GET["foto"]);//Para que se vacíe la variable foto que está viajando por el POST
+				rmdir('vistas/img/usuarios/'.$_GET["id"]);//Esto es para poder borrar la carpeta donde está alojada la foto del usuario
+			}
+
 			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
 
 			ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
