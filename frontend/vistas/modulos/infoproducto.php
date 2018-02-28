@@ -620,11 +620,12 @@ INFO PRODUCTOS
 
 		     				  
 		     				  <div class="col-md-6 col-xs-12">
+
 					
-								<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+							<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
 									  imagen="'.$servidor.$infoproducto["portada"].'"
-									  titulo="'.$infoproducto["titulo"].'" 
-									  precio="'.$infoproducto["precioOferta"].'" 
+									  titulo="'.$infoproducto["titulo"].'"
+									  precio="'.$infoproducto["precio"].'" 
 									  tipo="'.$infoproducto["tipo"].'" 
 									  peso="'.$infoproducto["peso"].'"
 									  excepciones="'.$infoproducto["excepciones"].'">
@@ -641,10 +642,10 @@ INFO PRODUCTOS
 
 		     		    	echo '<div class="col-lg-6 col-md-8 col-xs-12">
 					
-									<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+							<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
 									  imagen="'.$servidor.$infoproducto["portada"].'"
-									  titulo="'.$infoproducto["titulo"].'" 
-									  precio="'.$infoproducto["precioOferta"].'" 
+									  titulo="'.$infoproducto["titulo"].'"
+									  precio="'.$infoproducto["precio"].'" 
 									  tipo="'.$infoproducto["tipo"].'" 
 									  peso="'.$infoproducto["peso"].'"
 									  excepciones="'.$infoproducto["excepciones"].'">
