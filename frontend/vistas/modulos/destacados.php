@@ -276,7 +276,8 @@ echo '
 							  titulo="'.$value["titulo"].'" 
 							  precio="'.$value["precioOferta"].'" 
 							  tipo="'.$value["tipo"].'" 
-							  peso="'.$value["peso"].'" 
+							  peso="'.$value["peso"].'"
+							  excepciones="'.$value["excepciones"].'" 
 							  data-toggle="tooltip" 
 					          title="Agregar al carrito de compras">
 						
@@ -290,7 +291,8 @@ echo '
 							  titulo="'.$value["titulo"].'" 
 							  precio="'.$value["precio"].'" 
 							  tipo="'.$value["tipo"].'" 
-							  peso="'.$value["peso"].'" 
+							  peso="'.$value["peso"].'"
+							  excepciones="'.$value["excepciones"].'" 
 							  data-toggle="tooltip" 
 					          title="Agregar al carrito de compras">
 						
@@ -431,7 +433,8 @@ echo '</ul>
 							  titulo="'.$value["titulo"].'" 
 							  precio="'.$value["precioOferta"].'"
 							  tipo="'.$value["tipo"].'" 
-							  peso="'.$value["peso"].'" 
+							  peso="'.$value["peso"].'"
+							  excepciones="'.$value["excepciones"].'" 
 							  data-toggle="tooltip" 
 					          title="Agregar al carrito de compras">
 						
@@ -447,7 +450,8 @@ echo '</ul>
 							  titulo="'.$value["titulo"].'" 
 							  precio="'.$value["precio"].'" 
 							  tipo="'.$value["tipo"].'" 
-							  peso="'.$value["peso"].'" 
+							  peso="'.$value["peso"].'"
+							  excepciones="'.$value["excepciones"].'" 
 							  data-toggle="tooltip" 
 					          title="Agregar al carrito de compras">
 						

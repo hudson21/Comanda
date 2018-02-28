@@ -291,7 +291,7 @@ if($cliente->getAccessToken()){
 			  ======================================-->
 			 <div class="input-group col-lg-3 col-md-3 col-sm-2 col-xs-12 " id="carrito">
 
-			      <a href="#">
+			      <a href="<?php echo $url;?>carrito-de-compras">
 
 			      	<button class="btn backColor btn-default pull-left " style="background:#C1CA2C;color:white;">
                         	

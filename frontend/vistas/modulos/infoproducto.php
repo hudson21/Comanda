@@ -621,7 +621,13 @@ INFO PRODUCTOS
 		     				  
 		     				  <div class="col-md-6 col-xs-12">
 					
-								<button class="btn btn-default btn-block btn-lg backColor">
+								<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+									  imagen="'.$servidor.$infoproducto["portada"].'"
+									  titulo="'.$infoproducto["titulo"].'" 
+									  precio="'.$infoproducto["precioOferta"].'" 
+									  tipo="'.$infoproducto["tipo"].'" 
+									  peso="'.$infoproducto["peso"].'"
+									  excepciones="'.$infoproducto["excepciones"].'">
 
 								<small>AGREGAR AL CARRITO</small>
 
@@ -635,7 +641,13 @@ INFO PRODUCTOS
 
 		     		    	echo '<div class="col-lg-6 col-md-8 col-xs-12">
 					
-									<button class="btn btn-default btn-block btn-lg backColor">
+									<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+									  imagen="'.$servidor.$infoproducto["portada"].'"
+									  titulo="'.$infoproducto["titulo"].'" 
+									  precio="'.$infoproducto["precioOferta"].'" 
+									  tipo="'.$infoproducto["tipo"].'" 
+									  peso="'.$infoproducto["peso"].'"
+									  excepciones="'.$infoproducto["excepciones"].'">
 
 									AGREGAR AL CARRITO
 
@@ -1278,7 +1290,8 @@ INFO PRODUCTOS
 									  titulo="'.$value["titulo"].'" 
 									  precio="'.$value["precioOferta"].'" 
 									  tipo="'.$value["tipo"].'" 
-									  peso="'.$value["peso"].'" 
+									  peso="'.$value["peso"].'"
+									  excepciones="'.$value["excepciones"].'" 
 									  data-toggle="tooltip" 
 							          title="Agregar al carrito de compras">
 								
@@ -1292,7 +1305,8 @@ INFO PRODUCTOS
 									  titulo="'.$value["titulo"].'" 
 									  precio="'.$value["precio"].'" 
 									  tipo="'.$value["tipo"].'" 
-									  peso="'.$value["peso"].'" 
+									  peso="'.$value["peso"].'"
+									  excepciones="'.$value["excepciones"].'" 
 									  data-toggle="tooltip" 
 							          title="Agregar al carrito de compras">
 								

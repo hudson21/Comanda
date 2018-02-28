@@ -281,7 +281,8 @@ LISTAR PRODUCTOS
 											  titulo="'.$value["titulo"].'" 
 											  precio="'.$value["precioOferta"].'" 
 											  tipo="'.$value["tipo"].'" 
-											  peso="'.$value["peso"].'" 
+											  peso="'.$value["peso"].'"
+											  excepciones="'.$value["excepciones"].'" 
 											  data-toggle="tooltip" 
 									          title="Agregar al carrito de compras">
 										
@@ -296,7 +297,8 @@ LISTAR PRODUCTOS
 											  titulo="'.$value["titulo"].'" 
 											  precio="'.$value["precio"].'" 
 											  tipo="'.$value["tipo"].'" 
-											  peso="'.$value["peso"].'" 
+											  peso="'.$value["peso"].'"
+											  excepciones="'.$value["excepciones"].'" 
 											  data-toggle="tooltip" 
 									          title="Agregar al carrito de compras">
 										
@@ -437,7 +439,8 @@ LISTAR PRODUCTOS
 							  titulo="'.$value["titulo"].'" 
 							  precio="'.$value["precioOferta"].'"
 							  tipo="'.$value["tipo"].'" 
-							  peso="'.$value["peso"].'" 
+							  peso="'.$value["peso"].'"
+							  excepciones="'.$value["excepciones"].'" 
 							  data-toggle="tooltip" 
 					          title="Agregar al carrito de compras">
 						
@@ -453,7 +456,8 @@ LISTAR PRODUCTOS
 							  titulo="'.$value["titulo"].'" 
 							  precio="'.$value["precio"].'" 
 							  tipo="'.$value["tipo"].'" 
-							  peso="'.$value["peso"].'" 
+							  peso="'.$value["peso"].'"
+							  excepciones="'.$value["excepciones"].'" 
 							  data-toggle="tooltip" 
 					          title="Agregar al carrito de compras">
 						
