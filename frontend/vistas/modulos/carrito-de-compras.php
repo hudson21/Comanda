@@ -80,46 +80,6 @@
 			===================================================-->
 			<div class="panel-body sumaCarrito">
 
-				<div class="col-md-4 col-sm-6 col-xs-12 pull-right well total">
-
-					<div class="col-xs-6">
-						
-						<h4>TOTAL:</h4>
-
-					</div>
-
-					<div class="col-xs-6">
-
-						<h4>
-							
-							<strong>USD $<span>21</span></strong>
-
-						</h4>
-						
-					</div>
-					
-				</div>
-
-				<div class="col-md-5 col-sm-6 col-xs-12 pull-left well">
-
-					<div class="col-xs-4">
-
-						<h6><strong>EXCEPCIONES:</strong></h6>
-						
-					</div>
-
-					<div class="col-xs-8">
-						
-						<textarea class="form-control" rows="5" id="comentario" name="comentario" maxlength="300" required></textarea>
-
-					</div>
-
-					
-					
-				</div>
-
-				
-
 			</div>
 
 
@@ -128,7 +88,6 @@
 			===================================================-->
 			<div class="panel-heading cabeceraCheckout">
 
-				<button class="btn btn-default backColor btn-lg pull-right">REALIZAR PAGO</button>
 				
 			</div>
 
