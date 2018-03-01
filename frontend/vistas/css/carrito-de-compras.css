@@ -16,3 +16,10 @@
 .total{
 	margin-top:70px;
 }
+
+/*======================================
+  CHECKOUT        
+========================================*/
+.contenidoCheckout,.contenidoCheckout .row {
+	padding:0px 20px; /*0px a nivel horizontal y 20px a nivel vertical*/
+}
