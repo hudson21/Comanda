@@ -174,7 +174,7 @@ if(localStorage.getItem("listaProductos") != null){
 				'</div>');
 
 
-	$(".cabeceraCheckout").append('<button class="btn btn-default backColor btn-lg pull-right">REALIZAR PAGO</button>');
+
 	
 	  
 }else{ //Si el localStorage está vacío
