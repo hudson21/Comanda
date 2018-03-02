@@ -135,15 +135,31 @@
 
 			<div class="contenidoCheckout">
 
+				<?php
+
+				$tabla = "comercio"; 
+
+				$respuesta = ControladorCarrito::ctrMostrarTarifas($tabla);
+
+				//var_dump($respuesta);
+
+				echo '<input type="hidden" id="tasaImpuesto" value="'.$respuesta["impuesto"].'">
+					  <input type="hidden" id="envioNacional" value="'.$respuesta["envioNacional"].'">
+					  <input type="hidden" id="envioInternacional" value="'.$respuesta["envioInternacional"].'">
+					  <input type="hidden" id="tasaMinimaNacional" value="'.$respuesta["tasaMinimaNacional"].'">
+					  <input type="hidden" id="tasaMinimaInternacional" value="'.$respuesta["tasaMinimaInternacional"].'">
+					  <input type="hidden" id="tasaPais" value="'.$respuesta["pais"].'">'
+
+				?>
+
 				<div class="formEnvio row">
 
 					<h4 class="text-center well text-muted text-uppercase">Información de envío</h4>
 
-					<div class="col-xs-12 seleccionePalapa">
+					<div class="col-xs-12 seleccionePais">
 
-						<select class="form-control" id="seleccionePalapa" required>
+						<select class="form-control" id="seleccionarPais" >
 							
-							<option value="">Seleccione la Palapa</option>
 
 						</select>
 						
@@ -153,7 +169,7 @@
 
 				<br>
 
-				<div class="formaPago row">
+				<div  class="formaPago row">
 
 					<h4 class="text-center well text-muted text-uppercase">Elige la forma de pago</h4>
 
@@ -221,8 +237,8 @@
 								</tr>
 
 								<tr>
-									<td>Tiempo de Pedido</td>
-									<td>30 Min</td>
+									<td>Envío</td>
+									<td>USD $<span class="valorTotalEnvio">0</span></td>
 								</tr>
 
 								<tr>

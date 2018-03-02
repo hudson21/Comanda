@@ -563,4 +563,125 @@ function cestaCarrito(cantidadProductos){
 $("#btnCheckout").click(function(){
 
 	var idUsuario = $(this).attr("idUsuario");
+	var peso = $(".cuerpoCarrito button");
+	var titulo = $(".cuerpoCarrito .tituloCarritoCompra");//Todas estas variables son arrays
+	var cantidad = $(".cuerpoCarrito .cantidadItem");
+	var subtotal = $(".cuerpoCarrito .subtotales span");
+	var tipoArray = [];
+	var cantidadPeso = [];
+
+	for (var i = 0; i < titulo.length; i++) {
+		
+		var pesoArray = $(peso[i]).attr("peso");
+		var tituloArray = $(titulo[i]).html();
+		var cantidadArray = $(cantidad[i]).val();
+		var subtotalArray = $(subtotal[i]).html();
+
+
+		/*====================================================================  
+  			EVALUAR EL PESO DE ACUERDO A LA CANTIDAD DE PRODUCTOS      
+		======================================================================*/
+		cantidadPeso[i] = pesoArray * cantidadArray;
+		
+		function sumaArrayPeso(total, numero){
+
+			return total + numero;
+
+		}
+
+		var sumaTotalPeso = cantidadPeso.reduce(sumaArrayPeso);
+		console.log("sumaTotalPeso", sumaTotalPeso);
+
+		/*====================================================================  Los td son las columnas
+  			MOSTRAR PRODUCTOS DEFINITIVOS A COMPRAR       
+		======================================================================*/
+		$(".listaProductos table.tablaProductos tbody").append('<tr>'+
+															   '<td>'+tituloArray+'</td>'+
+															   '<td>'+cantidadArray+'</td>'+
+															   '<td>$<span>'+subtotalArray+'</span></td>'+
+															   '</tr>');
+
+		/*====================================================================  
+  			SELECCIONAR PALAPA DE ENVÍO SI HAY PRODUCTOS FÍSICOS       
+		======================================================================*/
+		
+		tipoArray.push($(cantidad[i]).attr("tipo"));
+		
+		function checkTipo(tipo){
+
+			return tipo == "fisico";
+		}
+
+		/*====================================================================  
+  			EXISTEN PRODUCTOS FÍSICOS     
+		======================================================================*/
+		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
+		if(tipoArray.find(checkTipo) == "fisico"){
+
+			$(".formEnvio").show();
+
+			$.ajax({
+				url:rutaOculta+"vistas/js/plugins/countries.json",/*De esta manera estoy llamando a un archivo json a través
+																de esta petición Ajax*/
+				type: "GET",
+				cache: false,
+				contentType: false,
+				processData:false,
+				dataType:"json",
+				success: function(respuesta){
+					
+					respuesta.forEach(seleccionarPalapa);
+
+					function seleccionarPalapa(item, index){
+
+						var pais = item.name;
+						var codPais = item.code;
+
+						$("#seleccionarPais").append('<option value="'+codPais+'">'+pais+'</option>');
+					}
+
+				}
+			})
+			/*====================================================================  
+  				EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO      
+			======================================================================*/
+			$("#seleccionarPais").change(function(){ //Las tasas de las palapas es como si fueran los países
+
+				var pais = $(this).val();
+				var tasaPais = $("#tasaPais").val();
+
+				if(pais == tasaPais){ //Si país es igual a tasaPais significa que estará en el mismo país
+
+					var resultadoPeso = sumaTotalPeso * $("#envioNacional").val();
+
+					if(resultadoPeso < $("#tasaMinimaNacional").val()){
+
+						$(".valorTotalEnvio").html($("#tasaMinimaNacional").val());
+
+					}else{
+
+						$(".valorTotalEnvio").html(resultadoPeso);
+
+					}
+
+				}else{ //Si país es diferente a tasa país (que es el país local que donde se establecen los impuestos mínimos)
+
+					var resultadoPeso = sumaTotalPeso * $("#envioInternacional").val();
+
+					if(resultadoPeso < $("#tasaMinimaInternacional").val()){
+
+						$(".valorTotalEnvio").html($("#tasaMinimaInternacional").val());
+
+					}else{
+
+						$(".valorTotalEnvio").html(resultadoPeso);
+
+					}
+
+				}
+
+			})
+
+		}
+	}
 })
