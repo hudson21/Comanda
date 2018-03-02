@@ -268,12 +268,12 @@
 
 								<tr>
 									<td>Impuesto</td>
-									<td>USD $30</td>
+									<td>USD $<span class="valorTotalImpuesto">0</span></td>
 								</tr>
 
 								<tr>
 									<td><strong>Total</strong></td>
-									<td><strong>USD $30</strong></td>
+									<td><strong>USD $<span class="valorTotalCompra">0</span></strong></td>
 								</tr>
 
 

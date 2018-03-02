@@ -5,7 +5,6 @@
 /*==============================================
  	VISUALIZAR LA CESTA DEL CARRITO DE COMPRAS     
 ================================================*/
-
 if(localStorage.getItem("cantidadCesta") != null){
 
 	$(".cantidadCesta").html(localStorage.getItem("cantidadCesta"));
@@ -16,8 +15,6 @@ if(localStorage.getItem("cantidadCesta") != null){
 	$(".cantidadCesta").html("0");
 	$(".sumaCesta").html("0");
 }
-
-
 
 
 /*==============================================
@@ -102,11 +99,7 @@ if(localStorage.getItem("listaProductos") != null){
 
 								'</center>'+
 
-								
-
 							'</div>'+
-
-							
 
 					'</div>'+
 
@@ -129,7 +122,6 @@ if(localStorage.getItem("listaProductos") != null){
 
 				'<hr>');
 
-
 		/*====================================================================
   			EVITAR MANIPULAR LA CANTIDAD EN PRODUCTOS VIRTUALES        
 		======================================================================*/
@@ -151,11 +143,7 @@ if(localStorage.getItem("listaProductos") != null){
 
 					'</div'+		
 					
-				'</div>');
-
-
-
-	
+				'</div>');	
 	  
 }else{ //Si el localStorage está vacío
 
@@ -166,8 +154,6 @@ if(localStorage.getItem("listaProductos") != null){
 
 }
 
-
-
 /*==============================================
 /*==============================================
 /*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
@@ -175,7 +161,6 @@ if(localStorage.getItem("listaProductos") != null){
 /*==============================================
   AGREGAR AL CARRITO        
 ================================================*/
-
 $(".agregarCarrito").click(function(){
 
 	var idProducto = $(this).attr("idProducto");
@@ -270,7 +255,6 @@ $(".agregarCarrito").click(function(){
 		/*====================================================================
   			MOSTRAR ALERTA DE QUE EL PRODUCTO YA FUE AGREGADO        
 		======================================================================*/
-
 		swal({
 				title: "",
 				text: "¡Se ha agregado un nuevo producto al carrito de compras",
@@ -503,7 +487,6 @@ function cestaCarrito(cantidadProductos){
 	/*=============================================
 	SI HAY PRODUCTOS EN EL CARRITO
 	=============================================*/
-
 	if(cantidadProductos != 0){
 		
 		var cantidadItem = $(".cuerpoCarrito .cantidadItem");
@@ -552,9 +535,27 @@ $("#btnCheckout").click(function(){
 	var subtotal = $(".cuerpoCarrito .subtotales span");
 	var tipoArray = [];
 	var cantidadPeso = [];
+
+
+	/*====================================================================  
+  		SUMA SUBTOTAL     
+	======================================================================*/
 	var sumaSubTotal = $(".sumaSubTotal span");
 	
 	$(".valorSubTotal").html($(sumaSubTotal).html());
+
+	/*====================================================================  
+  		TASAS DE IMPUESTO     
+	======================================================================*/
+	var impuestoTotal = ($(".valorSubTotal").html() * $("#tasaImpuesto").val())/100;
+
+	$(".valorTotalImpuesto").html(impuestoTotal);
+
+	sumaTotalCompra();
+
+	/*====================================================================  
+  		VARIABLES ARRAY      
+	======================================================================*/
 
 	for (var i = 0; i < titulo.length; i++) {
 		
@@ -590,7 +591,6 @@ $("#btnCheckout").click(function(){
 		/*====================================================================  
   			SELECCIONAR PALAPA DE ENVÍO SI HAY PRODUCTOS FÍSICOS       
 		======================================================================*/
-		
 		tipoArray.push($(cantidad[i]).attr("tipo"));
 		
 		function checkTipo(tipo){
@@ -666,8 +666,23 @@ $("#btnCheckout").click(function(){
 
 				}
 
+				sumaTotalCompra();
+
 			})
 
 		}
 	}
 })
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  SUMA TOTAL DE LA COMPRA       
+================================================*/
+function sumaTotalCompra(){
+
+	$(".valorTotalCompra").html(Number($(".valorSubTotal").html())+Number($(".valorTotalEnvio").html())+Number($(".valorTotalImpuesto").html()));
+
+}
