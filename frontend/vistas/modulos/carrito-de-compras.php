@@ -88,6 +88,30 @@
 			===================================================-->
 			<div class="panel-body sumaCarrito">
 
+				<div class="col-md-4 col-sm-6 col-xs-12 pull-right well total">
+
+								<div class="col-xs-6">
+						
+									<h4>TOTAL:</h4>
+
+							   </div>
+
+								<div class="col-xs-6">
+
+									<h4 class="sumaSubTotal">
+							
+
+									</h4>
+						
+							  </div>
+					
+					</div>
+
+					<div class="excepciones">
+						
+
+					</div>
+
 			</div>
 
 
@@ -159,8 +183,9 @@
 					<div class="col-xs-12 seleccionePais">
 
 						<select class="form-control" id="seleccionarPais" >
-							
 
+							<option value="">Seleccione el País</option>
+							
 						</select>
 						
 					</div>
@@ -233,7 +258,7 @@
 								
 								<tr>
 									<td>Subtotal</td>
-									<td>USD $20</td>
+									<td>USD $<span class="valorSubTotal">0</span></td>
 								</tr>
 
 								<tr>

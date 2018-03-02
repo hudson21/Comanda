@@ -137,35 +137,15 @@ if(localStorage.getItem("listaProductos") != null){
 
 	}
 
-	$(".sumaCarrito").append('<div class="col-md-4 col-sm-6 col-xs-12 pull-right well total">'+
+	$(".sumaCarrito .excepciones").append('<div class="col-md-5 col-sm-6 col-xs-12 pull-left well">'+
 
-					'<div class="col-xs-6">'+
-						
-						'<h4>TOTAL:</h4>'+
+											'<div class="col-xs-4">'+
 
-					'</div>'+
+												'<h6><strong>EXCEPCIONES:</strong></h6>'+
+												
+											'</div>'+
 
-					'<div class="col-xs-6">'+
-
-						'<h4 class="sumaSubTotal">'+
-							
-							
-
-						'</h4>'+
-						
-					'</div>'+
-					
-				'</div>'+
-
-				'<div class="col-md-5 col-sm-6 col-xs-12 pull-left well">'+
-
-					'<div class="col-xs-4">'+
-
-						'<h6><strong>EXCEPCIONES:</strong></h6>'+
-						
-					'</div>'+
-
-					'<div class="col-xs-8 ">'+
+											'<div class="col-xs-8 ">'+
 						
 						'<textarea class="form-control excepcionesVal" rows="5" id="comentario" excepciones="'+item.excepciones+'" name="comentario" maxlength="300" required></textarea>'+
 
@@ -562,6 +542,9 @@ function cestaCarrito(cantidadProductos){
 ================================================*/
 $("#btnCheckout").click(function(){
 
+	$(".listaProductos table.tablaProductos tbody").html("");//Esto es para que no se repitan los productos nuevamente en la 
+															 //ventana modal del checkout
+
 	var idUsuario = $(this).attr("idUsuario");
 	var peso = $(".cuerpoCarrito button");
 	var titulo = $(".cuerpoCarrito .tituloCarritoCompra");//Todas estas variables son arrays
@@ -569,6 +552,9 @@ $("#btnCheckout").click(function(){
 	var subtotal = $(".cuerpoCarrito .subtotales span");
 	var tipoArray = [];
 	var cantidadPeso = [];
+	var sumaSubTotal = $(".sumaSubTotal span");
+	
+	$(".valorSubTotal").html($(sumaSubTotal).html());
 
 	for (var i = 0; i < titulo.length; i++) {
 		
