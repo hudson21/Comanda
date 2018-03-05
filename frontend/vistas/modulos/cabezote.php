@@ -250,7 +250,7 @@ if($cliente->getAccessToken()){
 			======================================-->	
     	 	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12" >
 
-    	 		<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
+    	 <!--	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
 
     	 			<p>CATEGORIAS
 
@@ -259,7 +259,7 @@ if($cliente->getAccessToken()){
     	 				</span>
     	 			</p>
     	 			
-    	 		</div>
+    	 		</div>-->
 
     	 		<!--=====================================
 	            		=    BUSCADOR      =
@@ -314,7 +314,7 @@ if($cliente->getAccessToken()){
 
             <?php
 
-            $item=null;
+           /* $item=null;
             $valor=null;
 
                 $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
@@ -349,7 +349,7 @@ if($cliente->getAccessToken()){
                         </div>';
 
                        
-                }
+                }*/
 
             ?>
     	 	
@@ -360,45 +360,49 @@ if($cliente->getAccessToken()){
 
 </header>
 
+<header class="header2">
+    <div class="menu_bar">
+      <a  class="bt-menu text-uppercase backColor"><span class="icon-home"></span>Categorías</a>
+    </div>
+ 
+    <nav >
+      <ul>
+
+         <?php
+
+            $item=null;
+            $valor=null;
+
+                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+
+                forEach($categorias as $key => $value){
+
+                   echo ' <li class="submenu ">
+                            <a style="font-weight:bold;" ><span class="icon-checkmark2 "></span>'.$value["categoria"].'<span class="caret icon-arrow-down6"></span></a>';
+
+                        $item = "id_categoria";
+                        $valor = $value["id"];
+                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
+                        $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+
+                        echo'<ul class="children">';
+
+                        foreach($subcategorias as $key => $value1){
+                          echo'<li ><a style="font-weight:bold;" href="'.$url.$value1["ruta"].'">'.$value1["subcategoria"].'<span class="icon-checkmark2"></span></a></li>';        
+                        }
+
+                        echo'</ul></li>';
+          
+              }
+                         
+
+          ?>
+        
+      </ul>
+    </nav>
+  </header>
 
 
- <!--<div class="container">
-
-            <nav class="navbar navbar-default">
-              
-              <div class="container-fluid ">
-                
-                <div class="navbar-header">
-                  
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-
-                  </button>
-                  <a class="disabled navbar-brand " style="font-weight:bold;" href="#">CATEGORIAS</a>
-
-                </div>
-
-                
-                <div class="collapse navbar-collapse">
-
-                  <ul class="nav navbar-nav">
-                      <li class="<?php //echo $pagina == 'hamburguesa' ? 'active' : ''; ?>"><a style="font-weight:bold;" href="?p=hamburguesa">HAMBURGUESA</a></li>
-                      <li class="<?php //echo $pagina == 'toalla' ? 'active' : ''; ?>"><a style="font-weight:bold;" href="?p=toalla">TOALLA</a></li>
-                      <li class="<?php //echo $pagina == 'refresco' ? 'active' : ''; ?>"><a style="font-weight:bold;"  href="?p=refresco">REFRESCO</a></li>
-                      <li class="<?php //echo $pagina == 'pedidos' ? 'active' : ''; ?>"><a style="font-weight:bold;" href="?p=pedidos">PEDIDOS</a></li>
-                  </ul>
-
-                </div>
-
-              </div>
-
-            </nav>
-
-          </div>-->
 
 <!--===============================================
 VENTANA MODAL PARA EL REGISTRO

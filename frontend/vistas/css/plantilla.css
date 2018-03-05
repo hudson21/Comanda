@@ -11,6 +11,10 @@
 	font-family: 'Ubuntu',sans-serif  ; /**/
 }
 
+header{
+    z-index:1000;
+  }
+
 ul,ol{
 	padding:0;
 }

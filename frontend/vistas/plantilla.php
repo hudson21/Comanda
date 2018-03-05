@@ -12,6 +12,8 @@
 
 	<meta name="keyword" content="tienda, vinos, licores,etc">
 
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+
   <title>Comanda Electrónica</title>
 
  
@@ -67,6 +69,8 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/infoproducto.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/perfil.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/carrito-de-compras.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/fonts.css">
+    
 
     
 	<!--=====================================
@@ -83,6 +87,10 @@
    <script src="<?php echo $url;?>vistas/js/plugins/jquery.flexslider.js"></script>
 
    <script src="<?php echo $url;?>vistas/js/plugins/sweetalert.min.js"></script>
+
+   <script src="<?php echo $url;?>vistas/js/menu.js"></script>
+
+   
 
      
 </head>
@@ -217,6 +225,7 @@
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
+
 
 
 <script>
