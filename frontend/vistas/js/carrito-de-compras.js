@@ -543,13 +543,15 @@ $("#btnCheckout").click(function(){
 	var sumaSubTotal = $(".sumaSubTotal span");
 	
 	$(".valorSubTotal").html($(sumaSubTotal).html());
+	$(".valorSubTotal").attr("valor",$(sumaSubTotal).html());
 
 	/*====================================================================  
   		TASAS DE IMPUESTO     
 	======================================================================*/
 	var impuestoTotal = ($(".valorSubTotal").html() * $("#tasaImpuesto").val())/100;
 
-	$(".valorTotalImpuesto").html(impuestoTotal);
+	$(".valorTotalImpuesto").html(impuestoTotal.toFixed(2));
+	$(".valorTotalImpuesto").attr("valor",impuestoTotal.toFixed(2));
 
 	sumaTotalCompra();
 
@@ -577,15 +579,15 @@ $("#btnCheckout").click(function(){
 		}
 
 		var sumaTotalPeso = cantidadPeso.reduce(sumaArrayPeso);
-		console.log("sumaTotalPeso", sumaTotalPeso);
+		//console.log("sumaTotalPeso", sumaTotalPeso);
 
 		/*====================================================================  Los td son las columnas
   			MOSTRAR PRODUCTOS DEFINITIVOS A COMPRAR       
 		======================================================================*/
 		$(".listaProductos table.tablaProductos tbody").append('<tr>'+
-															   '<td>'+tituloArray+'</td>'+
-															   '<td>'+cantidadArray+'</td>'+
-															   '<td>$<span>'+subtotalArray+'</span></td>'+
+															   '<td class="valorTitulo">'+tituloArray+'</td>'+
+															   '<td class="valorCantidad">'+cantidadArray+'</td>'+
+															   '<td>$<span class="valorItem" valor="'+subtotalArray+'">'+subtotalArray+'</span></td>'+
 															   '</tr>');
 
 		/*====================================================================  
@@ -604,7 +606,15 @@ $("#btnCheckout").click(function(){
 		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
 		if(tipoArray.find(checkTipo) == "fisico"){
 
+			$(".seleccionePais").html('<select class="form-control" id="seleccionarPais" >'+
+
+							'<option value="">Seleccione el País</option>'+
+							
+						'</select>');
+
 			$(".formEnvio").show();
+
+			$(".btnPagar").attr("tipo","fisico");
 
 			$.ajax({
 				url:rutaOculta+"vistas/js/plugins/countries.json",/*De esta manera estoy llamando a un archivo json a través
@@ -633,6 +643,10 @@ $("#btnCheckout").click(function(){
 			======================================================================*/
 			$("#seleccionarPais").change(function(){ //Las tasas de las palapas es como si fueran los países
 
+				$(".alert").remove();
+
+
+
 				var pais = $(this).val();
 				var tasaPais = $("#tasaPais").val();
 
@@ -643,10 +657,12 @@ $("#btnCheckout").click(function(){
 					if(resultadoPeso < $("#tasaMinimaNacional").val()){
 
 						$(".valorTotalEnvio").html($("#tasaMinimaNacional").val());
+						$(".valorTotalEnvio").attr("valor",$("#tasaMinimaNacional").val());
 
 					}else{
 
 						$(".valorTotalEnvio").html(resultadoPeso);
+						$(".valorTotalEnvio").attr("valor",resultadoPeso);
 
 					}
 
@@ -657,19 +673,44 @@ $("#btnCheckout").click(function(){
 					if(resultadoPeso < $("#tasaMinimaInternacional").val()){
 
 						$(".valorTotalEnvio").html($("#tasaMinimaInternacional").val());
+						$(".valorTotalEnvio").attr("valor",$("#tasaMinimaInternacional").val());
 
 					}else{
 
 						$(".valorTotalEnvio").html(resultadoPeso);
+						$(".valorTotalEnvio").attr("valor",resultadoPeso);
 
 					}
 
 				}
 
+				/*====================================================================  
+  					RETORNAR EL CAMBIO DE DIVISA A USD    
+				======================================================================*/
+
+				$("#cambiarDivisa").val("USD");
+
+				$(".cambioDivisa").html("USD");
+
+				$(".valorSubtotal").html((1 * Number($(".valorSubtotal").attr("valor"))).toFixed(2))
+		    	$(".valorTotalEnvio").html((1 * Number($(".valorTotalEnvio").attr("valor"))).toFixed(2))
+		    	$(".valorTotalImpuesto").html((1 * Number($(".valorTotalImpuesto").attr("valor"))).toFixed(2))
+		    	$(".valorTotalCompra").html((1 * Number($(".valorTotalCompra").attr("valor"))).toFixed(2))
+
+		    	var valorItem = $(".valorItem");
+
+		    	for(var i = 0; i < valorItem.length; i++){
+
+		    		$(valorItem[i]).html((1 * Number($(valorItem[i]).attr("valor"))).toFixed(2))
+		    	 }
+
 				sumaTotalCompra();
 
 			})
 
+		}else{
+
+				$(".btnPagar").attr("tipo","virtual");
 		}
 	}
 })
@@ -683,6 +724,152 @@ $("#btnCheckout").click(function(){
 ================================================*/
 function sumaTotalCompra(){
 
-	$(".valorTotalCompra").html(Number($(".valorSubTotal").html())+Number($(".valorTotalEnvio").html())+Number($(".valorTotalImpuesto").html()));
+	var sumaTotalTasas = Number($(".valorSubTotal").html())+
+						  Number($(".valorTotalEnvio").html())+
+						  Number($(".valorTotalImpuesto").html());
+
+	$(".valorTotalCompra").html(sumaTotalTasas.toFixed(2));
+	$(".valorTotalCompra").attr("valor",sumaTotalTasas.toFixed(2));
 
 }
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  MÉTODO DE PAGO PARA CAMBIO DE DIVISA      
+================================================*/
+
+var metodoPago = "paypal";
+divisas(metodoPago);
+
+$("input[name='pago']").change(function(){
+
+	var metodoPago = $(this).val();
+
+	divisas(metodoPago);
+
+
+})
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  FUNCIÓN PARA EL CAMBIO DE DIVISA      
+================================================*/
+function divisas(metodoPago){
+
+	$("#cambiarDivisa").html("");
+
+	if(metodoPago == "paypal"){
+
+		$("#cambiarDivisa").append('<option value="USD">USD</option>'+
+								   '<option value="EUR">EUR</option>'+
+								   '<option value="GBP">GBP</option>'+
+								   '<option value="MXN">MXN</option>'+
+								   '<option value="JPY">JPY</option>'+
+								   '<option value="CAD">CAD</option>'+
+								   '<option value="BRL">BRL</option>');
+
+	}else{
+
+		$("#cambiarDivisa").append('<option value="USD">USD</option>'+
+								   '<option value="PEN">PEN</option>'+
+								   '<option value="COP">COP</option>'+
+								   '<option value="MXN">MXN</option>'+
+								   '<option value="CLP">CLP</option>'+
+								   '<option value="ARS">ARS</option>'+
+								   '<option value="BRL">BRL</option>');
+	}
+}
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  CAMBIO DE DIVISA       
+================================================*/
+var divisaBase = "USD";
+
+$("#cambiarDivisa").change(function(){
+
+	$(".alert").remove();
+
+	if($("#seleccionarPais").val() == ""){
+
+		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
+
+		return;
+
+	}
+
+	var divisa = $(this).val();
+
+	$.ajax({
+		url:"http://free.currencyconverterapi.com/api/v3/convert?q="+divisaBase+"_"+divisa+"&compact=y",
+		type:"GET",
+		cache: false,
+		contentType: false,
+		processData: false,
+		dataType:"jsonp",//Es la opción para poder traer información de otro servidor que está almacenado en otra URL
+		success:function(respuesta){
+			
+			var divisaString = JSON.stringify(respuesta);
+			var conversion = divisaString.substr(18,4);//Quitamos 18 caracteres y luego requerimos 4
+
+			if(divisa == "USD"){
+
+				conversion = 1;
+			}
+			
+			$(".cambioDivisa").html(divisa);
+
+			$(".valorSubtotal").html((Number(conversion) * Number($(".valorSubtotal").attr("valor"))).toFixed(2))
+	    	$(".valorTotalEnvio").html((Number(conversion) * Number($(".valorTotalEnvio").attr("valor"))).toFixed(2))
+	    	$(".valorTotalImpuesto").html((Number(conversion) * Number($(".valorTotalImpuesto").attr("valor"))).toFixed(2))
+	    	$(".valorTotalCompra").html((Number(conversion) * Number($(".valorTotalCompra").attr("valor"))).toFixed(2))
+
+	    	var valorItem = $(".valorItem");
+
+	    	for(var i = 0; i < valorItem.length; i++){
+
+	    		$(valorItem[i]).html((Number(conversion) * Number($(valorItem[i]).attr("valor"))).toFixed(2))
+	    	 }
+
+		}
+
+	})
+})
+
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  BOTÓN PAGAR       
+================================================*/
+$(".btnPagar").click(function(){
+
+	var tipo = $(this).attr("tipo");
+
+	if(tipo == "fisico" && $("#seleccionarPais").val() == ""){
+
+		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
+
+		return;
+	}
+
+	var divisa = $("#cambiarDivisa").val();
+	var total = $(".valorTotalCompra").html();
+	var impuesto = $(".valorTotalImpuesto").html();
+	var envio = $(".valorTotalEnvio").html();
+	var subtotal = $(".valorSubtotal").html();
+	var titulo = $(".valorTitulo").html();
+	var cantidad = $(".valorCantidad").html();
+	var valorItem = $(".valorItem").html();
+})

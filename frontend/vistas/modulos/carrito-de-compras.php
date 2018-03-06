@@ -184,11 +184,7 @@
 
 					<div class="col-xs-12 seleccionePais">
 
-						<select class="form-control" id="seleccionarPais" >
-
-							<option value="">Seleccione el País</option>
-							
-						</select>
+						
 						
 					</div>
 
@@ -260,22 +256,22 @@
 								
 								<tr>
 									<td>Subtotal</td>
-									<td>USD $<span class="valorSubTotal">0</span></td>
+									<td><span class="cambioDivisa">USD</span> $<span class="valorSubTotal" valor="0">0</span></td>
 								</tr>
 
 								<tr>
 									<td>Envío</td>
-									<td>USD $<span class="valorTotalEnvio">0</span></td>
+									<td><span class="cambioDivisa">USD</span> $<span class="valorTotalEnvio" valor="0">0</span></td>
 								</tr>
 
 								<tr>
 									<td>Impuesto</td>
-									<td>USD $<span class="valorTotalImpuesto">0</span></td>
+									<td><span class="cambioDivisa">USD</span> $<span class="valorTotalImpuesto" valor="0">0</span></td>
 								</tr>
 
 								<tr>
 									<td><strong>Total</strong></td>
-									<td><strong>USD $<span class="valorTotalCompra">0</span></strong></td>
+									<td><strong><span class="cambioDivisa">USD</span> $<span class="valorTotalCompra" valor="0">0</span></strong></td>
 								</tr>
 
 
@@ -287,7 +283,7 @@
 							
 							<select class="form-control" id="cambiarDivisa" name="divisa">
 								
-								<option value="USD">USD</option>
+								
 
 							</select>
 
