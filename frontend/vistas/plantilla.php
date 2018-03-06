@@ -70,6 +70,7 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/perfil.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/carrito-de-compras.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/fonts.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/pedidos.css">
     
 
     
@@ -189,7 +190,7 @@
         include "modulos/infoproducto.php";
 
       }else if($rutas[0] == "buscador" ||  $rutas[0] == "verificar" ||  $rutas[0] == "salir" ||  $rutas[0] == "perfil" 
-        ||  $rutas[0] == "carrito-de-compras"){
+        ||  $rutas[0] == "carrito-de-compras" ||  $rutas[0] == "pedidos"){
 
         include "modulos/".$rutas[0].".php";
       
@@ -225,6 +226,7 @@
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
+<script src="<?php echo $url;?>vistas/js/pedidos.js"></script>
 
 
 

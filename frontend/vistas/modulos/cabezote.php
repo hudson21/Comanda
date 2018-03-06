@@ -91,7 +91,7 @@ if($cliente->getAccessToken()){
 
 ?>
 
-<div class="container-fluid barraSuperior" id="top">
+<div style="margin-bottom:0px" class="container-fluid barraSuperior" id="top">
 
 	<div class="container">
 		
@@ -165,7 +165,9 @@ if($cliente->getAccessToken()){
                     echo '<li>|</li>
                      <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                      <li>|</li>
-                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
+                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>
+                     <li>|</li>
+                     <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
 
                   } 
 
@@ -180,7 +182,9 @@ if($cliente->getAccessToken()){
                          <li>|</li>
                          <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                          <li>|</li>
-                         <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
+                         <li><a href="'.$url.'salir" class="salir">Salir</a></li>
+                         <li>|</li>
+                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
 
 
                   }//Si viene en modo de facebook o de google
@@ -196,7 +200,9 @@ if($cliente->getAccessToken()){
                          <li>|</li>
                          <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                          <li>|</li>
-                         <li><a href="'.$url.'salir" >Salir</a></li>';
+                         <li><a href="'.$url.'salir" >Salir</a></li>
+                         <li>|</li>
+                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
 
                   }
 
@@ -207,7 +213,9 @@ if($cliente->getAccessToken()){
 
               echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
                     <li>|</li>
-                    <li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>';
+                    <li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
+                    <li>|</li>
+                    <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
 
             }
 
@@ -226,48 +234,6 @@ if($cliente->getAccessToken()){
 <!--=====================================
 	=            HEADER            =
 ======================================-->
-
-<header>
-    <div class="menu_bar">
-      <a  class="bt-menu text-uppercase backColor"><span class="icon-home"></span>Categorías</a>
-    </div>
- 
-    <nav >
-      <ul>
-
-         <?php
-
-            $item=null;
-            $valor=null;
-
-                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
-
-                forEach($categorias as $key => $value){
-
-                   echo ' <li class="submenu ">
-                            <a style="font-weight:bold;" ><span class="icon-checkmark2 "></span>'.$value["categoria"].'<span class="caret icon-arrow-down6"></span></a>';
-
-                        $item = "id_categoria";
-                        $valor = $value["id"];
-                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
-                        $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
-
-                        echo'<ul class="children">';
-
-                        foreach($subcategorias as $key => $value1){
-                          echo'<li ><a style="font-weight:bold;" href="'.$url.$value1["ruta"].'">'.$value1["subcategoria"].'<span class="icon-checkmark2"></span></a></li>';        
-                        }
-
-                        echo'</ul></li>';
-          
-              }
-                         
-
-          ?>
-        
-      </ul>
-    </nav>
-  </header>
 
 <header class="container-fluid">
 	
@@ -292,7 +258,7 @@ if($cliente->getAccessToken()){
 			======================================-->	
     	 	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12" >
 
-    	 <!--	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
+    	 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
 
     	 			<p>CATEGORIAS
 
@@ -301,7 +267,7 @@ if($cliente->getAccessToken()){
     	 				</span>
     	 			</p>
     	 			
-    	 		</div>-->
+    	 		</div>
 
     	 		<!--=====================================
 	            		=    BUSCADOR      =
@@ -401,6 +367,49 @@ if($cliente->getAccessToken()){
     </div>
 
 </header>
+
+<header id="menuDes" class="menuDesplegable">
+    <div style="z-index:2000"  class="menu_bar">
+      <a  class="bt-menu text-uppercase backColor"><span class="icon-home"></span>Categorías</a>
+    </div>
+ 
+    <nav >
+      <ul style="margin-top:0px; margin-bottom:0px" >
+
+         <?php
+
+            $item=null;
+            $valor=null;
+
+                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+
+                forEach($categorias as $key => $value){
+
+                   echo ' <li class="submenu ">
+                            <a style="font-weight:bold;" ><span class="icon-checkmark2 "></span>'.$value["categoria"].'<span class="caret icon-arrow-down6"></span></a>';
+
+                        $item = "id_categoria";
+                        $valor = $value["id"];
+                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
+                        $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+
+                        echo'<ul class="children">';
+
+                        foreach($subcategorias as $key => $value1){
+                          echo'<li ><a style="font-weight:bold;" href="'.$url.$value1["ruta"].'">'.$value1["subcategoria"].'<span class="icon-checkmark2"></span></a></li>';        
+                        }
+
+                        echo'</ul></li>';
+          
+              }
+                         
+
+          ?>
+        
+      </ul>
+    </nav>
+  </header>
+
 
 
 <!--===============================================

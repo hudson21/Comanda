@@ -26,12 +26,13 @@ body {background:#FEFEFE;}
  
 header {
 	width: 100%;
+	z-index:1000;
 }
  
 header nav {
 	background:#C1CA2C;
 	z-index:1000;
-	max-width: 1000px;
+	max-width: 2000px;
 	width:95%;
 	margin:20px auto;
 }
@@ -73,7 +74,7 @@ header nav ul li .children {
 	display: none;
 	background:#011826;
 	position: absolute;
-	width: 150%;
+	width: 100%;
 	z-index:1000;
 }
  
@@ -92,7 +93,7 @@ header nav ul li .children li a span {
 	position: relative;
 	top:3px;
 	margin-right:0;
-	margin-left:10px;
+	margin-left:0px;
 }
  
 header nav ul li .caret {
@@ -108,6 +109,7 @@ header nav ul li .caret {
 
 #top ul{
 	padding-top:8px;
+	padding-bottom:0px;
 }
 
 #top ul li{
