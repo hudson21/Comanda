@@ -311,3 +311,27 @@
 	</div>
 	
 </div>
+
+<script>
+
+	var variableJS="12345";
+
+$(".btnPagar").click(function(){
+
+	//if(localStorage.getItem("listaProductos") != null){
+
+	var listaCarrito = JSON.parse(localStorage.getItem("listaProductos")); 
+	console.log("listaCarrito", listaCarrito[0]["idProducto"]);
+	
+	variableJS = listaCarrito;
+})
+
+  
+  
+</script>
+
+<?php
+$variablePHP = '<script> document.write(variableJS) </script>';
+echo 'variablePHP = '.$variablePHP;
+
+?>
