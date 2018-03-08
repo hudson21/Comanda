@@ -294,8 +294,8 @@
 					</div>
 
 					<div class="clearfix"></div>
-
-					<button class="btn btn-block btn-lg btn-default backColor btnPagar">PAGAR</button>
+					
+						<button id="botonPagar" class="btn btn-block btn-lg btn-default backColor btnPagar">PAGAR</button>
 					
 				</div>
 
@@ -312,26 +312,3 @@
 	
 </div>
 
-<script>
-
-	var variableJS="12345";
-
-$(".btnPagar").click(function(){
-
-	//if(localStorage.getItem("listaProductos") != null){
-
-	var listaCarrito = JSON.parse(localStorage.getItem("listaProductos")); 
-	console.log("listaCarrito", listaCarrito[0]["idProducto"]);
-	
-	variableJS = listaCarrito;
-})
-
-  
-  
-</script>
-
-<?php
-$variablePHP = '<script> document.write(variableJS) </script>';
-echo 'variablePHP = '.$variablePHP;
-
-?>

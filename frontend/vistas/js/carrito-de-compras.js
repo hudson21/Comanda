@@ -139,7 +139,7 @@ if(localStorage.getItem("listaProductos") != null){
 
 											'<div class="col-xs-8 ">'+
 						
-						'<textarea class="form-control excepcionesVal" rows="5" id="comentario" excepciones="'+item.excepciones+'" name="comentario" maxlength="300" required></textarea>'+
+						'<textarea class="form-control excepcionesVal" rows="5" id="comentario" excepciones="'+item.excepciones+'" value="" name="comentario" maxlength="300"></textarea>'+
 
 					'</div'+		
 					
@@ -210,7 +210,7 @@ $(".agregarCarrito").click(function(){
 	}
 
 	/*====================================================================
-  		ALMACENAR EN EL LOCALSTORAGE LOS PRODUCTOS 	AGREGADOS AL CARRITO        
+  		ALMACENAR EN EL LOCALSTORAGE LOS PRODUCTOS AGREGADOS AL CARRITO        
 	======================================================================*/
 	if(agregarAlCarrito){
 
@@ -606,7 +606,7 @@ $("#btnCheckout").click(function(){
 		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
 		if(tipoArray.find(checkTipo) == "fisico"){
 
-			$(".seleccionePais").html('<select class="form-control" id="seleccionarPais" >'+
+			$(".seleccionePais").html('<select class="form-control" name="seleccionarPais" id="seleccionarPais" >'+
 
 							'<option value="">Seleccione el País</option>'+
 							
@@ -872,4 +872,76 @@ $(".btnPagar").click(function(){
 	var titulo = $(".valorTitulo").html();
 	var cantidad = $(".valorCantidad").html();
 	var valorItem = $(".valorItem").html();
+
+
+})
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  AGREGAR A LA LISTA DE PEDIDOS       
+================================================*/
+$(".btnPagar").click(function(){
+
+	if(localStorage.getItem("listaProductos") != null){
+
+	var listaCarrito = JSON.parse(localStorage.getItem("listaProductos"));
+	//console.log("listaCarrito", listaCarrito[1]);
+
+
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+	==============================================================================================================*/	
+		var datos = new FormData();
+		var datosUsuario = [];
+		var datosProducto = [];
+		var datosPalapa = [];
+		var datosImagen = [];
+		var datosTitulo = [];
+		var datosPrecio = [];
+		var datosCantidad = [];
+		var datosEstado = [];
+		var datosComentario = [];
+
+	
+    		var combo = document.getElementById("seleccionarPais");
+			var palapa = combo.options[combo.selectedIndex].text;
+		
+			comentario = document.getElementById("comentario").value;
+		//console.log(comentario);
+
+
+		var idUsuarioPedido = localStorage.getItem("usuario");
+		console.log("listaCarrito.length", listaCarrito.length); 
+
+		for (var i = 0; i < listaCarrito.length; i++) {
+							
+			datos.append(datosUsuario[i], idUsuarioPedido);
+			datos.append(datosProducto[i], listaCarrito[i]["idProducto"]);
+			datos.append(datosPalapa[i], palapa );
+			datos.append(datosImagen[i], listaCarrito[i]["imagen"]);
+			datos.append(datosTitulo[i], listaCarrito[i]["titulo"]);
+			datos.append(datosPrecio[i], listaCarrito[i]["precio"]);
+			datos.append(datosCantidad[i], listaCarrito[i]["cantidad"]);
+			datos.append(datosEstado[i], 0);
+			datos.append(datosComentario[i], comentario);
+}
+	
+			$.ajax({
+					url:rutaOculta+"ajax/usuarios.ajax.php",
+					method:"POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+						console.log("respuesta", respuesta);
+					}
+
+			})
+
+	}
+
 })

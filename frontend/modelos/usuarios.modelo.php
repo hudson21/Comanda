@@ -370,6 +370,41 @@ class ModeloUsuarios{
 
 	}
 
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS   
+	==============================================================================================================*/
+	static public function mdlInsertarPedidos($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, imagen, titulo, precio, cantidad, estado, comentarios) VALUES (:id_usuario, :id_producto, :palapa, :imagen, :titulo, :precio, :cantidad, :estado, :comentarios)");
+
+		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
+		$stmt -> bindParam(":palapa", $datos["palapa"], PDO::PARAM_STR);
+		$stmt -> bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
+		$stmt -> bindParam(":titulo", $datos["titulo"], PDO::PARAM_STR);
+		$stmt -> bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
+		$stmt -> bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
+		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+	
+
 
 
 }

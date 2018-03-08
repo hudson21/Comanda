@@ -226,7 +226,6 @@
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
-<script src="<?php echo $url;?>vistas/js/pedidos.js"></script>
 
 
 

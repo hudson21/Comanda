@@ -13,7 +13,7 @@ class AjaxUsuarios{
 
 	public function ajaxValidarEmail(){
 
-		$datos = $this-> validarEmail;
+		$datos = $this->validarEmail;
 
 		$respuesta = ControladorUsuarios::ctrMostrarUsuario("email", $datos);
 
@@ -74,6 +74,40 @@ class AjaxUsuarios{
 		echo $respuesta;
 	}
 
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+	==============================================================================================================*/
+	public $idUsuarioPedidos ;
+	public $idProductoPedidos;
+	public $palapa;
+	public $imagen ;
+	public $titulo;
+	public $precio;
+	public $cantidad;
+	public $estado;
+	public $excepciones;
+
+	public function ajaxInsertarPedidos(){
+
+   //for ($i=0; $i < ; $i++) { 
+   	//	$datosUsuarioPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos[i]);
+   //}	
+		$datosPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos,
+					   		  "idProductoPedidos"=>$this->idProductoPedidos,
+					   		  "palapa"=>$this->palapa,
+							  "imagen"=>$this->imagen,
+							  "titulo"=>$this->titulo,
+							  "precio"=>$this->precio,
+							  "cantidad"=>$this->cantidad,
+						      "estado"=>$this->estado,
+					          "excepciones"=>$this->excepciones);
+
+		$respuesta = ControladorUsuarios::ctrInsertarPedidos($datosPedidos);
+
+		echo $respuesta;
+
+	}
+
 
 }
 
@@ -121,5 +155,24 @@ class AjaxUsuarios{
 		$quitarDeseo = new AjaxUsuarios();
 		$quitarDeseo -> idDeseo = $_POST["idDeseo"];
 		$quitarDeseo -> ajaxQuitarDeseo();
+
+	}
+
+/*============================================================================================================  
+  	INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+==============================================================================================================*/
+	if(isset($_POST["idUsuarioPedidos"])){
+
+		$pedidos = new AjaxUsuarios();
+		$pedidos -> idUsuarioPedidos = $_POST["idUsuarioPedidos"];
+		$pedidos -> idProductoPedidos = $_POST["idProductoPedidos"];
+		$pedidos -> palapa = $_POST["palapa"];
+		$pedidos -> imagen = $_POST["imagen"];
+		$pedidos -> titulo = $_POST["titulo"];
+		$pedidos -> precio = $_POST["precio"];
+		$pedidos -> cantidad = $_POST["cantidad"];
+		$pedidos -> estado = $_POST["estado"];
+		$pedidos -> excepciones = $_POST["excepciones"];
+		$pedidos -> ajaxInsertarPedidos();
 
 	}

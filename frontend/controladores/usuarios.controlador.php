@@ -965,6 +965,17 @@ class ControladorUsuarios{
 		}
 	
 	}
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS   
+	==============================================================================================================*/
+	static public function ctrInsertarPedidos($datos){
+
+		$tabla = "pedidos";
+
+  		$respuesta = ModeloUsuarios::mdlInsertarPedidos($tabla, $datos);
+
+  		return $respuesta;
+	}
 
 
 
