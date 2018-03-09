@@ -24,7 +24,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 	.menuDesplegable{display:none;}
 
-	/*.cesta{display:none;}*/
+	.cesta{display:none;}
 </style>
 <!--===============================================
      BREADCRUMB CARRITO DE COMPRAS
