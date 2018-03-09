@@ -226,14 +226,14 @@ $(".agregarCarrito").click(function(){
 			listaCarrito.concat(localStorage.getItem("listaProductos"));
 		}
 
-		listaCarrito.push({"idProducto":idProducto, 
-					   "imagen":imagen, 
-					   "titulo":titulo,
-					   "precio":precio,
-					   "tipo":tipo, 
-					   "peso":peso, 
-					   "excepciones":excepciones,
-					   "cantidad":"1"});
+		listaCarrito.push({"idProducto":idProducto,
+					   	   "imagen":imagen, 
+					   	   "titulo":titulo,
+					   	   "precio":precio,
+					   	   "tipo":tipo, 
+					   	   "peso":peso, 
+					   	   "excepciones":excepciones,
+					   	   "cantidad":"1"});
 
 		
 
@@ -895,17 +895,7 @@ $(".btnPagar").click(function(){
   		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
 	==============================================================================================================*/	
 		var datos = new FormData();
-		var datosUsuario = [];
-		var datosProducto = [];
-		var datosPalapa = [];
-		var datosImagen = [];
-		var datosTitulo = [];
-		var datosPrecio = [];
-		var datosCantidad = [];
-		var datosEstado = [];
-		var datosComentario = [];
-
-	
+		
     		var combo = document.getElementById("seleccionarPais");
 			var palapa = combo.options[combo.selectedIndex].text;
 		
@@ -914,21 +904,46 @@ $(".btnPagar").click(function(){
 
 
 		var idUsuarioPedido = localStorage.getItem("usuario");
-		console.log("listaCarrito.length", listaCarrito.length); 
+		//console.log("listaCarrito.length", listaCarrito.length);
+
+		var nombreUsuario = localStorage.getItem("nombreUsuario"); 
+
+		console.log("listaCarritoImagen", listaCarrito[0]["imagen"]);
 
 		for (var i = 0; i < listaCarrito.length; i++) {
+
+			if(i>0){
+					
+				datos.append("idUsuarioPedidos", idUsuarioPedido);
+				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
+				datos.append("palapa", palapa );
+				datos.append("imagen", listaCarrito[i]["imagen"]);
+				datos.append("titulo", listaCarrito[i]["titulo"]);
+				datos.append("precio", listaCarrito[i]["precio"]);
+				datos.append("cantidad", listaCarrito[i]["cantidad"]);
+				datos.append("estado", 0);
+				datos.append("excepciones", "");
+				datos.append("mostrar", 0);
+				datos.append("nombreUsuario", "");
+
+			}else{
+
+				datos.append("idUsuarioPedidos", idUsuarioPedido);
+				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
+				datos.append("palapa", palapa );
+				datos.append("imagen", listaCarrito[i]["imagen"]);
+				datos.append("titulo", listaCarrito[i]["titulo"]);
+				datos.append("precio", listaCarrito[i]["precio"]);
+				datos.append("cantidad", listaCarrito[i]["cantidad"]);
+				datos.append("estado", 0);
+				datos.append("excepciones", comentario)
+				datos.append("mostrar", 1);
+				datos.append("nombreUsuario", nombreUsuario);
+
+			}
 							
-			datos.append(datosUsuario[i], idUsuarioPedido);
-			datos.append(datosProducto[i], listaCarrito[i]["idProducto"]);
-			datos.append(datosPalapa[i], palapa );
-			datos.append(datosImagen[i], listaCarrito[i]["imagen"]);
-			datos.append(datosTitulo[i], listaCarrito[i]["titulo"]);
-			datos.append(datosPrecio[i], listaCarrito[i]["precio"]);
-			datos.append(datosCantidad[i], listaCarrito[i]["cantidad"]);
-			datos.append(datosEstado[i], 0);
-			datos.append(datosComentario[i], comentario);
-}
-	
+			
+
 			$.ajax({
 					url:rutaOculta+"ajax/usuarios.ajax.php",
 					method:"POST",
@@ -938,9 +953,75 @@ $(".btnPagar").click(function(){
 					processData: false,
 					success:function(respuesta){
 						console.log("respuesta", respuesta);
+						
 					}
 
 			})
+
+		}
+
+	}
+
+	$(".quitarItemCarrito").parent().parent().parent().remove();
+
+	var idProducto = $(".cuerpoCarrito button");
+	var imagen = $(".cuerpoCarrito img");
+	var titulo = $(".cuerpoCarrito .tituloCarritoCompra"); //De esta manera estamos generando un array de todos los elementos que tenemos dentro de cada una de las variables
+	var precio = $(".cuerpoCarrito .precioCarritoCompra span");
+	var cantidad = $(".cuerpoCarrito .cantidadItem");
+	var excepciones = $(".sumaCarrito excepcionesVal");
+
+	/*====================================================================
+  		SI AÚN QUEDAN PRODUCTOS VOLVERLOS AGREGAR AL CARRITO (LOCALSTORAGE)        
+	======================================================================*/
+	listaCarrito = [];//Estoy vaciando el array de listaCarrito
+
+	if(idProducto.length != 0){
+
+		for(var i = 0; i < idProducto.length; i++){
+
+			var idProductoArray = $(idProducto[i]).attr("idProducto");
+			var imagenArray = $(imagen[i]).attr("src");
+			var tituloArray = $(titulo[i]).html();
+			var precioArray = $(precio[i]).html();
+			var pesoArray = $(idProducto[i]).attr("peso");
+			var tipoArray = $(cantidad[i]).attr("tipo");
+			var cantidadArray = $(cantidad[i]).val();
+			var excepcionesValor = $(excepciones).val();
+
+			//De esta manera estoy actualizando de nuevo las variables del localStorage
+			listaCarrito.push({"idProducto":idProductoArray,
+						   "imagen":imagenArray,
+						   "titulo":tituloArray,
+						   "precio":precioArray,
+					       "tipo":tipoArray,
+				           "peso":pesoArray,
+				           "excepciones":excepcionesValor,
+				           "cantidad":cantidadArray});	
+			}
+
+			localStorage.setItem("listaProductos", JSON.stringify(listaCarrito));
+
+			sumaSubtotales();
+			cestaCarrito(listaCarrito.length); 
+	
+	}else{
+
+		/*====================================================================
+  			SI YA NO QUEDAN PRODUCTOS, HAY QUE REMOVER TODO        
+		======================================================================*/
+		localStorage.removeItem("listaProductos");
+
+		localStorage.setItem("cantidadCesta","0");
+
+		localStorage.setItem("sumaCesta","0");
+
+		$(".cantidadCesta").html("0");
+		$(".sumaCesta").html("0");
+
+		$(".cuerpoCarrito").html('<div style="font-size:16px"class="well text-center"><strong>Aún no hay productos en el carrito de compras.</strong></div>');
+		$(".sumaCarrito").hide();
+		$(".cabeceraCheckout").hide();
 
 	}
 

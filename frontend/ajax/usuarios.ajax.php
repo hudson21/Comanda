@@ -86,6 +86,8 @@ class AjaxUsuarios{
 	public $cantidad;
 	public $estado;
 	public $excepciones;
+	public $mostrar;
+	public $nombreUsuario;
 
 	public function ajaxInsertarPedidos(){
 
@@ -100,7 +102,9 @@ class AjaxUsuarios{
 							  "precio"=>$this->precio,
 							  "cantidad"=>$this->cantidad,
 						      "estado"=>$this->estado,
-					          "excepciones"=>$this->excepciones);
+					          "excepciones"=>$this->excepciones,
+					          "mostrar"=>$this->mostrar,
+					      	  "nombreUsuario"=>$this->nombreUsuario);
 
 		$respuesta = ControladorUsuarios::ctrInsertarPedidos($datosPedidos);
 
@@ -173,6 +177,8 @@ class AjaxUsuarios{
 		$pedidos -> cantidad = $_POST["cantidad"];
 		$pedidos -> estado = $_POST["estado"];
 		$pedidos -> excepciones = $_POST["excepciones"];
+		$pedidos -> mostrar = $_POST["mostrar"];
+		$pedidos -> nombreUsuario = $_POST["nombreUsuario"];
 		$pedidos -> ajaxInsertarPedidos();
 
 	}

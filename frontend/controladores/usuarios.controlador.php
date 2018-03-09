@@ -977,6 +977,32 @@ class ControladorUsuarios{
   		return $respuesta;
 	}
 
+	/*===============================================
+		MOSTRAR LISTA DE PEDIDOS      
+	=================================================*/
+	static public function ctrMostrarPedidosByIdUsuario($item){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarPedidosByIdUsuario($tabla, $item);
+
+		return $respuesta;
+
+	}
+
+	/*=========================================================
+		MOSTRAR COMENTARIOS DE LA LISTA DE PEDIDOS      
+	===========================================================*/
+	static public function ctrMostrarPedidosByMostrar($item1, $item2){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarPedidosByMostrar($tabla, $item1, $item2);
+
+		return $respuesta;
+
+	}
+
 
 
 }

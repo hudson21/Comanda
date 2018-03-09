@@ -18,7 +18,7 @@ if(!isset($_SESSION["validarSesion"])){
 }
 
 ?>
-
+<style>.menuDesplegable{display:none;}</style>
 <!--===============================================
      BREADCRUMB PERFIL
 ===================================================-->

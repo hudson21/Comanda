@@ -375,7 +375,7 @@ class ModeloUsuarios{
 	==============================================================================================================*/
 	static public function mdlInsertarPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, imagen, titulo, precio, cantidad, estado, comentarios) VALUES (:id_usuario, :id_producto, :palapa, :imagen, :titulo, :precio, :cantidad, :estado, :comentarios)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, imagen, titulo, precio, cantidad, estado, comentarios, mostrar, nombreUsuario) VALUES (:id_usuario, :id_producto, :palapa, :imagen, :titulo, :precio, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
@@ -384,8 +384,10 @@ class ModeloUsuarios{
 		$stmt -> bindParam(":titulo", $datos["titulo"], PDO::PARAM_STR);
 		$stmt -> bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
 		$stmt -> bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
-		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_INT);
 		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
+		$stmt -> bindParam(":mostrar", $datos["mostrar"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nombreUsuario", $datos["nombreUsuario"], PDO::PARAM_STR);
 
 		if($stmt -> execute()){
 
@@ -398,6 +400,46 @@ class ModeloUsuarios{
 		}
 
 		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+
+	/*===============================================
+		MOSTRAR LISTA DE PEDIDOS      
+	=================================================*/
+	static public function mdlMostrarPedidosByIdUsuario($tabla, $item){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario ORDER BY id ASC");
+
+		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*=========================================================
+		MOSTRAR COMENTARIOS DE LA LISTA DE PEDIDOS      
+	===========================================================*/
+	static public function mdlMostrarPedidosByMostrar($tabla, $item1, $item2){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario AND mostrar = :mostrar ORDER BY id ASC");
+
+		$stmt -> bindParam(":id_usuario", $item1, PDO::PARAM_INT);
+		$stmt -> bindParam(":mostrar", $item2, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
 
 		$stmt = null;
 
