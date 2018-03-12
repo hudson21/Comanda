@@ -16,6 +16,25 @@
 
   <title>Comanda Electrónica</title>
 
+   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "7a9d5e07-08e4-47a0-82f1-b0e15ca782ad",
+      autoRegister: false, /* Set to true to automatically prompt visitors */
+      httpPermissionRequest: {
+        enable: true
+      },
+      notifyButton: {
+          enable: true /* Set to false to hide */
+      },
+      welcomeNotification: {
+        disable: true,
+        // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+      }
+    }]);
+  </script>
+
  
 
 	<?php
