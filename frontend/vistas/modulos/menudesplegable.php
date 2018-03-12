@@ -26,7 +26,7 @@
                         echo'<ul class="children">';
 
                         foreach($subcategorias as $key => $value1){
-                          echo'<li ><a style="font-weight:bold;" href="'.$url.$value1["ruta"].'">'.$value1["subcategoria"].'<span class="icon-checkmark2"></span></a></li>';        
+                          echo'<li ><a style="font-weight:bold;" href="'.$url.$value1["ruta"].'">'.$value1["subcategoria"].'<span ></span></a></li>';        
                         }
 
                         echo'</ul></li>';

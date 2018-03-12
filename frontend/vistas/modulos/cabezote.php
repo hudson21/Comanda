@@ -165,10 +165,12 @@ if($cliente->getAccessToken()){
 
                     echo '<li>|</li>
                      <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                     
                      <li>|</li>
-                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>
+                     <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+
                      <li>|</li>
-                     <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
+                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
 
                   } 
 
@@ -182,10 +184,12 @@ if($cliente->getAccessToken()){
 
                          <li>|</li>
                          <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                         
                          <li>|</li>
-                         <li><a href="'.$url.'salir" class="salir">Salir</a></li>
+                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+
                          <li>|</li>
-                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
+                         <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
 
 
                   }//Si viene en modo de facebook o de google
@@ -200,10 +204,12 @@ if($cliente->getAccessToken()){
 
                          <li>|</li>
                          <li><a href="'.$url.'perfil">Ver Perfil</a></li>
+                         
                          <li>|</li>
-                         <li><a href="'.$url.'salir" >Salir</a></li>
+                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+
                          <li>|</li>
-                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
+                         <li><a href="'.$url.'salir" >Salir</a></li>';
 
                   }
 

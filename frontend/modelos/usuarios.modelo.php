@@ -445,6 +445,31 @@ class ModeloUsuarios{
 
 	}
 
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE PEDITOS     
+	=================================================*/
+	static public function mdlEliminarPedidos($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id_producto");
+
+		$stmt -> bindParam(":id_producto", $datos, PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
 	
 
 

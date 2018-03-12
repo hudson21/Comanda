@@ -11,8 +11,23 @@ $servidor = Ruta::ctrRutaServidor();
 if(!isset($_SESSION["validarSesion"])){
 
 	echo '<script>
-	
-			window.location = "'.$url.'"
+			swal({
+					title: "¡NO TIENE ACCESO!",
+					text: "¡Necesita estar logeado para poder ver su lista de Pedidos!",
+					type:"warning",
+					confirmButtonText:"Ok",
+					closeOnConfirm: false,
+					icon: "warning"
+				 },
+
+				 function(isConfirm){
+
+					 if(isConfirm){
+						// history.back();
+					     window.location = "'.$url.'";
+					 }
+				});
+			
 
 	</script>';
 
@@ -145,7 +160,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 						foreach($productos as $key => $value2){
 
-							echo '<div class="row itemCarrito">
+							if($value2["tipo"] == "fisico"){
+
+								echo '<div class="row itemCarrito">
 
 								<div class="col-sm-1 col-xs-12">
 
@@ -153,7 +170,108 @@ if(!isset($_SESSION["validarSesion"])){
 
 									<center>
 							
-										<button class="btn btn-default backColor">
+										<button class="btn btn-default backColor quitarItemPedido " idProducto="'.$value1["id"].'">
+										<i class="fa fa-times"></i>
+										</button>
+
+									</center>
+						
+								</div>
+
+								<div style="margin-top:30px;" class="col-sm-1 col-xs-12">
+						
+									<br>
+
+									<p style="margin-left:5px; " class="tituloCarritoPedidos text-left">'.$value1["palapa"].'</p>
+
+								</div>
+
+								<div style="margin-top:15px" class="col-sm-1 col-xs-12">
+						
+									<figure >
+
+									<img src="'.$servidor.$value2["portada"].'" class="img-thumbnail">
+
+									</figure>
+
+								</div>
+
+								<div style="margin-left:5px; " class="col-sm-1 col-xs-12">
+
+									<br>
+
+									<p class="tituloCarritoCompra text-left">'.$value1["titulo"].'</p>
+						
+								</div>
+
+								<div class="col-md-2 col-sm-1 col-xs-12">
+
+									<br>
+
+								 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value1["precio"].'</span></p>
+						
+								</div>
+
+								<div  class="col-md-2 col-sm-3 col-xs-8 ">
+
+									<br>
+
+									<div style="margin-left:5px" class="col-xs-8">
+
+										<center>
+								
+										  <input type="number" class="form-control text-center" min="1" value="'.$value1["cantidad"].'" readonly> 
+
+										</center>
+								
+									</div>
+
+								</div>
+
+								<div style="margin-top:20px; " class="col-md-3 col-sm-1 col-xs-4 ">
+
+									<div class="progress">
+
+										<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+											 <i class="fa fa-check"></i> Despachado 
+										</div>
+
+										<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+											<i class="fa fa-clock-o"></i> Enviando
+										</div>
+
+										<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+											<i class="fa fa-clock-o"></i> Entregado
+										</div>
+
+									</div>
+
+								</div>
+
+								
+					
+						</div>
+
+
+
+
+					<div class="clearfix"></div>
+
+
+
+					<hr>';
+
+				}else{
+
+					echo '<div class="row itemCarrito">
+
+								<div class="col-sm-1 col-xs-12">
+
+									<br>
+
+									<center>
+							
+										<button class="btn btn-default backColor quitarItemPedido " idProducto="'.$value1["id"].'">
 										<i class="fa fa-times"></i>
 										</button>
 
@@ -211,37 +329,34 @@ if(!isset($_SESSION["validarSesion"])){
 
 								</div>
 
-								<div style="margin-top:20px" class="col-md-3 col-sm-1 col-xs-4 subtotal">
+								<div style="margin-top:20px; " class="col-md-3 col-sm-1 col-xs-4 ">
 
 									<div class="progress">
 
-										<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-											 <i class="fa fa-check"></i> Despachado 
-										</div>
-
-										<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-											<i class="fa fa-clock-o"></i> Enviando
-										</div>
-
-										<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-											<i class="fa fa-clock-o"></i> Entregado
+										<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
+											<i class="fa fa-check"></i> Entregado
 										</div>
 
 									</div>
 
 								</div>
+
+								
 					
 						</div>
 
 
+
+
 					<div class="clearfix"></div>
+
+
 
 					<hr>';
 
-						}
-
-						
-					}
+				}
+		   }			
+	}
 					echo '<style>br{display:none;}</style>';
 
 				echo'<div class="panel-body sumaPedidos">
@@ -261,7 +376,11 @@ if(!isset($_SESSION["validarSesion"])){
 								
 								foreach($pedidos as $key => $value1){
 
+									if($value1["mostrar"] == 0){
+									echo "";
+									}else{
 									echo $value1["palapa"]." a cargo de ".$usuario." tiene los siguientes comentarios: ".$value1["comentarios"]." \n";
+									}	
 								}
 							
 							echo'</textarea>';

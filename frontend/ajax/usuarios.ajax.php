@@ -112,6 +112,20 @@ class AjaxUsuarios{
 
 	}
 
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE PEDITOS     
+	=================================================*/
+	public $idProductoPedidoEliminar;
+
+	public function ajaxEliminarPedidos(){
+
+		$datos = $this->idProductoPedidoEliminar;
+
+		$respuesta = ControladorUsuarios::ctrEliminarPedidos($datos);
+
+		echo $respuesta;
+	}
+
 
 }
 
@@ -181,4 +195,14 @@ class AjaxUsuarios{
 		$pedidos -> nombreUsuario = $_POST["nombreUsuario"];
 		$pedidos -> ajaxInsertarPedidos();
 
+	}
+
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE PEDITOS     
+	=================================================*/
+	if(isset($_POST["idProductoPedidoEliminar"])){
+
+		$pedidosEliminar = new AjaxUsuarios();
+		$pedidosEliminar -> idProductoPedidoEliminar = $_POST["idProductoPedidoEliminar"];
+		$pedidosEliminar -> ajaxEliminarPedidos();
 	}

@@ -296,6 +296,8 @@
 					<div class="clearfix"></div>
 					
 						<button id="botonPagar" class="btn btn-block btn-lg btn-default backColor btnPagar">PAGAR</button>
+
+						<button type="button" data-dismiss="modal" class="btn btn-danger btn-default btn-lg  btnCerrarCelular ">CERRAR</button>
 					
 				</div>
 

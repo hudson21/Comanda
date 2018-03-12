@@ -1003,6 +1003,18 @@ class ControladorUsuarios{
 
 	}
 
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE PEDITOS     
+	=================================================*/
+	static public function ctrEliminarPedidos($datos){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlEliminarPedidos($tabla, $datos);
+
+		return $respuesta;
+	}
+
 
 
 }

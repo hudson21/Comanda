@@ -305,6 +305,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     .modalFormulario .facebook p{
 	margin-right:-15px;
 	}
+
+	.btnCerrarCelular{
+		display:none;
+	}
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -327,6 +331,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 
     .modalFormulario .facebook p{
 	margin-right:-15px;
+	}
+
+	.btnCerrarCelular{
+		display:none;
 	}
 
 }
@@ -357,6 +365,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 
     .modalFormulario .facebook p{
 	margin-right:-15px;
+	}
+
+	.btnCerrarCelular{
+		display:none;
 	}
 
 }
@@ -479,4 +491,23 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	header nav ul li .caret {
 		float: right;
 	}
+
+	.modalFormulario .close{
+	position:absolute; /*La posición absoluta permite que podamos establecer coordenadas de ubicación a los elementos que queramos 
+	su posición*/
+	right:27px;
+	top:50px;
+	color:white;
+	z-index:10000;
+	}
+
+	.btnPagarCelular{
+		margin-left:15px;
+	}
+
+	.btnCerrarCelular{
+		margin-left:80px;
+	}
+
+
 }

@@ -615,6 +615,9 @@ $("#btnCheckout").click(function(){
 			$(".formEnvio").show();
 
 			$(".btnPagar").attr("tipo","fisico");
+			
+
+			
 
 			$.ajax({
 				url:rutaOculta+"vistas/js/plugins/countries.json",/*De esta manera estoy llamando a un archivo json a través
@@ -711,6 +714,7 @@ $("#btnCheckout").click(function(){
 		}else{
 
 				$(".btnPagar").attr("tipo","virtual");
+				
 		}
 	}
 })
@@ -853,13 +857,14 @@ $("#cambiarDivisa").change(function(){
 /*==============================================
   BOTÓN PAGAR       
 ================================================*/
-$(".btnPagar").click(function(){
+$(".btnPagar ").click(function(){
 
 	var tipo = $(this).attr("tipo");
 
 	if(tipo == "fisico" && $("#seleccionarPais").val() == ""){
 
 		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
+
 
 		return;
 	}
@@ -881,9 +886,38 @@ $(".btnPagar").click(function(){
 /*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
 /*==============================================
 /*==============================================
+  CAMBIARLE ESTILOS AL BOTÓN DE PAGAR       
+================================================*/
+
+if(window.matchMedia("(max-width:767px)").matches){
+	$(".btnPagar").removeClass("btn-block");
+	$(".btnPagar").addClass("btnPagarCelular");
+}
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
   AGREGAR A LA LISTA DE PEDIDOS       
 ================================================*/
-$(".btnPagar").click(function(){
+$(".btnPagar ").click(function(){
+
+	swal({
+			title: "¡OK!",
+			text: "¡Sus productos ya se encuentran en la lista de pedidos!",
+			type:"success",
+			confirmButtonText:"Ok",
+			closeOnConfirm: false,
+			icon: "success"
+	    },
+
+	function(isConfirm){
+
+		if(isConfirm){
+					 window.location = rutaOculta+"pedidos";
+					 }
+				});
 
 	if(localStorage.getItem("listaProductos") != null){
 
@@ -897,9 +931,16 @@ $(".btnPagar").click(function(){
 		var datos = new FormData();
 		
     		var combo = document.getElementById("seleccionarPais");
-			var palapa = combo.options[combo.selectedIndex].text;
+
+    		if(combo == null){
+    			var palapa = "";
+    		}
+    		else{
+    			 palapa = combo.options[combo.selectedIndex].text;
+    		}
 		
 			comentario = document.getElementById("comentario").value;
+
 		//console.log(comentario);
 
 
@@ -937,7 +978,11 @@ $(".btnPagar").click(function(){
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
 				datos.append("estado", 0);
 				datos.append("excepciones", comentario)
-				datos.append("mostrar", 1);
+				if(comentario == ""){
+					datos.append("mostrar", 0);
+				}else{
+					datos.append("mostrar", 1);
+				}
 				datos.append("nombreUsuario", nombreUsuario);
 
 			}
@@ -952,7 +997,7 @@ $(".btnPagar").click(function(){
 					contentType: false,
 					processData: false,
 					success:function(respuesta){
-						console.log("respuesta", respuesta);
+						
 						
 					}
 
@@ -1024,5 +1069,37 @@ $(".btnPagar").click(function(){
 		$(".cabeceraCheckout").hide();
 
 	}
+
+})
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+ 	QUITAR PRODUCTOS DE LA LISTA DE PEDIDOS   
+================================================*/
+$(".quitarItemPedido").click(function(){
+
+	$(this).parent().parent().parent().remove();
+
+	var idProductoPedidoEliminar = $(this).attr("idProducto");
+
+	var datos = new FormData();
+	datos.append("idProductoPedidoEliminar", idProductoPedidoEliminar);
+
+	$.ajax({
+			 url:rutaOculta+"ajax/usuarios.ajax.php",
+			 method:"POST",
+			 data: datos,
+			 cache: false,
+			 contentType: false,
+			 processData: false,
+			 success:function(respuesta){
+				console.log("respuesta",respuesta);
+			 }
+
+			})
+
 
 })
