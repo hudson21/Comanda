@@ -80,9 +80,6 @@ class AjaxUsuarios{
 	public $idUsuarioPedidos ;
 	public $idProductoPedidos;
 	public $palapa;
-	public $imagen ;
-	public $titulo;
-	public $precio;
 	public $cantidad;
 	public $estado;
 	public $excepciones;
@@ -97,9 +94,6 @@ class AjaxUsuarios{
 		$datosPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos,
 					   		  "idProductoPedidos"=>$this->idProductoPedidos,
 					   		  "palapa"=>$this->palapa,
-							  "imagen"=>$this->imagen,
-							  "titulo"=>$this->titulo,
-							  "precio"=>$this->precio,
 							  "cantidad"=>$this->cantidad,
 						      "estado"=>$this->estado,
 					          "excepciones"=>$this->excepciones,
@@ -122,6 +116,20 @@ class AjaxUsuarios{
 		$datos = $this->idProductoPedidoEliminar;
 
 		$respuesta = ControladorUsuarios::ctrEliminarPedidos($datos);
+
+		echo $respuesta;
+	}
+
+	/*=======================================================
+		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
+	=========================================================*/
+	public $nada;
+
+	public function ajaxMostrarColumnaGrupo(){
+
+		$datos = $this->nada;
+
+		$respuesta = ControladorUsuarios::ctrMostrarColumnaGrupo();
 
 		echo $respuesta;
 	}
@@ -185,9 +193,6 @@ class AjaxUsuarios{
 		$pedidos -> idUsuarioPedidos = $_POST["idUsuarioPedidos"];
 		$pedidos -> idProductoPedidos = $_POST["idProductoPedidos"];
 		$pedidos -> palapa = $_POST["palapa"];
-		$pedidos -> imagen = $_POST["imagen"];
-		$pedidos -> titulo = $_POST["titulo"];
-		$pedidos -> precio = $_POST["precio"];
 		$pedidos -> cantidad = $_POST["cantidad"];
 		$pedidos -> estado = $_POST["estado"];
 		$pedidos -> excepciones = $_POST["excepciones"];
@@ -205,4 +210,15 @@ class AjaxUsuarios{
 		$pedidosEliminar = new AjaxUsuarios();
 		$pedidosEliminar -> idProductoPedidoEliminar = $_POST["idProductoPedidoEliminar"];
 		$pedidosEliminar -> ajaxEliminarPedidos();
+	}
+
+	/*=======================================================
+		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
+	=========================================================*/
+	if(isset($_POST["nada"])){
+
+		$mostrarGrupo = new AjaxUsuarios();
+		$mostrarGrupo -> nada = $_POST["nada"];
+		$mostrarGrupo -> ajaxMostrarColumnaGrupo();
+
 	}

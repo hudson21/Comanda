@@ -608,7 +608,7 @@ $("#btnCheckout").click(function(){
 
 			$(".seleccionePais").html('<select class="form-control" name="seleccionarPais" id="seleccionarPais" >'+
 
-							'<option value="">Seleccione el País</option>'+
+							'<option value="">Seleccione el lugar de origen</option>'+
 							
 						'</select>');
 
@@ -894,6 +894,7 @@ if(window.matchMedia("(max-width:767px)").matches){
 	$(".btnPagar").addClass("btnPagarCelular");
 }
 
+
 /*==============================================
 /*==============================================
 /*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
@@ -951,6 +952,24 @@ $(".btnPagar ").click(function(){
 
 		console.log("listaCarritoImagen", listaCarrito[0]["imagen"]);
 
+
+		   var datosPrueba = new FormData();
+		   datosPrueba.append("nada", "");
+
+			$.ajax({
+					url:rutaOculta+"ajax/usuarios.ajax.php",
+					method:"POST",
+					data: datosPrueba,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+						console.log("respuesta", respuesta);
+							
+					}
+
+			})
+
 		for (var i = 0; i < listaCarrito.length; i++) {
 
 			if(i>0){
@@ -958,9 +977,6 @@ $(".btnPagar ").click(function(){
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
 				datos.append("palapa", palapa );
-				datos.append("imagen", listaCarrito[i]["imagen"]);
-				datos.append("titulo", listaCarrito[i]["titulo"]);
-				datos.append("precio", listaCarrito[i]["precio"]);
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
 				datos.append("estado", 0);
 				datos.append("excepciones", "");
@@ -972,15 +988,12 @@ $(".btnPagar ").click(function(){
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
 				datos.append("palapa", palapa );
-				datos.append("imagen", listaCarrito[i]["imagen"]);
-				datos.append("titulo", listaCarrito[i]["titulo"]);
-				datos.append("precio", listaCarrito[i]["precio"]);
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
 				datos.append("estado", 0);
 				datos.append("excepciones", comentario)
 				if(comentario == ""){
 					datos.append("mostrar", 0);
-				}else{
+				}else
 					datos.append("mostrar", 1);
 				}
 				datos.append("nombreUsuario", nombreUsuario);
@@ -1005,7 +1018,7 @@ $(".btnPagar ").click(function(){
 
 		}
 
-	}
+	
 
 	$(".quitarItemCarrito").parent().parent().parent().remove();
 

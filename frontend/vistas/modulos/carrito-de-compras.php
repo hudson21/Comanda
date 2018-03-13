@@ -192,7 +192,7 @@
 
 				<br>
 
-				<div  class="formaPago row">
+			<!--	<div  class="formaPago row">
 
 					<h4 class="text-center well text-muted text-uppercase">Elige la forma de pago</h4>
 
@@ -204,7 +204,7 @@
 
 						</center>
 
-							<img src="<?php echo $url; ?>vistas/img/plantilla/paypal.jpg" class="img-thumbnail" alt="">		
+							<img src="<?php //echo $url; ?>vistas/img/plantilla/paypal.jpg" class="img-thumbnail" alt="">		
 						
 					</figure>
 
@@ -217,11 +217,11 @@
 
 						</center>
 
-							<img src="<?php echo $url; ?>vistas/img/plantilla/payu.jpg" class="img-thumbnail" alt="">
+							<img src="<?php//echo $url; ?>vistas/img/plantilla/payu.jpg" class="img-thumbnail" alt="">
 
 					</figure>
 					
-				</div>
+				</div>-->
 
 				<br>
 
@@ -255,21 +255,21 @@
 							<tbody>
 								
 								<tr>
-									<td>Subtotal</td>
-									<td><span class="cambioDivisa">USD</span> $<span class="valorSubTotal" valor="0">0</span></td>
+									<td><strong>Total</strong></td>
+									<td><strong><span class="cambioDivisa">USD</span> $<span class="valorSubTotal" valor="0">0</span></strong></td>
 								</tr>
 
-								<tr>
+								<tr style="display:none;">
 									<td>Envío</td>
 									<td><span class="cambioDivisa">USD</span> $<span class="valorTotalEnvio" valor="0">0</span></td>
 								</tr>
 
-								<tr>
+							   <tr style="display:none;">
 									<td>Impuesto</td>
 									<td><span class="cambioDivisa">USD</span> $<span class="valorTotalImpuesto" valor="0">0</span></td>
 								</tr>
 
-								<tr>
+								<tr style="display:none;">
 									<td><strong>Total</strong></td>
 									<td><strong><span class="cambioDivisa">USD</span> $<span class="valorTotalCompra" valor="0">0</span></strong></td>
 								</tr>
@@ -313,4 +313,34 @@
 	</div>
 	
 </div>
+
+<?php
+
+$grupo = ControladorUsuarios::ctrMostrarColumnaGrupo();
+
+$cantidad=$grupo;
+$i=0;
+$mayor=$cantidad[$i];
+
+while($i<count($grupo)){
+	if($mayor<$cantidad[$i]){ 
+	 $mayor=$cantidad[$i];
+	}
+	 $i=$i+1;
+}
+
+//var_dump($mayor);
+
+$mayorString=implode(",",$mayor);
+$mayorNumero=(int)$mayorString;
+
+$mayorNumero = $mayorNumero + 1;
+
+echo '<script>
+
+            localStorage.setItem("grupoPedido","'.$mayorNumero.'");
+
+      </script>';
+
+?>
 

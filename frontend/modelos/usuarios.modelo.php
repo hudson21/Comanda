@@ -375,14 +375,11 @@ class ModeloUsuarios{
 	==============================================================================================================*/
 	static public function mdlInsertarPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, imagen, titulo, precio, cantidad, estado, comentarios, mostrar, nombreUsuario) VALUES (:id_usuario, :id_producto, :palapa, :imagen, :titulo, :precio, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, cantidad, estado, comentarios, mostrar, nombreUsuario) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":palapa", $datos["palapa"], PDO::PARAM_STR);
-		$stmt -> bindParam(":imagen", $datos["imagen"], PDO::PARAM_STR);
-		$stmt -> bindParam(":titulo", $datos["titulo"], PDO::PARAM_STR);
-		$stmt -> bindParam(":precio", $datos["precio"], PDO::PARAM_STR);
 		$stmt -> bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
 		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_INT);
 		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
@@ -470,6 +467,22 @@ class ModeloUsuarios{
 
 	}
 
+	/*=======================================================
+		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
+	=========================================================*/
+	static public function mdlMostrarColumnaGrupo($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT grupo FROM $tabla");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 	
 
 

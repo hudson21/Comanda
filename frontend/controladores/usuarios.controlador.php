@@ -1015,6 +1015,19 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
+	/*=======================================================
+		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
+	=========================================================*/
+	 public function ctrMostrarColumnaGrupo(){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarColumnaGrupo($tabla);
+
+		return $respuesta;
+	}
+
+
 
 
 }
