@@ -50,25 +50,25 @@ if(!isset($_SESSION["validarSesion"])){
 
 		<ul class="nav nav-tabs">
 
-		  <li class="active">
+	 <!-- <li class="active">
 		  	<a data-toggle="tab" href="#compras">
 		  	<i class="fa fa-list-ul"></i> MIS COMPRAS</a>
 		  </li>
 
-		  <li>
+	      <li>
 		  	<a data-toggle="tab" href="#deseos">
 		  	<i class="fa fa-gift"></i> MI LISTA DE DESEOS</a>
-		  </li>
+		  </li>-->
 
 		  <li>
 		  	<a data-toggle="tab" href="#perfil">
 		  	<i class="fa fa-user"></i> EDITAR PERFIL</a>
 		  </li>
 
-		  <li>
-		  	<a  href="<?php echo $url; ?>ofertas">
+      <!--  <li>
+		  	<a  href="<?php //echo $url; ?>ofertas">
 		  	<i class="fa fa-star"></i> VER OFERTAS</a>
-		  </li>
+		  </li>-->
 
 		</ul>
 
@@ -77,7 +77,7 @@ if(!isset($_SESSION["validarSesion"])){
 			<!--===============================================
 			   PESTAÑA COMPRAS
 			===================================================-->
-		  <div id="compras" class="tab-pane fade in active">
+		  <div id="compras" class="tab-pane fade ">
 
 		  	<div class="panel-group">
 
@@ -559,7 +559,7 @@ if(!isset($_SESSION["validarSesion"])){
   		    <!--===============================================
 			   PESTAÑA PERFIL
 			===================================================-->
-  		  <div id="perfil" class="tab-pane fade">
+  		  <div id="perfil" class="tab-pane fade in active">
 		    
 		    	<div class="row">
 
