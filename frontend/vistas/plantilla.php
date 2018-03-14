@@ -212,6 +212,154 @@
 
      include "modulos/destacados.php";
   }
+
+  /*======================================================================================
+                  AUTOREINICIAR LOS ID DE LAS TABLAS CUANDO ESTÉN VACÍOS
+  ========================================================================================*/
+
+  /*======================================
+           TABLA BANNER  
+  ========================================*/
+  $tabla = "banner";
+
+  $tablaBanner = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla);
+
+  if($tablaBanner == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla);
+  }
+
+  /*======================================
+           TABLA CATEGORIAS  
+  ========================================*/
+  $tabla1 = "categorias";
+
+  $tablaCategorias = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla1);
+
+  if($tablaCategorias == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla1);
+  }
+
+  /*======================================
+           TABLA COMENTARIOS  
+  ========================================*/
+  $tabla2 = "comentarios";
+
+  $tablaComentarios = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla2);
+
+  if($tablaComentarios == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla2);
+  }
+
+  /*======================================
+           TABLA COMERCIO  
+  ========================================*/
+  $tabla3 = "comercio";
+
+  $tablaComercio = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla3);
+
+  if($tablaComercio == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla3);
+  }
+
+  /*======================================
+           TABLA COMPRAS 
+  ========================================*/
+  $tabla4 = "compras";
+
+  $tablaCompras = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla4);
+
+  if($tablaCompras == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla4);
+  }
+
+  /*======================================
+           TABLA DESEOS 
+  ========================================*/
+  $tabla5 = "deseos";
+
+  $tablaDeseos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla5);
+
+  if($tablaDeseos == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla5);
+  }
+
+  /*======================================
+           TABLA PEDIDOS   
+  ========================================*/
+  $tabla6 = "pedidos";
+
+  $tablaPedidos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla6);
+
+  if($tablaPedidos == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla6);
+  }
+
+  /*======================================
+           TABLA PLANTILLA   
+  ========================================*/
+  $tabla7 = "plantilla";
+
+  $tablaPlantilla = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla7);
+
+  if($tablaPlantilla == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla7);
+  }
+
+  /*======================================
+           TABLA PRODUCTOS  
+  ========================================*/
+  $tabla8 = "productos";
+
+  $tablaProductos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla8);
+
+  if($tablaProductos == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla8);
+  }
+
+  /*======================================
+           TABLA SLIDE 
+  ========================================*/
+  $tabla9 = "slide";
+
+  $tablaSlide = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla9);
+
+  if($tablaSlide == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla9);
+  }
+
+   /*======================================
+           TABLA SUBCATEGORIAS
+  ========================================*/
+  $tabla10 = "subcategorias";
+
+  $tablaSubcategorias = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla10);
+
+  if($tablaSubcategorias == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla10);
+  }
+
+  /*======================================
+           TABLA USUARIOS  
+  ========================================*/
+  $tabla11 = "usuarios";
+
+  $tablaUsuarios = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla11);
+
+  if($tablaUsuarios == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla11);
+  }
     
 ?>
 

@@ -1027,6 +1027,31 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
+	/*==================================================================
+	 	AUTOREINICIAR LOS ID DE LAS TABLAS CUANDO ESTÉN VACÍOS     
+	====================================================================*/
+	static public function ctrAutoreiniciarValoresIdTablas($tabla){
+
+		$tablaModelo = $tabla;
+
+		$respuesta = ModeloUsuarios::mdlAutoreiniciarValoresIdTablas($tablaModelo);
+
+		return $respuesta;
+
+	}
+
+	/*==================================================================
+	 	CONSULTA GENERAL DE TODAS LAS TABLAS     
+	====================================================================*/
+	static public function ctrMostrarRegistrosTablas($tabla){
+
+		$tablaModelo = $tabla;
+
+		$respuesta = ModeloUsuarios::mdlMostrarRegistrosTablas($tablaModelo);
+
+		return $respuesta;
+	}
+
 
 
 

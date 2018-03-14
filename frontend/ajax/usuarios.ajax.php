@@ -85,6 +85,7 @@ class AjaxUsuarios{
 	public $excepciones;
 	public $mostrar;
 	public $nombreUsuario;
+	public $grupoPedido;
 
 	public function ajaxInsertarPedidos(){
 
@@ -98,7 +99,8 @@ class AjaxUsuarios{
 						      "estado"=>$this->estado,
 					          "excepciones"=>$this->excepciones,
 					          "mostrar"=>$this->mostrar,
-					      	  "nombreUsuario"=>$this->nombreUsuario);
+					      	  "nombreUsuario"=>$this->nombreUsuario,
+					      	  "grupoPedido"=>$this->grupoPedido);
 
 		$respuesta = ControladorUsuarios::ctrInsertarPedidos($datosPedidos);
 
@@ -119,29 +121,12 @@ class AjaxUsuarios{
 
 		echo $respuesta;
 	}
-
-	/*=======================================================
-		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
-	=========================================================*/
-	public $nada;
-
-	public function ajaxMostrarColumnaGrupo(){
-
-		$datos = $this->nada;
-
-		$respuesta = ControladorUsuarios::ctrMostrarColumnaGrupo();
-
-		echo $respuesta;
-	}
-
-
 }
 
 /*===============================================
 	VALIDAR EMAIL EXISTENTE        
 =================================================*/
 	if(isset($_POST["validarEmail"])){
-
 		$valEmail = new AjaxUsuarios();
 		$valEmail -> validarEmail = $_POST["validarEmail"];
 		$valEmail -> ajaxValidarEmail();
@@ -198,6 +183,7 @@ class AjaxUsuarios{
 		$pedidos -> excepciones = $_POST["excepciones"];
 		$pedidos -> mostrar = $_POST["mostrar"];
 		$pedidos -> nombreUsuario = $_POST["nombreUsuario"];
+		$pedidos -> grupoPedido = $_POST["grupoPedido"];
 		$pedidos -> ajaxInsertarPedidos();
 
 	}
@@ -206,19 +192,7 @@ class AjaxUsuarios{
 		QUITAR PRODUCTO DE LISTA DE PEDITOS     
 	=================================================*/
 	if(isset($_POST["idProductoPedidoEliminar"])){
-
 		$pedidosEliminar = new AjaxUsuarios();
 		$pedidosEliminar -> idProductoPedidoEliminar = $_POST["idProductoPedidoEliminar"];
 		$pedidosEliminar -> ajaxEliminarPedidos();
-	}
-
-	/*=======================================================
-		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
-	=========================================================*/
-	if(isset($_POST["nada"])){
-
-		$mostrarGrupo = new AjaxUsuarios();
-		$mostrarGrupo -> nada = $_POST["nada"];
-		$mostrarGrupo -> ajaxMostrarColumnaGrupo();
-
 	}

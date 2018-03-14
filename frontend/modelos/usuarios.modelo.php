@@ -375,7 +375,7 @@ class ModeloUsuarios{
 	==============================================================================================================*/
 	static public function mdlInsertarPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, cantidad, estado, comentarios, mostrar, nombreUsuario) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, cantidad, estado, comentarios, mostrar, nombreUsuario, grupo) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario, :grupo)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
@@ -385,6 +385,7 @@ class ModeloUsuarios{
 		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
 		$stmt -> bindParam(":mostrar", $datos["mostrar"], PDO::PARAM_STR);
 		$stmt -> bindParam(":nombreUsuario", $datos["nombreUsuario"], PDO::PARAM_STR);
+		$stmt -> bindParam(":grupo", $datos["grupoPedido"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
@@ -483,8 +484,46 @@ class ModeloUsuarios{
 		$stmt = null;
 
 	}
-	
 
+	/*==================================================================
+	 	AUTOREINICIAR LOS ID DE LAS TABLAS CUANDO ESTÉN VACÍOS     
+	====================================================================*/
+	static public function mdlAutoreiniciarValoresIdTablas($tablaModelo){
+
+		$stmt = Conexion::conectar()->prepare("TRUNCATE $tablaModelo");
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+	/*==================================================================
+	 	CONSULTA GENERAL DE TODAS LAS TABLAS     
+	====================================================================*/
+	static public function mdlMostrarRegistrosTablas($tablaModelo){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tablaModelo");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 
 }

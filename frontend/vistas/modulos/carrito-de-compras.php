@@ -318,6 +318,18 @@
 
 $grupo = ControladorUsuarios::ctrMostrarColumnaGrupo();
 
+if($grupo == null){
+
+$num=1;	
+
+echo '<script>
+
+            localStorage.setItem("grupoPedido","'.$num.'");
+
+      </script>';
+
+}else{
+
 $cantidad=$grupo;
 $i=0;
 $mayor=$cantidad[$i];
@@ -341,6 +353,27 @@ echo '<script>
             localStorage.setItem("grupoPedido","'.$mayorNumero.'");
 
       </script>';
+
+$cantidadValoresDiferentes = 0;
+
+while($i<count($grupo)){
+
+	if($grupo[$i+1] != null){
+
+		if($grupo[$i]!= $grupo[$i+1]){
+
+			$cantidadValoresDiferentes +=1;
+		}
+
+	}
+	$i=$i+1;	
+}
+
+var_dump($cantidadValoresDiferentes);
+
+}
+
+
 
 ?>
 
