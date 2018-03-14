@@ -978,7 +978,7 @@ class ControladorUsuarios{
 	}
 
 	/*===============================================
-		MOSTRAR LISTA DE PEDIDOS      
+		MOSTRAR LISTA DE PEDIDOS POR ID DE USUARIO     
 	=================================================*/
 	static public function ctrMostrarPedidosByIdUsuario($item){
 
@@ -1018,11 +1018,23 @@ class ControladorUsuarios{
 	/*=======================================================
 		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
 	=========================================================*/
-	 public function ctrMostrarColumnaGrupo(){
+	static public function ctrMostrarColumnaGrupo($item){
 
 		$tabla = "pedidos";
 
-		$respuesta = ModeloUsuarios::mdlMostrarColumnaGrupo($tabla);
+		$respuesta = ModeloUsuarios::mdlMostrarColumnaGrupo($tabla, $item);
+
+		return $respuesta;
+	}
+
+	/*=======================================================
+		MOSTRAR COLUMNA DE FECHA EN LA TABLA DE PEDIDOS     
+	=========================================================*/
+	static public function ctrMostrarColumnaFecha($item){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarColumnaFecha($tabla, $item);
 
 		return $respuesta;
 	}
@@ -1052,7 +1064,17 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
+	/*==================================================================
+	 	PONER CEROS A LA IZQUIERDA DEL ID EN LA TABLA DE PEDIDOS    
+	====================================================================*/
+	public function ctrPonerCerosIzquierda(){
 
+		$tabla = "pedidos";
 
+		$respuesta = ModeloUsuarios::mdlPonerCerosIzquierda($tabla);
+
+		return $respuesta;
+
+	}
 
 }

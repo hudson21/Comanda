@@ -299,6 +299,7 @@
   if($tablaPedidos == null){
 
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla6);
+     ControladorUsuarios::ctrPonerCerosIzquierda();
   }
 
   /*======================================

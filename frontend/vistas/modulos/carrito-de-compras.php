@@ -316,62 +316,86 @@
 
 <?php
 
-$grupo = ControladorUsuarios::ctrMostrarColumnaGrupo();
+$item = $_SESSION["id"];
 
-if($grupo == null){
+$grupo = ControladorUsuarios::ctrMostrarColumnaGrupo($item);
 
-$num=1;	
+	if($grupo == null){
 
-echo '<script>
+	$num=1;	
 
-            localStorage.setItem("grupoPedido","'.$num.'");
+	echo '<script>
 
-      </script>';
+	            localStorage.setItem("grupoPedido","'.$num.'");
 
-}else{
+	      </script>';
 
-$cantidad=$grupo;
-$i=0;
-$mayor=$cantidad[$i];
+	 }else{
 
-while($i<count($grupo)){
-	if($mayor<$cantidad[$i]){ 
-	 $mayor=$cantidad[$i];
-	}
-	 $i=$i+1;
-}
+			$cantidad=$grupo;
+			$i=0;
+			$mayor=$cantidad[$i];
+			$diferente=0;
 
-//var_dump($mayor);
+			while($i<count($grupo)){
+				if($mayor<$cantidad[$i]){ 
+				 $mayor=$cantidad[$i];
+				}
+				 $i=$i+1;
+			}
 
-$mayorString=implode(",",$mayor);
-$mayorNumero=(int)$mayorString;
+			//var_dump($mayor);
 
-$mayorNumero = $mayorNumero + 1;
+			$mayorString=implode(",",$mayor);
+			$mayorNumero=(int)$mayorString;
 
-echo '<script>
+			$mayorNumero = $mayorNumero + 1;
 
-            localStorage.setItem("grupoPedido","'.$mayorNumero.'");
+			echo '<script>
 
-      </script>';
+			            localStorage.setItem("grupoPedido","'.$mayorNumero.'");
 
-$cantidadValoresDiferentes = 0;
+			      </script>';
 
-while($i<count($grupo)){
 
-	if($grupo[$i+1] != null){
+			function contar_diferencias($array){
+				$cont = 0;
+			    $diferentes = 0;
+			    $ya_diferentes = array();
+			    
+			    foreach($array as $item)
+		    	{
+			        for($u=0;$u<sizeof($array); $u++)
+			        {
+			            if($item != $array[$u] && !in_array($item, $ya_diferentes))
+			            {
+			                ++$cont;
+			            }
+			        }
+		        
+			        if($cont > 0 )
+			        {
+			            array_push($ya_diferentes, $item);
+			            $diferentes++;
+			        }
+		        
+		        		$cont = 0;
+		    	}
+		    		return $diferentes;
+			}
 
-		if($grupo[$i]!= $grupo[$i+1]){
+			$numerosDiferentes = contar_diferencias($grupo);
 
-			$cantidadValoresDiferentes +=1;
+			$_SESSION["cantidadGrupos"]= $numerosDiferentes;
+
+			$fecha = ControladorUsuarios::ctrMostrarColumnaFecha($item);
+
+			$fechaString=implode(",",$fecha[0]);
+			$fechaNumero=(int)$fechaString;
+
+			var_dump($fechaNumero);
+
 		}
-
-	}
-	$i=$i+1;	
-}
-
-var_dump($cantidadValoresDiferentes);
-
-}
 
 
 

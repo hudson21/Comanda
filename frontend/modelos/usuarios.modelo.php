@@ -471,9 +471,11 @@ class ModeloUsuarios{
 	/*=======================================================
 		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
 	=========================================================*/
-	static public function mdlMostrarColumnaGrupo($tabla){
+	static public function mdlMostrarColumnaGrupo($tabla, $item){
 
-		$stmt = Conexion::conectar()->prepare("SELECT grupo FROM $tabla");
+		$stmt = Conexion::conectar()->prepare("SELECT grupo FROM $tabla WHERE id_usuario = :id_usuario");
+
+		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
 
 		$stmt -> execute();
 
@@ -484,6 +486,26 @@ class ModeloUsuarios{
 		$stmt = null;
 
 	}
+
+	/*=======================================================
+		MOSTRAR COLUMNA DE FECHA EN LA TABLA DE PEDIDOS     
+	=========================================================*/
+	static public function mdlMostrarColumnaFecha($tabla, $item){
+
+		$stmt = Conexion::conectar()->prepare("SELECT fecha FROM $tabla WHERE id_usuario = :id_usuario");
+
+		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
 
 	/*==================================================================
 	 	AUTOREINICIAR LOS ID DE LAS TABLAS CUANDO ESTÉN VACÍOS     
@@ -523,6 +545,20 @@ class ModeloUsuarios{
 
 		$stmt = null;
 
+	}
+
+	/*==================================================================
+	 	PONER CEROS A LA IZQUIERDA DEL ID EN LA TABLA DE PEDIDOS    
+	====================================================================*/
+	static public function mdlPonerCerosIzquierda($tabla){
+
+		$stmt = Conexion::conectar()->prepare("ALTER TABLE $tabla MODIFY id INTEGER(9) UNSIGNED ZEROFILL NOT NULL DEFAULT NULL AUTO_INCREMENT;");
+
+		$stmt -> execute();
+
+		
+
+		$stmt = null;
 	}
 
 
