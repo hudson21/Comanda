@@ -1077,4 +1077,28 @@ class ControladorUsuarios{
 
 	}
 
+	/*==================================================================
+	 	MOSTRAR LA TABLA PEDIDOS POR GRUPO CON CABECERA     
+	====================================================================*/
+	static function ctrMostrarTablaPedidosByGrupo($grupo){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarTablaPedidosByGrupo($tabla, $grupo);
+
+		return $respuesta;
+	}
+
+	/*==================================================================
+	 	MOSTRAR TABLA PEDIDOS POR ID Y CABECERA = 1     
+	====================================================================*/
+	static function ctrMostrarTablaPedidosByIdProductoAndCabecera($id){
+
+		$tabla = "pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarTablaPedidosByIdProductoAndCabecera($tabla, $id);
+
+		return $respuesta;
+	}
+
 }

@@ -556,11 +556,46 @@ class ModeloUsuarios{
 
 		$stmt -> execute();
 
-		
-
 		$stmt = null;
 	}
 
+	/*==================================================================
+	 	MOSTRAR LA TABLA PEDIDOS POR GRUPO CON CABECERA     
+	====================================================================*/
+	static function mdlMostrarTablaPedidosByGrupo($tabla, $grupo){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE grupo = :grupo");
+
+		$stmt -> bindParam(":grupo", $grupo, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*==================================================================
+	 	MOSTRAR TABLA PEDIDOS POR ID Y CABECERA = 1     
+	====================================================================*/
+	static function mdlMostrarTablaPedidosByIdProductoAndCabecera($tabla, $id){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_producto = :id_producto AND cabecera = 1");
+
+		$stmt -> bindParam(":id_producto", $id, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 
 }
 
