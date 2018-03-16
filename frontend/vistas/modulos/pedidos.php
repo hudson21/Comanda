@@ -181,13 +181,12 @@ if(!isset($_SESSION["validarSesion"])){
 
 									$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
 
-							 if($value1["cabecera"] == 1 ){
 
 									foreach($productos as $key => $value2){
 
-									  if($value2["tipo"] == "fisico"){
+				     if($value2["tipo"] == "fisico" && $value1["cabecera"]==1 || $value2["tipo"] == "fisico" && $value1["cabecera"]== 0 ){
 
-										echo '<div class="row itemCarrito">
+									  echo '<div class="row itemCarrito">
 
 										<div class="col-sm-1 col-xs-12">
 
@@ -281,7 +280,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 							}//=================FIN DEL TIPO FISICO===================================
 
-							else{
+					if($value2["tipo"] == "virtual" && $value1["cabecera"]==1 || $value2["tipo"] == "virtual" && $value1["cabecera"]==0 ){
 
 					echo '<div class="row itemCarrito">
 
@@ -361,34 +360,31 @@ if(!isset($_SESSION["validarSesion"])){
 
 								</div>
 
-								
-					
 						</div>
-
-
-
-
-
 
 					<div class="clearfix"></div>
 
-
-
 					<hr>';
-				     		
+
+					
+
+
 				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
 
 
 				              }//=================FIN DEL FOREACH CON VALUE 2===================================
-				              echo'</div>';
 
-				           echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+				              if($value1["ultimo"] == 1){
 
+				              	echo'</div>';
+
+				             echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+				          
 				        echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
 
 		             echo '</div> </div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+		         }
 
-			 }//=========================FIN DE LA CABECERA ==1(SEGUNDA)=========================
 
                   	$i++;
 				}//=================FIN DEL FOREACH CON VALUE 1===================================
@@ -455,7 +451,7 @@ if(!isset($_SESSION["validarSesion"])){
         Collapsible Group 1</a>
       </h4>
     </div>
-    <div id="collapse1" class="panel-collapse collapse in">
+    <div id="collapse1" class="panel-collapse collapse ">
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -487,13 +483,20 @@ if(!isset($_SESSION["validarSesion"])){
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
         Collapsible Group 3</a>
       </h4>
-    
+    </div>
     <div id="collapse3" class="panel-collapse collapse">
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
+      commodo consequat.
+
+      asffafadfasfdsafdsafsadfasfdsafsafsafdsafdsafdsafdsafdsaf
+
+      <div>sadñ{sldkf{ñalskfd{ñsalkfñ{askfdñ{salkfd</div>
+   </div>
     </div>
+  </div>
+
   
 </div>
 
