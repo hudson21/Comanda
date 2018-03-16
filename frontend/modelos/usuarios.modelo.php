@@ -375,7 +375,7 @@ class ModeloUsuarios{
 	==============================================================================================================*/
 	static public function mdlInsertarPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, cantidad, estado, comentarios, mostrar, nombreUsuario, grupo) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario, :grupo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, cantidad, estado, comentarios, mostrar, nombreUsuario, grupo, cabecera, ultimo) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario, :grupo, :cabecera, :ultimo)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
@@ -386,6 +386,8 @@ class ModeloUsuarios{
 		$stmt -> bindParam(":mostrar", $datos["mostrar"], PDO::PARAM_STR);
 		$stmt -> bindParam(":nombreUsuario", $datos["nombreUsuario"], PDO::PARAM_STR);
 		$stmt -> bindParam(":grupo", $datos["grupoPedido"], PDO::PARAM_INT);
+		$stmt -> bindParam(":cabecera", $datos["cabecera"], PDO::PARAM_INT);
+		$stmt -> bindParam(":ultimo", $datos["ultimo"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

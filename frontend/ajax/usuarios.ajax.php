@@ -86,6 +86,8 @@ class AjaxUsuarios{
 	public $mostrar;
 	public $nombreUsuario;
 	public $grupoPedido;
+	public $cabecera;
+	public $ultimo;
 
 	public function ajaxInsertarPedidos(){
 
@@ -100,7 +102,9 @@ class AjaxUsuarios{
 					          "excepciones"=>$this->excepciones,
 					          "mostrar"=>$this->mostrar,
 					      	  "nombreUsuario"=>$this->nombreUsuario,
-					      	  "grupoPedido"=>$this->grupoPedido);
+					      	  "grupoPedido"=>$this->grupoPedido,
+					      	  "cabecera"=>$this->cabecera,
+					      	  "ultimo"=>$this->ultimo);
 
 		$respuesta = ControladorUsuarios::ctrInsertarPedidos($datosPedidos);
 
@@ -184,6 +188,8 @@ class AjaxUsuarios{
 		$pedidos -> mostrar = $_POST["mostrar"];
 		$pedidos -> nombreUsuario = $_POST["nombreUsuario"];
 		$pedidos -> grupoPedido = $_POST["grupoPedido"];
+		$pedidos -> cabecera = $_POST["cabecera"];
+		$pedidos -> ultimo = $_POST["ultimo"];
 		$pedidos -> ajaxInsertarPedidos();
 
 	}
