@@ -181,13 +181,12 @@ if(!isset($_SESSION["validarSesion"])){
 
 									$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
 
-							 if($value1["cabecera"] == 1 ){
 
 									foreach($productos as $key => $value2){
 
-									  if($value2["tipo"] == "fisico"){
+				     if($value2["tipo"] == "fisico" && $value1["cabecera"]==1 || $value2["tipo"] == "fisico" && $value1["cabecera"]== 0 ){
 
-										echo '<div class="row itemCarrito">
+									  echo '<div class="row itemCarrito">
 
 										<div class="col-sm-1 col-xs-12">
 
@@ -281,7 +280,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 							}//=================FIN DEL TIPO FISICO===================================
 
-							else{
+					if($value2["tipo"] == "virtual" && $value1["cabecera"]==1 || $value2["tipo"] == "virtual" && $value1["cabecera"]==0 ){
 
 					echo '<div class="row itemCarrito">
 
@@ -361,297 +360,32 @@ if(!isset($_SESSION["validarSesion"])){
 
 								</div>
 
-								
-					
 						</div>
-
-
-
-
-
 
 					<div class="clearfix"></div>
 
-
-
 					<hr>';
-				     		
+
+					
+
+
 				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
 
 
 				              }//=================FIN DEL FOREACH CON VALUE 2===================================
-				              echo'</div>';
 
-				              if($value1["cabecera"]==0){
+				              if($value1["ultimo"] == 1){
 
+				              	echo'</div>';
 
-				              }
-
-				           echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
-
+				             echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+				          
 				        echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
 
 		             echo '</div> </div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+		         }
 
-				           }//=========================FIN DE LA CABECERA ==1(SEGUNDA)=========================
 
-//================================================== COMIENZA LA OPCIÓN QUE TIENE ENCABEZADO = 0 ========================================
-				/*  else{
-				  		echo'  <div class="panel-body">';
-
-                    			echo' <div class="panel panel-default">'; 
-
-								 echo'<div class=" cabeceraPedidos">';
-
-								    echo'<div class="col-md-2 col-sm-3 col-xs-12 text-right">
-
-											
-											
-										</div>
-
-										<div class="col-md-1 col-sm-3 col-xs-12 text-center">
-
-											
-											
-										</div>
-
-										<div class="col-md-1 col-sm-2 col-xs-12 text-center">
-
-											
-											
-										</div>
-
-										<div class="col-md-2 col-sm-3 col-xs-0 text-center">
-
-											
-											
-										</div>
-
-										<div class="col-sm-2 col-xs-0 text-center">
-
-											
-											
-										</div>
-
-										<div class="col-sm-4 col-xs-0 text-center">
-
-											
-											
-										</div>';
-
-						       echo' </div><!--ESTE ES EL DIV DE PANEL-DEFAULT -->';
-
-						        echo'<div class="" cuerpoPedidos">';
-
-						        	$ordenar = "id";
-									$valor = $value1["id_producto"];
-									$item = "id";
-
-									$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
-
-									foreach($productos as $key => $value2){
-
-									  if($value2["tipo"] == "fisico"){
-
-										echo '<div class="row itemCarrito">
-
-										<div class="col-sm-1 col-xs-12">
-
-											<br>
-
-											<center>
-									
-												<button class="btn btn-default backColor quitarItemPedido " idProducto="'.$value1["id"].'">
-												<i class="fa fa-times"></i>
-												</button>
-
-											</center>
-								
-										</div>
-
-										<div style="margin-top:30px;" class="col-sm-1 col-xs-12">
-								
-											<br>
-
-											<p style="margin-left:5px; " class="tituloCarritoPedidos text-left">'.$value1["palapa"].'</p>
-
-										</div>
-
-										<div style="margin-top:15px" class="col-sm-1 col-xs-12">
-								
-											<figure >
-
-											<img src="'.$servidor.$value2["portada"].'" class="img-thumbnail">
-
-											</figure>
-
-										</div>
-
-										<div style="margin-left:5px; " class="col-sm-1 col-xs-12">
-
-											<br>
-
-											<p class="tituloCarritoCompra text-left">'.$value2["titulo"].'</p>
-								
-										</div>
-
-										<div class="col-md-2 col-sm-1 col-xs-12">
-
-											<br>
-
-										 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value2["precio"].'</span></p>
-								
-										</div>
-
-										<div  class="col-md-2 col-sm-3 col-xs-8 ">
-
-											<br>
-
-											<div style="margin-left:5px" class="col-xs-8">
-
-												<center>
-										
-												  <input type="number" class="form-control text-center" min="1" value="'.$value1["cantidad"].'" readonly> 
-
-												</center>
-										
-											</div>
-
-										</div>
-
-										<div style="margin-top:20px; " class="col-md-3 col-sm-1 col-xs-4 ">
-
-											<div class="progress">
-
-												<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-													 <i class="fa fa-check"></i> Despachado 
-												</div>
-
-												<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-													<i class="fa fa-clock-o"></i> Enviando
-												</div>
-
-												<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-													<i class="fa fa-clock-o"></i> Entregado
-												</div>
-
-											</div>
-
-										</div>		
-					
-									</div>
-
-								<div class="clearfix"></div>
-
-							<hr>';
-
-							}//=================FIN DEL TIPO FISICO===================================
-
-							else{
-
-					echo '<div class="row itemCarrito">
-
-								<div class="col-sm-1 col-xs-12">
-
-									<br>
-
-									<center>
-							
-										<button class="btn btn-default backColor quitarItemPedido " idProducto="'.$value1["id"].'">
-										<i class="fa fa-times"></i>
-										</button>
-
-									</center>
-						
-								</div>
-
-								<div  class="col-sm-1 col-xs-12">
-						
-									<br>
-
-									<p style="margin-left:5px" class="tituloCarritoPedidos text-left">'.$value1["palapa"].'</p>
-
-								</div>
-
-								<div style="margin-top:15px" class="col-sm-1 col-xs-12">
-						
-									<figure >
-
-									<img src="'.$servidor.$value2["portada"].'" class="img-thumbnail">
-
-									</figure>
-
-								</div>
-
-								<div style="margin-left:5px; " class="col-sm-1 col-xs-12">
-
-									<br>
-
-									<p class="tituloCarritoCompra text-left">'.$value2["titulo"].'</p>
-						
-								</div>
-
-								<div class="col-md-2 col-sm-1 col-xs-12">
-
-									<br>
-
-								 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value2["precio"].'</span></p>
-						
-								</div>
-
-								<div  class="col-md-2 col-sm-3 col-xs-8 ">
-
-									<br>
-
-									<div style="margin-left:5px" class="col-xs-8">
-
-										<center>
-								
-										  <input type="number" class="form-control text-center" min="1" value="'.$value1["cantidad"].'" readonly> 
-
-										</center>
-								
-									</div>
-
-								</div>
-
-								<div style="margin-top:20px; " class="col-md-3 col-sm-1 col-xs-4 ">
-
-									<div class="progress">
-
-										<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-											<i class="fa fa-check"></i> Entregado
-										</div>
-
-									</div>
-
-								</div>
-
-								
-					
-						</div>
-
-
-
-
-					<div class="clearfix"></div>
-
-
-
-					<hr>';
-				     		
-				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
-
-				              }//=================FIN DEL FOREACH CON VALUE 2===================================
-
-				           }//========================== FIN DEL ELSE QUE ES EL OPUESTO DE CABECERA ==1 (SEGUNDA)*/
-
-//======================================================= TERMINA LA OPCIÓN QUE TIENE ENCABEZADO = 0 =====================================
-
-				      
-
-		 
-                   
                   	$i++;
 				}//=================FIN DEL FOREACH CON VALUE 1===================================
 
@@ -717,7 +451,7 @@ if(!isset($_SESSION["validarSesion"])){
         Collapsible Group 1</a>
       </h4>
     </div>
-    <div id="collapse1" class="panel-collapse collapse in">
+    <div id="collapse1" class="panel-collapse collapse ">
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
@@ -737,6 +471,8 @@ if(!isset($_SESSION["validarSesion"])){
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.
 
+      asffafadfasfdsafdsafsadfasfdsafsafsafdsafdsafdsafdsafdsaf
+
       <div>sadñ{sldkf{ñalskfd{ñsalkfñ{askfdñ{salkfd</div>
    </div>
     </div>
@@ -747,13 +483,20 @@ if(!isset($_SESSION["validarSesion"])){
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
         Collapsible Group 3</a>
       </h4>
-    
+    </div>
     <div id="collapse3" class="panel-collapse collapse">
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
+      commodo consequat.
+
+      asffafadfasfdsafdsafsadfasfdsafsafsafdsafdsafdsafdsafdsaf
+
+      <div>sadñ{sldkf{ñalskfd{ñsalkfñ{askfdñ{salkfd</div>
+   </div>
     </div>
+  </div>
+
   
 </div>
 

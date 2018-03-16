@@ -438,7 +438,10 @@ if(!isset($_SESSION["validarSesion"])){
 ?>
 
 
-
+</div>
+</div>
+</div>
+</div>
 
 <br><br><br>
 
