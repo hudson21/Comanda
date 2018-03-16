@@ -114,10 +114,7 @@ if(!isset($_SESSION["validarSesion"])){
 						      	<div id="pedido'.$i.'" class="panel-collapse collapse ">';
 
 						         echo'  <div class="panel-body">';
-						    }
-
-						    
-                    	if($value1["cabecera"]==1 ){
+						   
 
                     			echo' <div class="panel panel-default"> 
 
@@ -176,12 +173,15 @@ if(!isset($_SESSION["validarSesion"])){
 						        <!--ESTE ES EL DIV DE PANEL PANEL-DEFAULT -->';
 
 						        echo'<div class="" cuerpoPedidos">';
+						    }
 
 						        	$ordenar = "id";
 									$valor = $value1["id_producto"];
 									$item = "id";
 
 									$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+
+							 if($value1["cabecera"] == 1 ){
 
 									foreach($productos as $key => $value2){
 
@@ -378,13 +378,25 @@ if(!isset($_SESSION["validarSesion"])){
 				     		
 				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
 
+
 				              }//=================FIN DEL FOREACH CON VALUE 2===================================
-				            echo'</div>';
+				              echo'</div>';
+
+				              if($value1["cabecera"]==0){
+
+
+				              }
+
+				           echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+
+				        echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+
+		             echo '</div> </div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
 
 				           }//=========================FIN DE LA CABECERA ==1(SEGUNDA)=========================
 
 //================================================== COMIENZA LA OPCIÓN QUE TIENE ENCABEZADO = 0 ========================================
-				  else{
+				/*  else{
 				  		echo'  <div class="panel-body">';
 
                     			echo' <div class="panel panel-default">'; 
@@ -631,17 +643,12 @@ if(!isset($_SESSION["validarSesion"])){
 				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
 
 				              }//=================FIN DEL FOREACH CON VALUE 2===================================
-				           	
 
-				           }//========================== FIN DEL ELSE QUE ES EL OPUESTO DE CABECERA ==1 (SEGUNDA)
+				           }//========================== FIN DEL ELSE QUE ES EL OPUESTO DE CABECERA ==1 (SEGUNDA)*/
 
 //======================================================= TERMINA LA OPCIÓN QUE TIENE ENCABEZADO = 0 =====================================
 
-				       echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
-
-				    echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
-
-		        echo '</div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+				      
 
 		 
                    
@@ -696,9 +703,8 @@ if(!isset($_SESSION["validarSesion"])){
  
 ?>
 
-	
-</div>
-</div>
+
+
 
 <br><br><br>
 
@@ -729,7 +735,10 @@ if(!isset($_SESSION["validarSesion"])){
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
+      commodo consequat.
+
+      <div>sadñ{sldkf{ñalskfd{ñsalkfñ{askfdñ{salkfd</div>
+   </div>
     </div>
   </div>
   <div class="panel panel-default">
@@ -738,14 +747,14 @@ if(!isset($_SESSION["validarSesion"])){
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
         Collapsible Group 3</a>
       </h4>
-    </div>
+    
     <div id="collapse3" class="panel-collapse collapse">
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.</div>
     </div>
-  </div>
+  
 </div>
 
 

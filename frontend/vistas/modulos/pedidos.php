@@ -114,14 +114,11 @@ if(!isset($_SESSION["validarSesion"])){
 						      	<div id="pedido'.$i.'" class="panel-collapse collapse ">';
 
 						         echo'  <div class="panel-body">';
-						    }
-						    	
-						    
-                    	if($value1["cabecera"]==1 ){
+						   
 
-                    			echo' <div class=" "> 
+                    			echo' <div class="panel panel-default"> 
 
-										<div class=" cabeceraPedidos">
+										<div class="panel-heading cabeceraPedidos">
 
 										<div class="col-md-2 col-sm-3 col-xs-12 text-center">
 
@@ -171,21 +168,20 @@ if(!isset($_SESSION["validarSesion"])){
 											
 										</div>
 
-						        
+						        </div>
 
 						        <!--ESTE ES EL DIV DE PANEL PANEL-DEFAULT -->';
+
+						        echo'<div class="" cuerpoPedidos">';
 						    }
 
-						        if($value1["cabecera"] == 0 || $value1["cabecera"] == 1){
-
-
-						        	echo'<div class="panel panel-default cuerpoPedidos">';
-       
 						        	$ordenar = "id";
 									$valor = $value1["id_producto"];
 									$item = "id";
 
 									$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+
+							 if($value1["cabecera"] == 1 ){
 
 									foreach($productos as $key => $value2){
 
@@ -204,18 +200,14 @@ if(!isset($_SESSION["validarSesion"])){
 												</button>
 
 											</center>
-
-
 								
 										</div>
 
 										<div style="margin-top:30px;" class="col-sm-1 col-xs-12">
 								
 											<br>
-											
 
 											<p  class="tituloCarritoPedidos text-left">'.$value1["palapa"].'</p>
-
 
 										</div>
 
@@ -279,19 +271,13 @@ if(!isset($_SESSION["validarSesion"])){
 
 											</div>
 
-										</div>	
-
-
+										</div>		
 					
-									</div>';
+									</div>
 
-									
-
-						   echo'<div class="clearfix"></div>
+								<div class="clearfix"></div>
 
 							<hr>';
-
-
 
 							}//=================FIN DEL TIPO FISICO===================================
 
@@ -373,9 +359,16 @@ if(!isset($_SESSION["validarSesion"])){
 
 									</div>
 
-								</div>						
+								</div>
+
+								
 					
 						</div>
+
+
+
+
+
 
 					<div class="clearfix"></div>
 
@@ -383,20 +376,20 @@ if(!isset($_SESSION["validarSesion"])){
 
 					<hr>';
 				     		
-				               }//======================FIN DEL ELSE TIPO VIRTUAL===============================
+				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
+
 
 				              }//=================FIN DEL FOREACH CON VALUE 2===================================
+				              echo'</div>';
 
-						   }//FIN DEL IF PARA EL CONTENIDO EN CABECERA 1 y 0
+				           echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
 
-				       echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+				        echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
 
-				    echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+		             echo '</div> </div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
 
-		        echo '</div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+			 }//=========================FIN DE LA CABECERA ==1(SEGUNDA)=========================
 
-		 
-                   
                   	$i++;
 				}//=================FIN DEL FOREACH CON VALUE 1===================================
 
@@ -448,9 +441,8 @@ if(!isset($_SESSION["validarSesion"])){
  
 ?>
 
-	
-</div>
-</div>
+
+
 
 <br><br><br>
 
@@ -481,7 +473,12 @@ if(!isset($_SESSION["validarSesion"])){
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat.</div>
+      commodo consequat.
+
+      asffafadfasfdsafdsafsadfasfdsafsafsafdsafdsafdsafdsafdsaf
+
+      <div>sadñ{sldkf{ñalskfd{ñsalkfñ{askfdñ{salkfd</div>
+   </div>
     </div>
   </div>
   <div class="panel panel-default">
@@ -490,14 +487,14 @@ if(!isset($_SESSION["validarSesion"])){
         <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
         Collapsible Group 3</a>
       </h4>
-    </div>
+    
     <div id="collapse3" class="panel-collapse collapse">
       <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
       sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
       minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
       commodo consequat.</div>
     </div>
-  </div>
+  
 </div>
 
 
