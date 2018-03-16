@@ -970,7 +970,7 @@ $(".btnPagar ").click(function(){
 
 		for (var i = 0; i < listaCarrito.length; i++) {
 
-			if(i==0 && listaCarrito.length==1){
+			if(listaCarrito.length == 1){
 
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
@@ -987,8 +987,11 @@ $(".btnPagar ").click(function(){
 				datos.append("grupoPedido", grupoPedido);
 				datos.append("cabecera", 1);
 				datos.append("ultimo",1);
+					
 
-		     }else if(i>0 && i<(listaCarrito.length-1)){
+		     }else
+
+		     	if(i>0 && i<listaCarrito.length-1){
 
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
@@ -1001,8 +1004,8 @@ $(".btnPagar ").click(function(){
 				datos.append("grupoPedido", grupoPedido);
 				datos.append("cabecera", 0);
 				datos.append("ultimo", 0);
-
-			}else if(i==listaCarrito.length-1){
+			  
+			   }else if(i== (listaCarrito.length-1)){
 
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
@@ -1016,24 +1019,10 @@ $(".btnPagar ").click(function(){
 				datos.append("cabecera", 0);
 				datos.append("ultimo",1);
 			
-			}else{
+			}
+		 
 
-				datos.append("idUsuarioPedidos", idUsuarioPedido);
-				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
-				datos.append("palapa", palapa );
-				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("estado", 0);
-				datos.append("excepciones", comentario)
-				if(comentario == ""){
-					datos.append("mostrar", 0);
-				}else{
-					datos.append("mostrar", 1);
-				}
-				datos.append("nombreUsuario", nombreUsuario);
-				datos.append("grupoPedido", grupoPedido);
-				datos.append("cabecera", 1);
-				datos.append("ultimo",0);		
-		      }
+		     
 						
 			$.ajax({
 					url:rutaOculta+"ajax/usuarios.ajax.php",
@@ -1044,8 +1033,7 @@ $(".btnPagar ").click(function(){
 					processData: false,
 					success:function(respuesta){
 						console.log("respuesta", respuesta);
-						
-						
+							
 					}
 
 			})
