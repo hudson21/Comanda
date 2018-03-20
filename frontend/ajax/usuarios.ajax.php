@@ -79,34 +79,25 @@ class AjaxUsuarios{
 	==============================================================================================================*/
 	public $idUsuarioPedidos ;
 	public $idProductoPedidos;
-	public $palapa;
 	public $cantidad;
-	public $estado;
 	public $excepciones;
 	public $mostrar;
-	public $nombreUsuario;
-	public $grupoPedido;
-	public $cabecera;
-	public $ultimo;
+	public $numeroPedido;
 
-	public function ajaxInsertarPedidos(){
+
+	public function ajaxInsertarLineaPedidos(){
 
    //for ($i=0; $i < ; $i++) { 
    	//	$datosUsuarioPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos[i]);
    //}	
 		$datosPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos,
 					   		  "idProductoPedidos"=>$this->idProductoPedidos,
-					   		  "palapa"=>$this->palapa,
 							  "cantidad"=>$this->cantidad,
-						      "estado"=>$this->estado,
 					          "excepciones"=>$this->excepciones,
 					          "mostrar"=>$this->mostrar,
-					      	  "nombreUsuario"=>$this->nombreUsuario,
-					      	  "grupoPedido"=>$this->grupoPedido,
-					      	  "cabecera"=>$this->cabecera,
-					      	  "ultimo"=>$this->ultimo);
+					      	  "numeroPedido"=>$this->numeroPedido);
 
-		$respuesta = ControladorUsuarios::ctrInsertarPedidos($datosPedidos);
+		$respuesta = ControladorUsuarios::ctrInsertarLineaPedidos($datosPedidos);
 
 		echo $respuesta;
 
@@ -181,16 +172,11 @@ class AjaxUsuarios{
 		$pedidos = new AjaxUsuarios();
 		$pedidos -> idUsuarioPedidos = $_POST["idUsuarioPedidos"];
 		$pedidos -> idProductoPedidos = $_POST["idProductoPedidos"];
-		$pedidos -> palapa = $_POST["palapa"];
 		$pedidos -> cantidad = $_POST["cantidad"];
-		$pedidos -> estado = $_POST["estado"];
 		$pedidos -> excepciones = $_POST["excepciones"];
 		$pedidos -> mostrar = $_POST["mostrar"];
-		$pedidos -> nombreUsuario = $_POST["nombreUsuario"];
-		$pedidos -> grupoPedido = $_POST["grupoPedido"];
-		$pedidos -> cabecera = $_POST["cabecera"];
-		$pedidos -> ultimo = $_POST["ultimo"];
-		$pedidos -> ajaxInsertarPedidos();
+		$pedidos -> numeroPedido = $_POST["numeroPedido"];
+		$pedidos -> ajaxInsertarLineaPedidos();
 
 	}
 

@@ -1004,7 +1004,7 @@ $(".btnPagar ").click(function(){
 					}
 
 			   })
-			
+			    // ====== FSTE ES EL FINAL DE LA TABLA DE CABECERA DE PEDIDOS======
 
 			}else{
 

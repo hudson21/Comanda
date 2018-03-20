@@ -373,9 +373,9 @@ class ModeloUsuarios{
 	/*============================================================================================================  
   		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS   
 	==============================================================================================================*/
-	static public function mdlInsertarPedidos($tabla, $datos){
+	static public function mdlInsertarLineaPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, palapa, cantidad, estado, comentarios, mostrar, nombreUsuario, grupo, cabecera, ultimo) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario, :grupo, :cabecera, :ultimo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, cantidad, comentarios, mostrar, no_pedido) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario, :grupo, :cabecera, :ultimo)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
