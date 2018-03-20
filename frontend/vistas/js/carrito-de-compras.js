@@ -945,6 +945,7 @@ $(".btnPagar ").click(function(){
   		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
 	==============================================================================================================*/	
 		var datos = new FormData();
+		var datos1 = new FormData();
 		
     		
 
@@ -961,84 +962,61 @@ $(".btnPagar ").click(function(){
 
 
 		var idUsuarioPedido = localStorage.getItem("usuario");
-		//console.log("listaCarrito.length", listaCarrito.length);
+		console.log("listaCarrito", listaCarrito);
 
 		var nombreUsuario = localStorage.getItem("nombreUsuario");
 
-		var grupoPedido = localStorage.getItem("grupoPedido"); 
-		console.log("Tipos de producto", listaCarrito["tipo"]);
+		var numeroPedido = localStorage.getItem("numeroPedido"); 
+		//console.log("Tipos de producto", listaCarrito["tipo"]);
 
 		for (var i = 0; i < listaCarrito.length; i++) {
 
-			if(listaCarrito.length == 1){ //Esta opción funciona bien :)
-
+			if(i==0){ //Esta opción funciona bien :)
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
-				datos.append("palapa", palapa );
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("estado", 0);
 				datos.append("excepciones", comentario)
 				if(comentario == ""){
 					datos.append("mostrar", 0);
 				}else{
 					datos.append("mostrar", 1);
 				}
-				datos.append("nombreUsuario", nombreUsuario);
-				datos.append("grupoPedido", grupoPedido);
-				datos.append("cabecera", 1);
-				datos.append("ultimo",1);
-					
+				datos.append("numeroPedido", numeroPedido);
 
-		     }else{
 
-		     	if(i>0 && i<listaCarrito.length-1){
 
-				datos.append("idUsuarioPedidos", idUsuarioPedido);
-				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
-				datos.append("palapa", palapa );
-				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("estado", 0);
-				datos.append("excepciones", "");
-				datos.append("mostrar", 0);
-				datos.append("nombreUsuario", nombreUsuario);
-				datos.append("grupoPedido", grupoPedido);
-				datos.append("cabecera", 0);
-				datos.append("ultimo", 0);
-			  
-			   }else if(i==listaCarrito.length-1){
+				// ====== ESTA ES LA PETICION AJAX PARA LA TABLA DE CABECERA DE PEDIDOS======
+				datos1.append("nombreUsuario", nombreUsuario);
+				datos1.append("origen", origen);
+				datos1.append("lugarPreparacion", lugarPreparacion);
+				datos1.append("estado",0);
 
-				datos.append("idUsuarioPedidos", idUsuarioPedido);
-				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
-				datos.append("palapa", palapa );
-				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("estado", 0);
-				datos.append("excepciones", "");
-				datos.append("mostrar", 0);
-				datos.append("nombreUsuario", nombreUsuario);
-				datos.append("grupoPedido", grupoPedido);
-				datos.append("cabecera", 0);
-				datos.append("ultimo",1);
+				$.ajax({
+					url:rutaOculta+"ajax/usuarios.ajax.php",
+					method:"POST",
+					data: datos1,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+						console.log("respuesta", respuesta);
+							
+					}
 
-			  }else if(i==0){
+			   })
+			
+
+			}else{
 
 				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
-				datos.append("palapa", palapa );
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("estado", 0);
 				datos.append("excepciones", "");
 				datos.append("mostrar", 0);
-				datos.append("nombreUsuario", nombreUsuario);
-				datos.append("grupoPedido", grupoPedido);
-				datos.append("cabecera", 1);
-				datos.append("ultimo",0);
+				datos.append("numeroPedido", numeroPedido);
+				
+			   }
 
-			}
-		}
-		 
-
-		     
-						
 			$.ajax({
 					url:rutaOculta+"ajax/usuarios.ajax.php",
 					method:"POST",
@@ -1051,9 +1029,8 @@ $(".btnPagar ").click(function(){
 							
 					}
 
-			})
-		}
-
+			   })  
+					
 	}
 
 	$(".quitarItemCarrito").parent().parent().parent().remove();
@@ -1118,11 +1095,9 @@ $(".btnPagar ").click(function(){
 		$(".cabeceraCheckout").hide();
 
 	}
-
-
 }
 
-
+}
 
 })
 

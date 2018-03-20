@@ -318,26 +318,26 @@
 
 $item = $_SESSION["id"];
 
-$grupo = ControladorUsuarios::ctrMostrarColumnaGrupo($item);
+$no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item);
 
-	if($grupo == null){
+	if($no_pedido == null){
 
 	$num=1;	
 
 	echo '<script>
 
-	            localStorage.setItem("grupoPedido","'.$num.'");
+	            localStorage.setItem("numeroPedido","'.$num.'");
 
 	      </script>';
 
 	 }else{
 
-			$cantidad=$grupo;
+			$cantidad=$no_pedido;
 			$i=0;
 			$mayor=$cantidad[$i];
 			$diferente=0;
 
-			while($i<count($grupo)){
+			while($i<count($no_pedido)){
 				if($mayor<$cantidad[$i]){ 
 				 $mayor=$cantidad[$i];
 				}
@@ -353,7 +353,7 @@ $grupo = ControladorUsuarios::ctrMostrarColumnaGrupo($item);
 
 			echo '<script>
 
-			            localStorage.setItem("grupoPedido","'.$mayorNumero.'");
+			            localStorage.setItem("numeroPedido","'.$mayorNumero.'");
 
 			      </script>';
 
@@ -384,7 +384,7 @@ $grupo = ControladorUsuarios::ctrMostrarColumnaGrupo($item);
 		    		return $diferentes;
 			}
 
-			$numerosDiferentes = contar_diferencias($grupo);
+			$numerosDiferentes = contar_diferencias($no_pedido);
 
 			$_SESSION["cantidadGrupos"]= $numerosDiferentes;
 

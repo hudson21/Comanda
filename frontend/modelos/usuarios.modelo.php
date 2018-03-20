@@ -473,7 +473,7 @@ class ModeloUsuarios{
 	/*=======================================================
 		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
 	=========================================================*/
-	static public function mdlMostrarColumnaGrupo($tabla, $item){
+	static public function mdlMostrarColumnaNoPedido($tabla, $item){
 
 		$stmt = Conexion::conectar()->prepare("SELECT grupo FROM $tabla WHERE id_usuario = :id_usuario");
 
@@ -550,11 +550,11 @@ class ModeloUsuarios{
 	}
 
 	/*==================================================================
-	 	PONER CEROS A LA IZQUIERDA DEL ID EN LA TABLA DE PEDIDOS    
+	 	PONER CEROS A LA IZQUIERDA DEL ID DE ALGUNA TABLA   
 	====================================================================*/
-	static public function mdlPonerCerosIzquierda($tabla){
+	static public function mdlPonerCerosIzquierda($tablaModelo, $columna){
 
-		$stmt = Conexion::conectar()->prepare("ALTER TABLE $tabla MODIFY id INTEGER(9) UNSIGNED ZEROFILL NOT NULL DEFAULT NULL AUTO_INCREMENT;");
+		$stmt = Conexion::conectar()->prepare("ALTER TABLE $tablaModelo MODIFY $columna INTEGER(9) UNSIGNED ZEROFILL NOT NULL DEFAULT NULL AUTO_INCREMENT;");
 
 		$stmt -> execute();
 

@@ -290,19 +290,6 @@
   }
 
   /*======================================
-           TABLA PEDIDOS   
-  ========================================*/
-  $tabla6 = "pedidos";
-
-  $tablaPedidos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla6);
-
-  if($tablaPedidos == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla6);
-     ControladorUsuarios::ctrPonerCerosIzquierda();
-  }
-
-  /*======================================
            TABLA PLANTILLA   
   ========================================*/
   $tabla7 = "plantilla";
@@ -360,6 +347,33 @@
   if($tablaUsuarios == null){
 
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla11);
+  }
+
+    /*======================================
+           TABLA CABECERA PEDIDOS   
+  ========================================*/
+  $tabla6 = "cabecera_pedidos";
+
+  $tablaCabeceraPedidos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla6);
+
+  if($tablaCabeceraPedidos == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla6);
+     $columna="no_pedido";
+     ControladorUsuarios::ctrPonerCerosIzquierda($tabla6, $columna);
+  }
+
+  /*======================================
+           TABLA LINEA DE PEDIDOS   
+  ========================================*/
+  $tabla12 = "linea_pedidos";
+
+  $tablaLineaPedidos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla12);
+
+  if($tablaLineaPedidos == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla12);
+     ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
   }
     
 ?>
