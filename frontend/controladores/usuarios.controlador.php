@@ -1089,16 +1089,5 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
-	/*==================================================================
-	 	MOSTRAR TABLA PEDIDOS POR ID Y CABECERA = 1     
-	====================================================================*/
-	static function ctrMostrarTablaPedidosByIdProductoAndCabecera($id){
-
-		$tabla = "pedidos";
-
-		$respuesta = ModeloUsuarios::mdlMostrarTablaPedidosByIdProductoAndCabecera($tabla, $id);
-
-		return $respuesta;
-	}
 
 }

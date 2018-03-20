@@ -475,7 +475,7 @@ class ModeloUsuarios{
 	=========================================================*/
 	static public function mdlMostrarColumnaNoPedido($tabla, $item){
 
-		$stmt = Conexion::conectar()->prepare("SELECT grupo FROM $tabla WHERE id_usuario = :id_usuario");
+		$stmt = Conexion::conectar()->prepare("SELECT no_pedido FROM $tabla WHERE id_usuario = :id_usuario");
 
 		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
 
@@ -580,24 +580,6 @@ class ModeloUsuarios{
 
 	}
 
-	/*==================================================================
-	 	MOSTRAR TABLA PEDIDOS POR ID Y CABECERA = 1     
-	====================================================================*/
-	static function mdlMostrarTablaPedidosByIdProductoAndCabecera($tabla, $id){
-
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_producto = :id_producto AND cabecera = 1");
-
-		$stmt -> bindParam(":id_producto", $id, PDO::PARAM_INT);
-
-		$stmt -> execute();
-
-		return $stmt -> fetch();
-
-		$stmt -> close();
-
-		$stmt = null;
-
-	}
 
 }
 
