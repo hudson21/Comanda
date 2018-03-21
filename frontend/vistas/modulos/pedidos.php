@@ -244,157 +244,58 @@ if(!isset($_SESSION["validarSesion"])){
 
 							<hr>';
 
-							}//=================FIN DEL TIPO FISICO===================================
+							}//=================FIN DEL TIPO FISICO Y VIRTUAL===================================
 
-					/*	if($value2["tipo"] == "virtual"){
+					   
+						  }//================= FIN DEL FOREACH VALUE 3
 
-					echo '<div class="row itemCarrito">
-
-								<div class="col-sm-1 col-xs-12">
-
-									<br>
-
-									<center>
-							
-										<button class="btn btn-default backColor quitarItemPedido " idProducto="'.$value1["id"].'">
-										<i class="fa fa-times"></i>
-										</button>
-
-									</center>
 						
-								</div>
-
-								<div  class="col-sm-1 col-xs-12">
-						
-									<br>
-
-									<p  class="tituloCarritoPedidos text-left">'.$value1["palapa"].'</p>
-
-								</div>
-
-								<div style="margin-top:15px" class="col-sm-1 col-xs-12">
-						
-									<figure >
-
-									<img src="'.$servidor.$value2["portada"].'" class="img-thumbnail">
-
-									</figure>
-
-								</div>
-
-								<div style="margin-left:5px; " class="col-sm-1 col-xs-12">
-
-									<br>
-
-									<p class="tituloCarritoCompra text-left">'.$value2["titulo"].'</p>
-						
-								</div>
-
-								<div class="col-md-2 col-sm-1 col-xs-12">
-
-									<br>
-
-								 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value2["precio"].'</span></p>
-						
-								</div>
-
-								<div  class="col-md-2 col-sm-3 col-xs-8 ">
-
-									<br>
-
-									<div style="margin-left:5px" class="col-xs-8">
-
-										<center>
-								
-										  <input type="number" class="form-control text-center" min="1" value="'.$value1["cantidad"].'" readonly> 
-
-										</center>
-								
-									</div>
-
-								</div>
-
-								<div style="margin-top:20px; " class="col-md-3 col-sm-1 col-xs-4 ">
-
-									<div class="progress">
-
-										<div class="progress-bar progress-bar-success" role="progressbar" style="width:100%">
-											<i class="fa fa-check"></i> Entregado
-										</div>
-
-									</div>
-
-								</div>
-
-						</div>
-
-					<div class="clearfix"></div>
-
-					<hr>';
-
-					
-
-
-				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================*/
-						     
-						   }//================= FIN DEL FOREACH VALUE 3
-
-						}//======== FIN DEL FOREACH CON VALUE 2
+					  }//======== FIN DEL FOREACH CON VALUE 2
 						   
 								  echo'</div><!--Este es el div del cuerpoPedidos-->';
+				
 
-						      echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+						if($value1["mostrar"]==1 && $value1["origen"] != "" && $value1["lugar_preparacion"] != ""){
+
+							echo'<div class="panel-body sumaPedidos">
+
+								<div class="col-md-12 col-sm-6 col-xs-12 pull-left well">
+									<div class="col-xs-2">
+										<h6><strong>EXCEPCIONES:</strong></h6>
+							       </div>
+
+
+								<div class="col-xs-10">';
+							
+								echo'<textarea class="form-control" rows="7" id="comentario" name="comentario" maxlength="300">';			
+								  
+								  echo $value1["origen"]." a cargo de ".$value1["nombre_usuario"]." tiene los siguientes comentarios: ".$value1["comentarios"]." \n";
+								  		
+								 echo'</textarea>';
+
+						  echo'</div>
+						   </div>
+						</div>';
+
+						}
+
+						     echo'</div> <!--FIN DEL PANEL BODY-->';
 				          
-				        echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+				        echo'</div> <!--FIN DEL PANEL_COLLAPSE -->';
 
-		             echo '</div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+		             echo '</div> <!--FIN DEL PANEL DEFAULT -->';
 
 		         $i++;
 		    }//===== FIN DEL FOREACH CON VALUE 1 ========
+
+
 
 
 		 	echo'</div> <!--Div del id accordion-->';
    }//=========FIN DE TODO EL ELSE
 			  
 		              
-
-				          
-
-		
-
-
-
-
-			/*foreach($pedidos as $key => $value1){
-
-					   echo '<style>br{display:none;}</style>';
-
-						echo'<div class="panel-body sumaPedidos">
-
-								<div class="col-md-12 col-sm-6 col-xs-12 pull-left well">
-
-									<div class="col-xs-2">
-
-										<h6><strong>EXCEPCIONES:</strong></h6>
-								
-							       </div>
-
-
-								<div class="col-xs-10">';
-							
-							echo'<textarea class="form-control" rows="7" id="comentario" name="comentario" maxlength="300">';
-								
-								foreach($pedidos as $key => $value1){
-
-									if($value1["mostrar"] == 0){
-									echo "";
-									}else if($value1["mostrar"]==1 && $value1["palapa"] != ""){
-									echo $value1["palapa"]." a cargo de ".$usuario." tiene los siguientes comentarios: ".$value1["comentarios"]." \n";
-									}	
-								}
-							
-							echo'</textarea>';
-							}*/
+			
 
 
 

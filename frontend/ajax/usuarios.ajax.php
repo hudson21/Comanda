@@ -80,8 +80,6 @@ class AjaxUsuarios{
 	
 	public $idProductoPedidos;
 	public $cantidad;
-	public $excepciones;
-	public $mostrar;
 	public $numeroPedido;
 
 
@@ -92,8 +90,6 @@ class AjaxUsuarios{
    //}	
 		$datosPedidos = array("idProductoPedidos"=>$this->idProductoPedidos,
 							  "cantidad"=>$this->cantidad,
-					          "excepciones"=>$this->excepciones,
-					          "mostrar"=>$this->mostrar,
 					      	  "numeroPedido"=>$this->numeroPedido);
 
 		$respuesta = ControladorUsuarios::ctrInsertarLineaPedidos($datosPedidos);
@@ -109,6 +105,8 @@ class AjaxUsuarios{
 	public $nombreUsuario;
 	public $origen;
 	public $lugarPreparacion;
+	public $excepciones;
+	public $mostrar;
 	public $estado;
 	public function ajaxInsertarCabeceraPedidos(){
 
@@ -116,6 +114,8 @@ class AjaxUsuarios{
 						"nombreUsuario"=>$this->nombreUsuario,
 						"origen"=>$this->origen,
 						"lugarPreparacion"=>$this->lugarPreparacion,
+						"excepciones"=>$this->excepciones,
+					    "mostrar"=>$this->mostrar,
 						"estado"=>$this->estado);
 
 		$respuesta = ControladorUsuarios::ctrInsertarCabeceraPedido($datos);
@@ -190,8 +190,6 @@ class AjaxUsuarios{
 		$pedidos = new AjaxUsuarios();
 		$pedidos -> idProductoPedidos = $_POST["idProductoPedidos"];
 		$pedidos -> cantidad = $_POST["cantidad"];
-		$pedidos -> excepciones = $_POST["excepciones"];
-		$pedidos -> mostrar = $_POST["mostrar"];
 		$pedidos -> numeroPedido = $_POST["numeroPedido"];
 		$pedidos -> ajaxInsertarLineaPedidos();
 
@@ -207,6 +205,8 @@ class AjaxUsuarios{
 		$cabecera -> nombreUsuario = $_POST["nombreUsuario"];
 		$cabecera -> origen = $_POST["origen"];
 		$cabecera -> lugarPreparacion = $_POST["lugarPreparacion"];
+		$cabecera -> excepciones = $_POST["excepciones"];
+		$cabecera -> mostrar = $_POST["mostrar"];
 		$cabecera -> estado = $_POST["estado"];
 		$cabecera -> ajaxInsertarCabeceraPedidos();
 	}

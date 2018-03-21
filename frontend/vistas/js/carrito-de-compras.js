@@ -1033,12 +1033,6 @@ $(".btnPagar ").click(function(){
 			if(i==0){ //Esta opción funciona bien :)
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("excepciones", comentario)
-				if(comentario == ""){
-					datos.append("mostrar", 0);
-				}else{
-					datos.append("mostrar", 1);
-				}
 				datos.append("numeroPedido", numeroPedido);
 
 
@@ -1048,6 +1042,12 @@ $(".btnPagar ").click(function(){
 				datos1.append("nombreUsuario", nombreUsuario);
 				datos1.append("origen", origen);
 				datos1.append("lugarPreparacion", preparacion);
+				datos1.append("excepciones", comentario)
+				if(comentario == ""){
+					datos1.append("mostrar", 0);
+				}else{
+					datos1.append("mostrar", 1);
+				}
 				datos1.append("estado",0);
 
 				$.ajax({
@@ -1066,11 +1066,9 @@ $(".btnPagar ").click(function(){
 			    // ====== FSTE ES EL FINAL DE LA TABLA DE CABECERA DE PEDIDOS======
 
 			}else{
-				
+
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
-				datos.append("excepciones", "");
-				datos.append("mostrar", 0);
 				datos.append("numeroPedido", numeroPedido);
 				
 			   }
