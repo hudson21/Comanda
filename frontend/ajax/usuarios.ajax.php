@@ -75,7 +75,7 @@ class AjaxUsuarios{
 	}
 
 	/*============================================================================================================  
-  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+  		INSERTAR LOS REGISTROS EN LA TABLA DE LINEA PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
 	==============================================================================================================*/
 	public $idUsuarioPedidos ;
 	public $idProductoPedidos;
@@ -100,6 +100,24 @@ class AjaxUsuarios{
 		$respuesta = ControladorUsuarios::ctrInsertarLineaPedidos($datosPedidos);
 
 		echo $respuesta;
+
+	}
+
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE CABECERA PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+	==============================================================================================================*/
+
+	public $nombreUsuario;
+	public $origen;
+	public $lugarPreparacion;
+	public $estado;
+	public function ajaxInsertarCabeceraPedidos(){
+
+		$datos = array ("nombreUsuario"=>$this->nombreUsuario,
+						"origen"=>$this->origen,
+						"lugarPreparacion"=>$this->lugarPreparacion,
+						"estado"=>$this->estado);
+
 
 	}
 

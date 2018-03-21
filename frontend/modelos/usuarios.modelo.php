@@ -375,23 +375,18 @@ class ModeloUsuarios{
 	==============================================================================================================*/
 	static public function mdlInsertarLineaPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, cantidad, comentarios, mostrar, no_pedido) VALUES (:id_usuario, :id_producto, :palapa, :cantidad, :estado, :comentarios, :mostrar, :nombreUsuario, :grupo, :cabecera, :ultimo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, cantidad, comentarios, mostrar, no_pedido) VALUES (:id_usuario, :id_producto, :cantidad, :comentarios, :mostrar, :no_pedido)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
-		$stmt -> bindParam(":palapa", $datos["palapa"], PDO::PARAM_STR);
 		$stmt -> bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
-		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_INT);
 		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
 		$stmt -> bindParam(":mostrar", $datos["mostrar"], PDO::PARAM_STR);
-		$stmt -> bindParam(":nombreUsuario", $datos["nombreUsuario"], PDO::PARAM_STR);
-		$stmt -> bindParam(":grupo", $datos["grupoPedido"], PDO::PARAM_INT);
-		$stmt -> bindParam(":cabecera", $datos["cabecera"], PDO::PARAM_INT);
-		$stmt -> bindParam(":ultimo", $datos["ultimo"], PDO::PARAM_INT);
+		$stmt -> bindParam(":no_pedido", $datos["numeroPedido"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
-			return "ok";
+			return "Inserción de la línea de pedidos correcta";
 
 		}else{
 

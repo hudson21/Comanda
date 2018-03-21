@@ -4,8 +4,6 @@
 
 	  $url = Ruta::ctrRuta();
 
-	 
-
 	?>
 
 <!--===============================================
@@ -182,10 +180,13 @@
 
 					<h4 class="text-center well text-muted text-uppercase">Información de envío</h4>
 
-					<div class="col-xs-12 seleccionePais">
+					<div class="col-xs-12 seleccioneOrigen">
+						
+					</div>
 
+					<div class="col-xs-12 seleccioneLugarPreparacion">
 						
-						
+
 					</div>
 
 				</div>

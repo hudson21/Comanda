@@ -606,9 +606,15 @@ $("#btnCheckout").click(function(){
 		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
 		if(tipoArray.find(checkTipo) == "fisico"){
 
-			$(".seleccionePais").html('<select class="form-control" name="seleccionarPais" id="seleccionarPais" >'+
+			$(".seleccioneOrigen").html('<select class="form-control" name="seleccionarOrigen" id="seleccionarOrigen" >'+
 
 							'<option value="">Seleccione el lugar de origen</option>'+
+							
+						'</select><br>');
+
+			$(".seleccioneLugarPreparacion").html('<select class="form-control" name="seleccionarPais" id="seleccionarPais" >'+
+
+							'<option value="">Seleccione el lugar de preparación</option>'+
 							
 						'</select>');
 
@@ -617,11 +623,19 @@ $("#btnCheckout").click(function(){
 			$(".btnPagar").attr("tipo","fisico");
 			
 
-			
+
+			var names = personas.map(function (person) { return person.name; });
+			var sorted = names.sort();
+
+			var unique = sorted.filter(function (value, index) {
+			    return value !== sorted[index + 1];
+			});
+
+			console.log(unique);
 
 			$.ajax({
-				url:rutaOculta+"vistas/js/plugins/countries.json",/*De esta manera estoy llamando a un archivo json a través
-																de esta petición Ajax*/
+				url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
+                    												de esta petición Ajax*/
 				type: "GET",
 				cache: false,
 				contentType: false,
@@ -636,7 +650,7 @@ $("#btnCheckout").click(function(){
 						var pais = item.name;
 						var codPais = item.code;
 
-						$("#seleccionarPais").append('<option value="'+codPais+'">'+pais+'</option>');
+						$("#seleccionarOrigen").append('<option value="'+codPais+'">'+pais+'</option>');
 					}
 
 				}
@@ -644,11 +658,9 @@ $("#btnCheckout").click(function(){
 			/*====================================================================  
   				EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO      
 			======================================================================*/
-			$("#seleccionarPais").change(function(){ //Las tasas de las palapas es como si fueran los países
+			$("#seleccionarOrigen").change(function(){ //Las tasas de las palapas es como si fueran los países
 
 				$(".alert").remove();
-
-
 
 				var pais = $(this).val();
 				var tasaPais = $("#tasaPais").val();
@@ -803,7 +815,7 @@ $("#cambiarDivisa").change(function(){
 
 	$(".alert").remove();
 
-	if($("#seleccionarPais").val() == ""){
+	if($("#seleccionarOrigen").val() == ""){
 
 		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el lugar de envío</div>');
 
@@ -861,7 +873,7 @@ $(".btnPagar ").click(function(){
 
 	var tipo = $(this).attr("tipo");
 
-	if(tipo == "fisico" && $("#seleccionarPais").val() == ""){
+	if(tipo == "fisico" && $("#seleccionarOrigen").val() == ""){
 
 		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
 
@@ -905,19 +917,19 @@ $(".btnPagar ").click(function(){
 
 	$(".alert").remove();
 
-	var combo = document.getElementById("seleccionarPais");
+	var combo = document.getElementById("seleccionarOrigen");
 
 
 	var tipo = $(this).attr("tipo");
 
-	if(tipo == "fisico" && $("#seleccionarPais").val() == ""){
+	if(tipo == "fisico" && $("#seleccionarOrigen").val() == ""){
 
 		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de envío</div>');
 		
 		return;
 	}
 
-	if(tipo == "virtual" && combo == null || tipo == "fisico" && $("seleccionarPais").val() != ""){
+	if(tipo == "virtual" && combo == null || tipo == "fisico" && $("seleccionarOrigen").val() != ""){
 
 			swal({
 			title: "¡OK!",
