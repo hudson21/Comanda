@@ -394,7 +394,13 @@ $no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item);
 			$fechaString=implode(",",$fecha[0]);
 			$fechaNumero=(int)$fechaString;
 
-			var_dump($fechaNumero);
+			$resultado = substr($fechaString, 31);
+			
+
+			var_dump($resultado);
+
+			$_SESSION["fecha"]=$fechaNumero;
+
 
 		}
 

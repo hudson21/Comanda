@@ -371,13 +371,12 @@ class ModeloUsuarios{
 	}
 
 	/*============================================================================================================  
-  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS   
+  		INSERTAR LOS REGISTROS EN LA TABLA DE LINEA PEDIDOS LOS PRODUCTOS YA CONFIRMADOS    
 	==============================================================================================================*/
 	static public function mdlInsertarLineaPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, id_producto, cantidad, comentarios, mostrar, no_pedido) VALUES (:id_usuario, :id_producto, :cantidad, :comentarios, :mostrar, :no_pedido)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_producto, cantidad, comentarios, mostrar, no_pedido) VALUES (:id_producto, :cantidad, :comentarios, :mostrar, :no_pedido)");
 
-		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_producto", $datos["idProductoPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":cantidad", $datos["cantidad"], PDO::PARAM_STR);
 		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
@@ -400,34 +399,46 @@ class ModeloUsuarios{
 
 	}
 
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE CABECERA PEDIDOS LOS PRODUCTOS YA CONFIRMADOS   
+	==============================================================================================================*/
+	static public function mdlInsertarCabeceraPedido($tabla, $datos){
 
-	/*===============================================
-		MOSTRAR LISTA DE PEDIDOS      
-	=================================================*/
-	static public function mdlMostrarPedidosByIdUsuario($tabla, $item){
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, nombre_usuario, origen, lugar_preparacion, estado) VALUES (:id_usuario, :nombre_usuario, :origen, :lugar_preparacion, :estado)");
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario ORDER BY id ASC");
+		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
+		$stmt -> bindParam(":nombre_usuario", $datos["nombreUsuario"], PDO::PARAM_STR);
+		$stmt -> bindParam(":origen", $datos["origen"], PDO::PARAM_STR);
+		$stmt -> bindParam(":lugar_preparacion", $datos["lugarPreparacion"], PDO::PARAM_STR);
+		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
 
-		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+		if($stmt -> execute()){
 
-		$stmt -> execute();
+			return "Inserción de la cabecera de pedidos correcta";
 
-		return $stmt -> fetchAll();
+		}else{
 
-		$stmt -> close();
+			return "error";
+
+		}
+
+		$stmt-> close();
 
 		$stmt = null;
 
 	}
+
+
+	
 
 	/*=========================================================
 		MOSTRAR COMENTARIOS DE LA LISTA DE PEDIDOS      
 	===========================================================*/
 	static public function mdlMostrarPedidosByMostrar($tabla, $item1, $item2){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario AND mostrar = :mostrar ORDER BY id ASC");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_pedido = :no_pedido AND mostrar = :mostrar ORDER BY id ASC");
 
-		$stmt -> bindParam(":id_usuario", $item1, PDO::PARAM_INT);
+		$stmt -> bindParam(":no_pedido", $item1, PDO::PARAM_INT);
 		$stmt -> bindParam(":mostrar", $item2, PDO::PARAM_INT);
 
 		$stmt -> execute();
@@ -470,9 +481,8 @@ class ModeloUsuarios{
 	=========================================================*/
 	static public function mdlMostrarColumnaNoPedido($tabla, $item){
 
-		$stmt = Conexion::conectar()->prepare("SELECT no_pedido FROM $tabla WHERE id_usuario = :id_usuario");
+		$stmt = Conexion::conectar()->prepare("SELECT no_pedido FROM $tabla");
 
-		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
 
 		$stmt -> execute();
 
@@ -489,9 +499,7 @@ class ModeloUsuarios{
 	=========================================================*/
 	static public function mdlMostrarColumnaFecha($tabla, $item){
 
-		$stmt = Conexion::conectar()->prepare("SELECT fecha FROM $tabla WHERE id_usuario = :id_usuario");
-
-		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+		$stmt = Conexion::conectar()->prepare("SELECT fecha FROM $tabla");
 
 		$stmt -> execute();
 
@@ -544,26 +552,34 @@ class ModeloUsuarios{
 
 	}
 
-	/*==================================================================
-	 	PONER CEROS A LA IZQUIERDA DEL ID DE ALGUNA TABLA   
-	====================================================================*/
-	static public function mdlPonerCerosIzquierda($tablaModelo, $columna){
-
-		$stmt = Conexion::conectar()->prepare("ALTER TABLE $tablaModelo MODIFY $columna INTEGER(9) UNSIGNED ZEROFILL NOT NULL DEFAULT NULL AUTO_INCREMENT;");
-
-		$stmt -> execute();
-
-		$stmt = null;
-	}
 
 	/*==================================================================
 	 	MOSTRAR LA TABLA PEDIDOS POR GRUPO CON CABECERA     
 	====================================================================*/
-	static function mdlMostrarTablaPedidosByGrupo($tabla, $grupo){
+	static function mdlMostrarLineaPedidosByNoPedido($tabla, $grupo){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE grupo = :grupo");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE no_pedido = :no_pedido");
 
-		$stmt -> bindParam(":grupo", $grupo, PDO::PARAM_INT);
+		$stmt -> bindParam(":no_pedido", $grupo, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*===============================================
+		MOSTRAR LISTA DE PEDIDOS      
+	=================================================*/
+	static public function mdlMostrarCabeceraPedidosByUsuario($tabla, $item){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario ORDER BY no_pedido ASC");
+
+		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
 
 		$stmt -> execute();
 

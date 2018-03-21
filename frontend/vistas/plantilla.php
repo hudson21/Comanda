@@ -360,7 +360,7 @@
 
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla6);
      $columna="no_pedido";
-     ControladorUsuarios::ctrPonerCerosIzquierda($tabla6, $columna);
+    // ControladorUsuarios::ctrPonerCerosIzquierda($tabla6, $columna);
   }
 
   /*======================================
@@ -373,7 +373,7 @@
   if($tablaLineaPedidos == null){
 
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla12);
-     ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
+    // ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
   }
     
 ?>

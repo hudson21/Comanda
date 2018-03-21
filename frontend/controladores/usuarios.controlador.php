@@ -966,9 +966,9 @@ class ControladorUsuarios{
 	
 	}
 	/*============================================================================================================  
-  		INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS   
+  		INSERTAR LOS REGISTROS EN LA TABLA DE LINEA PEDIDOS LOS PRODUCTOS YA CONFIRMADOS   
 	==============================================================================================================*/
-	static public function ctrInsertarLineaPedidos($datos){
+	static public function ctrInsertarLineaPedidos($datos){//ESTE SI LO USO
 
 		$tabla = "linea_pedidos";
 
@@ -977,25 +977,24 @@ class ControladorUsuarios{
   		return $respuesta;
 	}
 
-	/*===============================================
-		MOSTRAR LISTA DE PEDIDOS POR ID DE USUARIO     
-	=================================================*/
-	static public function ctrMostrarPedidosByIdUsuario($item){
+	/*============================================================================================================  
+  		INSERTAR LOS REGISTROS EN LA TABLA DE CABECERA PEDIDOS LOS PRODUCTOS YA CONFIRMADOS   
+	==============================================================================================================*/
+	static public function ctrInsertarCabeceraPedido($datos){//ESTE SI LO USO
 
-		$tabla = "pedidos";
+		$tabla = "cabecera_pedidos";
 
-		$respuesta = ModeloUsuarios::mdlMostrarPedidosByIdUsuario($tabla, $item);
+  		$respuesta = ModeloUsuarios::mdlInsertarCabeceraPedido($tabla, $datos);
 
-		return $respuesta;
-
+  		return $respuesta;
 	}
 
 	/*=========================================================
 		MOSTRAR COMENTARIOS DE LA LISTA DE PEDIDOS      
 	===========================================================*/
-	static public function ctrMostrarPedidosByMostrar($item1, $item2){
+	static public function ctrMostrarPedidosByMostrar($item1, $item2){//ESTE SI LO USO
 
-		$tabla = "pedidos";
+		$tabla = "linea_pedidos";
 
 		$respuesta = ModeloUsuarios::mdlMostrarPedidosByMostrar($tabla, $item1, $item2);
 
@@ -1006,9 +1005,9 @@ class ControladorUsuarios{
 	/*===============================================
 		QUITAR PRODUCTO DE LISTA DE PEDITOS     
 	=================================================*/
-	static public function ctrEliminarPedidos($datos){
+	static public function ctrEliminarPedidos($datos){//ESTE SI LO USO
 
-		$tabla = "pedidos";
+		$tabla = "linea_pedidos";
 
 		$respuesta = ModeloUsuarios::mdlEliminarPedidos($tabla, $datos);
 
@@ -1018,7 +1017,7 @@ class ControladorUsuarios{
 	/*=======================================================
 		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
 	=========================================================*/
-	static public function ctrMostrarColumnaNoPedido($item){
+	static public function ctrMostrarColumnaNoPedido($item){//ESTE SI LO USO
 
 		$tabla = "linea_pedidos";
 
@@ -1030,7 +1029,7 @@ class ControladorUsuarios{
 	/*=======================================================
 		MOSTRAR COLUMNA DE FECHA EN LA TABLA DE PEDIDOS     
 	=========================================================*/
-	static public function ctrMostrarColumnaFecha($item){
+	static public function ctrMostrarColumnaFecha($item){//ESTE SI LO USO
 
 		$tabla = "linea_pedidos";
 
@@ -1042,7 +1041,7 @@ class ControladorUsuarios{
 	/*==================================================================
 	 	AUTOREINICIAR LOS ID DE LAS TABLAS CUANDO ESTÉN VACÍOS     
 	====================================================================*/
-	static public function ctrAutoreiniciarValoresIdTablas($tabla){
+	static public function ctrAutoreiniciarValoresIdTablas($tabla){//ESTE SI LO USO
 
 		$tablaModelo = $tabla;
 
@@ -1055,7 +1054,7 @@ class ControladorUsuarios{
 	/*==================================================================
 	 	CONSULTA GENERAL DE TODAS LAS TABLAS     
 	====================================================================*/
-	static public function ctrMostrarRegistrosTablas($tabla){
+	static public function ctrMostrarRegistrosTablas($tabla){//ESTE SI LO USO
 
 		$tablaModelo = $tabla;
 
@@ -1064,29 +1063,30 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
-	/*==================================================================
-	 	PONER CEROS A LA IZQUIERDA DEL ID DE ALGUNA TABLA   
-	====================================================================*/
-	public function ctrPonerCerosIzquierda($tabla, $columna){
-
-		$tablaModelo = $tabla;
-
-		$respuesta = ModeloUsuarios::mdlPonerCerosIzquierda($tablaModelo, $columna);
-
-		return $respuesta;
-
-	}
 
 	/*==================================================================
 	 	MOSTRAR LA TABLA PEDIDOS POR GRUPO CON CABECERA     
 	====================================================================*/
-	static function ctrMostrarTablaPedidosByGrupo($grupo){
+	static function ctrMostrarLineaPedidosByNoPedido($grupo){
 
-		$tabla = "pedidos";
+		$tabla = "linea_pedidos";
 
-		$respuesta = ModeloUsuarios::mdlMostrarTablaPedidosByGrupo($tabla, $grupo);
+		$respuesta = ModeloUsuarios::mdlMostrarLineaPedidosByNoPedido($tabla, $grupo);
 
 		return $respuesta;
+	}
+
+		/*===============================================
+		MOSTRAR CABECERA DE PEDIDOS POR ID DE USUARIO     
+	=================================================*/
+	static public function ctrMostrarCabeceraPedidosByUsuario($item){//ESTE SI LO USO
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosByUsuario($tabla, $item);
+
+		return $respuesta;
+
 	}
 
 

@@ -612,7 +612,7 @@ $("#btnCheckout").click(function(){
 							
 						'</select><br>');
 
-			$(".seleccioneLugarPreparacion").html('<select class="form-control" name="seleccionarPais" id="seleccionarPais" >'+
+			$(".seleccioneLugarPreparacion").html('<select class="form-control" name="seleccionarPreparacion" id="seleccionarPreparacion" >'+
 
 							'<option value="">Seleccione el lugar de preparación</option>'+
 							
@@ -621,43 +621,59 @@ $("#btnCheckout").click(function(){
 			$(".formEnvio").show();
 
 			$(".btnPagar").attr("tipo","fisico");
+
 			
+			
+					$.ajax({
+						url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
+		                    												de esta petición Ajax*/
+						type: "GET",
+						cache: false,
+						contentType: false,
+						processData:false,
+						dataType:"json",
+						success: function(respuesta){
+							
+							respuesta.forEach(seleccionarPalapa);
 
+							function seleccionarPalapa(item, index){
 
-			var names = personas.map(function (person) { return person.name; });
-			var sorted = names.sort();
+								var pais = item.name;
+								var codPais = item.code;
+								$("#seleccionarOrigen").append('<option value="'+codPais+'">'+pais+'</option>');
+							  }
 
-			var unique = sorted.filter(function (value, index) {
-			    return value !== sorted[index + 1];
-			});
+						    }
+					})
 
-			console.log(unique);
+					$.ajax({
+						url:rutaOculta+"vistas/js/plugins/preparacion.json",/*De esta manera estoy llamando a un archivo json a través
+		                    												de esta petición Ajax*/
+						type: "GET",
+						cache: false,
+						contentType: false,
+						processData:false,
+						dataType:"json",
+						success: function(respuesta){
+							
+							respuesta.forEach(seleccionarPalapa);
 
-			$.ajax({
-				url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
-                    												de esta petición Ajax*/
-				type: "GET",
-				cache: false,
-				contentType: false,
-				processData:false,
-				dataType:"json",
-				success: function(respuesta){
-					
-					respuesta.forEach(seleccionarPalapa);
+							function seleccionarPalapa(item, index){
 
-					function seleccionarPalapa(item, index){
+								var bar = item.name;
+								var codigo = item.code;
+								$("#seleccionarPreparacion").append('<option value="'+codigo+'">'+bar+'</option>');
+							  }
 
-						var pais = item.name;
-						var codPais = item.code;
-
-						$("#seleccionarOrigen").append('<option value="'+codPais+'">'+pais+'</option>');
-					}
-
-				}
-			})
+						    }
+					})
 			/*====================================================================  
   				EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO      
 			======================================================================*/
+			$("#seleccionarPreparacion").change(function(){
+				$(".alert").remove();
+			})
+
 			$("#seleccionarOrigen").change(function(){ //Las tasas de las palapas es como si fueran los países
 
 				$(".alert").remove();
@@ -817,7 +833,15 @@ $("#cambiarDivisa").change(function(){
 
 	if($("#seleccionarOrigen").val() == ""){
 
-		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el lugar de envío</div>');
+		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
+
+		return;
+
+	}
+
+	if($("#seleccionarPreparacion").val() == ""){
+
+		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el lugar de preparación</div>');
 
 		return;
 
@@ -875,7 +899,14 @@ $(".btnPagar ").click(function(){
 
 	if(tipo == "fisico" && $("#seleccionarOrigen").val() == ""){
 
-		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el país de envío</div>');
+		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
+
+		return;
+	}
+
+	if(tipo == "fisico" && $("#seleccionarPreparacion").val() == ""){
+
+		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de preparación</div>');
 
 		return;
 	}
@@ -918,18 +949,27 @@ $(".btnPagar ").click(function(){
 	$(".alert").remove();
 
 	var combo = document.getElementById("seleccionarOrigen");
+	var combo1 = document.getElementById("seleccionarPreparacion");
 
 
 	var tipo = $(this).attr("tipo");
 
 	if(tipo == "fisico" && $("#seleccionarOrigen").val() == ""){
 
-		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de envío</div>');
+		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
 		
 		return;
 	}
 
-	if(tipo == "virtual" && combo == null || tipo == "fisico" && $("seleccionarOrigen").val() != ""){
+	if(tipo == "fisico" && $("#seleccionarPreparacion").val() == ""){
+
+		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de preparación</div>');
+		
+		return;
+	}
+
+	if(tipo == "virtual" && combo == null || tipo == "fisico" && $("seleccionarOrigen").val() != "" 
+	|| tipo == "fisico" && $("seleccionarPreparacion").val() != ""){
 
 			swal({
 			title: "¡OK!",
@@ -962,10 +1002,17 @@ $(".btnPagar ").click(function(){
     		
 
     		if(combo == null){
-    			var palapa = "";
+    			var origen = "";
     		}
     		else{
-    			 palapa = combo.options[combo.selectedIndex].text;
+    			 origen = combo.options[combo.selectedIndex].text;
+    		}
+
+    		if(combo1 == null){
+    			var preparacion = "";
+    		}
+    		else{
+    			 preparacion = combo1.options[combo.selectedIndex].text;
     		}
 		
 			comentario = document.getElementById("comentario").value;
@@ -984,7 +1031,6 @@ $(".btnPagar ").click(function(){
 		for (var i = 0; i < listaCarrito.length; i++) {
 
 			if(i==0){ //Esta opción funciona bien :)
-				datos.append("idUsuarioPedidos", idUsuarioPedido);
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
 				datos.append("excepciones", comentario)
@@ -998,9 +1044,10 @@ $(".btnPagar ").click(function(){
 
 
 				// ====== ESTA ES LA PETICION AJAX PARA LA TABLA DE CABECERA DE PEDIDOS======
+				datos1.append("idUsuarioPedidos", idUsuarioPedido);
 				datos1.append("nombreUsuario", nombreUsuario);
 				datos1.append("origen", origen);
-				datos1.append("lugarPreparacion", lugarPreparacion);
+				datos1.append("lugarPreparacion", preparacion);
 				datos1.append("estado",0);
 
 				$.ajax({
@@ -1011,7 +1058,7 @@ $(".btnPagar ").click(function(){
 					contentType: false,
 					processData: false,
 					success:function(respuesta){
-						console.log("respuesta", respuesta);
+						console.log("cabecera de pedidos", respuesta);
 							
 					}
 
@@ -1019,8 +1066,7 @@ $(".btnPagar ").click(function(){
 			    // ====== FSTE ES EL FINAL DE LA TABLA DE CABECERA DE PEDIDOS======
 
 			}else{
-
-				datos.append("idUsuarioPedidos", idUsuarioPedido);
+				
 				datos.append("idProductoPedidos", listaCarrito[i]["idProducto"]);
 				datos.append("cantidad", listaCarrito[i]["cantidad"]);
 				datos.append("excepciones", "");
@@ -1037,7 +1083,7 @@ $(".btnPagar ").click(function(){
 					contentType: false,
 					processData: false,
 					success:function(respuesta){
-						console.log("respuesta", respuesta);
+						//console.log("linea de pedidos", respuesta);
 							
 					}
 

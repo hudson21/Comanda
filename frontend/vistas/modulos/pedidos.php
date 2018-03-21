@@ -78,12 +78,13 @@ if(!isset($_SESSION["validarSesion"])){
 		 $item1 = 1;
 		 $usuario = $_SESSION["nombre"];
 
-		 $pedidos = ControladorUsuarios::ctrMostrarPedidosByIdUsuario($item);
+		 $cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosByUsuario($item);
+		 $i = 0;
 
 		 //var_dump($pedidos);
-		 $mostrar = ControladorUsuarios::ctrMostrarPedidosByMostrar($item, $item1);
+		 //$mostrar = ControladorUsuarios::ctrMostrarPedidosByMostrar($item, $item1);
 
-		 if(!$pedidos){//Si no hay nada en la lista de pedidos
+		 if(!$cabeceraPedidos){//Si no hay nada en la lista de pedidos
 
 			 echo '<style> .cabeceraPedidos {display:none;} </style>
 			 <div class="col-xs-12 text-center error404">
@@ -97,98 +98,87 @@ if(!isset($_SESSION["validarSesion"])){
 		 }else{ 
 
 		 	echo'<div class="panel-group" id="accordion">';
-			  $i=1;
 
-		     foreach($pedidos as $key => $value1){
+   foreach($cabeceraPedidos as $key => $value1){
 
-				  	if($value1["cabecera"] == 1){
+	  $numero_pedido=$value1["no_pedido"];
 
-				     	echo'<div class="panel panel-default">';
+		 echo'<div class="panel panel-default">';
 
-						   echo'<div class="panel-heading">
-						        	<h4 class="panel-title">
-								      <a data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">Pedido '.$i.'</a>
-						        		</h4>
-						      	</div>
+		  echo'<div class="panel-heading">
+			     <h4 class="panel-title">
+				   <a data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">'.$_SESSION["fecha"].' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
+								     
+					  $resultado = substr($value1["fecha"], 10);
+								   
+					  echo $resultado." / ".$value1["estado"];
+
+			   echo'</a>
+
+				 </h4>
+			 </div>
 	
-						      	<div id="pedido'.$i.'" class="panel-collapse collapse ">';
+			 <div id="pedido'.$i.'" class="panel-collapse collapse ">';
 
-						         echo'  <div class="panel-body">';
-						   
+			   echo' <div class="panel-body">';
 
-                    			echo' <div class="panel panel-default"> 
+				 echo' <div class=" panel-default"> 
 
-										<div class="panel-heading cabeceraPedidos">
+				        <div class="panel-heading cabeceraPedidos">
 
-										<div class="col-md-2 col-sm-3 col-xs-12 text-center">
-
-											<h3>
-												<small>PALAPA</small>
-											</h3>
-											
-										</div>
-
-										<div class="col-md-1 col-sm-3 col-xs-12 text-center">
-
-											<h3>
-												<small>IMAGEN</small>
-											</h3>
-											
-										</div>
-
-										<div class="col-md-1 col-sm-2 col-xs-12 text-center">
-
-											<h3>
-												<small>PRODUCTO</small>
-											</h3>
-											
-										</div>
-
-										<div class="col-md-2 col-sm-3 col-xs-0 text-center">
-
-											<h3>
-												<small>PRECIO</small>
-											</h3>
-											
-										</div>
-
-										<div class="col-sm-2 col-xs-0 text-center">
-
-											<h3>
-												<small>CANTIDAD</small>
-											</h3>
-											
-										</div>
-
-										<div class="col-sm-4 col-xs-0 text-center">
-
-											<h3>
-												<small>ESTADO</small>
-											</h3>
-											
-										</div>
-
-						        </div>
-
-						        <!--ESTE ES EL DIV DE PANEL PANEL-DEFAULT -->';
-
-						        echo'<div class="" cuerpoPedidos">';
-						    }
-
-						        	$ordenar = "id";
-									$valor = $value1["id_producto"];
-									$item = "id";
-
-									$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+						   <div class="col-md-2 col-sm-3 col-xs-12 text-center">
+							   <h3>
+								   <small>NOMBRE</small>
+							   </h3>
+						   </div>
 
 
-									foreach($productos as $key => $value2){
+							<div class="col-md-3 col-sm-2 col-xs-12 text-center">
+								<h3>
+									<small>IMAGEN</small>
+								</h3>
+							</div>
 
-				     if($value2["tipo"] == "fisico" && $value1["cabecera"]==1 || $value2["tipo"] == "fisico" && $value1["cabecera"]== 0 ){
 
-									  echo '<div class="row itemCarrito">
+							<div class="col-md-2 col-sm-3 col-xs-0 text-center">
+								<h3>
+									<small>PRECIO</small>
+								</h3>
+							</div>
 
-										<div class="col-sm-1 col-xs-12">
+
+							<div class="col-lg-4 col-md-4 col-sm-2 col-xs-0 text-center">
+								<h3>
+									<small>CANTIDAD</small>
+								</h3>
+							</div>
+
+						 </div>
+
+					</div>
+
+		  <!--<div>ESTE ES EL DIV DE PANEL PANEL-DEFAULT -->';
+
+				$numero_pedido= $value1["no_pedido"];
+
+				$lineaPedidos=ControladorUsuarios::ctrMostrarLineaPedidosByNoPedido($numero_pedido);
+
+				echo'<div class="" cuerpoPedidos">';
+
+				  foreach($lineaPedidos as $key => $value2){
+
+				  	$ordenar = "id";
+				    $valor = $value2["id_producto"];
+				    $item = "id";
+				    $productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+
+						foreach($productos as $key => $value3){
+
+						  if($value3["tipo"] == "fisico" || $value3["tipo"] == "virtual"){
+
+					       echo '<div class="row itemCarrito">';
+
+										 /*<div class="col-sm-1 col-xs-12">
 
 											<br>
 
@@ -200,43 +190,37 @@ if(!isset($_SESSION["validarSesion"])){
 
 											</center>
 								
-										</div>
+										</div>*/
 
-										<div style="margin-top:30px;" class="col-sm-1 col-xs-12">
+								echo'<div style="margin-top:30px;" class="col-sm-2 col-xs-12 text-right">
 								
 											<br>
 
-											<p  class="tituloCarritoPedidos text-left">'.$value1["palapa"].'</p>
+											<p  class="tituloCarritoPedidos ">'.$value3["titulo"].'</p>
 
 										</div>
 
-										<div style="margin-top:15px" class="col-sm-1 col-xs-12">
+										<div style="margin-top:15px" class="col-sm-2 col-xs-12 text-right">
 								
 											<figure >
 
-											<img src="'.$servidor.$value2["portada"].'" class="img-thumbnail">
+											<img style="width:70px" src="'.$servidor.$value3["portada"].'" class="img-thumbnail">
 
 											</figure>
 
 										</div>
 
-										<div style="margin-left:5px; " class="col-sm-1 col-xs-12">
+									
+
+										<div style="margin-left:100px" class="col-md-2 col-sm-1 col-xs-12">
 
 											<br>
 
-											<p class="tituloCarritoCompra text-left">'.$value2["titulo"].'</p>
+										 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value3["precio"].'</span></p>
 								
 										</div>
 
-										<div class="col-md-2 col-sm-1 col-xs-12">
-
-											<br>
-
-										 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value2["precio"].'</span></p>
-								
-										</div>
-
-										<div  class="col-md-2 col-sm-3 col-xs-8 ">
+										<div style="margin-left:100px" class="col-md-2 col-sm-3 col-xs-8 ">
 
 											<br>
 
@@ -244,7 +228,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 												<center>
 										
-												  <input type="number" class="form-control text-center" min="1" value="'.$value1["cantidad"].'" readonly> 
+												  <input type="number" class="form-control text-center" min="1" value="'.$value2["cantidad"].'" readonly> 
 
 												</center>
 										
@@ -252,25 +236,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 										</div>
 
-										<div style="margin-top:20px; " class="col-md-3 col-sm-1 col-xs-4 ">
-
-											<div class="progress">
-
-												<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-													 <i class="fa fa-check"></i> Despachado 
-												</div>
-
-												<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-													<i class="fa fa-clock-o"></i> Enviando
-												</div>
-
-												<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-													<i class="fa fa-clock-o"></i> Entregado
-												</div>
-
-											</div>
-
-										</div>		
+											
 					
 									</div>
 
@@ -280,7 +246,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 							}//=================FIN DEL TIPO FISICO===================================
 
-					if($value2["tipo"] == "virtual" && $value1["cabecera"]==1 || $value2["tipo"] == "virtual" && $value1["cabecera"]==0 ){
+					/*	if($value2["tipo"] == "virtual"){
 
 					echo '<div class="row itemCarrito">
 
@@ -369,31 +335,30 @@ if(!isset($_SESSION["validarSesion"])){
 					
 
 
-				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================
+				                  }//======================FIN DEL ELSE TIPO VIRTUAL===============================*/
+						     
+						   }//================= FIN DEL FOREACH VALUE 3
 
+						}//======== FIN DEL FOREACH CON VALUE 2
+						   
+								  echo'</div><!--Este es el div del cuerpoPedidos-->';
 
-				              }//=================FIN DEL FOREACH CON VALUE 2===================================
-
-				              if($value1["ultimo"] == 1){
-
-				              	echo'</div>';
-
-				             echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
+						      echo'</div> <!--FIN DEL PANEL BODY QUE HAY DENTRO DEL SEGUNDO IF DE CABECERA=1-->';
 				          
 				        echo'</div> <!--FIN DEL PANEL_COLLAPSE QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
 
-		             echo '</div> </div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
-		         }
+		             echo '</div> <!--FIN DEL PANEL DEFAULT QUE HAY DENTRO DEL PRIMER IF DE CABECERA=1-->';
+
+		         $i++;
+		    }//===== FIN DEL FOREACH CON VALUE 1 ========
 
 
-                  	$i++;
-				}//=================FIN DEL FOREACH CON VALUE 1===================================
+		 	echo'</div> <!--Div del id accordion-->';
+   }//=========FIN DE TODO EL ELSE
+			  
+		              
 
-
-		 echo'</div> <!--Div del id accordion-->';
-				
-
-		 }//=================================FIN DEL ELSE PEDIDOS (El PRIMERITO)====================================
+				          
 
 		
 
@@ -438,10 +403,6 @@ if(!isset($_SESSION["validarSesion"])){
 ?>
 
 
-</div>
-</div>
-</div>
-</div>
 
 
 

@@ -77,7 +77,7 @@ class AjaxUsuarios{
 	/*============================================================================================================  
   		INSERTAR LOS REGISTROS EN LA TABLA DE LINEA PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
 	==============================================================================================================*/
-	public $idUsuarioPedidos ;
+	
 	public $idProductoPedidos;
 	public $cantidad;
 	public $excepciones;
@@ -90,8 +90,7 @@ class AjaxUsuarios{
    //for ($i=0; $i < ; $i++) { 
    	//	$datosUsuarioPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos[i]);
    //}	
-		$datosPedidos = array("idUsuarioPedidos"=>$this->idUsuarioPedidos,
-					   		  "idProductoPedidos"=>$this->idProductoPedidos,
+		$datosPedidos = array("idProductoPedidos"=>$this->idProductoPedidos,
 							  "cantidad"=>$this->cantidad,
 					          "excepciones"=>$this->excepciones,
 					          "mostrar"=>$this->mostrar,
@@ -106,19 +105,20 @@ class AjaxUsuarios{
 	/*============================================================================================================  
   		INSERTAR LOS REGISTROS EN LA TABLA DE CABECERA PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
 	==============================================================================================================*/
-
+	public $idUsuarioPedidos ;
 	public $nombreUsuario;
 	public $origen;
 	public $lugarPreparacion;
 	public $estado;
 	public function ajaxInsertarCabeceraPedidos(){
 
-		$datos = array ("nombreUsuario"=>$this->nombreUsuario,
+		$datos = array ("idUsuarioPedidos"=>$this->idUsuarioPedidos,
+						"nombreUsuario"=>$this->nombreUsuario,
 						"origen"=>$this->origen,
 						"lugarPreparacion"=>$this->lugarPreparacion,
 						"estado"=>$this->estado);
 
-
+		$respuesta = ControladorUsuarios::ctrInsertarCabeceraPedido($datos);
 	}
 
 	/*===============================================
@@ -183,12 +183,11 @@ class AjaxUsuarios{
 	}
 
 /*============================================================================================================  
-  	INSERTAR LOS REGISTROS EN LA TABLA DE PEDIDOS DE LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+  	INSERTAR LOS REGISTROS EN LA TABLA LINEA DE PEDIDOS LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
 ==============================================================================================================*/
-	if(isset($_POST["idUsuarioPedidos"])){
+	if(isset($_POST["idProductoPedidos"])){
 
 		$pedidos = new AjaxUsuarios();
-		$pedidos -> idUsuarioPedidos = $_POST["idUsuarioPedidos"];
 		$pedidos -> idProductoPedidos = $_POST["idProductoPedidos"];
 		$pedidos -> cantidad = $_POST["cantidad"];
 		$pedidos -> excepciones = $_POST["excepciones"];
@@ -196,6 +195,20 @@ class AjaxUsuarios{
 		$pedidos -> numeroPedido = $_POST["numeroPedido"];
 		$pedidos -> ajaxInsertarLineaPedidos();
 
+	}
+
+/*============================================================================================================  
+  	INSERTAR LOS REGISTROS EN LA TABLA CABECERA DE PEDIDOS LOS PRODUCTOS YA CONFIRMADOS A TRAVÉS DE AJAX    
+==============================================================================================================*/
+	if(isset($_POST["nombreUsuario"])){
+
+		$cabecera = new AjaxUsuarios();
+		$cabecera -> idUsuarioPedidos = $_POST["idUsuarioPedidos"];
+		$cabecera -> nombreUsuario = $_POST["nombreUsuario"];
+		$cabecera -> origen = $_POST["origen"];
+		$cabecera -> lugarPreparacion = $_POST["lugarPreparacion"];
+		$cabecera -> estado = $_POST["estado"];
+		$cabecera -> ajaxInsertarCabeceraPedidos();
 	}
 
 	/*===============================================
