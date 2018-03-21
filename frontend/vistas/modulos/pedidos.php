@@ -113,9 +113,26 @@ if(!isset($_SESSION["validarSesion"])){
 								   
 					  echo $resultado." / ".$value1["estado"];
 
-			   echo'</a>
+			   echo'</a>';
 
-				 </h4>
+			  /* echo'
+
+												<button class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
+													 <i class="fa fa-check"></i> Despachado 
+												</button>
+
+												<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
+													<i class="fa fa-clock-o"></i> Enviando
+												</div>
+
+												<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
+													<i class="fa fa-clock-o"></i> Entregado
+												</div>
+
+											';*/
+
+					
+				 echo'</h4>
 			 </div>
 	
 			 <div id="pedido'.$i.'" class="panel-collapse collapse ">';
