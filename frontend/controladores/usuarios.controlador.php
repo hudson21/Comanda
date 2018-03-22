@@ -1002,18 +1002,6 @@ class ControladorUsuarios{
 
 	}
 
-	/*===============================================
-		QUITAR PRODUCTO DE LISTA DE PEDITOS     
-	=================================================*/
-	static public function ctrEliminarPedidos($datos){//ESTE SI LO USO
-
-		$tabla = "linea_pedidos";
-
-		$respuesta = ModeloUsuarios::mdlEliminarPedidos($tabla, $datos);
-
-		return $respuesta;
-	}
-
 	/*=======================================================
 		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
 	=========================================================*/
@@ -1076,8 +1064,8 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
-		/*===============================================
-		MOSTRAR CABECERA DE PEDIDOS POR ID DE USUARIO     
+	/*===============================================
+	   MOSTRAR CABECERA DE PEDIDOS POR ID DE USUARIO     
 	=================================================*/
 	static public function ctrMostrarCabeceraPedidosByUsuario($item){//ESTE SI LO USO
 
@@ -1087,6 +1075,31 @@ class ControladorUsuarios{
 
 		return $respuesta;
 
+	}
+
+	/*===============================================
+		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
+	=================================================*/
+	static public function ctrCambiarEstadoCabeceraPedidos($datos){
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlCambiarEstadoCabeceraPedidos($tabla, $datos);
+
+		return $respuesta;
+	}
+
+
+	/*===============================================
+		QUITAR PRODUCTO DE LISTA DE PEDITOS     
+	=================================================*/
+	static public function ctrEliminarPedidos($tablaModelo, $datos){//ESTE SI LO USO
+
+		$tabla = $tablaModelo;
+
+		$respuesta = ModeloUsuarios::mdlEliminarPedidos($tabla, $datos);
+
+		return $respuesta;
 	}
 
 

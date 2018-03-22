@@ -451,31 +451,6 @@ class ModeloUsuarios{
 
 	}
 
-	/*===============================================
-		QUITAR PRODUCTO DE LISTA DE PEDITOS     
-	=================================================*/
-	static public function mdlEliminarPedidos($tabla, $datos){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id_producto");
-
-		$stmt -> bindParam(":id_producto", $datos, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
-
-	}
-
 	/*=======================================================
 		MOSTRAR COLUMNA DE GRUPO EN LA TABLA DE PEDIDOS     
 	=========================================================*/
@@ -586,6 +561,57 @@ class ModeloUsuarios{
 		return $stmt -> fetchAll();
 
 		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*===============================================
+		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
+	=================================================*/
+	static public function mdlCambiarEstadoCabeceraPedidos($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET estado = :estado WHERE no_pedido = :no_pedido");
+		
+		$stmt -> bindParam(":estado", $datos["estadoPedido"], PDO::PARAM_INT);
+		$stmt -> bindParam(":no_pedido", $datos["noPedido"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+	/*===============================================
+	 QUITAR PRODUCTO DE LISTA DE PEDITOS     
+	=================================================*/
+	static public function mdlEliminarPedidos($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE no_pedido = :no_pedido");
+
+		$stmt -> bindParam(":no_pedido", $datos["idProductoPedidoEliminar"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "eliminado";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
 
 		$stmt = null;
 

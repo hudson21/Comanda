@@ -108,6 +108,7 @@ class AjaxUsuarios{
 	public $excepciones;
 	public $mostrar;
 	public $estado;
+
 	public function ajaxInsertarCabeceraPedidos(){
 
 		$datos = array ("idUsuarioPedidos"=>$this->idUsuarioPedidos,
@@ -122,17 +123,38 @@ class AjaxUsuarios{
 	}
 
 	/*===============================================
+		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
+	=================================================*/
+	public $estadoPedido;
+	public $noPedido;
+
+	public function ajaxCambiarEstadoCabeceraPedidos(){
+
+		$datos = array("estadoPedido"=>$this->estadoPedido,
+					   "noPedido"=>$this->noPedido);
+
+
+		$respuesta = ControladorUsuarios::ctrCambiarEstadoCabeceraPedidos($datos);
+	}
+
+
+	/*===============================================
 		QUITAR PRODUCTO DE LISTA DE PEDITOS     
 	=================================================*/
 	public $idProductoPedidoEliminar;
 
 	public function ajaxEliminarPedidos(){
 
-		$datos = $this->idProductoPedidoEliminar;
+		$tabla1="cabecera_pedidos";
+		$tabla2="linea_pedidos";
+		
+		$datos = array("idProductoPedidoEliminar"=>$this->idProductoPedidoEliminar);
 
-		$respuesta = ControladorUsuarios::ctrEliminarPedidos($datos);
+		$respuesta = ControladorUsuarios::ctrEliminarPedidos($tabla1,$datos);
+		$respuesta1 = ControladorUsuarios::ctrEliminarPedidos($tabla2,$datos);
 
 		echo $respuesta;
+		echo $respuesta1;
 	}
 }
 
@@ -218,4 +240,14 @@ class AjaxUsuarios{
 		$pedidosEliminar = new AjaxUsuarios();
 		$pedidosEliminar -> idProductoPedidoEliminar = $_POST["idProductoPedidoEliminar"];
 		$pedidosEliminar -> ajaxEliminarPedidos();
+	}
+
+	/*===============================================
+		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
+	=================================================*/
+	if(isset($_POST["estadoPedido"])){
+		$cabeceraEstado = new AjaxUsuarios();
+		$cabeceraEstado -> estadoPedido = $_POST["estadoPedido"];
+		$cabeceraEstado -> noPedido = $_POST["numeroPedido"];
+		$cabeceraEstado -> ajaxCambiarEstadoCabeceraPedidos();
 	}

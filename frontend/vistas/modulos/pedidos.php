@@ -63,6 +63,28 @@ if(!isset($_SESSION["validarSesion"])){
 	
 </div>
 
+<style>
+
+.btnRecibiendo{
+	color:#fff; 
+	margin-right:2px;
+	font-weight: bold;
+	float:right;
+}
+.btnPreparando{
+	float:right;
+	color:#fff;
+	font-weight: bold;
+	margin-right:2px;
+}
+.btnListo{
+	float:right;
+	color:#fff;
+	font-weight: bold;
+}
+
+	
+</style>
 <!--===============================================
      TABLA CARRITO DE COMPRAS
 ===================================================-->
@@ -106,34 +128,25 @@ if(!isset($_SESSION["validarSesion"])){
 		 echo'<div class="panel panel-default">';
 		 	$resultado1 = substr($value1["fecha"], 0, -15);
 		  echo'<div class="panel-heading">
-			     <h4 class="panel-title">
-				   <a data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
+			     <h4 class="panel-title">';
+			     echo'<button style="margin-right:15px" class="btn btn-default backColor quitarItemPedido " noPedido="'.$value1["no_pedido"].'"><i class="fa fa-times"></i>
+					  </button>';
+				  echo'<a style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
 								     
 					  $resultado = substr($value1["fecha"], 10);
 								   
-					  echo $resultado." / ".$value1["estado"];
+					  echo $resultado;
+
 
 			   echo'</a>';
+			   echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo" class="fa fa-clock-o"></i></button>';
+			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando" class="fa fa-clock-o"></i></button>';
+			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo"class="fa fa-check"></i></button>';
+			  	
+			  echo'</h4>';
+			 echo'</div>
 
-			  /* echo'
 
-												<button class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-													 <i class="fa fa-check"></i> Despachado 
-												</button>
-
-												<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-													<i class="fa fa-clock-o"></i> Enviando
-												</div>
-
-												<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-													<i class="fa fa-clock-o"></i> Entregado
-												</div>
-
-											';*/
-
-					
-				 echo'</h4>
-			 </div>
 	
 			 <div id="pedido'.$i.'" class="panel-collapse collapse ">';
 
@@ -201,9 +214,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 											<center>
 									
-												<button class="btn btn-default backColor quitarItemPedido " idProducto="'.$value1["id"].'">
-												<i class="fa fa-times"></i>
-												</button>
+												
 
 											</center>
 								
@@ -311,28 +322,6 @@ if(!isset($_SESSION["validarSesion"])){
 		 	echo'</div> <!--Div del id accordion-->';
    }//=========FIN DE TODO EL ELSE
 			  
-		              
-			
-
-
-
-					
+		     					
  
 ?>
-
-
-
-
-
-					
-
-			
-
-
-
-			
-
-			
-
-
-
