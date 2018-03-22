@@ -1198,7 +1198,14 @@ $(".quitarItemPedido").click(function(){
  AGREGANDO Y QUITANDO CLASE A LOS BOTONES DE ESTADO   
 =====================================================*/
 
+var contarPedidos = localStorage.getItem("contarPedidos");
+console.log("contarPedidos", contarPedidos);
+
+
+	
 $(".btnPreparando").click(function(){
+
+	for (var i = 1; i <= contarPedidos; i++) {
 
 	var datos = new FormData();
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
@@ -1220,18 +1227,53 @@ $(".btnPreparando").click(function(){
 
 			})
 
-	$("#preparando").removeClass("fa-clock-o");
-	$("#preparando").addClass("fa-check");
+		if(i==idProductoPedidoEliminar){
 
-	$("#listo").addClass("fa-clock-o");
+			$("#preparando"+i).removeClass("fa-clock-o");
+			$("#preparando"+i).addClass("fa-check");
 
+			$("#listo"+i).addClass("fa-clock-o");
+
+		}
 	
+
+	}
 })
+
 
 $(".btnListo").click(function(){
 	
-	$("#listo").removeClass("fa-clock-o");
-	$("#listo").addClass("fa-check");
+	for (var i = 1; i <= contarPedidos; i++) {
+
+	var datos = new FormData();
+	var idProductoPedidoEliminar = $(this).attr("noPedido");
+	console.log("idPedidoActualizar", idProductoPedidoEliminar);
+
+	datos.append("estadoPedido", 2);
+	datos.append("numeroPedido",idProductoPedidoEliminar);
+
+	$.ajax({
+			 url:rutaOculta+"ajax/usuarios.ajax.php",
+			 method:"POST",
+			 data: datos,
+			 cache: false,
+			 contentType: false,
+			 processData: false,
+			 success:function(respuesta){
+
+			 }
+
+			})
+
+		if(i==idProductoPedidoEliminar){
+
+			$("#listo"+i).removeClass("fa-clock-o");
+			$("#listo"+i).addClass("fa-check");
+
+		}
+	
+
+	}
 })
 
 

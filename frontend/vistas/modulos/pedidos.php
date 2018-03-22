@@ -101,7 +101,16 @@ if(!isset($_SESSION["validarSesion"])){
 		 $usuario = $_SESSION["nombre"];
 
 		 $cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosByUsuario($item);
-		 $i = 0;
+
+		 $contarPedidos=count($cabeceraPedidos);
+
+		 echo '<script>
+
+	            localStorage.setItem("contarPedidos","'.$contarPedidos.'");
+
+	      </script>';
+
+		 $i = 1;
 
 		 //var_dump($pedidos);
 		 //$mostrar = ControladorUsuarios::ctrMostrarPedidosByMostrar($item, $item1);
@@ -139,9 +148,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 
 			   echo'</a>';
-			   echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo" class="fa fa-clock-o"></i></button>';
-			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando" class="fa fa-clock-o"></i></button>';
-			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo"class="fa fa-check"></i></button>';
+			   echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
+			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-clock-o"></i></button>';
+			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
 			  	
 			  echo'</h4>';
 			 echo'</div>
