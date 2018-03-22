@@ -146,11 +146,26 @@ if(!isset($_SESSION["validarSesion"])){
 								   
 					  echo $resultado;
 
-
+					  
 			   echo'</a>';
-			   echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
+			   if($value1["estado"]==0){
+			   	echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
 			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-clock-o"></i></button>';
 			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			  }
+
+			  if($value1["estado"]==1){
+			   	echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
+			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-check"></i></button>';
+			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			  }
+
+			  if($value1["estado"]==2){
+			   	echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-check"></i></button>';
+			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-check"></i></button>';
+			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			  }
+			   
 			  	
 			  echo'</h4>';
 			 echo'</div>
