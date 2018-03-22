@@ -358,50 +358,6 @@ $no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item);
 
 			      </script>';
 
-
-			function contar_diferencias($array){
-				$cont = 0;
-			    $diferentes = 0;
-			    $ya_diferentes = array();
-			    
-			    foreach($array as $item)
-		    	{
-			        for($u=0;$u<sizeof($array); $u++)
-			        {
-			            if($item != $array[$u] && !in_array($item, $ya_diferentes))
-			            {
-			                ++$cont;
-			            }
-			        }
-		        
-			        if($cont > 0 )
-			        {
-			            array_push($ya_diferentes, $item);
-			            $diferentes++;
-			        }
-		        
-		        		$cont = 0;
-		    	}
-		    		return $diferentes;
-			}
-
-			$numerosDiferentes = contar_diferencias($no_pedido);
-
-			$_SESSION["cantidadGrupos"]= $numerosDiferentes;
-
-			$fecha = ControladorUsuarios::ctrMostrarColumnaFecha($item);
-
-			$fechaString=implode(",",$fecha[0]);
-			$fechaNumero=(int)$fechaString;
-
-			$resultado = substr($fechaString, 31);
-			
-
-			var_dump($resultado);
-
-			$_SESSION["fecha"]=$fechaNumero;
-
-
 		}
 
 

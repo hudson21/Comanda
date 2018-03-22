@@ -104,10 +104,10 @@ if(!isset($_SESSION["validarSesion"])){
 	  $numero_pedido=$value1["no_pedido"];
 
 		 echo'<div class="panel panel-default">';
-
+		 	$resultado1 = substr($value1["fecha"], 0, -15);
 		  echo'<div class="panel-heading">
 			     <h4 class="panel-title">
-				   <a data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">'.$_SESSION["fecha"].' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
+				   <a data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
 								     
 					  $resultado = substr($value1["fecha"], 10);
 								   

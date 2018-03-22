@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2018 a las 22:50:49
+-- Tiempo de generación: 22-03-2018 a las 15:43:51
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -54,12 +54,26 @@ INSERT INTO `banner` (`id`, `ruta`, `img`, `titulo1`, `titulo2`, `titulo3`, `est
 
 CREATE TABLE `cabecera_pedidos` (
   `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL,
+  `id_usuario` int(11) NOT NULL,
   `nombre_usuario` text COLLATE utf8_spanish_ci NOT NULL,
   `origen` text COLLATE utf8_spanish_ci NOT NULL,
   `lugar_preparacion` text COLLATE utf8_spanish_ci NOT NULL,
+  `comentarios` text COLLATE utf8_spanish_ci NOT NULL,
+  `mostrar` int(11) NOT NULL,
   `estado` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `cabecera_pedidos`
+--
+
+INSERT INTO `cabecera_pedidos` (`no_pedido`, `id_usuario`, `nombre_usuario`, `origen`, `lugar_preparacion`, `comentarios`, `mostrar`, `estado`, `fecha`) VALUES
+(000000001, 40, 'Carlos Miguel Hudson Diaz', '', '', 'BLA BLA BLA 1321235125321', 1, 0, '2018-03-21 21:29:13'),
+(000000002, 40, 'Carlos Miguel Hudson Diaz', 'Palapa 2', 'BAR LUNA', '2321352135321521351325213532152', 1, 0, '2018-03-21 21:29:43'),
+(000000003, 40, 'Carlos Miguel Hudson Diaz', '', '', 'HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA', 1, 0, '2018-03-21 21:44:24'),
+(000000004, 40, 'Carlos Miguel Hudson Diaz', 'Palapa 2', 'BAR LUNA', 'ESTOS SON PRODUCTOS FÍSICOS', 1, 0, '2018-03-21 21:45:14'),
+(000000005, 40, 'Carlos Miguel Hudson Diaz', 'Palapa 2', 'BAR LUNA', '', 0, 0, '2018-03-21 21:45:40');
 
 -- --------------------------------------------------------
 
@@ -189,11 +203,8 @@ INSERT INTO `deseos` (`id`, `id_usuario`, `id_producto`, `fecha`) VALUES
 
 CREATE TABLE `linea_pedidos` (
   `id` int(9) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `cantidad` int(11) NOT NULL,
-  `comentarios` text COLLATE utf8_spanish_ci NOT NULL,
-  `mostrar` int(11) NOT NULL,
   `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
@@ -202,31 +213,13 @@ CREATE TABLE `linea_pedidos` (
 -- Volcado de datos para la tabla `linea_pedidos`
 --
 
-INSERT INTO `linea_pedidos` (`id`, `id_usuario`, `id_producto`, `cantidad`, `comentarios`, `mostrar`, `no_pedido`, `fecha`) VALUES
-(1, 40, 402, 1, '', 0, 000000001, '2018-03-20 18:36:50');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `origen`
---
-
-CREATE TABLE `origen` (
-  `id` int(11) NOT NULL,
-  `nombre` text COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `origen`
---
-
-INSERT INTO `origen` (`id`, `nombre`) VALUES
-(1, 'palapa1'),
-(2, 'palapa2'),
-(3, 'palapa3'),
-(4, 'palapa4'),
-(5, 'palapa5'),
-(6, 'palapa6');
+INSERT INTO `linea_pedidos` (`id`, `id_producto`, `cantidad`, `no_pedido`, `fecha`) VALUES
+(1, 402, 1, 000000001, '2018-03-21 21:29:13'),
+(2, 462, 1, 000000002, '2018-03-21 21:29:43'),
+(3, 404, 1, 000000003, '2018-03-21 21:44:24'),
+(4, 1, 3, 000000004, '2018-03-21 21:45:14'),
+(5, 2, 4, 000000004, '2018-03-21 21:45:14'),
+(6, 466, 1, 000000005, '2018-03-21 21:45:40');
 
 -- --------------------------------------------------------
 
@@ -252,29 +245,6 @@ CREATE TABLE `plantilla` (
 
 INSERT INTO `plantilla` (`id`, `barraSuperior`, `textoSuperior`, `colorFondo`, `colorTexto`, `logo`, `icono`, `redesSociales`, `fecha`) VALUES
 (1, '#000000', '#ffffff', '#C1CA2C', '#ffffff', 'vistas/img/plantilla/logo.jpg', 'vistas/img/plantilla/icono.png', '[\r\n\r\n	{\r\n		\"red\": \"fa-facebook\",\r\n		\"estilo\": \"facebookBlanco\",\r\n		\"url\": \"http://facebook.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-youtube\",\r\n		\"estilo\": \"youtubeBlanco\",\r\n		\"url\": \"http://youtube.com\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-twitter\",\r\n		\"estilo\": \"twitterBlanco\",\r\n		\"url\": \"http://twitter.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-google-plus\",\r\n		\"estilo\": \"googleBlanco\",\r\n		\"url\": \"http://google.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-instagram\",\r\n		\"estilo\": \"instagramBlanco\",\r\n		\"url\": \"http://instagram.com/\"\r\n	}\r\n]', '2018-02-16 15:50:47');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `preparacion`
---
-
-CREATE TABLE `preparacion` (
-  `id` int(11) NOT NULL,
-  `nombre` text COLLATE utf8_spanish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `preparacion`
---
-
-INSERT INTO `preparacion` (`id`, `nombre`) VALUES
-(1, 'BAR SOL'),
-(2, 'BAR LUNA'),
-(3, 'BAR ITALIANO'),
-(4, 'BAR CHINO'),
-(5, 'BAR FRANCÉS'),
-(6, 'BAR ESPAÑOL');
 
 -- --------------------------------------------------------
 
@@ -318,9 +288,9 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`, `titulo`, `titular`, `descripcion`, `multimedia`, `detalles`, `precio`, `portada`, `vistas`, `ventas`, `vistasGratis`, `ventasGratis`, `ofertadoPorCategoria`, `ofertadoPorSubCategoria`, `oferta`, `precioOferta`, `descuentoOferta`, `imgOferta`, `finOferta`, `nuevo`, `peso`, `entrega`, `fecha`, `excepciones`) VALUES
-(1, 1, 1, 'fisico', 'falda-de-flores-1', 'Falda de Flores', 'fdf', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa03.jpg', 16, 404, 0, 0, 0, 1, 1, 11, 40, 'vistas/img/ofertas/Ropa-para-dama.jpg', '0000-00-00 00:00:00', 1, 1, 10, '0000-00-00 00:00:00', ''),
-(2, 1, 1, 'fisico', 'vestido-jean-1', 'Vestido Jean', 'vestido jean', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa04.jpg', 41, 403, 0, 0, 0, 1, 1, 11, 40, 'vistas/img/ofertas/Ropa-para-dama.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(3, 1, 1, 'fisico', 'vestido-clasico-1', 'Vestido Clásico', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa02.jpg', 18, 402, 0, 0, 0, 1, 1, 11, 40, 'vistas/img/ofertas/Ropa-para-dama.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(1, 1, 1, 'fisico', 'falda-de-flores-1', 'Falda de Flores', 'fdf', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa03.jpg', 22, 404, 0, 0, 0, 1, 1, 11, 40, 'vistas/img/ofertas/Ropa-para-dama.jpg', '0000-00-00 00:00:00', 1, 1, 10, '0000-00-00 00:00:00', ''),
+(2, 1, 1, 'fisico', 'vestido-jean-1', 'Vestido Jean', 'vestido jean', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa04.jpg', 52, 403, 0, 0, 0, 1, 1, 11, 40, 'vistas/img/ofertas/Ropa-para-dama.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(3, 1, 1, 'fisico', 'vestido-clasico-1', 'Vestido Clásico', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa02.jpg', 25, 402, 0, 0, 0, 1, 1, 11, 40, 'vistas/img/ofertas/Ropa-para-dama.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (4, 1, 3, 'fisico', 'top-dama-1', 'Top Dama', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 29, 'vistas/img/productos/ropa/ropa06.jpg', 9, 401, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (5, 2, 6, 'fisico', 'semibotas-ejecutivas-1', 'Semibotas Ejecutivas', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 45, 'vistas/img/productos/calzado/calzado01.jpg', 5, 400, 0, 0, 0, 1, 1, 22, 50, 'vistas/img/ofertas/Calzado-para-hombre.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (6, 2, 7, 'fisico', 'tennis-gris-1', 'Tennis Gris', 'tennis', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado02.jpg', 7, 399, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 1, 1, 10, '0000-00-00 00:00:00', ''),
@@ -727,7 +697,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 (399, 5, 18, 'virtual', 'curso-de-bootstrap-48', 'Curso de Bootstrap', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso05.jpg', 400, 6, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
 (400, 5, 18, 'virtual', 'crea-aplicaciones-con-php-47', 'Crea aplicaciones con PHP', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso01.jpg', 400, 5, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
 (401, 5, 18, 'virtual', 'aprende-javascript-desde-cero-47', 'Aprende Javascript desde Cero', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso02.jpg', 410, 5, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
-(402, 5, 18, 'virtual', 'curso-de-jquery-47', 'Curso de jQuery', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso03.jpg', 403, 3, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
+(402, 5, 18, 'virtual', 'curso-de-jquery-47', 'Curso de jQuery', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso03.jpg', 404, 3, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
 (403, 5, 18, 'virtual', 'curso-de-canvas-y-javascript-47', 'Curso de canvas y Javascript', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso04.jpg', 406, 2, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
 (404, 5, 18, 'virtual', 'curso-de-bootstrap-49', 'Curso de Bootstrap', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{ \"Clases\": \"121 Clases\",\"Tiempo\": \"24 horas de estudio\",\"Nivel\": \"Nivel B?sico\", \"Acceso\": \"Acceso de por vida\",\"Dispositivo\": \"Acceso en dispositivos m?viles y TV\",\"Certificado\": \"Certificado de finalizaci?n\"}', 100, 'vistas/img/productos/cursos/curso05.jpg', 407, 1, 0, 0, 1, 0, 1, 10, 90, 'vistas/img/ofertas/cursos.jpg', '0000-00-00 00:00:00', 0, 0, 0, '0000-00-00 00:00:00', ''),
 (405, 1, 1, 'fisico', 'falda-de-flores-9', 'Falda de Flores', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/ropa/ropa03.jpg', 0, 0, 1, 2, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
@@ -788,11 +758,11 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 (459, 1, 1, 'fisico', 'vestido-clasico-11', 'Vestido Clásico', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/ropa/ropa02.jpg', 0, 0, 55, 12, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (460, 1, 3, 'fisico', 'top-dama-11', 'Top Dama', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/ropa/ropa06.jpg', 0, 0, 56, 12, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (461, 2, 6, 'fisico', 'semibotas-ejecutivas-11', 'Semibotas Ejecutivas', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/calzado/calzado01.jpg', 0, 0, 57, 10, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(462, 2, 7, 'fisico', 'tennis-gris-11', 'Tennis Gris', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado02.jpg', 195, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(462, 2, 7, 'fisico', 'tennis-gris-11', 'Tennis Gris', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado02.jpg', 201, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (463, 2, 6, 'fisico', 'zapatilla-clasica-11', 'Zapatilla Clásica', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/calzado/calzado03.jpg', 0, 0, 59, 8, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(464, 2, 7, 'fisico', 'tennis-verde-11', 'Tennis Verde', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '[ 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-01.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-02.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-03.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-04.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-05.jpg\"} ]', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado04.jpg', 252, 217, 0, 0, 0, 0, 1, 16.5, 30, 'vistas/img/ofertas/tennis-verde.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(465, 2, 7, 'fisico', 'tennis-rojo-11', 'Tennis Rojo', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado05.jpg', 201, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(466, 2, 7, 'fisico', 'tennis-azul-11', 'Tennis Azul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado06.jpg', 223, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(464, 2, 7, 'fisico', 'tennis-verde-11', 'Tennis Verde', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '[ 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-01.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-02.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-03.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-04.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-05.jpg\"} ]', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado04.jpg', 255, 217, 0, 0, 0, 0, 1, 16.5, 30, 'vistas/img/ofertas/tennis-verde.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(465, 2, 7, 'fisico', 'tennis-rojo-11', 'Tennis Rojo', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado05.jpg', 203, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(466, 2, 7, 'fisico', 'tennis-azul-11', 'Tennis Azul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado06.jpg', 231, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (467, 3, 11, 'fisico', 'pulsera-de-diamantes-11', 'Pulsera de diamantes', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio01.jpg', 0, 0, 68, 4, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (468, 3, 9, 'fisico', 'bolso-militar-11', 'Bolso Militar', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio02.jpg', 0, 0, 88, 3, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (469, 3, 9, 'fisico', 'bolso-deportivo-gris-11', 'Bolso Deportivo Gris', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio03.jpg', 0, 0, 160, 2, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
@@ -988,21 +958,9 @@ ALTER TABLE `linea_pedidos`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `origen`
---
-ALTER TABLE `origen`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indices de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `preparacion`
---
-ALTER TABLE `preparacion`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1045,7 +1003,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de la tabla `cabecera_pedidos`
 --
 ALTER TABLE `cabecera_pedidos`
-  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
+  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -1081,25 +1039,13 @@ ALTER TABLE `deseos`
 -- AUTO_INCREMENT de la tabla `linea_pedidos`
 --
 ALTER TABLE `linea_pedidos`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `origen`
---
-ALTER TABLE `origen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `preparacion`
---
-ALTER TABLE `preparacion`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
