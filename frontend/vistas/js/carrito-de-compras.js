@@ -1167,7 +1167,7 @@ $(".btnPagar ").click(function(){
 ================================================*/
 $(".quitarItemPedido").click(function(){
 
-	$(this).parent().parent().parent().remove();
+	$(this).parent().parent().parent().hide();
 
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
 	//console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);

@@ -134,17 +134,28 @@ if(!isset($_SESSION["validarSesion"])){
 
    foreach($cabeceraPedidos as $key => $value1){
 
+   /*	if($value1["disponible"]==1){
+
+   		echo'<style>
+			
+			.inicio'.$i.'{
+				display:none;
+			}
+
+   		</style>';
+   	}*/
+
    	if($value1["disponible"]==0){
 
    	 $numero_pedido=$value1["no_pedido"];
 
-		 echo'<div class="panel panel-default">';
+		 echo'<div class="inicio'.$i.' panel panel-default">';
 		 	$resultado1 = substr($value1["fecha"], 0, -15);
 		  echo'<div class="panel-heading">
 			     <h4 class="panel-title">';
 			     echo'<button style="margin-right:15px" class="btn btn-default backColor quitarItemPedido " noPedido="'.$value1["no_pedido"].'"><i class="fa fa-times"></i>
 					  </button>';
-				  echo'<a style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$i.'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
+				  echo'<a style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$value1["no_pedido"].'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
 								     
 					  $resultado = substr($value1["fecha"], 10);
 								   
@@ -176,7 +187,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 
 	
-			 <div id="pedido'.$i.'" class="panel-collapse collapse ">';
+			 <div id="pedido'.$value1["no_pedido"].'" class="panel-collapse collapse ">';
 
 			   echo' <div class="panel-body">';
 
@@ -348,7 +359,7 @@ if(!isset($_SESSION["validarSesion"])){
    	 }// ========== FIN DEL IF DE (DISPONIBLE = 0)=================================
 
    	else{
-
+   				$i++;
    	 	$cuenta++;
    	 	if($cuenta == count($cabeceraPedidos)){
    	 		echo '<style> .cabeceraPedidos {display:none;} </style>
