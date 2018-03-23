@@ -53,6 +53,8 @@
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
 
+    <link href="https://fonts.googleapis.com/css?family=Mukta+Vaani" rel="stylesheet">
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
   
 
@@ -69,6 +71,7 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/carrito-de-compras.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/fonts.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/pedidos.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/notificaciones.css">
     
 
     
@@ -392,6 +395,7 @@
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
+<script src="<?php echo $url;?>vistas/js/notificaciones.js"></script>
 
 
 

@@ -80,12 +80,39 @@ if(!isset($_SESSION["validarSesion"])){
 			   PESTAÑA MENSAJES DE PEDIDOS
 			===================================================-->
 		  <div id="mensajesPedidos" class="tab-pane fade in active">
+			
+			<div  id="contenedor">
 
-		  	<div class="panel-group">
+				<div id="caja-chat">
 
-		  	<h2>Mensajes de Pedidos</h2>
+					<div id="chat">
 
+						<div id="datos-chat">
+							
+							<span>Hudson: </span>
+							<span>Hola como estas</span>
+							<span>10:04 am</span>
+
+						</div>
+						
+					</div>
+					
+				</div>
+
+				<form method="POST" action="notificaciones.php">
+
+					<input type="text" name="nombre" placeholder="Ingresa tu nombre">
+
+					<textarea name="mensaje" id="" placeholder="Ingresa tu mensaje"></textarea>
+
+					<input type="submit" name="enviar" value="ENVIAR">
+					
+				</form>
+				
 			</div>
+
+
+			
 		    
 		  </div>
 
@@ -107,7 +134,7 @@ if(!isset($_SESSION["validarSesion"])){
 		     <h2>Mensajes Personalizados</h2>   	
 
           </div>
-          
+
      </div>
 
 
