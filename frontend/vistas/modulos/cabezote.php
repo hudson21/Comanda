@@ -102,7 +102,7 @@ if($cliente->getAccessToken()){
 			<!--=====================================
 				=          SOCIAL            =
 			======================================-->
-			<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12 social">
+			<div  class="col-lg-7 col-md-7 col-sm-7 col-xs-12 social ">
 
                 <ul>
 
@@ -133,7 +133,7 @@ if($cliente->getAccessToken()){
 				=            REGISTRO            =
 			======================================-->
 			
-			<div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 registro">	
+			<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12 registro pull-right">	
 
 				<ul>
 
@@ -170,6 +170,9 @@ if($cliente->getAccessToken()){
                      <li><a href="'.$url.'pedidos" >Pedidos</a></li>
 
                      <li>|</li>
+                     <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
+
+                     <li>|</li>
                      <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
 
                   } 
@@ -187,6 +190,9 @@ if($cliente->getAccessToken()){
                          
                          <li>|</li>
                          <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+
+                         <li>|</li>
+                         <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
 
                          <li>|</li>
                          <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
@@ -207,6 +213,9 @@ if($cliente->getAccessToken()){
                          
                          <li>|</li>
                          <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+
+                         <li>|</li>
+                         <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
 
                          <li>|</li>
                          <li><a href="'.$url.'salir" >Salir</a></li>';
@@ -263,9 +272,9 @@ if($cliente->getAccessToken()){
 			<!--=====================================
 	            =   CATEGORIAS Y BUSCADOR      =
 			======================================-->	
-    	 	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12" >
+    	 	<div class="col-lg-4 col-md-6 col-sm-8 col-xs-12" >
 
-    	 	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
+    	 <!--	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 backColor" id="btnCategorias">
 
     	 			<p>CATEGORIAS
 
@@ -274,12 +283,12 @@ if($cliente->getAccessToken()){
     	 				</span>
     	 			</p>
     	 			
-    	 		</div>
+    	 		</div>-->
 
     	 		<!--=====================================
 	            		=    BUSCADOR      =
 			       ======================================-->
-			       <div class="input-group col-lg-8 col-md-8 col-sm-8 col-xs-12 backColor" id="buscador">	
+			       <div class="input-group col-lg-10 col-md-8 col-sm-8 col-xs-12 backColor" id="buscador">	
                      
                      <input type="search" name="buscar" class="form-control" placeholder="Buscar...">
 
@@ -297,30 +306,34 @@ if($cliente->getAccessToken()){
 
                      </span>
 
-			       </div>
+			       </div>  
                   
     	 	</div>
 
+        
     	 	 <!--=====================================
 	            		=    CARRITO DE COMPRAS     =
 			  ======================================-->
+       
 			 <div class="input-group col-lg-3 col-md-3 col-sm-2 col-xs-12 " id="carrito">
 
 			      <a href="<?php echo $url;?>carrito-de-compras">
 
 			      	<button class="btn backColor btn-default pull-left " style="background:#C1CA2C;color:white;">
                         	
-                        	<i class="fa fa-shopping-cart "></i>
+                  <i class="fa fa-shopping-cart "></i>
 
-                        </button>
+              </button>
 			      	
 			      </a>
             
-            <div class="cesta">
+            <div style="margin-left:5px" class="cesta">
               
                <p>TU CESTA <span class="cantidadCesta"></span> <br> USD $ <span class="sumaCesta"></span></p>
 
             </div>
+
+
 			     
 
 			 </div>

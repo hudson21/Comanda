@@ -15,7 +15,7 @@ $titulo1 = json_decode($banner["titulo1"],true);
 $titulo2 = json_decode($banner["titulo2"],true);
 $titulo3 = json_decode($banner["titulo3"],true);
 
-echo '<figure class="banner">
+/*echo '<figure class="banner">
 	
 	<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%" >
 
@@ -30,7 +30,7 @@ echo '<figure class="banner">
 
 	</div>
 
-</figure>';
+</figure>';*/
 
 $titulosModulos = array("ARTÍCULOS CON DESCUENTO", "LO MÁS VENDIDO", "LO MÁS VISTO");
 $rutaModulos = array("articulos-con-descuento","lo-mas-vendido","lo-mas-visto");

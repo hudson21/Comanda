@@ -1,41 +1,115 @@
-<?PHP
-	function sendMessage(){
-		$content = array(
-			"en" => 'Esta es una notificación'
-			);
-		
-		$fields = array(
-			'app_id' => "7a9d5e07-08e4-47a0-82f1-b0e15ca782ad",
-			'included_segments' => array('Active Users'),
-			'data' => array("foo" => "bar"),
-			'contents' => $content
-		);
-		
-		$fields = json_encode($fields);
-    	print("\nJSON sent:\n");
-    	print($fields);
-		
-		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, "https://onesignal.com/api/v1/notifications");
-		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json; charset=utf-8',
-												   'Authorization: Basic ZDNhOWFiNjUtMmIxNy00ZjA0LTk4ZGUtZWJmOTlhZmEyYzFk'));
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-		curl_setopt($ch, CURLOPT_HEADER, FALSE);
-		curl_setopt($ch, CURLOPT_POST, TRUE);
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+<style>
 
-		$response = curl_exec($ch);
-		curl_close($ch);
-		
-		return $response;
-	}
+	.menuDesplegable{display:none;}
+
+	/*.cesta{display:none;*/}
+</style>
+
+<!--===============================================
+   VALIDAR SESIÓN
+===================================================-->
+<?php
+
+$url = Ruta::ctrRuta();
+$servidor = Ruta::ctrRutaServidor();
+
+if(!isset($_SESSION["validarSesion"])){
+
+	echo '<script>
 	
-	$response = sendMessage();
-	$return["allresponses"] = $response;
-	$return = json_encode( $return);
-	
-	print("\n\nJSON received:\n");
-	print($return);
-	print("\n");
+			window.location = "'.$url.'"
+
+	</script>';
+
+	exit();//Esto es para cancelar cualquier acción que se hada dentro de PHP
+}
+
 ?>
+<style>.menuDesplegable{display:none;}</style>
+<!--===============================================
+     BREADCRUMB DE MENSAJES
+===================================================-->
+<div class="container-fluid well well-sm">
+
+	<div class="container">
+
+		<div class="row">
+
+			<ul class="breadcrumb  fondoBreadcrumb text-uppercase" style="margin-bottom:0px; background:rgba(0,0,0,0);">
+
+				<li><a style="text-decoration:none;" href="<?php echo $url; ?>">MENSAJES</a></li>
+			    <li class="active pagActiva"><?php echo $rutas[0]; ?></li>
+				
+			</ul>
+			
+		</div>
+		
+	</div>
+	
+</div>
+
+<!--===============================================
+     SECCIÓN DE MENSAJE
+===================================================-->
+<div class="container-fluid">
+
+	<div class="container">
+
+		<ul class="nav nav-tabs">
+
+		  <li class="active">
+		  	<a data-toggle="tab" href="#mensajesPedidos" >
+		  	<i class="fa fa-paper-plane"></i> Mensajes de Pedidos</a>
+		  </li>
+
+		  <li>
+		  	<a data-toggle="tab" href="#mensajesGenerales">
+		  	<i class="fa fa-plane"></i> Mensajes Generales</a>
+		  </li>
+
+		  <li>
+		  	<a data-toggle="tab" href="#mensajesPersonalizados">
+		  	<i class="fa fa-phone"></i> Mensajes Personalizados</a>
+		  </li>
+
+		</ul>
+
+		<div class="tab-content">
+
+			<!--===============================================
+			   PESTAÑA MENSAJES DE PEDIDOS
+			===================================================-->
+		  <div id="mensajesPedidos" class="tab-pane fade in active">
+
+		  	<div class="panel-group">
+
+		  	<h2>Mensajes de Pedidos</h2>
+
+			</div>
+		    
+		  </div>
+
+		  <!--===============================================
+			   PESTAÑA MENSAJES GENERALES
+			===================================================-->
+		  <div id="mensajesGenerales" class="tab-pane fade">
+
+		  	<h2>Mensajes Generales</h2>
+		    
+
+  		  </div>
+
+  		    <!--===============================================
+			   PESTAÑA MENSAJES PERSONALIZADOS
+			===================================================-->
+  		  <div id="mensajesPersonalizados" class="tab-pane fade ">
+		     
+		     <h2>Mensajes Personalizados</h2>   	
+
+          </div>
+          
+     </div>
+
+
+
+

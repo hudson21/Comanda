@@ -402,7 +402,7 @@ class ModeloUsuarios{
 	==============================================================================================================*/
 	static public function mdlInsertarCabeceraPedido($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, nombre_usuario, origen, lugar_preparacion, comentarios, mostrar, estado) VALUES (:id_usuario, :nombre_usuario, :origen, :lugar_preparacion, :comentarios, :mostrar, :estado)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (id_usuario, nombre_usuario, origen, lugar_preparacion, comentarios, mostrar, estado, disponible) VALUES (:id_usuario, :nombre_usuario, :origen, :lugar_preparacion, :comentarios, :mostrar, :estado, :disponible)");
 
 		$stmt -> bindParam(":id_usuario", $datos["idUsuarioPedidos"], PDO::PARAM_INT);
 		$stmt -> bindParam(":nombre_usuario", $datos["nombreUsuario"], PDO::PARAM_STR);
@@ -411,6 +411,7 @@ class ModeloUsuarios{
 		$stmt -> bindParam(":comentarios", $datos["excepciones"], PDO::PARAM_STR);
 		$stmt -> bindParam(":mostrar", $datos["mostrar"], PDO::PARAM_INT);
 		$stmt -> bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+		$stmt -> bindParam(":disponible", $datos["disponible"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
@@ -597,7 +598,7 @@ class ModeloUsuarios{
 	=================================================*/
 	static public function mdlEliminarPedidos($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE no_pedido = :no_pedido");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET disponible = 1 WHERE no_pedido = :no_pedido");
 
 		$stmt -> bindParam(":no_pedido", $datos["idProductoPedidoEliminar"], PDO::PARAM_STR);
 

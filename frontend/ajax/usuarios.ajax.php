@@ -108,6 +108,7 @@ class AjaxUsuarios{
 	public $excepciones;
 	public $mostrar;
 	public $estado;
+	public $disponible;
 
 	public function ajaxInsertarCabeceraPedidos(){
 
@@ -117,7 +118,8 @@ class AjaxUsuarios{
 						"lugarPreparacion"=>$this->lugarPreparacion,
 						"excepciones"=>$this->excepciones,
 					    "mostrar"=>$this->mostrar,
-						"estado"=>$this->estado);
+						"estado"=>$this->estado,
+						"disponible"=>$this->disponible);
 
 		$respuesta = ControladorUsuarios::ctrInsertarCabeceraPedido($datos);
 	}
@@ -146,15 +148,13 @@ class AjaxUsuarios{
 	public function ajaxEliminarPedidos(){
 
 		$tabla1="cabecera_pedidos";
-		$tabla2="linea_pedidos";
 		
 		$datos = array("idProductoPedidoEliminar"=>$this->idProductoPedidoEliminar);
 
 		$respuesta = ControladorUsuarios::ctrEliminarPedidos($tabla1,$datos);
-		$respuesta1 = ControladorUsuarios::ctrEliminarPedidos($tabla2,$datos);
-
+		
 		echo $respuesta;
-		echo $respuesta1;
+		
 	}
 }
 
@@ -230,6 +230,7 @@ class AjaxUsuarios{
 		$cabecera -> excepciones = $_POST["excepciones"];
 		$cabecera -> mostrar = $_POST["mostrar"];
 		$cabecera -> estado = $_POST["estado"];
+		$cabecera -> disponible = $_POST["disponible"];
 		$cabecera -> ajaxInsertarCabeceraPedidos();
 	}
 

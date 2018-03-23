@@ -1049,6 +1049,7 @@ $(".btnPagar ").click(function(){
 					datos1.append("mostrar", 1);
 				}
 				datos1.append("estado",0);
+				datos1.append("disponible",0);
 
 				$.ajax({
 					url:rutaOculta+"ajax/usuarios.ajax.php",
@@ -1199,7 +1200,7 @@ $(".quitarItemPedido").click(function(){
 =====================================================*/
 
 var contarPedidos = localStorage.getItem("contarPedidos");
-console.log("contarPedidos", contarPedidos);
+//console.log("contarPedidos", contarPedidos);
 
 
 	
@@ -1247,7 +1248,7 @@ $(".btnListo").click(function(){
 
 	var datos = new FormData();
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	console.log("idPedidoActualizar", idProductoPedidoEliminar);
+	//console.log("idPedidoActualizar", idProductoPedidoEliminar);
 
 	datos.append("estadoPedido", 2);
 	datos.append("numeroPedido",idProductoPedidoEliminar);
@@ -1266,6 +1267,9 @@ $(".btnListo").click(function(){
 			})
 
 		if(i==idProductoPedidoEliminar){
+
+			$("#preparando"+i).removeClass("fa-clock-o");
+			$("#preparando"+i).addClass("fa-check");
 
 			$("#listo"+i).removeClass("fa-clock-o");
 			$("#listo"+i).addClass("fa-check");

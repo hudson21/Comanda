@@ -104,6 +104,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 		 $contarPedidos=count($cabeceraPedidos);
 
+		 $cuenta = 0;
+
 		 echo '<script>
 
 	            localStorage.setItem("contarPedidos","'.$contarPedidos.'");
@@ -132,7 +134,9 @@ if(!isset($_SESSION["validarSesion"])){
 
    foreach($cabeceraPedidos as $key => $value1){
 
-	  $numero_pedido=$value1["no_pedido"];
+   	if($value1["disponible"]==0){
+
+   	 $numero_pedido=$value1["no_pedido"];
 
 		 echo'<div class="panel panel-default">';
 		 	$resultado1 = substr($value1["fecha"], 0, -15);
@@ -338,7 +342,28 @@ if(!isset($_SESSION["validarSesion"])){
 		             echo '</div> <!--FIN DEL PANEL DEFAULT -->';
 
 		         $i++;
-		    }//===== FIN DEL FOREACH CON VALUE 1 ========
+
+		         
+
+   	 }// ========== FIN DEL IF DE (DISPONIBLE = 0)=================================
+
+   	else{
+
+   	 	$cuenta++;
+   	 	if($cuenta == count($cabeceraPedidos)){
+   	 		echo '<style> .cabeceraPedidos {display:none;} </style>
+			 <div class="col-xs-12 text-center error404">
+				               
+				     <h1><small>¡Oops!</small></h1>
+				    
+				     <h2>Aún no tiene productos en su lista de pedidos</h2>
+
+				   </div>';
+
+   	 	}
+   	 }
+	  
+ }//===== FIN DEL FOREACH CON VALUE 1 ========
 
 
 
