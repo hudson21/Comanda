@@ -230,6 +230,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	  text-shadow:4px 4px 1px #dadada;
   }
 
+  ul.acciones{
+    float:left;
+  }
+
 }
 /*------------------------------------------------
   MOVIL (XS revisamos en 320px)
@@ -253,5 +257,24 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 
   a img{
     width:200px;
+  }
+
+  .img-responsive{
+    width:130px;
+  }
+
+  img.img-responsive{
+    margin-right:220px;
+  }
+
+  li.productos{
+    margin-left:55px;
+  }
+
+  
+
+  h1{
+    font-size:24px;
+    font-weight:bold;
   }
 }

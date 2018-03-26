@@ -55,7 +55,7 @@ BARRA DE PRODUCTOS
 
 <div class="container-fluid well well-sm barraProductos">
 
-   	<div class="container">
+   	<div class="container productos">
 
 	  	<div class="row">
 
@@ -279,11 +279,11 @@ LISTAR PRODUCTOS
 
 			 			</a>
 
-			 		</figure>
+			 		</figure>';
 
-					'.$value["id"].'
+					//.$value["id"].'
 
-			 	<h4>
+			 	echo'<h4>
 
 			 		<small>
 			 			

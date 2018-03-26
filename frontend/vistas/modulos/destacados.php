@@ -172,7 +172,7 @@ echo '
 
 	foreach($modulos[$i] as $key => $value){
 	 							
-	 	echo '<li class=" col-md-3 col-sm-6 col-xs-12">
+	 	echo '<li  class=" productos col-md-3 col-sm-6 col-xs-7">
 
 	 		<figure>
 	 		

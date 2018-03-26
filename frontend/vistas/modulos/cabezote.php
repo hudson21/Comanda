@@ -102,7 +102,7 @@ if($cliente->getAccessToken()){
 			<!--=====================================
 				=          SOCIAL            =
 			======================================-->
-			<div  class="col-lg-7 col-md-7 col-sm-7 col-xs-12 social ">
+			<div  class="col-lg-7 col-md-7 col-sm-5 col-xs-12 social ">
 
                 <ul>
 
@@ -133,9 +133,9 @@ if($cliente->getAccessToken()){
 				=            REGISTRO            =
 			======================================-->
 			
-			<div class="col-lg-4 col-md-3 col-sm-4 col-xs-12 registro pull-right">	
+			<div class="col-lg-4 col-md-5 col-sm-7 col-xs-12 registro pull-right">	
 
-				<ul>
+				<ul class="acciones">
 
           <?php
 
