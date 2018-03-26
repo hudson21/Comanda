@@ -98,7 +98,7 @@
 </head>
 
 
-<body>
+<body onload="ajax();">
 
 
 	<!--Para generar comentarios va a ser con 

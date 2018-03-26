@@ -5,6 +5,26 @@
 	/*.cesta{display:none;*/}
 </style>
 
+<script>
+	
+	function ajax(){
+		var req = new XMLHttpRequest();
+
+		req.onreadystatechange = function(){
+			if(req.readyState == 4 && req.status == 200){
+				document.getElementById("chat").innerHTML = req.responseText;
+			}
+		}
+
+		req.open("GET","chat.php", true);
+		req.send();
+	}
+
+	//Linea que hace que se refresque la página cada segundo
+	setInterval(function(){ajax();}, 1000);
+
+</script>
+
 <!--===============================================
    VALIDAR SESIÓN
 ===================================================-->
@@ -87,11 +107,16 @@ if(!isset($_SESSION["validarSesion"])){
 
 					<div id="chat">
 
+						<?php 
+						//Aquí lo harás con el foreach
+
+						?>
+
 						<div id="datos-chat">
 							
-							<span>Hudson: </span>
-							<span>Hola como estas</span>
-							<span>10:04 am</span>
+							<span style="color:#0101DF">Hudson: </span>
+							<span style="color:#848484">Hola como estas</span>
+							<span style="float:right">10:04 am</span>
 
 						</div>
 						
@@ -108,6 +133,19 @@ if(!isset($_SESSION["validarSesion"])){
 					<input type="submit" name="enviar" value="ENVIAR">
 					
 				</form>
+
+				<?php
+					if(isset($_POST["enviar"])){
+						$nombre = $_POST["nombre"];
+						$mensaje = $_POST["mensaje"];
+
+						$consulta = "INSERT INTO notificaciones "
+						$ejecutar = 
+
+					}
+				 if(Si se ejecuta la consulta)
+					echo'<embed loop="false" src="beep.mp3" hidden="true" autoplay="true">';
+				?>
 				
 			</div>
 
