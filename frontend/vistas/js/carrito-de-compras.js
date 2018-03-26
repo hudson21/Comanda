@@ -1202,7 +1202,9 @@ $(".quitarItemPedido").click(function(){
 var contarPedidos = localStorage.getItem("contarPedidos");
 //console.log("contarPedidos", contarPedidos);
 
-
+/*====================================================================
+  	EJECUTAR ACCIÓN DE CAMBIO DE ESTADO CON EL BOTÓN DE PREPARANDO        
+======================================================================*/
 	
 $(".btnPreparando").click(function(){
 
@@ -1210,7 +1212,7 @@ $(".btnPreparando").click(function(){
 
 	var datos = new FormData();
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	console.log("idPedidoActualizar", idProductoPedidoEliminar);
+	//console.log("idPedidoActualizar", idProductoPedidoEliminar);
 
 	datos.append("estadoPedido", 1);
 	datos.append("numeroPedido",idProductoPedidoEliminar);
@@ -1241,15 +1243,49 @@ $(".btnPreparando").click(function(){
 	}
 })
 
+/*====================================================================
+  	EJECUTAR ACCIONES CON EL BOTÓN DE LISTO        
+======================================================================*/
 
 $(".btnListo").click(function(){
-	
-	for (var i = 1; i <= contarPedidos; i++) {
 
-	var datos = new FormData();
+/*====================================================================
+  EJECUTAR ACCIÓN DE INSERCIÓN DE MENSAJE CON EL BOTÓN DE LISTO        
+======================================================================*/
+    var datos = new FormData();
+	var datos1 = new FormData();
+
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	//console.log("idPedidoActualizar", idProductoPedidoEliminar);
+	console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
+	var nomUsuario = $(this).attr("nombreUsuario");
+	console.log("nomUsuario", nomUsuario);
+	var noUsuario = $(this).attr("noUsuario");
+	console.log("noUsuario", noUsuario);
 
+	datos1.append("noUsuario", noUsuario);
+	datos1.append("nomUsuario", nomUsuario);
+	datos1.append("noPedido", idProductoPedidoEliminar);
+	datos1.append("tipo", 0);
+	datos1.append("mensaje", "");
+
+	$.ajax({
+			 url:rutaOculta+"ajax/usuarios.ajax.php",
+			 method:"POST",
+			 data: datos1,
+			 cache: false,
+			 contentType: false,
+			 processData: false,
+			 success:function(respuesta){
+			 	
+
+			 }
+
+			})
+
+ for (var i = 1; i <= contarPedidos; i++) {
+/*====================================================================
+  	EJECUTAR ACCIÓN DE CAMBIO DE ESTADO CON EL BOTÓN DE LISTO        
+======================================================================*/
 	datos.append("estadoPedido", 2);
 	datos.append("numeroPedido",idProductoPedidoEliminar);
 
@@ -1274,10 +1310,16 @@ $(".btnListo").click(function(){
 			$("#listo"+i).removeClass("fa-clock-o");
 			$("#listo"+i).addClass("fa-check");
 
+		   document.getElementById("botonPreparando"+i).disabled=true;
+
 		}
 	
 
 	}
 })
+
+
+
+
 
 

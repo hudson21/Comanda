@@ -41,6 +41,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 	.cesta{display:none;}
 </style>
+
+
 <!--===============================================
      BREADCRUMB CARRITO DE COMPRAS
 ===================================================-->
@@ -155,6 +157,7 @@ if(!isset($_SESSION["validarSesion"])){
 			     <h4 class="panel-title">';
 			     echo'<button style="margin-right:15px" class="btn btn-default backColor quitarItemPedido " noPedido="'.$value1["no_pedido"].'"><i class="fa fa-times"></i>
 					  </button>';
+
 				  echo'<a style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$value1["no_pedido"].'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
 								     
 					  $resultado = substr($value1["fecha"], 10);
@@ -164,23 +167,39 @@ if(!isset($_SESSION["validarSesion"])){
 					  
 			   echo'</a>';
 			   if($value1["estado"]==0){
-			   	echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
-			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-clock-o"></i></button>';
-			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			   	echo'<button onClick="this.disabled=true"id="botonListo'.$i.'" class="btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
+			  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'" class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-clock-o"></i></button>';
+			  	echo'<button onClick="this.disabled=true"id="botonRecibiendo'.$i.'" class=" btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			  	echo'<script>
+				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
+			  	</script>';
 			  }
 
 			  if($value1["estado"]==1){
-			   	echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
-			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-check"></i></button>';
-			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			   	echo'<button onClick="this.disabled=true"id="botonListo'.$i.'" class="btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-clock-o"></i></button>';
+			  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'"  class=" btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-check"></i></button>';
+			  	echo'<button id="botonRecibiendo'.$i.'" class=" btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+
+			  	echo'<script>
+				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
+				document.getElementById("botonPreparando'.$i.'").disabled=true;
+			  	</script>';
 			  }
 
 			  if($value1["estado"]==2){
-			   	echo'<button  class="btnListo btn  btn-danger" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-check"></i></button>';
-			  	echo'<button  class="btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-check"></i></button>';
-			  	echo'<button  class="btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			   	echo'<button  id="botonListo'.$i.'" class=" btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" class="fa fa-check"></i></button>';
+			  	echo'<button id="botonPreparando'.$i.'" class=" btnPreparando btn-success btn" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-check"></i></button>';
+			  	echo'<button  id="botonRecibiendo'.$i.'"  class=" btnRecibiendo btn-info btn" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+
+			  	echo'<script>
+			  	document.getElementById("botonListo'.$i.'").disabled=true;
+				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
+				document.getElementById("botonPreparando'.$i.'").disabled=true;
+			  	</script>';
+
 			  }
-			   
+
+
 			  	
 			  echo'</h4>';
 			 echo'</div>

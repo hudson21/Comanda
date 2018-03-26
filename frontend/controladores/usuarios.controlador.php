@@ -1102,5 +1102,30 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
+	/*===============================================
+		AGREGAR PEDIDOS A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	static public function ctrAgregarPedidosaNotificaciones($datos){
+
+		$tabla = "notificaciones";
+
+		$respuesta = ModeloUsuarios::mdlAgregarPedidosaNotificaciones($tabla, $datos);
+
+		return $respuesta;
+
+	}
+
+	/*==============================================================
+		MOSTRAR LOS MENSAJES DE LA TABLA PEDIDOS POR TIPO DE MENSAJE     
+	================================================================*/
+	static public function ctrMostrarMensajesByUsuario($item, $item1){
+
+		$tabla = "notificaciones";
+
+		$respuesta = ModeloUsuarios::mdlMostrarMensajesByUsuario($tabla, $item, $item1);
+
+		return $respuesta;
+	}
+
 
 }

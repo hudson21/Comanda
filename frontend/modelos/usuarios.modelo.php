@@ -618,6 +618,54 @@ class ModeloUsuarios{
 
 	}
 
+	/*===============================================
+		AGREGAR PEDIDOS A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	static public function mdlAgregarPedidosaNotificaciones($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (no_usuario, nombre_usuario, no_pedido, tipo, mensaje) VALUES (:no_usuario, :nombre_usuario, :no_pedido, :tipo, :mensaje)");
+
+		$stmt -> bindParam(":no_usuario", $datos["noUsuario"], PDO::PARAM_INT);
+		$stmt -> bindParam(":nombre_usuario", $datos["nomUsuario"], PDO::PARAM_STR);
+		$stmt -> bindParam(":no_pedido", $datos["noPedido"], PDO::PARAM_STR);
+		$stmt -> bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
+		$stmt -> bindParam(":mensaje", $datos["mensaje"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+	/*==============================================================
+		MOSTRAR LOS MENSAJES DE LA TABLA PEDIDOS POR TIPO DE MENSAJE     
+	================================================================*/
+	static public function mdlMostrarMensajesByUsuario($tabla, $item, $item1){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_usuario = :id_usuario AND tipo = :tipo ORDER BY id DESC");
+
+		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+		$stmt -> bindParam(":tipo", $item1, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+	}
+
 
 }
 

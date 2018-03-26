@@ -156,6 +156,28 @@ class AjaxUsuarios{
 		echo $respuesta;
 		
 	}
+
+	/*===============================================
+		AGREGAR PEDIDOS A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	public $noUsuario;
+	public $nomUsuario;
+	public $numPedido;
+	public $tipo;
+	public $mensaje;
+
+	public function ajaxAgregarPedidosaNotificaciones(){
+
+		$datos = array("noUsuario"=>$this->noUsuario,
+					   "nomUsuario"=>$this->nomUsuario,
+					   "noPedido"=>$this->numPedido,
+					   "tipo"=>$this->tipo,
+					   "mensaje"=>$this->mensaje);
+
+		$respuesta = ControladorUsuarios::ctrAgregarPedidosaNotificaciones($datos);
+		
+		echo $respuesta;
+	} 
 }
 
 /*===============================================
@@ -251,4 +273,18 @@ class AjaxUsuarios{
 		$cabeceraEstado -> estadoPedido = $_POST["estadoPedido"];
 		$cabeceraEstado -> noPedido = $_POST["numeroPedido"];
 		$cabeceraEstado -> ajaxCambiarEstadoCabeceraPedidos();
+	}
+
+	/*===============================================
+		AGREGAR PEDIDOS A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	if(isset($_POST["tipo"])){
+		$notificaciones = new AjaxUsuarios();
+		$notificaciones -> noUsuario = $_POST["noUsuario"];
+		$notificaciones -> nomUsuario = $_POST["nomUsuario"];
+		$notificaciones -> numPedido = $_POST["noPedido"];
+		$notificaciones -> tipo = $_POST["tipo"];
+		$notificaciones -> mensaje = $_POST["mensaje"];
+		$notificaciones -> ajaxAgregarPedidosaNotificaciones();
+		
 	}

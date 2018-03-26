@@ -98,7 +98,7 @@
 </head>
 
 
-<body onload="ajax();">
+<body > <!--onload="ajax();"-->
 
 
 	<!--Para generar comentarios va a ser con 
@@ -376,6 +376,19 @@
   if($tablaLineaPedidos == null){
 
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla12);
+    // ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
+  }
+
+  /*======================================
+           TABLA LINEA DE NOTIFICACIONES  
+  ========================================*/
+  $tabla13 = "notificaciones";
+
+  $tablaNotificaciones = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla13);
+
+  if($tablaNotificaciones == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla13);
     // ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
   }
     

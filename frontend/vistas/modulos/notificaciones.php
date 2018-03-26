@@ -7,7 +7,7 @@
 
 <script>
 	
-	function ajax(){
+	/*function ajax(){
 		var req = new XMLHttpRequest();
 
 		req.onreadystatechange = function(){
@@ -21,7 +21,7 @@
 	}
 
 	//Linea que hace que se refresque la página cada segundo
-	setInterval(function(){ajax();}, 1000);
+	setInterval(function(){ajax();}, 1000);*/
 
 </script>
 
@@ -36,13 +36,29 @@ $servidor = Ruta::ctrRutaServidor();
 if(!isset($_SESSION["validarSesion"])){
 
 	echo '<script>
-	
-			window.location = "'.$url.'"
+			swal({
+					title: "¡NO TIENE ACCESO!",
+					text: "¡Necesita estar logeado para poder ver su lista de Pedidos!",
+					type:"warning",
+					confirmButtonText:"Ok",
+					closeOnConfirm: false,
+					icon: "warning"
+				 },
+
+				 function(isConfirm){
+
+					 if(isConfirm){
+						// history.back();
+					     window.location = "'.$url.'";
+					 }
+				});
+			
 
 	</script>';
 
 	exit();//Esto es para cancelar cualquier acción que se hada dentro de PHP
 }
+
 
 ?>
 <style>.menuDesplegable{display:none;}</style>
@@ -100,8 +116,31 @@ if(!isset($_SESSION["validarSesion"])){
 			   PESTAÑA MENSAJES DE PEDIDOS
 			===================================================-->
 		  <div id="mensajesPedidos" class="tab-pane fade in active">
+
+
+		  	<div class="chatbox">
+		  		<div class="chatlogs">
+
+		  			<div class="chat friend">
+		  				<div class="user-photo"><img src="" ></div>
+		  				<p class="chat-message">Que bola acereee</p>	
+		  			</div>
+
+		  			<div class="chat self">
+		  				<div class="user-photo"></div>
+		  				<p class="chat-message">Que bola acereee</p>	
+		  			</div>
+		 
+		  		</div>
+
+		  		<div class="chat-form">
+		  			<textarea></textarea>
+		  			<button>Enviar</button>
+		  		</div>
+		  		
+		  	</div>
 			
-			<div  id="contenedor">
+			<!--<div  id="contenedor">
 
 				<div id="caja-chat">
 
@@ -114,7 +153,25 @@ if(!isset($_SESSION["validarSesion"])){
 
 						<div id="datos-chat">
 							
-							<span style="color:#0101DF">Hudson: </span>
+							<?php/*
+							$item = $_SESSION["id"];
+							$item1 = 0;
+							$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
+
+							foreach ($notificaciones as $key => $value1) {
+								
+								echo'<span style="color:#0101DF">Admin: </span>
+								<span >El pedido número '.$value1["no_pedido"]. '  ya se encuentra listo</span>';
+								$resultado1 = substr($value1["fecha"],10);
+								echo'<span style="color:red; float:right">'.$resultado1.'</span>';
+
+
+
+								echo'<hr style="border:1px solid black;">';
+							}*/
+
+							?>
+							<!--<span style="color:#0101DF">Hudson: </span>
 							<span style="color:#848484">Hola como estas</span>
 							<span style="float:right">10:04 am</span>
 
@@ -124,7 +181,7 @@ if(!isset($_SESSION["validarSesion"])){
 					
 				</div>
 
-				<form method="POST" action="notificaciones.php">
+				<!--<form method="POST" action="notificaciones.php">
 
 					<input type="text" name="nombre" placeholder="Ingresa tu nombre">
 
@@ -132,10 +189,10 @@ if(!isset($_SESSION["validarSesion"])){
 
 					<input type="submit" name="enviar" value="ENVIAR">
 					
-				</form>
+				</form>-->
 
 				<?php
-					if(isset($_POST["enviar"])){
+		/*			if(isset($_POST["enviar"])){
 						$nombre = $_POST["nombre"];
 						$mensaje = $_POST["mensaje"];
 
@@ -144,10 +201,10 @@ if(!isset($_SESSION["validarSesion"])){
 
 					}
 				 if(Si se ejecuta la consulta)
-					echo'<embed loop="false" src="beep.mp3" hidden="true" autoplay="true">';
+					echo'<embed loop="false" src="beep.mp3" hidden="true" autoplay="true">';*/
 				?>
 				
-			</div>
+			
 
 
 			
