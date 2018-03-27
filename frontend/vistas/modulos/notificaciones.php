@@ -99,138 +99,210 @@ if(!isset($_SESSION["validarSesion"])){
 		  </li>
 
 		  <li>
-		  	<a data-toggle="tab" href="#mensajesGenerales">
-		  	<i class="fa fa-plane"></i> Mensajes Generales</a>
-		  </li>
-
-		  <li>
 		  	<a data-toggle="tab" href="#mensajesPersonalizados">
 		  	<i class="fa fa-phone"></i> Mensajes Personalizados</a>
 		  </li>
 
+		  <li>
+		  	<a data-toggle="tab" href="#mensajesGenerales">
+		  	<i class="fa fa-plane"></i> Mensajes Generales</a>
+		  </li>
+
 		</ul>
 
-		<div class="tab-content">
+	<div class="tab-content">
 
-			<!--===============================================
-			   PESTAÑA MENSAJES DE PEDIDOS
-			===================================================-->
-		  <div id="mensajesPedidos" class="tab-pane fade in active">
+	<!--===============================================
+	   PESTAÑA MENSAJES DE PEDIDOS
+	===================================================-->
+      <div id="mensajesPedidos" class="tab-pane fade in active">
 
+	      <?php
 
-		  	<div class="chatbox">
-		  		<div class="chatlogs">
+			$item = $_SESSION["id"];
+			$item1 = 0;
+			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
 
-		  			<div class="chat friend">
-		  				<div class="user-photo"><img src="" ></div>
-		  				<p class="chat-message">Que bola acereee</p>	
-		  			</div>
+		   if($notificaciones){
 
-		  			<div class="chat self">
-		  				<div class="user-photo"></div>
-		  				<p class="chat-message">Que bola acereee</p>	
-		  			</div>
-		 
-		  		</div>
+				echo'<div class="chatboxPedidos">
+			  		 
+			  		     <div class="chatlogs">';
 
-		  		<div class="chat-form">
-		  			<textarea></textarea>
-		  			<button>Enviar</button>
-		  		</div>
-		  		
-		  	</div>
-			
-			<!--<div  id="contenedor">
+								foreach ($notificaciones as $key => $value1) {
 
-				<div id="caja-chat">
+									$resultado1 = substr($value1["fecha"],10);
 
-					<div id="chat">
+						echo'<div class="chat friend">
+								<div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>
+									    <p style="color:black"class="chat-message">El pedido número <span style="color:red">'.$value1["no_pedido"]. '</span>  ya se encuentra listo<br><span style="color:red; float:right; font-weight:bold; font-size:20px">'.$resultado1.'</span></p>';
 
-						<?php 
-						//Aquí lo harás con el foreach
+							   echo'</div>';
+	
+			                      }
+			                   echo'</div></div>';
+			 }else{
+				  echo '<div  class="col-xs-12 text-center ">
+										               
+						  <h1 style="font-size:100px"><small>¡Oops!</small></h1>
+										    
+						  <h2>Aún no tiene pedidos listos</h2>
 
-						?>
+					   </div>';
+				}
 
-						<div id="datos-chat">
-							
-							<?php/*
-							$item = $_SESSION["id"];
-							$item1 = 0;
-							$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
-
-							foreach ($notificaciones as $key => $value1) {
 								
-								echo'<span style="color:#0101DF">Admin: </span>
-								<span >El pedido número '.$value1["no_pedido"]. '  ya se encuentra listo</span>';
-								$resultado1 = substr($value1["fecha"],10);
-								echo'<span style="color:red; float:right">'.$resultado1.'</span>';
 
+		?>
 
+								
 
-								echo'<hr style="border:1px solid black;">';
-							}*/
+		
 
-							?>
-							<!--<span style="color:#0101DF">Hudson: </span>
-							<span style="color:#848484">Hola como estas</span>
-							<span style="float:right">10:04 am</span>
+	   </div>
 
-						</div>
-						
-					</div>
-					
-				</div>
-
-				<!--<form method="POST" action="notificaciones.php">
-
-					<input type="text" name="nombre" placeholder="Ingresa tu nombre">
-
-					<textarea name="mensaje" id="" placeholder="Ingresa tu mensaje"></textarea>
-
-					<input type="submit" name="enviar" value="ENVIAR">
-					
-				</form>-->
-
-				<?php
-		/*			if(isset($_POST["enviar"])){
-						$nombre = $_POST["nombre"];
-						$mensaje = $_POST["mensaje"];
-
-						$consulta = "INSERT INTO notificaciones "
-						$ejecutar = 
-
-					}
-				 if(Si se ejecuta la consulta)
-					echo'<embed loop="false" src="beep.mp3" hidden="true" autoplay="true">';*/
-				?>
-				
-			
-
-
-			
-		    
-		  </div>
-
-		  <!--===============================================
-			   PESTAÑA MENSAJES GENERALES
-			===================================================-->
+	   <!--===============================================
+	        PESTAÑA MENSAJES GENERALES
+		===================================================-->	
 		  <div id="mensajesGenerales" class="tab-pane fade">
 
-		  	<h2>Mensajes Generales</h2>
+		  	<?php	
+
+			$item = $_SESSION["id"];
+			$item1 = 2;
+			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
+
+			if($notificaciones){
+
+				echo'<div class="chatbox">';
+				echo' <div class="chatlogsGeneralesyPersonalizados">';
+		    foreach ($notificaciones as $key => $value1) {
+		    	$resultado1 = substr($value1["fecha"],10);
+		    	
+
+		    		echo'<div class="chat friend">
+					   <div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>';
+					   
+						  
+
+					echo'</div>';
+
+		    	
+		    }
+
+		    echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
+		    echo'<div class="chat-form">
+		  			<textarea></textarea>
+		  			<button>Enviar</button>
+		  		</div>';
+
+		    echo'</div><!--DIV DEL CHATBOX-->'; 
+
+			}else{
+
+				echo'<div class="chatbox">';
+		    
+		    	echo' <div class="chatlogsGeneralesyPersonalizados">';
+
+		    		echo'<div class="chat friend">
+					   
+						</div>';
+
+		    	echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
 		    
 
-  		  </div>
 
-  		    <!--===============================================
-			   PESTAÑA MENSAJES PERSONALIZADOS
-			===================================================-->
-  		  <div id="mensajesPersonalizados" class="tab-pane fade ">
-		     
-		     <h2>Mensajes Personalizados</h2>   	
+		    echo'<div class="chat-form">
+		  			<textarea></textarea>
+		  			<button>Enviar</button>
+		  		</div>';
 
-          </div>
+		    echo'</div><!--DIV DEL CHATBOX-->';
+			}
+			
+			?>
+		    
+		  </div><!--DIV DEL ID MENSAJES GENERALES-->
 
-     </div>
+		  <!--===============================================
+	        PESTAÑA MENSAJES PERSONALIZADOS
+		   ===================================================-->
+
+		  <div id="mensajesPersonalizados" class="tab-pane fade">
+
+		    <?php	
+
+			$item = $_SESSION["id"];
+			$item1 = 1;
+			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
+
+			if($notificaciones){
+
+				echo'<div class="chatbox">';
+				echo' <div class="chatlogsGeneralesyPersonalizados">';
+		    foreach ($notificaciones as $key => $value1) {
+		    	$resultado1 = substr($value1["fecha"],10);
+		    	
+
+		    		echo'<div class="chat friend">
+					   <div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>';
+					   
+						  
+
+					echo'</div>';
+
+		    	
+		    }
+
+		    echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
+		    echo'<div class="chat-form">
+		  			<textarea></textarea>
+		  			<button>Enviar</button>
+		  		</div>';
+
+		    echo'</div><!--DIV DEL CHATBOX-->'; 
+
+			}else{
+
+				echo'<div class="chatbox">';
+		    
+		    	echo' <div class="chatlogsGeneralesyPersonalizados">';
+
+		    		echo'<div class="chat friend">
+					   
+						</div>';
+
+		    	echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
+		    
+
+
+		    echo'<div class="chat-form">
+		  			<textarea></textarea>
+		  			<button>Enviar</button>
+		  		</div>';
+
+		    echo'</div><!--DIV DEL CHATBOX-->';
+			}
+			
+			?>
+		  </div>
+
+
+   </div><!--DIV DEL TAB CONTENT-->
+ </div><!--DIV DEL CONTAINER-->
+</div><!--DIV DEL CONTAINER FLUID-->
+
+
+
+		
+
+		
+
+			
+		  	
+  	  
+  
+
 
 
 
