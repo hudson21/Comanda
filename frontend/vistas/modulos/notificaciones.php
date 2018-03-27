@@ -169,7 +169,7 @@ if(!isset($_SESSION["validarSesion"])){
 		  	<?php	
 
 			$item = $_SESSION["id"];
-			$item1 = 2;
+			$item1 = 1;
 			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
 
 			if($notificaciones){
@@ -233,7 +233,7 @@ if(!isset($_SESSION["validarSesion"])){
 		    <?php	
 
 			$item = $_SESSION["id"];
-			$item1 = 1;
+			$item1 = 2;
 			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
 
 			if($notificaciones){
