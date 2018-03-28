@@ -135,15 +135,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			         echo'</div>
 			         </div>';
-			 }else{
-				  echo '<div  class="col-xs-12 text-center ">
-										               
-						  <h1 style="font-size:100px"><small>¡Oops!</small></h1>
-										    
-						  <h2>Aún no tiene pedidos listos</h2>
-
-					   </div>';
-				}
+			 }
 
 	   ?> 
 
