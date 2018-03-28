@@ -6,23 +6,54 @@
 </style>
 
 <script>
-	ejecutar=false;
+
+	/*======================================
+	   AJAX PARA LA PARTE DE LOS PEDIDOS       
+	========================================*/
+
+
+
   function ajaxPedidos(){
     var req = new XMLHttpRequest();
 
     req.onreadystatechange = function(){
       if(req.readyState == 4 && req.status == 200){
-        document.getElementById("chatlogsPedidos").innerHTML = req.responseText;
+
+      		document.getElementById("chatlogsPedidos").innerHTML = req.responseText;
+      		console.log("req.responseText", req.responseText);
       }
     }
 
     req.open("GET","vistas/modulos/chatPedidos.php", true);
     req.send();
 
-    ejecutar = true;
+    
   }
    setInterval(function(){ajaxPedidos();}, 1000);
+
+   /*======================================
+	   AJAX PARA LA PARTE DE LOS GENERALES       
+	========================================*/
+
+   function ajaxGenerales(){
+    var req1 = new XMLHttpRequest();
+
+    req1.onreadystatechange = function(){
+      if(req1.readyState == 4 && req1.status == 200){
+        document.getElementById("chatlogsGenerales").innerHTML = req1.responseText;
+        
+      }
+    }
+
+    req1.open("GET","vistas/modulos/chatGenerales.php", true);
+    req1.send();
+
+    
+  }
+   setInterval(function(){ajaxGenerales();}, 1000);
 </script>
+
+
 
 <!--===============================================
    VALIDAR SESIÓN
@@ -37,7 +68,7 @@ if(!isset($_SESSION["validarSesion"])){
 	echo '<script>
 			swal({
 					title: "¡NO TIENE ACCESO!",
-					text: "¡Necesita estar logeado para poder ver su lista de Pedidos!",
+					text: "¡Necesita estar logeado para poder ver sus notificaciones!",
 					type:"warning",
 					confirmButtonText:"Ok",
 					closeOnConfirm: false,
@@ -98,14 +129,16 @@ if(!isset($_SESSION["validarSesion"])){
 		  </li>
 
 		  <li>
+		  	<a data-toggle="tab" href="#mensajesGenerales">
+		  	<i class="fa fa-plane"></i> Mensajes Generales</a>
+		  </li>
+
+		  <li>
 		  	<a data-toggle="tab" href="#mensajesPersonalizados">
 		  	<i class="fa fa-phone"></i> Mensajes Personalizados</a>
 		  </li>
 
-		  <li>
-		  	<a data-toggle="tab" href="#mensajesGenerales">
-		  	<i class="fa fa-plane"></i> Mensajes Generales</a>
-		  </li>
+		  
 
 		</ul>
 
@@ -154,51 +187,25 @@ if(!isset($_SESSION["validarSesion"])){
 
 			if($notificaciones){
 
-				echo'<div class="chatboxGenerales">';
-				echo' <div class="chatlogsGenerales">';
-		    foreach ($notificaciones as $key => $value1) {
-		    	$resultado1 = substr($value1["fecha"],10);
-		    	
+				echo'<div class="chatboxGenerales">
+			  		 
+			  		     <div id="chatlogsGenerales" onload="ajaxGenerales();">';
 
-		    		echo'<div class="chat friend">
-					   <div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>';
-					   
-						  
-
-					echo'</div>';
-
-		    	
-		    }
-
-		    echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
-		    echo'<div class="chat-form">
-		  			<textarea></textarea>
-		  			<button>Enviar</button>
-		  		</div>';
-
-		    echo'</div><!--DIV DEL CHATBOX-->'; 
-
-			}else{
-
-				echo'<div class="chatboxGenerales">';
-		    
-		    	echo' <div class="chatlogsGenerales">';
-
-		    		echo'<div class="chat friend">
-					   
-						</div>';
-
-		    	echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
-		    
+			  		     
+			  //////////////////////////Aquí va a ser el inicio del foreach()///////////////////////////////////
 
 
-		    echo'<div class="chat-form">
-		  			<textarea></textarea>
-		  			<button>Enviar</button>
-		  		</div>';
+			  //////////////////////////Aquí va a ser el fin del foreach()//////////////////////////////////////	
+			  		     
+			         echo'</div><!--DIV DEL CHATLOGS GENERALES-->
 
-		    echo'</div><!--DIV DEL CHATBOX-->';
-			}
+			         <div class="chat-form">
+		  			    <textarea class="textareaGeneral"></textarea>
+		  			    <button class="enviarGeneral">Enviar</button>
+		  		    </div>
+
+			         </div><!--DIV DEL CHATBOX GENERALES-->';
+			 }
 			
 			?>
 		    
@@ -219,7 +226,7 @@ if(!isset($_SESSION["validarSesion"])){
 			if($notificaciones){
 
 				echo'<div class="chatboxPersonalizados">';
-				echo' <div class="chatlogsPersonalizados">';
+				echo' <div id="chatlogsPersonalizados">';
 		    foreach ($notificaciones as $key => $value1) {
 		    	$resultado1 = substr($value1["fecha"],10);
 		    	
@@ -234,10 +241,10 @@ if(!isset($_SESSION["validarSesion"])){
 		    	
 		    }
 
-		    echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
+		    echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
 		    echo'<div class="chat-form">
-		  			<textarea></textarea>
-		  			<button>Enviar</button>
+		  			<textarea class="textareaPersonalizados"></textarea>
+		  			<button class="enviarPersonalizados">Enviar</button>
 		  		</div>';
 
 		    echo'</div><!--DIV DEL CHATBOX-->'; 
@@ -246,19 +253,19 @@ if(!isset($_SESSION["validarSesion"])){
 
 				echo'<div class="chatboxPersonalizados">';
 		    
-		    	echo' <div class="chatlogsPersonalizados">';
+		    	echo' <div id="chatlogsPersonalizados">';
 
 		    		echo'<div class="chat friend">
 					   
 						</div>';
 
-		    	echo'</div><!--DIV DEL CHATLOGSGENERALESYPERSONALIZADOS-->';
+		    	echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
 		    
 
 
 		    echo'<div class="chat-form">
-		  			<textarea></textarea>
-		  			<button>Enviar</button>
+		  			<textarea class="textareaPersonalizados"></textarea>
+		  			<button class="enviarPersonalizados">Enviar</button>
 		  		</div>';
 
 		    echo'</div><!--DIV DEL CHATBOX-->';
@@ -272,6 +279,8 @@ if(!isset($_SESSION["validarSesion"])){
    </div><!--DIV DEL TAB CONTENT-->
  </div><!--DIV DEL CONTAINER-->
 </div><!--DIV DEL CONTAINER FLUID-->
+
+
 
 
 
