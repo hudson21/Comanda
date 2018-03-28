@@ -6,23 +6,22 @@
 </style>
 
 <script>
-	
-	/*function ajax(){
-		var req = new XMLHttpRequest();
+	ejecutar=false;
+  function ajaxPedidos(){
+    var req = new XMLHttpRequest();
 
-		req.onreadystatechange = function(){
-			if(req.readyState == 4 && req.status == 200){
-				document.getElementById("chat").innerHTML = req.responseText;
-			}
-		}
+    req.onreadystatechange = function(){
+      if(req.readyState == 4 && req.status == 200){
+        document.getElementById("chatlogsPedidos").innerHTML = req.responseText;
+      }
+    }
 
-		req.open("GET","chat.php", true);
-		req.send();
-	}
+    req.open("GET","vistas/modulos/chatPedidos.php", true);
+    req.send();
 
-	//Linea que hace que se refresque la página cada segundo
-	setInterval(function(){ajax();}, 1000);*/
-
+    ejecutar = true;
+  }
+   setInterval(function(){ajaxPedidos();}, 1000);
 </script>
 
 <!--===============================================
@@ -117,30 +116,25 @@ if(!isset($_SESSION["validarSesion"])){
 	===================================================-->
       <div id="mensajesPedidos" class="tab-pane fade in active">
 
-	      <?php
+	   <?php
 
-			$item = $_SESSION["id"];
-			$item1 = 0;
-			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
+	$item = $_SESSION["id"];
+	$item1 = 0;
+	$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
 
 		   if($notificaciones){
 
 				echo'<div class="chatboxPedidos">
 			  		 
-			  		     <div class="chatlogs">';
+			  		     <div id="chatlogsPedidos" onload="ajaxPedidos();">';
 
-								foreach ($notificaciones as $key => $value1) {
+			  		     echo'<!--//////////////////////////////////////////////////////////////////////-->';
 
-									$resultado1 = substr($value1["fecha"],10);
 
-						echo'<div class="chat friend">
-								<div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>
-									    <p style="color:black"class="chat-message">El pedido número <span style="color:red">'.$value1["no_pedido"]. '</span>  ya se encuentra listo<br><span style="color:red; float:right; font-weight:bold; font-size:20px">'.$resultado1.'</span></p>';
+			  		     echo'<!--//////////////////////////////////////////////////////////////////////-->';
 
-							   echo'</div>';
-	
-			                      }
-			                   echo'</div></div>';
+			         echo'</div>
+			         </div>';
 			 }else{
 				  echo '<div  class="col-xs-12 text-center ">
 										               
@@ -151,13 +145,7 @@ if(!isset($_SESSION["validarSesion"])){
 					   </div>';
 				}
 
-								
-
-		?>
-
-								
-
-		
+	   ?> 
 
 	   </div>
 
@@ -174,8 +162,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 			if($notificaciones){
 
-				echo'<div class="chatbox">';
-				echo' <div class="chatlogsGeneralesyPersonalizados">';
+				echo'<div class="chatboxGenerales">';
+				echo' <div class="chatlogsGenerales">';
 		    foreach ($notificaciones as $key => $value1) {
 		    	$resultado1 = substr($value1["fecha"],10);
 		    	
@@ -200,9 +188,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 			}else{
 
-				echo'<div class="chatbox">';
+				echo'<div class="chatboxGenerales">';
 		    
-		    	echo' <div class="chatlogsGeneralesyPersonalizados">';
+		    	echo' <div class="chatlogsGenerales">';
 
 		    		echo'<div class="chat friend">
 					   
@@ -238,8 +226,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 			if($notificaciones){
 
-				echo'<div class="chatbox">';
-				echo' <div class="chatlogsGeneralesyPersonalizados">';
+				echo'<div class="chatboxPersonalizados">';
+				echo' <div class="chatlogsPersonalizados">';
 		    foreach ($notificaciones as $key => $value1) {
 		    	$resultado1 = substr($value1["fecha"],10);
 		    	
@@ -264,9 +252,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 			}else{
 
-				echo'<div class="chatbox">';
+				echo'<div class="chatboxPersonalizados">';
 		    
-		    	echo' <div class="chatlogsGeneralesyPersonalizados">';
+		    	echo' <div class="chatlogsPersonalizados">';
 
 		    		echo'<div class="chat friend">
 					   
@@ -285,6 +273,7 @@ if(!isset($_SESSION["validarSesion"])){
 			}
 			
 			?>
+
 		  </div>
 
 

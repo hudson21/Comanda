@@ -3,8 +3,6 @@
 ===================================================-->
 <?php
 
-
-
 $url = Ruta::ctrRuta();
 $servidor = Ruta::ctrRutaServidor();
 

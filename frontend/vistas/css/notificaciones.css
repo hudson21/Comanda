@@ -5,7 +5,7 @@
 	box-sizing: border-box;
 }
 
-.chatboxPedidos , .chatboxGenerales, .chatbox{
+.chatboxPedidos , .chatboxGenerales, .chatboxPersonalizados{
 	width:500px;
 	min-width:390px;
 	height:500px;
@@ -16,7 +16,7 @@
 	border-radius:10px;
 }
 
-.chatlogs{
+#chatlogsPedidos{
 	padding:10px;
 	width:100%;
 	height:430px;
@@ -25,7 +25,7 @@
 	overflow-y:scroll;
 }
 
-.chatlogsGeneralesyPersonalizados{
+.chatlogsGenerales, .chatlogsPersonalizados{
 	padding:10px;
 	width:100%;
 	height:400px;
@@ -34,20 +34,29 @@
 	overflow-y:scroll;
 }
 
-.chatlogs::-webkit-scrollbar{
+#chatlogsPedidos::-webkit-scrollbar{
 	width:10px;
 }
 
-.chatlogs::-webkit-scrollbar-thumb{
+#chatlogsPedidos::-webkit-scrollbar-thumb{
 	border-radius: 5px;
 	background: rgba(0,0,0,.1);
 }
 
-.chatlogsGeneralesyPersonalizados::-webkit-scrollbar{
+.chatlogsGenerales::-webkit-scrollbar{
 	width:10px;
 }
 
-.chatlogsGeneralesyPersonalizados::-webkit-scrollbar-thumb{
+.chatlogsGenerales::-webkit-scrollbar-thumb{
+	border-radius: 5px;
+	background: rgba(0,0,0,.1);
+}
+
+.chatlogsPersonalizados::-webkit-scrollbar{
+	width:10px;
+}
+
+.chatlogsPersonalizados::-webkit-scrollbar-thumb{
 	border-radius: 5px;
 	background: rgba(0,0,0,.1);
 }
