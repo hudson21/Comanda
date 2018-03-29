@@ -15,7 +15,9 @@ $item1 = 1;
 $notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
 
 
-foreach ($notificaciones as $key => $value1) {
+if($notificaciones){
+
+	foreach ($notificaciones as $key => $value1) {
 
   $resultado1 = substr($value1["fecha"],10);
 		    
@@ -26,22 +28,6 @@ foreach ($notificaciones as $key => $value1) {
     echo'</div>';
  }
 
- if(!$notificaciones){
+}
 
- echo'<div class="chatboxGenerales">';
-		    
-	echo' <div id="chatlogsGenerales">';
-
-		echo'<div class="chat friend">
-					   
-		    </div>';
-
-	 echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
-		    
-     echo'<div class="chat-form">
-		    <textarea class="textareaGeneral"></textarea>
-		    <button class="enviarGeneral">Enviar</button>
-	     </div>';
-
-    echo'</div><!--DIV DEL CHATBOX-->';
- }
+  

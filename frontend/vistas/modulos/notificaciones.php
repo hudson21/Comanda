@@ -5,56 +5,6 @@
 	/*.cesta{display:none;*/}
 </style>
 
-<script>
-
-	/*======================================
-	   AJAX PARA LA PARTE DE LOS PEDIDOS       
-	========================================*/
-
-
-
-  function ajaxPedidos(){
-    var req = new XMLHttpRequest();
-
-    req.onreadystatechange = function(){
-      if(req.readyState == 4 && req.status == 200){
-
-      		document.getElementById("chatlogsPedidos").innerHTML = req.responseText;
-      		console.log("req.responseText", req.responseText);
-      }
-    }
-
-    req.open("GET","vistas/modulos/chatPedidos.php", true);
-    req.send();
-
-    
-  }
-   setInterval(function(){ajaxPedidos();}, 1000);
-
-   /*======================================
-	   AJAX PARA LA PARTE DE LOS GENERALES       
-	========================================*/
-
-   function ajaxGenerales(){
-    var req1 = new XMLHttpRequest();
-
-    req1.onreadystatechange = function(){
-      if(req1.readyState == 4 && req1.status == 200){
-        document.getElementById("chatlogsGenerales").innerHTML = req1.responseText;
-        
-      }
-    }
-
-    req1.open("GET","vistas/modulos/chatGenerales.php", true);
-    req1.send();
-
-    
-  }
-   setInterval(function(){ajaxGenerales();}, 1000);
-</script>
-
-
-
 <!--===============================================
    VALIDAR SESIÓN
 ===================================================-->
@@ -168,6 +118,15 @@ if(!isset($_SESSION["validarSesion"])){
 
 			         echo'</div>
 			         </div>';
+			 }else{
+
+			 	echo'<div class="chatboxPedidos">
+			  		     <div id="chatlogsPedidos" onload="ajaxPedidos();">';
+
+
+			    echo'    </div>
+			         </div>';
+
 			 }
 
 	   ?> 
@@ -196,15 +155,29 @@ if(!isset($_SESSION["validarSesion"])){
 
 
 			  //////////////////////////Aquí va a ser el fin del foreach()//////////////////////////////////////	
-			  		     
-			         echo'</div><!--DIV DEL CHATLOGS GENERALES-->
+			  	echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
+				echo'<div class="chat-form">
+					   <textarea class="textareaGeneral"></textarea>
+					   <button class="enviarGeneral">Enviar</button>
+				    </div>
 
-			         <div class="chat-form">
-		  			    <textarea class="textareaGeneral"></textarea>
-		  			    <button class="enviarGeneral">Enviar</button>
-		  		    </div>
+					</div><!--DIV DEL CHATBOX GENERALES-->';	     
+			         
 
-			         </div><!--DIV DEL CHATBOX GENERALES-->';
+			 }else{
+			 	echo'<div class="chatboxGenerales">';
+	  			 echo' <div id="chatlogsGenerales">';
+
+						echo'<div class="chat friend"><p>No tiene mensajes</p>	   
+						 	</div>';
+
+   				 echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
+ 
+     				echo'<div class="chat-form">
+		   					 <textarea class="textareaGeneral"></textarea>
+		  				     <button class="enviarGeneral">Enviar</button>
+	     				</div>';
+	 		 echo'</div><!--DIV DEL CHATBOX-->';
 			 }
 			
 			?>
@@ -225,51 +198,40 @@ if(!isset($_SESSION["validarSesion"])){
 
 			if($notificaciones){
 
-				echo'<div class="chatboxPersonalizados">';
-				echo' <div id="chatlogsPersonalizados">';
-		    foreach ($notificaciones as $key => $value1) {
-		    	$resultado1 = substr($value1["fecha"],10);
-		    	
+				echo'<div class="chatboxPersonalizados">
+			  		 
+			  		     <div id="chatlogsPersonalizados" onload="ajaxPersonalizados();">';
 
-		    		echo'<div class="chat friend">
-					   <div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>';
-					   
-						  
-
-					echo'</div>';
-
-		    	
-		    }
-
-		    echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
-		    echo'<div class="chat-form">
-		  			<textarea class="textareaPersonalizados"></textarea>
-		  			<button class="enviarPersonalizados">Enviar</button>
-		  		</div>';
-
-		    echo'</div><!--DIV DEL CHATBOX-->'; 
-
-			}else{
-
-				echo'<div class="chatboxPersonalizados">';
-		    
-		    	echo' <div id="chatlogsPersonalizados">';
-
-		    		echo'<div class="chat friend">
-					   
-						</div>';
-
-		    	echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
-		    
+			  		     
+			  //////////////////////////Aquí va a ser el inicio del foreach()///////////////////////////////////
 
 
-		    echo'<div class="chat-form">
-		  			<textarea class="textareaPersonalizados"></textarea>
-		  			<button class="enviarPersonalizados">Enviar</button>
-		  		</div>';
+			  //////////////////////////Aquí va a ser el fin del foreach()//////////////////////////////////////	
+			  	   echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
 
-		    echo'</div><!--DIV DEL CHATBOX-->';
-			}
+				echo'<div class="chat-form">
+					   <textarea class="textareaPersonalizados"></textarea>
+					   <button class="enviarPersonalizados">Enviar</button>
+				    </div>
+
+					</div><!--DIV DEL CHATBOX PERSONALIZADOS-->';	     
+			         
+
+			 }else{
+			 	echo'<div class="chatboxPersonalizados">';
+	  			 echo' <div id="chatlogsPersonalizados">';
+
+						echo'<div class="chat friend"><p>	   
+						 	</div>';
+
+   				 echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
+ 
+     				echo'<div class="chat-form">
+		   					 <textarea class="textareaPersonalizados"></textarea>
+		  				     <button class="enviarPersonalizados">Enviar</button>
+	     				</div>';
+	 		 echo'</div><!--DIV DEL CHATBOX-->';
+			 }
 			
 			?>
 
@@ -279,6 +241,65 @@ if(!isset($_SESSION["validarSesion"])){
    </div><!--DIV DEL TAB CONTENT-->
  </div><!--DIV DEL CONTAINER-->
 </div><!--DIV DEL CONTAINER FLUID-->
+
+
+<script>
+
+	/*======================================
+	   AJAX PARA LA PARTE DE LOS PEDIDOS       
+	========================================*/
+	function ajaxPedidos(){
+    var req = new XMLHttpRequest();
+
+    req.onreadystatechange = function(){
+      if(req.readyState == 4 && req.status == 200){
+
+      	document.getElementById("chatlogsPedidos").innerHTML = req.responseText;
+         //console.log("req.responseText", req.responseText);
+      	}
+      }
+    
+    req.open("GET","vistas/modulos/chatPedidos.php", true);
+    req.send();
+
+    
+  }
+   setInterval(function(){ajaxPedidos();}, 1000);
+
+   /*======================================
+	   AJAX PARA LA PARTE DE LOS GENERALES       
+	========================================*/
+   function ajaxGenerales(){
+    var req1 = new XMLHttpRequest();
+
+    req1.onreadystatechange = function(){
+      if(req1.readyState == 4 && req1.status == 200){
+      		document.getElementById("chatlogsGenerales").innerHTML = req1.responseText;
+      	}
+    }
+
+    req1.open("GET","vistas/modulos/chatGenerales.php", true);
+    req1.send();
+  }
+   setInterval(function(){ajaxGenerales();}, 1000);
+
+   /*======================================
+	   AJAX PARA LA PARTE DE LOS PERSONALIZADOS       
+	========================================*/
+   function ajaxPersonalizados(){
+    var req2 = new XMLHttpRequest();
+
+    req2.onreadystatechange = function(){
+      if(req2.readyState == 4 && req2.status == 200){
+      		document.getElementById("chatlogsPersonalizados").innerHTML = req2.responseText;
+      	}
+    }
+
+    req2.open("GET","vistas/modulos/chatPersonalizados.php", true);
+    req2.send();
+  }
+   setInterval(function(){ajaxPersonalizados();}, 1000);
+</script>
 
 
 
