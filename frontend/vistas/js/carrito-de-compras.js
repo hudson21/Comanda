@@ -1021,7 +1021,7 @@ $(".btnPagar ").click(function(){
 
 
 		var idUsuarioPedido = localStorage.getItem("usuario");
-		console.log("listaCarrito", listaCarrito);
+		//console.log("listaCarrito", listaCarrito);
 
 		var nombreUsuario = localStorage.getItem("nombreUsuario");
 

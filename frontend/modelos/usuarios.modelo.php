@@ -652,7 +652,7 @@ class ModeloUsuarios{
 	================================================================*/
 	static public function mdlMostrarMensajesByUsuario($tabla, $item, $item1){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_usuario = :id_usuario AND tipo = :tipo ORDER BY id DESC");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_usuario = :id_usuario AND tipo = :tipo ORDER BY id ASC");
 
 		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
 		$stmt -> bindParam(":tipo", $item1, PDO::PARAM_INT);
@@ -664,6 +664,34 @@ class ModeloUsuarios{
 		$stmt -> close();
 
 		$stmt = null;
+	}
+
+	/*===============================================
+		AGREGAR MENSAJES A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	static public function mdlAgregarMensajesNotificaciones($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (no_usuario, nombre_usuario, tipo, mensaje) VALUES (:no_usuario, :nombre_usuario, :tipo, :mensaje)");
+
+		$stmt -> bindParam(":no_usuario", $datos["idUsuarioGenerales"], PDO::PARAM_INT);
+		$stmt -> bindParam(":nombre_usuario", $datos["nombreUsuarioGenerales"], PDO::PARAM_STR);
+		$stmt -> bindParam(":tipo", $datos["tipoGeneral"], PDO::PARAM_INT);
+		$stmt -> bindParam(":mensaje", $datos["mensajeGeneral"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
 	}
 
 

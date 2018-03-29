@@ -1127,5 +1127,17 @@ class ControladorUsuarios{
 		return $respuesta;
 	}
 
+	/*===============================================
+		AGREGAR MENSAJES A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	static public function ctrAgregarMensajesNotificaciones($datos){
+
+		$tabla = "notificaciones";
+
+		$respuesta = ModeloUsuarios::mdlAgregarMensajesNotificaciones($tabla, $datos);
+
+		return $respuesta;
+	}
+
 
 }

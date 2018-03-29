@@ -316,8 +316,10 @@
 </div>
 
 <?php
+if(isset($_SESSION["validarSesion"])){
+$item = $_SESSION["id"];	
+}
 
-$item = $_SESSION["id"];
 
 //  LOCALSTORAGE PARA CONTAR EL NÚMERO MÁS GRANDE DENTRO DE LA COLUMNA DE NO_PEDIDO
 $no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item);

@@ -652,7 +652,7 @@ class ModeloUsuarios{
 	================================================================*/
 	static public function mdlMostrarMensajesByUsuario($tabla, $item, $item1){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_usuario = :id_usuario AND tipo = :tipo ORDER BY id DESC");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_usuario = :id_usuario AND tipo = :tipo ORDER BY id ASC");
 
 		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
 		$stmt -> bindParam(":tipo", $item1, PDO::PARAM_INT);

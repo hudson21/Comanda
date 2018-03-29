@@ -23,7 +23,7 @@ if($notificaciones){
 		    
 	echo'<div class="chat friend">
 		  <div class="user-photo"><img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" ></div>
-	       <p style="color:black"class="chat-message"><span style="font-weight:bold">'.$value1["nombre_usuario"].'<br></span>'.$value1["mensaje"].'<br><span style="color:red; float:right; font-weight:bold; font-size:20px">'.$resultado1.'</span></p>';
+	       <p style="color:black"class="chat-message"><span style="font-weight:bold">'.$value1["nombre_usuario"].'<br></span><span style="margin-right:10px">'.$value1["mensaje"].'</span><br><span style="color:red; float:right; font-weight:bold; font-size:20px">'.$resultado1.'</span></p>';
 
     echo'</div>';
  }

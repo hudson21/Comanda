@@ -177,6 +177,26 @@ class AjaxUsuarios{
 		$respuesta = ControladorUsuarios::ctrAgregarPedidosaNotificaciones($datos);
 		
 		echo $respuesta;
+	}
+
+	/*===============================================
+		AGREGAR MENSAJES A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	public $mensajeGeneral;
+	public $tipoGeneral;
+	public $idUsuarioGenerales;
+	public $nombreUsuarioGenerales;
+
+	public function ajaxAgregarMensajesNotificaciones(){
+
+		$datos = array("mensajeGeneral"=>$this->mensajeGeneral,
+					   "tipoGeneral"=>$this->tipoGeneral,
+						"idUsuarioGenerales"=>$this->idUsuarioGenerales,
+						"nombreUsuarioGenerales"=>$this->nombreUsuarioGenerales);
+
+		$respuesta = ControladorUsuarios::ctrAgregarMensajesNotificaciones($datos);
+
+		echo $respuesta;
 	} 
 }
 
@@ -288,3 +308,18 @@ class AjaxUsuarios{
 		$notificaciones -> ajaxAgregarPedidosaNotificaciones();
 		
 	}
+
+	/*===============================================
+		AGREGAR MENSAJES A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	if(isset($_POST["mensajeGeneral"])){
+		$mensajesGenerales = new AjaxUsuarios();
+		$mensajesGenerales -> mensajeGeneral = $_POST["mensajeGeneral"];
+		$mensajesGenerales -> tipoGeneral = $_POST["tipoGeneral"];
+		$mensajesGenerales -> idUsuarioGenerales = $_POST["idUsuarioGenerales"];
+		$mensajesGenerales -> nombreUsuarioGenerales = $_POST["nombreUsuarioGenerales"];
+		$mensajesGenerales -> ajaxAgregarMensajesNotificaciones();
+	}
+
+	
+

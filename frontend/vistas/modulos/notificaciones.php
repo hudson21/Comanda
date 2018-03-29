@@ -157,7 +157,7 @@ if(!isset($_SESSION["validarSesion"])){
 			  //////////////////////////Aquí va a ser el fin del foreach()//////////////////////////////////////	
 			  	echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
 				echo'<div class="chat-form">
-					   <textarea class="textareaGeneral"></textarea>
+					   <input type="text" name="textareaGeneral" id="textareaGeneral">
 					   <button class="enviarGeneral">Enviar</button>
 				    </div>
 
@@ -168,13 +168,13 @@ if(!isset($_SESSION["validarSesion"])){
 			 	echo'<div class="chatboxGenerales">';
 	  			 echo' <div id="chatlogsGenerales">';
 
-						echo'<div class="chat friend"><p>No tiene mensajes</p>	   
+						echo'<div class="chat friend">	   
 						 	</div>';
 
    				 echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
  
      				echo'<div class="chat-form">
-		   					 <textarea class="textareaGeneral"></textarea>
+		   					 <input type="text" name="textareaGeneral" id="textareaGeneral">
 		  				     <button class="enviarGeneral">Enviar</button>
 	     				</div>';
 	 		 echo'</div><!--DIV DEL CHATBOX-->';
@@ -210,7 +210,7 @@ if(!isset($_SESSION["validarSesion"])){
 			  	   echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
 
 				echo'<div class="chat-form">
-					   <textarea class="textareaPersonalizados"></textarea>
+					   <input type="text" id="textareaPersonalizados">
 					   <button class="enviarPersonalizados">Enviar</button>
 				    </div>
 
@@ -221,13 +221,13 @@ if(!isset($_SESSION["validarSesion"])){
 			 	echo'<div class="chatboxPersonalizados">';
 	  			 echo' <div id="chatlogsPersonalizados">';
 
-						echo'<div class="chat friend"><p>	   
+						echo'<div class="chat friend">	   
 						 	</div>';
 
    				 echo'</div><!--DIV DEL CHATLOGS PERSONALIZADOS-->';
  
      				echo'<div class="chat-form">
-		   					 <textarea class="textareaPersonalizados"></textarea>
+		   					 <input type="text" id="textareaPersonalizados">
 		  				     <button class="enviarPersonalizados">Enviar</button>
 	     				</div>';
 	 		 echo'</div><!--DIV DEL CHATBOX-->';
@@ -299,6 +299,100 @@ if(!isset($_SESSION["validarSesion"])){
     req2.send();
   }
    setInterval(function(){ajaxPersonalizados();}, 1000);
+
+
+
+ /*===================================================================
+	   USAR LA OPCIÓN DE ENTER EN LOS MENSAJES DE GENERALES      
+ ====================================================================*/
+
+   $("#textareaGeneral").focus(function(){
+
+	$(document).keyup(function(event){
+
+		event.preventDefault();
+
+		comentarioGeneral = document.getElementById("textareaGeneral").value;
+   	    idUsuarioGenerales = localStorage.getItem("usuario");
+   	    nombreUsuarioGenerales = localStorage.getItem("nombreUsuario");
+
+		if(event.keyCode == 13 && $("#textareaGeneral").val() != ""){
+
+			var datos = new FormData();
+
+	   	 	datos.append("mensajeGeneral", comentarioGeneral);
+	   	 	datos.append("tipoGeneral", 1);
+	   	 	datos.append("idUsuarioGenerales", idUsuarioGenerales);
+	   	 	datos.append("nombreUsuarioGenerales",nombreUsuarioGenerales);
+
+   	 	$.ajax({
+			 url:rutaOculta+"ajax/usuarios.ajax.php",
+			 method:"POST",
+			 data: datos,
+			 cache: false,
+			 contentType: false,
+			 processData: false,
+			 success:function(respuesta){
+			 	console.log("respuesta", respuesta);
+			 	
+
+			 }
+
+			})
+
+   	 	document.getElementById("textareaGeneral").value = "";
+
+		}
+
+		
+
+
+
+
+	})
+})
+
+ /*===================================================================
+	   ENVIAR A LA TABLA DE NOTIFICACIONES LO QUE HAY EN EL TEXTAREA       
+	==================================================================*/
+
+   $(".enviarGeneral").click(function(){
+
+   	 comentarioGeneral = document.getElementById("textareaGeneral").value;
+   	 idUsuarioGenerales = localStorage.getItem("usuario");
+   	 nombreUsuarioGenerales = localStorage.getItem("nombreUsuario");
+
+   	 if(comentarioGeneral != ""){
+
+   	 	document.getElementById("textareaGeneral").value = "";
+
+   	 	var datos = new FormData();
+
+   	 	datos.append("mensajeGeneral", comentarioGeneral);
+   	 	datos.append("tipoGeneral", 1);
+   	 	datos.append("idUsuarioGenerales", idUsuarioGenerales);
+   	 	datos.append("nombreUsuarioGenerales",nombreUsuarioGenerales);
+
+   	 	$.ajax({
+			 url:rutaOculta+"ajax/usuarios.ajax.php",
+			 method:"POST",
+			 data: datos,
+			 cache: false,
+			 contentType: false,
+			 processData: false,
+			 success:function(respuesta){
+			 	console.log("respuesta", respuesta);
+			 	
+
+			 }
+
+			})
+
+
+   	 }
+
+
+   })
 </script>
 
 
