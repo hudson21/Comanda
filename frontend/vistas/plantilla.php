@@ -90,6 +90,8 @@
 
    <script src="<?php echo $url;?>vistas/js/plugins/sweetalert.min.js"></script>
 
+   <script src="<?php echo $url;?>vistas/js/plugins/push.min.js"></script>
+
    <script src="<?php echo $url;?>vistas/js/menu.js"></script>
 
    

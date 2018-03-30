@@ -1276,6 +1276,13 @@ $(".btnListo").click(function(){
 			 contentType: false,
 			 processData: false,
 			 success:function(respuesta){
+
+			 	if(respuesta == "ok"){
+
+			 		Push.create("El pedido está listo",{
+			 			body:"Este es un pedido que ya está listo"
+			 		});
+			 	}
 			 	
 
 			 }

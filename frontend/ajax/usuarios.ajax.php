@@ -197,7 +197,9 @@ class AjaxUsuarios{
 		$respuesta = ControladorUsuarios::ctrAgregarMensajesNotificaciones($datos);
 
 		echo $respuesta;
-	} 
+	}
+
+	
 }
 
 /*===============================================
@@ -320,6 +322,9 @@ class AjaxUsuarios{
 		$mensajesGenerales -> nombreUsuarioGenerales = $_POST["nombreUsuarioGenerales"];
 		$mensajesGenerales -> ajaxAgregarMensajesNotificaciones();
 	}
+
+
+
 
 	
 

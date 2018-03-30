@@ -85,10 +85,10 @@ if(!isset($_SESSION["validarSesion"])){
 		  	<i class="fa fa-plane"></i> Mensajes Generales</a>
 		  </li>
 
-		  <li>
+		 <!-- <li>
 		  	<a data-toggle="tab" href="#mensajesPersonalizados">
 		  	<i class="fa fa-phone"></i> Mensajes Personalizados</a>
-		  </li>
+		  </li>-->
 
 		  
 
@@ -193,7 +193,7 @@ if(!isset($_SESSION["validarSesion"])){
 		  <div id="mensajesPersonalizados" class="tab-pane fade">
 
 		    <?php	
-
+/*
 			$item = $_SESSION["id"];
 			$item1 = 2;
 			$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
@@ -233,7 +233,7 @@ if(!isset($_SESSION["validarSesion"])){
 		  				     <button class="enviarPersonalizados">Enviar</button>
 	     				</div>';
 	 		 echo'</div><!--DIV DEL CHATBOX-->';
-			 }
+			 }*/
 			
 			?>
 
@@ -303,6 +303,13 @@ if(!isset($_SESSION["validarSesion"])){
    setInterval(function(){ajaxPersonalizados();}, 1000);
 
 
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  ENVIAR MENSAJES GENERALES     
+================================================*/
 
  /*===================================================================
 	   USAR LA OPCIÓN DE ENTER EN LOS MENSAJES DE GENERALES      
@@ -335,7 +342,7 @@ if(!isset($_SESSION["validarSesion"])){
 			 contentType: false,
 			 processData: false,
 			 success:function(respuesta){
-			 	console.log("respuesta", respuesta);
+			 	//console.log("respuesta", respuesta);
 			 	
 
 			 }
@@ -345,17 +352,11 @@ if(!isset($_SESSION["validarSesion"])){
    	 	document.getElementById("textareaGeneral").value = "";
 
 		}
-
-		
-
-
-
-
 	})
 })
 
  /*===================================================================
-	   ENVIAR A LA TABLA DE NOTIFICACIONES LO QUE HAY EN EL TEXTAREA       
+	   ENVIAR A LA TABLA DE NOTIFICACIONES LO QUE HAY EN EL TEXTAREA DE GENERALES      
 	==================================================================*/
 
    $(".enviarGeneral").click(function(){
@@ -383,7 +384,7 @@ if(!isset($_SESSION["validarSesion"])){
 			 contentType: false,
 			 processData: false,
 			 success:function(respuesta){
-			 	console.log("respuesta", respuesta);
+			 	//console.log("respuesta", respuesta);
 			 	
 
 			 }
@@ -395,6 +396,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 
    })
+
+
+
 </script>
 
 
