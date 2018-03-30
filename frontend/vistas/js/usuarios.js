@@ -12,7 +12,7 @@ localStorage.setItem("rutaActual", rutaActual);/*De esta manera estamos alamacen
 
 
 /*======================================
-FORMATEAR LOA INPUTS         
+FORMATEAR LOS INPUTS         
 ========================================*/
 
 $("input").focus(function(){
@@ -25,14 +25,14 @@ $("input").focus(function(){
 VALIDAR EMAIL REPETIDO          
 ========================================*/
 
-var validarEmailRepetido = false;
+var validarUsuarioRepetido = false;
 
-$("#regEmail").change(function(){
+$("#regNickname").change(function(){
 
-	var email = $("#regEmail").val();
+	var usuario = $("#regNickname").val();
 	var datos = new FormData();
 
-	datos.append("validarEmail", email);
+	datos.append("validarUsuario", usuario);
 
 	$.ajax({
 		
@@ -49,7 +49,7 @@ $("#regEmail").change(function(){
 			if(respuesta == "false"){ //Si respuesta es false
 
 				$(".alert").remove();
-				validarEmailRepetido = false;
+				validarUsuarioRepetido = false;
 
 			}else{//Si es verdadero
 
@@ -61,9 +61,9 @@ $("#regEmail").change(function(){
 					modo = "esta página";
 				}
 		
-				$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, fue resgistrado a través de '+modo+', por favor ingrese otro diferente</div>');	
+				$("#regNickname").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, fue resgistrado a través de '+modo+', por favor ingrese otro diferente</div>');	
 			
-					validarEmailRepetido = true;
+					validarUsuarioRepetido = true;
 			}
 			
 		}
@@ -102,32 +102,32 @@ function registroUsuario(){
 	}
 
 	/*============================================================
-	VALIDAR EL CORREO ELECTRÓNICO        
+	VALIDAR EL NOMBRE DE USUARIO        
 	==============================================================*/
 
-	var email = $("#regEmail").val();
+	var nickname = $("#regNickname").val();
 
-	if(email != ""){
+	if(nickname != ""){
 
-		var expresion = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+		var expresion = /^[a-zA-Z0-9]*$/;
 
-		if(!expresion.test(email)){ //Sino cumple con la edxpresión regular
+		if(!expresion.test(nickname)){ //Sino cumple con la edxpresión regular
 
-			$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
+			$("#regNickname").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
 			
 			return false;
 		}
 
-		if(validarEmailRepetido){ //Si validarEmailRepetido es igual a true o verdadero
+		if(validarUsuarioRepetido){ //Si validarUsuarioRepetido es igual a true o verdadero
 
-			$("#regEmail").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> El correo electrónico ya existe en la base de datos, por favor ingrese otro diferente</div>');
+			$("#regNickname").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, por favor ingrese otro diferente</div>');
 
 			return false;
 		}
 
 	}else{
 
-		$("#regEmail").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		$("#regNickname").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
 		
 		return false;
 

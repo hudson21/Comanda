@@ -285,24 +285,6 @@ if(!isset($_SESSION["validarSesion"])){
   }
    setInterval(function(){ajaxGenerales();}, 1000);
 
-   /*======================================
-	   AJAX PARA LA PARTE DE LOS PERSONALIZADOS       
-	========================================*/
-   function ajaxPersonalizados(){
-    var req2 = new XMLHttpRequest();
-
-    req2.onreadystatechange = function(){
-      if(req2.readyState == 4 && req2.status == 200){
-      		document.getElementById("chatlogsPersonalizados").innerHTML = req2.responseText;
-      	}
-    }
-
-    req2.open("GET","vistas/modulos/chatPersonalizados.php", true);
-    req2.send();
-  }
-   setInterval(function(){ajaxPersonalizados();}, 1000);
-
-
 /*==============================================
 /*==============================================
 /*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO

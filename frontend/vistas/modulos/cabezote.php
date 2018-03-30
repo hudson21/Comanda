@@ -173,7 +173,7 @@ if($cliente->getAccessToken()){
                      <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
 
                      <li>|</li>
-                     <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
+                     <li><a href="'.$url.'salir" >Salir</a></li>';
 
                   } 
 
@@ -415,24 +415,24 @@ VENTANA MODAL PARA EL REGISTRO
         <!--===============================================
         REGISTRO FACEBOOK
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 facebook" style="cursor:pointer" id="btnFacebookRegistro">   
+       <!-- <div class="col-sm-6 col-xs-12 facebook" style="cursor:pointer" id="btnFacebookRegistro">   
             <p>
               <i class="fa fa-facebook"></i>
               Registro con Facebook
             </p>
-        </div>
+        </div>-->
 
         <!--===============================================
         REGISTRO GOOGLE
         ===================================================-->
-        <a href="<?php echo $rutaGoogle; ?>">
+        <!--<a href="<?php echo $rutaGoogle; ?>">
           <div class="col-sm-6 col-xs-12 google" >   
               <p>
                 <i class="fa fa-google"></i>
                 Registro con Google
               </p>
           </div>
-        </a>
+        </a>-->
 
         <!--===============================================
         REGISTRO DIRECTO
@@ -440,7 +440,7 @@ VENTANA MODAL PARA EL REGISTRO
 
         <form method="POST"  onsubmit="return registroUsuario()" > <!--    action="formulario.php"    -->
 
-            <hr>
+          <!--  <hr> -->
 
             <!--===============================================
             CAMPO DE NOMBRE
@@ -463,7 +463,7 @@ VENTANA MODAL PARA EL REGISTRO
              </div>
 
             <!--===============================================
-            CAMPO DE CORREO ELECTRÓNICO
+            CAMPO DE NICKNAME
             ===================================================-->
              <div class="form-group">
 
@@ -471,11 +471,11 @@ VENTANA MODAL PARA EL REGISTRO
                     
                     <span class="input-group-addon">
 
-                        <i class="glyphicon glyphicon-envelope"></i>
+                        <i class="glyphicon glyphicon-pencil"></i>
 
                     </span>
 
-                    <input type="email" class="form-control" id="regEmail" name="regEmail" placeholder="Correro Electrónico" required>
+                    <input type="email" class="form-control" id="regNickname" name="regNickname" placeholder="Nombre de Usuario" required>
                 </div>
                 
              </div>
@@ -502,7 +502,7 @@ VENTANA MODAL PARA EL REGISTRO
             https://www.iubenda.com/en     CONDICIONES DE USO Y POLÍTICAS  DE PRIVADIDAD
             =============================================================================-->
 
-            <div class="checkBox">
+            <!--<div class="checkBox">
                 
                 <label >
                     
@@ -520,7 +520,7 @@ VENTANA MODAL PARA EL REGISTRO
 
                 </label>
 
-            </div>
+            </div>-->
 
             <?php
 
