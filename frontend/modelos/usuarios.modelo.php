@@ -10,17 +10,14 @@ class ModeloUsuarios{
 	========================================*/
 	static public function mdlRegistroUsuario($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, email, foto, modo, verificacion,emailEncriptado)
-			VALUES (:nombre, :password, :email, :foto, :modo, :verificacion, :emailEncriptado)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, nickname, foto, modo)
+			VALUES (:nombre, :password, :nickname, :foto, :modo)");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
-		$stmt -> bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
 		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":modo", $datos["modo"], PDO::PARAM_STR);
-		$stmt -> bindParam(":verificacion", $datos["verificacion"], PDO::PARAM_INT);
-		$stmt -> bindParam(":emailEncriptado", $datos["emailEncriptado"], PDO::PARAM_STR);
-
 
 		if($stmt->execute()){
 
@@ -40,11 +37,11 @@ class ModeloUsuarios{
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function mdlMostrarUsuario($tabla, $item, $valor){
+	static public function mdlMostrarUsuario($tabla, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE nickname = :item");
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$stmt -> bindParam(":item", $valor, PDO::PARAM_STR);
 
 		$stmt -> execute();
 
@@ -60,11 +57,11 @@ class ModeloUsuarios{
 	ACTUALIZAR USUARIO
 	=============================================*/
 
-	static public function mdlActualizarUsuario($tabla, $id, $item, $valor){
+	static public function mdlActualizarUsuario($tabla, $id, $valor){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item = :$item WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET password = :item WHERE id = :id");
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$stmt -> bindParam(":item", $valor, PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
 
 		if($stmt -> execute()){

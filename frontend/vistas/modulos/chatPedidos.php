@@ -2,7 +2,6 @@
 
 session_start();
 
-
 include "conexion.php";
 include "usuarios.controlador.php";
 include "usuarios.modelo.php";

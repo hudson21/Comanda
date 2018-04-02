@@ -475,7 +475,7 @@ VENTANA MODAL PARA EL REGISTRO
 
                     </span>
 
-                    <input type="email" class="form-control" id="regNickname" name="regNickname" placeholder="Nombre de Usuario" required>
+                    <input type="text" class="form-control" id="regNickname" name="regNickname" placeholder="Nombre de Usuario" required>
                 </div>
                 
              </div>
@@ -569,32 +569,30 @@ VENTANA MODAL PARA EL INGRESO
         <!--===============================================
         INGRESO FACEBOOK
         ===================================================-->
-        <div class="col-sm-6 col-xs-12 facebook"  style="cursor:pointer" id="btnFacebookIngreso">   
+        <!--<div class="col-sm-6 col-xs-12 facebook"  style="cursor:pointer" id="btnFacebookIngreso">   
             <p>
               <i class="fa fa-facebook"></i>
               Ingreso con Facebook
             </p>
-        </div>
+        </div>-->
 
         <!--===============================================
         INGRESO GOOGLE
         ===================================================-->
-        <a href="<?php echo $rutaGoogle; ?>">
+       <!-- <a href="<?php //echo $rutaGoogle; ?>">
           <div class="col-sm-6 col-xs-12 google" >   
               <p>
                 <i class="fa fa-google"></i>
                 Ingreso con Google
               </p>
           </div>
-       </a>
+       </a>-->
 
         <!--===============================================
         INGRESO DIRECTO
         ===================================================-->
 
         <form method="POST"  > <!--    action="formulario.php"    -->
-
-            <hr>
 
             <!--===============================================
             CAMPO DE CORREO ELECTRÓNICO
@@ -605,11 +603,11 @@ VENTANA MODAL PARA EL INGRESO
                     
                     <span class="input-group-addon">
 
-                        <i class="glyphicon glyphicon-envelope"></i>
+                        <i class="glyphicon glyphicon-pencil"></i>
 
                     </span>
 
-                    <input type="email" class="form-control" id="ingEmail" name="ingEmail" placeholder="Correro Electrónico" required>
+                    <input type="text" class="form-control" id="ingNickname" name="ingNickname" placeholder="Nombre de Usuario" required>
                 </div>
                 
              </div>
@@ -689,11 +687,11 @@ VENTANA MODAL PARA OLVIDO DE CONTRASEÑA
       
         <form method="POST"  > <!--    action="formulario.php"    -->
 
-           <label class="text-muted" for="passEmail">Escribe el correo electrónico con el que estás 
-            registrado y allí te enviaremos una nueva contraseña:</label>
+           <label class="text-muted" for="passEmail">Escribe el nombre de usuario con el que estás 
+            registrado, para verificar que tu cuenta exista y poder reestablecer tu nueva contraseña:</label>
 
             <!--===============================================
-            CAMPO DE CORREO ELECTRÓNICO
+            CAMPO DE NOMBRE DE USUARIO
             ===================================================-->
              <div class="form-group">
 
@@ -701,13 +699,29 @@ VENTANA MODAL PARA OLVIDO DE CONTRASEÑA
                     
                     <span class="input-group-addon">
 
-                        <i class="glyphicon glyphicon-envelope"></i>
+                        <i class="glyphicon glyphicon-pencil"></i>
 
                     </span>
 
+                    <input type="text" class="form-control" id="passNickname" name="passNickname" placeholder="Nombre de Usuario" required>
+                </div>
+                
+             </div>
 
+              <!--===============================================
+            CAMPO DE CONTRASEÑA
+            ===================================================-->
+             <div class="form-group">
 
-                    <input type="email" class="form-control" id="passEmail" name="passEmail" placeholder="Correro Electrónico" required>
+                <div class="input-group">
+                    
+                    <span class="input-group-addon">
+
+                        <i class="glyphicon glyphicon-lock"></i>
+
+                    </span>
+
+                    <input type="password" class="form-control" id="passPassword" name="passPassword" placeholder="Contraseña nueva" required>
                 </div>
                 
              </div>
@@ -716,6 +730,8 @@ VENTANA MODAL PARA OLVIDO DE CONTRASEÑA
 
                 $password = new ControladorUsuarios();
                 $password -> ctrOlvidoPassword();
+
+
 
             ?>
 

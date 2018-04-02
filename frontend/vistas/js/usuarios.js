@@ -61,7 +61,7 @@ $("#regNickname").change(function(){
 					modo = "esta página";
 				}
 		
-				$("#regNickname").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, fue resgistrado a través de '+modo+', por favor ingrese otro diferente</div>');	
+				$("#regNickname").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, fue resgistrado a través de '+modo+', por favor ingrese otro diferente</div>');	
 			
 					validarUsuarioRepetido = true;
 			}
@@ -88,14 +88,14 @@ function registroUsuario(){
 
 		if(!expresion.test(nombre)){ //Sino cumple con la edxpresión regular
 
-			$("#regUsuario").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
+			$("#regUsuario").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
 			
 			return false;
 		}
 
 	}else{
 
-		$("#regUsuario").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		$("#regUsuario").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
 		
 		return false;
 
@@ -113,21 +113,21 @@ function registroUsuario(){
 
 		if(!expresion.test(nickname)){ //Sino cumple con la edxpresión regular
 
-			$("#regNickname").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
+			$("#regNickname").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales en el nombre de usuario</div>');
 			
 			return false;
 		}
 
 		if(validarUsuarioRepetido){ //Si validarUsuarioRepetido es igual a true o verdadero
 
-			$("#regNickname").parent().before('<div class="alert alert-danger"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, por favor ingrese otro diferente</div>');
+			$("#regNickname").parent().after('<div class="alert alert-danger"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, por favor ingrese otro diferente</div>');
 
 			return false;
 		}
 
 	}else{
 
-		$("#regNickname").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		$("#regNickname").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
 		
 		return false;
 
@@ -145,14 +145,14 @@ function registroUsuario(){
 
 		if(!expresion.test(password)){ //Sino cumple con la edxpresión regular
 
-			$("#regPassword").parent().before('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales</div>');
+			$("#regPassword").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales</div>');
 			
 			return false;
 		}
 
 	}else{
 
-		$("#regPassword").parent().before('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		$("#regPassword").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
 		
 		return false;
 
@@ -162,7 +162,7 @@ function registroUsuario(){
 	/*============================================================
 	VALIDAR POLÍTICAS DE PRIVACIDAD         
 	==============================================================*/
-	var politicas = $("#regPoliticas:checked").val();
+	/*var politicas = $("#regPoliticas:checked").val();
 
 	if(politicas != "on"){
 
@@ -171,7 +171,7 @@ function registroUsuario(){
 		return false;
 	}
 
-	return true;
+	return true;*/
 }
 
 

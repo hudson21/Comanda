@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-03-2018 a las 23:49:00
+-- Tiempo de generación: 02-04-2018 a las 23:40:36
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -70,7 +70,13 @@ CREATE TABLE `cabecera_pedidos` (
 --
 
 INSERT INTO `cabecera_pedidos` (`no_pedido`, `id_usuario`, `nombre_usuario`, `origen`, `lugar_preparacion`, `comentarios`, `mostrar`, `estado`, `disponible`, `fecha`) VALUES
-(000000001, 40, 'Carlos Miguel Hudson Diaz', 'Palapa 2', 'BAR LUNA', '', 0, 2, 0, '2018-03-29 21:12:38');
+(000000001, 40, 'ADMIN REDES', 'Palapa 2', 'BAR LUNA', '', 0, 2, 0, '2018-04-02 21:38:40'),
+(000000002, 40, 'ADMIN REDES', 'Palapa 1', 'BAR SOL', 'zapatosssssssssssssssssssssssss', 1, 0, 1, '2018-04-02 21:38:36'),
+(000000003, 40, 'ADMIN REDES', 'Palapa 1', 'BAR SOL', 'dsadgfsafdsa', 1, 0, 1, '2018-04-02 21:38:34'),
+(000000004, 47, 'ADMIN REDES', '', '', '', 0, 2, 1, '2018-04-02 21:39:14'),
+(000000005, 47, 'ADMIN REDES', 'Palapa 3', 'BAR ITALIANO', '453454323', 1, 2, 1, '2018-04-02 21:39:13'),
+(000000006, 47, 'ADMIN REDES', 'Palapa 1', 'BAR SOL', 'wqwerwqer', 1, 2, 0, '2018-04-02 21:39:45'),
+(000000007, 47, 'ADMIN REDES', 'Palapa 2', 'BAR LUNA', 'sadfsdfasdfsaf', 1, 2, 0, '2018-04-02 21:39:56');
 
 -- --------------------------------------------------------
 
@@ -211,7 +217,13 @@ CREATE TABLE `linea_pedidos` (
 --
 
 INSERT INTO `linea_pedidos` (`id`, `id_producto`, `cantidad`, `no_pedido`, `fecha`) VALUES
-(1, 465, 1, 000000001, '2018-03-29 21:12:36');
+(1, 465, 1, 000000001, '2018-03-29 21:12:36'),
+(2, 464, 1, 000000002, '2018-03-30 14:40:31'),
+(3, 466, 1, 000000003, '2018-03-30 16:22:41'),
+(4, 402, 1, 000000004, '2018-04-02 16:39:12'),
+(5, 466, 1, 000000005, '2018-04-02 16:40:18'),
+(6, 466, 1, 000000006, '2018-04-02 18:29:47'),
+(7, 464, 1, 000000007, '2018-04-02 18:31:33');
 
 -- --------------------------------------------------------
 
@@ -234,18 +246,16 @@ CREATE TABLE `notificaciones` (
 --
 
 INSERT INTO `notificaciones` (`id`, `no_usuario`, `nombre_usuario`, `no_pedido`, `tipo`, `mensaje`, `fecha`) VALUES
-(3, 40, 'Carlos Miguel Hudson Diaz', 000000001, 0, '', '2018-03-29 21:12:38'),
-(12, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, '1', '2018-03-29 21:21:28'),
-(13, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, '432345234', '2018-03-29 21:21:32'),
-(14, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, '324234242423', '2018-03-29 21:21:39'),
-(15, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'weuyoiwueyroi7we776234', '2018-03-29 21:26:26'),
-(16, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'dsfsfsafdsadsdsdsjñlksd8sfiefeuiowpufpeafioiwaupoisudpfoiusadpoiufs980eipoewaufiiiiiiiiiiiiiiii', '2018-03-29 21:27:56'),
-(17, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'el pedido tal no se puede recoger bien ', '2018-03-29 21:40:15'),
-(18, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'el pedido tal no se puede recoger bien pero estamos haciendo todo lo posible por arreglarlo ', '2018-03-29 21:40:52'),
-(19, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptate ex fuga ut. Praesentium illo, reprehenderit alias cumque tenetur et provident, asperiores ab eum aliquam error ut sapiente, libero sequi, sint.', '2018-03-29 21:41:31'),
-(20, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, '98708970q987erihqpo98732rewpq8r70320730r82y3ruij23or872 ', '2018-03-29 21:41:59'),
-(21, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'dafsdhgfkjsadgkajnhgdskyfsdgkvcayutedsauytewgdsaytjhdgfs', '2018-03-29 21:42:08'),
-(22, 40, 'Carlos Miguel Hudson Diaz', NULL, 1, 'akjshdlkjahsd lkjsahdflkajhsfd hjkfdlhasd', '2018-03-29 21:42:39');
+(1, 47, 'ADMIN REDES', 000000001, 0, '', '2018-04-02 21:37:12'),
+(2, 47, 'ADMIN REDES', 000000006, 0, '', '2018-04-02 21:37:23'),
+(3, 47, 'ADMIN REDES', 000000007, 0, '', '2018-04-02 21:37:29'),
+(4, 47, 'ADMIN REDES', 000000005, 0, '', '2018-04-02 21:37:43'),
+(5, 47, 'ADMIN REDES', 000000005, 0, '', '2018-04-02 21:39:09'),
+(6, 47, 'ADMIN REDES', 000000004, 0, '', '2018-04-02 21:39:11'),
+(7, 47, 'ADMIN REDES', 000000007, 0, '', '2018-04-02 21:39:16'),
+(8, 47, 'ADMIN REDES', 000000006, 0, '', '2018-04-02 21:39:17'),
+(9, 47, 'ADMIN REDES', 000000006, 0, '', '2018-04-02 21:39:45'),
+(10, 47, 'ADMIN REDES', 000000007, 0, '', '2018-04-02 21:39:56');
 
 -- --------------------------------------------------------
 
@@ -786,9 +796,9 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 (461, 2, 6, 'fisico', 'semibotas-ejecutivas-11', 'Semibotas Ejecutivas', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/calzado/calzado01.jpg', 0, 0, 57, 10, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (462, 2, 7, 'fisico', 'tennis-gris-11', 'Tennis Gris', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado02.jpg', 204, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (463, 2, 6, 'fisico', 'zapatilla-clasica-11', 'Zapatilla Clásica', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/calzado/calzado03.jpg', 0, 0, 59, 8, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(464, 2, 7, 'fisico', 'tennis-verde-11', 'Tennis Verde', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '[ 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-01.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-02.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-03.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-04.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-05.jpg\"} ]', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado04.jpg', 261, 217, 0, 0, 0, 0, 1, 16.5, 30, 'vistas/img/ofertas/tennis-verde.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(464, 2, 7, 'fisico', 'tennis-verde-11', 'Tennis Verde', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '[ 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-01.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-02.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-03.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-04.jpg\"}, 	{\"foto\":\"vistas/img/multimedia/tennis-verde/img-05.jpg\"} ]', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado04.jpg', 263, 217, 0, 0, 0, 0, 1, 16.5, 30, 'vistas/img/ofertas/tennis-verde.jpg', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (465, 2, 7, 'fisico', 'tennis-rojo-11', 'Tennis Rojo', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado05.jpg', 210, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
-(466, 2, 7, 'fisico', 'tennis-azul-11', 'Tennis Azul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado06.jpg', 242, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
+(466, 2, 7, 'fisico', 'tennis-azul-11', 'Tennis Azul', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 55, 'vistas/img/productos/calzado/calzado06.jpg', 246, 215, 0, 0, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (467, 3, 11, 'fisico', 'pulsera-de-diamantes-11', 'Pulsera de diamantes', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio01.jpg', 0, 0, 68, 4, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (468, 3, 9, 'fisico', 'bolso-militar-11', 'Bolso Militar', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio02.jpg', 0, 0, 89, 3, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
 (469, 3, 9, 'fisico', 'bolso-deportivo-gris-11', 'Bolso Deportivo Gris', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '', '{\"Talla\": [36,38,40],\"Color\": [\"rojo\",\"negro\",\"blanco\"],\"Marca\":null\n}', 0, 'vistas/img/productos/accesorios/accesorio03.jpg', 0, 0, 161, 2, 0, 0, 0, 0, 0, '', '0000-00-00 00:00:00', 0, 1, 10, '0000-00-00 00:00:00', ''),
@@ -913,11 +923,9 @@ CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` text COLLATE utf8_spanish_ci NOT NULL,
   `password` text COLLATE utf8_spanish_ci NOT NULL,
-  `email` text COLLATE utf8_spanish_ci NOT NULL,
+  `nickname` text COLLATE utf8_spanish_ci NOT NULL,
   `modo` text COLLATE utf8_spanish_ci NOT NULL,
   `foto` text COLLATE utf8_spanish_ci NOT NULL,
-  `verificacion` int(11) NOT NULL,
-  `emailEncriptado` text COLLATE utf8_spanish_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -925,11 +933,12 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `password`, `email`, `modo`, `foto`, `verificacion`, `emailEncriptado`, `fecha`) VALUES
-(33, 'carlos hudson', '$2a$07$asxx54ahjppf45sd87a5au9GwEgs5MnkbG6ONqeqhJ82fX8WkASAm', 'carlosmigu27@hotmail.com', 'directo', '', 0, '395c067a4c2c2fb2fcf74b308051759f', '2018-02-19 21:02:09'),
-(40, 'Carlos Miguel Hudson Diaz', 'null', 'charlyflute@hotmail.com', 'facebook', 'http://graph.facebook.com/1599389876803719/picture?type=large', 0, 'null', '2018-02-21 14:33:27'),
-(44, 'CARLOS MIGUEL HUDSON DIAZ', 'null', 'camihudsondiaz@ittepic.edu.mx', 'google', 'https://lh4.googleusercontent.com/-isYzkVn8-wc/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjWLu7lQGK4U7_tRCNunt2E870ADIg/s96-c/photo.jpg', 0, 'null', '2018-02-21 18:18:47'),
-(45, 'CARLOSMIGU27 CARLOS', 'null', 'carlosmiguc@gmail.com', 'google', 'https://lh5.googleusercontent.com/-OdZitNzJFV4/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjUXXpNv2sOUHpAqjtcOTpbPJxeVbQ/s96-c/photo.jpg', 0, 'null', '2018-02-21 18:49:44');
+INSERT INTO `usuarios` (`id`, `nombre`, `password`, `nickname`, `modo`, `foto`, `fecha`) VALUES
+(33, 'carlos hudson', '$2a$07$asxx54ahjppf45sd87a5au9GwEgs5MnkbG6ONqeqhJ82fX8WkASAm', 'carlosmigu27@hotmail.com', 'directo', '', '2018-02-19 21:02:09'),
+(40, 'Carlos Miguel Hudson Diaz', 'null', 'charlyflute@hotmail.com', 'facebook', 'http://graph.facebook.com/1599389876803719/picture?type=large', '2018-02-21 14:33:27'),
+(44, 'CARLOS MIGUEL HUDSON DIAZ', 'null', 'camihudsondiaz@ittepic.edu.mx', 'google', 'https://lh4.googleusercontent.com/-isYzkVn8-wc/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjWLu7lQGK4U7_tRCNunt2E870ADIg/s96-c/photo.jpg', '2018-02-21 18:18:47'),
+(45, 'CARLOSMIGU27 CARLOS', 'null', 'carlosmiguc@gmail.com', 'google', 'https://lh5.googleusercontent.com/-OdZitNzJFV4/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjUXXpNv2sOUHpAqjtcOTpbPJxeVbQ/s96-c/photo.jpg', '2018-02-21 18:49:44'),
+(47, 'ADMIN REDES', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'admin', 'directo', '', '2018-04-02 18:51:20');
 
 --
 -- Índices para tablas volcadas
@@ -1035,7 +1044,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de la tabla `cabecera_pedidos`
 --
 ALTER TABLE `cabecera_pedidos`
-  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -1071,13 +1080,13 @@ ALTER TABLE `deseos`
 -- AUTO_INCREMENT de la tabla `linea_pedidos`
 --
 ALTER TABLE `linea_pedidos`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
@@ -1107,7 +1116,7 @@ ALTER TABLE `subcategorias`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Restricciones para tablas volcadas

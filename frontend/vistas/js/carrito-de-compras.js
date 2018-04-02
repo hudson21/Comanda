@@ -1167,7 +1167,7 @@ $(".btnPagar ").click(function(){
 ================================================*/
 $(".quitarItemPedido").click(function(){
 
-	$(this).parent().parent().parent().hide();
+	$(this).parent().parent().parent().remove();
 
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
 	//console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
@@ -1256,11 +1256,13 @@ $(".btnListo").click(function(){
 	var datos1 = new FormData();
 
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
+	//console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
 	var nomUsuario = $(this).attr("nombreUsuario");
-	console.log("nomUsuario", nomUsuario);
+	//console.log("nomUsuario", nomUsuario);
 	var noUsuario = $(this).attr("noUsuario");
-	console.log("noUsuario", noUsuario);
+	//console.log("noUsuario", noUsuario);
+	var repeticion =$(this).attr("repeticion");
+	//console.log("repeticion", repeticion);
 
 	datos1.append("noUsuario", noUsuario);
 	datos1.append("nomUsuario", nomUsuario);
@@ -1309,7 +1311,7 @@ $(".btnListo").click(function(){
 
 			})
 
-		if(i==idProductoPedidoEliminar){
+		if(i==repeticion){
 
 			$("#preparando"+i).removeClass("fa-clock-o");
 			$("#preparando"+i).addClass("fa-check");

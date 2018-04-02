@@ -317,12 +317,14 @@
 
 <?php
 if(isset($_SESSION["validarSesion"])){
-$item = $_SESSION["id"];	
+$item = $_SESSION["id"];
+$tabla = "linea_pedidos";
+$tabla1 = "cabecera_pedidos";	
 }
 
 
 //  LOCALSTORAGE PARA CONTAR EL NÚMERO MÁS GRANDE DENTRO DE LA COLUMNA DE NO_PEDIDO
-$no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item);
+$no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item,$tabla);
 
 	if($no_pedido == null){
 
@@ -363,8 +365,6 @@ $no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item);
 
 
 		}
-
-
 
 ?>
 
