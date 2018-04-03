@@ -255,23 +255,56 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	  text-shadow:2px 2px 1px #dadada;
   }
 
-  a img{
-    width:200px;
+  .productsH4{
+    position:absolute;
+    margin-left:120px;
+    float:right;
+    margin-top:0px;
   }
 
-  .img-responsive{
-    width:130px;
+  .productsSmallGratis{
+    position:absolute;
+    margin-top:45px;
+    margin-left:20px;
   }
 
-  img.img-responsive{
-    margin-right:220px;
+  .productsEnlaces{
+    position:absolute;
+    margin-top:65px;
+    margin-left:70px;
   }
 
-  li.productos{
-    margin-left:55px;
+  .productsImg{
+    margin-bottom:20px;
+    margin-top:5px;
   }
-
   
+  .productsOferta{
+    position:absolute;
+    margin-top:55px;
+    margin-left:10px;
+  }
+
+  .productsPrecioOferta{
+    position:absolute;
+    margin-top:55px;
+    margin-left:80px;
+  }
+
+  .nuevoProducts{
+    position:absolute;
+    margin-top:5px;
+  }
+
+  .descuentoOfertaProducts{
+    position:absolute;
+    margin-top:5px;
+    margin-left:60px;
+  }
+
+  .productsH2{
+    margin-top:55px;
+  }
 
   h1{
     font-size:24px;

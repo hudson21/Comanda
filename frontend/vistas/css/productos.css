@@ -256,5 +256,11 @@ h4 small a span.fontSize{
 		font-size:14px;
 		font-weight:700;
 	}
+
+	.productsSmallGratis{
+	    position:absolute;
+	    margin-top:45px;
+	    margin-left:20px;
+    }
     
 }

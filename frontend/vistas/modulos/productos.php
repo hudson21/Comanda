@@ -274,14 +274,14 @@ LISTAR PRODUCTOS
 			 		<figure>
 			 		
 			 			<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+
+			 			<div class="col-lg-12 col-md-6 col-sm-4 col-xs-6">
 			 			
 			 			<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
-			 			</a>
+			 			</div>
 
-			 		</figure>';
-
-					//.$value["id"].'
+			 			</a>';
 
 			 	echo'<h4>
 
@@ -296,12 +296,12 @@ LISTAR PRODUCTOS
 			 			
 			 				if($value["nuevo"] != 0){
 
-			 					echo '<span class="label label-warning fontSize">Nuevo</span> ';
+			 					echo '<span class=" nuevoProducts label label-warning fontSize">Nuevo</span> ';
 			 		    	}
 
 			 				if($value["oferta"] != 0){
 
-			 					echo '<span class="label label-warning fontSize">
+			 					echo '<span class=" descuentoOfertaProducts label label-warning fontSize">
 			 					'.$value["descuentoOferta"].'% Off</span>';
 
 			 				}
@@ -310,13 +310,19 @@ LISTAR PRODUCTOS
 
 				 		</small>
 
-				 	</h4>
+				 	</h4>';
 
-			              <div class="col-xs-6 precio">';
+			 	echo'</figure>';
+
+					//.$value["id"].'
+
+			 	
+
+			            echo'  <div class="col-xs-6 precio">';
 
 								if($value["precio"] == 0){
 
-									echo '<h2><small>GRATIS</small></h2>';
+									echo '<h2><small class="productsSmallGratis">GRATIS</small></h2>';
 
 								}else{
 
@@ -327,19 +333,19 @@ LISTAR PRODUCTOS
 
 				 		 						<small>
 				 		 	
-				 		 		                <strong class="oferta" style="font-size:15px;">
+				 		 		                <strong class="productsOferta oferta" style="font-size:15px;">
 				 		 		                USD $'.$value["precio"].'</strong>
 				 		 	
 				 		 						</small>
 
-				 		 		                <small style="font-size:20px;font-weight:bold;">
+				 		 		                <small class="productsPrecioOferta" style="font-size:20px;font-weight:bold;">
 				 		 		                $'.$value["precioOferta"].'</small>
 
 				 		 				  </h2>';
 
 								}else{
 
-									echo '<h2>
+									echo '<h2 class="productsH2">
 
 								                <small style="font-size:20px;font-weight:bold;">
 								                USD $'.$value["precio"].'</small></h2>';

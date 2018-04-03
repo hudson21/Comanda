@@ -172,21 +172,17 @@ echo '
 
 	foreach($modulos[$i] as $key => $value){
 	 							
-	 	echo '<li  class=" productos col-md-3 col-sm-6 col-xs-7">
-
-	 		<figure>
+	 	echo ' <li  class=" products col-md-3 col-sm-6 col-xs-12">
 	 		
 	 			<a href="'.$value["ruta"].'" class="pixelProducto">
-	 			
-	 			<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
+	 			<div class="col-lg-12 col-md-6 col-sm-4 col-xs-6">
+				   <img src="'.$servidor.$value["portada"].'" class="productsImg img-responsive">
+	 			</div>
+	 			
 	 			</a>
 
-	 		</figure>
-
-
-
-	 	<h4>
+	 			<h4 class="productsH4">
 
 	 		<small>
 	 			
@@ -199,12 +195,12 @@ echo '
 	 			
 	 				if($value["nuevo"] != 0){
 
-	 					echo '<span class="label label-warning fontSize">Nuevo</span> ';
+	 					echo '<span class=" col-xs-0 nuevoProducts label label-warning fontSize">Nuevo</span> ';
 	 		    	}
 
 	 				if($value["oferta"] != 0){
 
-	 					echo '<span class="label label-warning fontSize">
+	 					echo '<span class=" col-xs-0 descuentoOfertaProducts label label-warning fontSize">
 	 					'.$value["descuentoOferta"].'% Off</span>';
 
 	 				}
@@ -219,7 +215,7 @@ echo '
 
 					if($value["precio"] == 0){
 
-						echo '<h2><small>GRATIS</small></h2>';
+						echo '<h2><small class="productsSmallGratis">GRATIS</small></h2>';
 
 					}else{
 
@@ -228,23 +224,23 @@ echo '
 
 					    echo ' <h2>
 
-	 		 						<small>
+	 		 						<small  class="productsOferta">
 	 		 	
 	 		 		                <strong class="oferta" style="font-size:15px;">
 	 		 		                USD $'.$value["precio"].'</strong>
 	 		 	
 	 		 						</small>
 
-	 		 		                <small style="font-size:20px;font-weight:bold;">
+	 		 		                <small class="productsPrecioOferta" style="font-size:20px;font-weight:bold;">
 	 		 		                $'.$value["precioOferta"].'</small>
 
 	 		 				  </h2>';
 
 					}else{
 
-						echo '<h2>
+						echo '<h2 class="productsH2">
 
-					                <small style="font-size:20px;font-weight:bold;">
+					                <small  style="font-size:20px;font-weight:bold;">
 					                USD $'.$value["precio"].'</small></h2>';
 
 						  }
@@ -255,7 +251,7 @@ echo '
 
 	echo '</div>
 	 			
-	 		<div class="col-xs-6 enlaces">	
+	 		<div class="productsEnlaces productos  col-xs-6 enlaces">	
 
 	 			<div class="btn-group pull-right">
 	 			
