@@ -1,0 +1,110 @@
+
+		/*Estamos configurando las resloluciones para lg, md, sm y xm*/
+/*------------------------------------------------
+   ESCRITORIO GRANDE (LG revisamos en 1366px en adelante)
+------------------------------------------------*/
+@media (min-width:1200px){
+
+.margenLeft{
+	margin-left:70px;
+}
+
+.margenLeftPrecio{
+	margin-left:20px;
+}
+
+.cantidadMargen{
+	margin-left:100px;
+}
+
+.textoAlign{
+	text-align:center;
+	margin-left:0px;
+}
+
+.textoAlignPrecio{
+	text-align:center;
+}
+
+}
+	
+
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+
+.margenLeft{
+	margin-left:100px;
+}
+   
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+    
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+.tamañoA{
+	font-size:11px;
+}
+
+.tamañoDiv{
+	height:80px;
+}
+
+.posicionListo{
+	padding:1px;
+	margin-right:0px;
+ }
+
+.posicionPreparando{
+	padding:1px;
+	margin-right:0px;
+}
+
+.posicionRecibiendo{
+	padding:1px;
+	margin-right:0px;
+}
+
+.marginDiv{
+	margin-bottom:30px;
+}
+
+.textoPedido{
+	
+}
+
+.saltoDeLinea{
+content: '\A'; white-space: pre;	
+}
+
+.margenLeft{
+	margin-left:5px;
+	margin-top:15px;
+	float:left;
+}
+
+.textoAlign{
+	text-align:left;
+}
+
+.textoAlignPrecio{
+	margin-left:5px;
+}
+
+.cantidadMargen{
+	margin-left:105px;
+}
+
+
+}

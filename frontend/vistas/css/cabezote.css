@@ -306,9 +306,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	margin-right:-15px;
 	}
 
-	.btnCerrarCelular{
-		display:none;
-	}
+	
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -333,9 +331,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	margin-right:-15px;
 	}
 
-	.btnCerrarCelular{
-		display:none;
-	}
+	
 
 }
 /*------------------------------------------------
@@ -367,9 +363,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	margin-right:-15px;
 	}
 
-	.btnCerrarCelular{
-		display:none;
-	}
+	
 
 }
 /*------------------------------------------------
@@ -501,13 +495,6 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	z-index:10000;
 	}
 
-	.btnPagarCelular{
-		margin-left:15px;
-	}
-
-	.btnCerrarCelular{
-		margin-left:80px;
-	}
-
+	
 
 }

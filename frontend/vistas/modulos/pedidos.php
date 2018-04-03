@@ -149,14 +149,15 @@ if(!isset($_SESSION["validarSesion"])){
 
    	 $numero_pedido=$value1["no_pedido"];
 
-		 echo'<div class="inicio'.$i.' panel panel-default">';
+		 echo'<div marginDiv class="inicio'.$i.' panel panel-default">';
 		 	$resultado1 = substr($value1["fecha"], 0, -15);
 		  echo'<div class="panel-heading">
+		  		
 			     <h4 class="panel-title">';
 			     echo'<button style="margin-right:15px" class="btn btn-default backColor quitarItemPedido " noPedido="'.$value1["no_pedido"].'"><i class="fa fa-times"></i>
 					  </button>';
 
-				  echo'<a style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$value1["no_pedido"].'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
+				  echo'<a class="tamañoA" style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$value1["no_pedido"].'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
 								     
 					  $resultado = substr($value1["fecha"], 10);
 								   
@@ -165,9 +166,9 @@ if(!isset($_SESSION["validarSesion"])){
 					  
 			   echo'</a>'; 
 			   if($value1["estado"]==0){
-			   	echo'<button onClick="this.disabled=true"id="botonListo'.$i.'" repeticion="'.$i.'"class="btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" >LISTO <i id="listo'.$i.'" repeticion="'.$i.'"class="fa fa-clock-o"></i></button>';
-			  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'" class="btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" >PREPARANDO <i id="preparando'.$i.'" class="fa fa-clock-o"></i></button>';
-			  	echo'<button onClick="this.disabled=true"id="botonRecibiendo'.$i.'" repeticion="'.$i.'"class=" btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'">RECIBIENDO <i id="recibiendo'.$i.'"class="fa fa-check"></i></button>';
+			   	echo'<button  onClick="this.disabled=true"id="botonListo'.$i.'" repeticion="'.$i.'"class=" posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" repeticion="'.$i.'"class="tamañoA fa fa-clock-o"></i></button>';
+			  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'" class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-clock-o"></i></button>';
+			  	echo'<button onClick="this.disabled=true"id="botonRecibiendo'.$i.'" repeticion="'.$i.'"class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
 			  	echo'<script>
 				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
 			  	</script>';
@@ -212,30 +213,30 @@ if(!isset($_SESSION["validarSesion"])){
 
 				        <div class="panel-heading cabeceraPedidos">
 
-						   <div class="col-md-2 col-sm-3 col-xs-12 text-center">
+						   <div class="col-xs-0 col-md-2 col-sm-3 col-xs-12 text-center">
 							   <h3>
-								   <small>NOMBRE</small>
+								   <small style="font-weight:bold">IMAGEN</small>
 							   </h3>
 						   </div>
 
 
-							<div class="col-md-3 col-sm-2 col-xs-12 text-center">
+							<div class="col-xs-0 col-md-3 col-sm-2 col-xs-12 text-center">
 								<h3>
-									<small>IMAGEN</small>
+									<small style="font-weight:bold" >NOMBRE</small>
 								</h3>
 							</div>
 
 
-							<div class="col-md-2 col-sm-3 col-xs-0 text-center">
+							<div class="col-xs-0 col-md-2 col-sm-3 col-xs-0 text-center">
 								<h3>
-									<small>PRECIO</small>
+									<small style="font-weight:bold" >PRECIO</small>
 								</h3>
 							</div>
 
 
-							<div class="col-lg-4 col-md-4 col-sm-2 col-xs-0 text-center">
-								<h3>
-									<small>CANTIDAD</small>
+							<div class="col-xs-0 col-lg-4 col-md-4 col-sm-2 col-xs-0 text-center">
+								<h3 >
+									<small style="font-weight:bold">CANTIDAD</small>
 								</h3>
 							</div>
 
@@ -276,15 +277,7 @@ if(!isset($_SESSION["validarSesion"])){
 								
 										</div>*/
 
-								echo'<div style="margin-top:30px;" class="col-sm-2 col-xs-12 text-right">
-								
-											<br>
-
-											<p  class="tituloCarritoPedidos ">'.$value3["titulo"].'</p>
-
-										</div>
-
-										<div style="margin-top:15px" class="col-sm-2 col-xs-12 text-right">
+								echo'<div class="margenLeft col-lg-2 col-sm-2 col-xs-5 ">
 								
 											<figure >
 
@@ -292,27 +285,34 @@ if(!isset($_SESSION["validarSesion"])){
 
 											</figure>
 
-										</div>
+									 </div>
 
-									
+									 <div class="textoAlign col-sm-2 col-xs-6">
+								
+										<br>
 
-										<div style="margin-left:100px" class="col-md-2 col-sm-1 col-xs-12">
+										<p style="font-weight:bold" class="tituloCarritoPedidos ">'.$value3["titulo"].'</p>
+
+									 </div>
+
+										
+										<div class="margenLeftPrecio  col-lg-2 col-md-2 col-sm-1 col-xs-4">
 
 											<br>
 
-										 	<p class="precioCarritoPedidos text-center">USD $<span>'.$value3["precio"].'</span></p>
+										 	<p style="font-weight:bold" class=" textoAlignPrecio ">USD $<span>'.$value3["precio"].'</span></p>
 								
 										</div>
 
-										<div style="margin-left:100px" class="col-md-2 col-sm-3 col-xs-8 ">
+										<div class="cantidadMargen col-lg-2 col-md-2 col-sm-3 col-xs-7 ">
 
 											<br>
 
-											<div style="margin-left:5px" class="col-xs-8">
+											<div  class="col-xs-8">
 
 												<center>
 										
-												  <input type="number" class="form-control text-center" min="1" value="'.$value2["cantidad"].'" readonly> 
+												  <input style="font-weight:bold" type="number" class="form-control text-center" min="1" value="'.$value2["cantidad"].'" readonly> 
 
 												</center>
 										
@@ -349,11 +349,11 @@ if(!isset($_SESSION["validarSesion"])){
 							       </div>
 
 
-								<div class="col-xs-10">';
+								<div class="col-xs-12">';
 							
 								echo'<textarea class="form-control" rows="7" id="comentario" name="comentario" maxlength="300">';			
 								  
-								  echo $value1["origen"]." a cargo de ".$value1["nombre_usuario"]." tiene los siguientes comentarios: ".$value1["comentarios"]." \n";
+								  echo $value1["origen"]." a cargo de ".$value1["nombre_usuario"].": ".$value1["comentarios"]." \n";
 								  		
 								 echo'</textarea>';
 

@@ -246,7 +246,7 @@ LISTAR PRODUCTOS
 
 							</figure>
 
-							<!--.$value["id"].-->
+							<span class="productsNumero">'.$value["id"].'</span>
 
 							<h4 class="productsH4">
 					

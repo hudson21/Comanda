@@ -178,7 +178,7 @@ LISTAR PRODUCTOS
 	 							
 			 	echo '<li class=" col-md-3 col-sm-6 col-xs-12">
 
-			 		<figure>
+			 		<figure class="productsImg">
 			 		
 			 			<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 			 			
@@ -188,9 +188,9 @@ LISTAR PRODUCTOS
 
 			 		</figure>
 
-					'.$value["id"].'
+					<span class="productsNumero">'.$value["id"].'</span>
 
-			 	<h4>
+			 	<h4 class="productsH4">
 
 			 		<small>
 			 			
@@ -203,12 +203,12 @@ LISTAR PRODUCTOS
 			 			
 			 				if($value["nuevo"] != 0){
 
-			 					echo '<span class="label label-warning fontSize">Nuevo</span> ';
+			 					echo '<span class="productsNuevo label label-warning fontSize">Nuevo</span> ';
 			 		    	}
 
 			 				if($value["oferta"] != 0){
 
-			 					echo '<span class="label label-warning fontSize">
+			 					echo '<span class="col-xs-0 productsDescuentoOferta label label-warning fontSize">
 			 					'.$value["descuentoOferta"].'% Off</span>';
 
 			 				}
@@ -223,14 +223,14 @@ LISTAR PRODUCTOS
 
 								if($value["precio"] == 0){
 
-									echo '<h2><small>GRATIS</small></h2>';
+									echo '<h2 class="productsH2Gratis"><small>GRATIS</small></h2>';
 
 								}else{
 
 								
 								if($value["oferta"] != 0){
 
-								    echo ' <h2>
+								    echo ' <h2 class="productsOfertaProductos">
 
 				 		 						<small>
 				 		 	
@@ -239,14 +239,14 @@ LISTAR PRODUCTOS
 				 		 	
 				 		 						</small>
 
-				 		 		                <small style="font-size:20px;font-weight:bold;">
+				 		 		                <small style="font-size:18px;font-weight:bold;">
 				 		 		                $'.$value["precioOferta"].'</small>
 
 				 		 				  </h2>';
 
 								}else{
 
-									echo '<h2>
+									echo '<h2 class="productsPrecioProductos">
 
 								                <small style="font-size:20px;font-weight:bold;">
 								                USD $'.$value["precio"].'</small></h2>';
@@ -259,7 +259,7 @@ LISTAR PRODUCTOS
 
 					echo '</div>
 					 			
-					 		<div class="col-xs-6 enlaces">	
+					 		<div class="productsEnlacesProductos col-xs-6 enlaces">	
 
 					 			<div class="btn-group pull-right">
 					 			

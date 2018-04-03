@@ -31,3 +31,86 @@ header{
 .formEnvio{
 	display:none;
 }
+
+
+		/*Estamos configurando las resloluciones para lg, md, sm y xm*/
+/*------------------------------------------------
+   ESCRITORIO GRANDE (LG revisamos en 1366px en adelante)
+------------------------------------------------*/
+@media (min-width:1200px){
+
+	.btnCerrarCelular{
+		display:none;
+	}
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+
+   .btnCerrarCelular{
+		display:none;
+	}
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+    .btnCerrarCelular{
+		display:none;
+	}
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+	.carritoCenter{
+		float:left;
+	}
+
+	.productsImgCarrito{
+		width:100px;
+    	float:left;
+   		margin-left:50px;
+	}
+
+	.tituloCarrito{
+		margin-left:50px;
+	}
+
+	.precioCarrito{
+		float:left;
+	}
+
+	.subtotalCarrito{
+		margin-top:10px;
+	}
+
+	.sumaCarrito{
+		margin-top:0px;
+	}
+
+	.marginCarritoImagen{
+		margin-left:20px;
+	}
+
+	.tamañoLetraSumaSubTotal{
+		font-size:15px;
+	}
+
+	.btnPagarCelular{
+		margin-left:15px;
+	}
+
+	.btnCerrarCelular{
+		margin-right:0px;
+		margin-left:25px;
+	}
+	
+
+    
+}

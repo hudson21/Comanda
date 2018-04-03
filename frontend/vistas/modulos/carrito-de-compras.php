@@ -98,7 +98,7 @@
 
 								<div class="col-xs-6">
 
-									<h4 class="sumaSubTotal">
+									<h4 class=" tamañoLetraSumaSubTotal sumaSubTotal">
 							
 
 									</h4>
@@ -295,10 +295,12 @@
 					</div>
 
 					<div class="clearfix"></div>
-					
-						<button id="botonPagar" class="btn btn-block btn-lg btn-default backColor btnPagar">PAGAR</button>
 
-						<button type="button" data-dismiss="modal" class="btn btn-danger btn-default btn-lg  btnCerrarCelular ">CERRAR</button>
+					<button type="button" data-dismiss="modal" class="btn btn-danger btn-default btn-lg  btnCerrarCelular ">CERRAR</button>
+					
+					<button id="botonPagar" class="btn btn-block btn-lg btn-default backColor btnPagar">PAGAR</button>
+
+						
 					
 				</div>
 
@@ -320,7 +322,7 @@ if(isset($_SESSION["validarSesion"])){
 $item = $_SESSION["id"];
 $tabla = "linea_pedidos";
 $tabla1 = "cabecera_pedidos";	
-}
+
 
 
 //  LOCALSTORAGE PARA CONTAR EL NÚMERO MÁS GRANDE DENTRO DE LA COLUMNA DE NO_PEDIDO
@@ -365,6 +367,7 @@ $no_pedido = ControladorUsuarios::ctrMostrarColumnaNoPedido($item,$tabla);
 
 
 		}
+	}
 
 ?>
 

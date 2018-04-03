@@ -41,23 +41,23 @@ if(localStorage.getItem("listaProductos") != null){
 				
 				'<div class="row itemCarrito">'+
 
-					'<div class="col-sm-1 col-xs-12">'+
+					'<div class="col-sm-1 col-xs-2">'+
 
 						'<br>'+
 
-						'<center>'+
+						'<div class="col-log-12 col-xs-6 carritoCenter">'+
 							
-							'<button class="btn btn-default backColor quitarItemCarrito" idProducto="'+item.idProducto+'" tipo="'+item.tipo+'" peso="'+item.peso+'">'+
+							'<button style="z-index:100;"class="btn btn-default backColor quitarItemCarrito" idProducto="'+item.idProducto+'" tipo="'+item.tipo+'" peso="'+item.peso+'">'+
 								'<i class="fa fa-times"></i>'+
 							'</button>'+
 
-						'</center>'+
+						'</div>'+
 						
 					'</div>'+
 
-					'<div class="col-sm-1 col-xs-12">'+
+					'<div class=" marginCarritoImagen col-sm-1 col-xs-3">'+
 						
-						'<figure>'+
+						'<figure class="productsImgCarrito">'+
 							
 							'<img src="'+item.imagen+'" class="img-thumbnail">'+
 
@@ -65,7 +65,7 @@ if(localStorage.getItem("listaProductos") != null){
 
 					'</div>'+
 
-					'<div class="col-sm-4 col-xs-12">'+
+					'<div class=" tituloCarrito col-sm-4 col-xs-8">'+
 
 						'<br>'+
 
@@ -73,7 +73,7 @@ if(localStorage.getItem("listaProductos") != null){
 						
 					'</div>'+
 
-					'<div class="col-md-2 col-sm-1 col-xs-12">'+
+					'<div class=" precioCarrito col-md-2 col-sm-1 col-xs-6 col-xs-0">'+
 
 						'<br>'+
 
@@ -82,7 +82,7 @@ if(localStorage.getItem("listaProductos") != null){
 
 					'</div>'+
 
-					'<div class="col-md-2 col-sm-3 col-xs-8 ">'+
+					'<div class="col-md-2 col-sm-3 col-xs-7 ">'+
 
 						'<br>'+
 
@@ -103,13 +103,13 @@ if(localStorage.getItem("listaProductos") != null){
 
 					'</div>'+
 
-					'<div class="col-md-2 col-sm-1 col-xs-4 subtotal">'+
+					'<div class="subtotalCarrito col-md-2 col-sm-1 col-xs-4 subtotal">'+
 
 						'<br>'+
 
 						'<p class="subTotal'+item.idProducto+' subtotales">'+
 							
-							'<strong>USD $<span>'+item.precio+'</span></strong>'+
+							'<strong>USD sdas$<span>'+item.precio+'</span></strong>'+
 
 						'</p>'+
 						
@@ -131,13 +131,13 @@ if(localStorage.getItem("listaProductos") != null){
 
 	$(".sumaCarrito .excepciones").append('<div class="col-md-5 col-sm-6 col-xs-12 pull-left well">'+
 
-											'<div class="col-xs-4">'+
+											'<div class="col-lg-4 col-xs-6">'+
 
 												'<h6><strong>EXCEPCIONES:</strong></h6>'+
 												
 											'</div>'+
 
-											'<div class="col-xs-8 ">'+
+											'<div class="col-lg-8 col-sm-12 col-xs-12 ">'+
 						
 						'<textarea class="form-control excepcionesVal" rows="5" id="comentario" excepciones="'+item.excepciones+'" value="" name="comentario" maxlength="300"></textarea>'+
 
