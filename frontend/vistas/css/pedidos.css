@@ -23,7 +23,7 @@
 }
 
 .textoAlignPrecio{
-	text-align:center;
+	text-align:cente2;
 }
 
 }
@@ -62,17 +62,17 @@
 }
 
 .posicionListo{
-	padding:1px;
+	padding:2px;
 	margin-right:0px;
  }
 
 .posicionPreparando{
-	padding:1px;
+	padding:2px;
 	margin-right:0px;
 }
 
 .posicionRecibiendo{
-	padding:1px;
+	padding:2px;
 	margin-right:0px;
 }
 
