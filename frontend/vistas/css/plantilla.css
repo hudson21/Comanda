@@ -251,59 +251,72 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 
   .verificar h3{
   	margin-top:30px;
-  	  font-size:50px;
-  	  text-shadow:2px 2px 1px #dadada;
+  	font-size:50px;
+  	text-shadow:2px 2px 1px #dadada;
+  }
+
+  .productsImg{
+    width:100px;
+    float:left;
+    margin-bottom:15px;
   }
 
   .productsH4{
     position:absolute;
-    margin-left:120px;
-    float:right;
-    margin-top:0px;
+    margin-left:122px;
   }
 
-  .productsSmallGratis{
+  .productsH2Gratis{
     position:absolute;
-    margin-top:45px;
-    margin-left:20px;
+    margin-top:72px;
+    margin-left:55px;
   }
 
   .productsEnlaces{
     position:absolute;
-    margin-top:65px;
-    margin-left:70px;
+    margin-top:90px;
+    margin-left:65px;
   }
 
-  .productsImg{
-    margin-bottom:20px;
+  .productsNuevo{
+    position:absolute;
     margin-top:5px;
   }
-  
+
+  .productsDescuentoOferta{
+    position:absolute;
+    margin-top:5px;
+    margin-left:55px;
+  }
+
   .productsOferta{
     position:absolute;
-    margin-top:55px;
-    margin-left:10px;
+    margin-top:80px;
+    margin-left:30px;
   }
 
-  .productsPrecioOferta{
+  .productsPrecio{
     position:absolute;
-    margin-top:55px;
-    margin-left:80px;
+    margin-top:70px;
+    margin-left:30px;
   }
 
-  .nuevoProducts{
+  .productsEnlacesProductos{
     position:absolute;
-    margin-top:5px;
+    margin-top:74px;
+    margin-left:68px;
   }
 
-  .descuentoOfertaProducts{
+  .productsOfertaProductos{
     position:absolute;
-    margin-top:5px;
-    margin-left:60px;
+    margin-top:75px;
+    margin-left:30px;
   }
 
-  .productsH2{
-    margin-top:55px;
+  .productsPrecioProductos{
+    position:absolute;
+    margin-top:75px;
+    margin-left:30px;
   }
 
   h1{
