@@ -64,16 +64,19 @@
 .posicionListo{
 	padding:2px;
 	margin-right:0px;
+	width:20px;
  }
 
 .posicionPreparando{
 	padding:2px;
 	margin-right:0px;
+	width:20px;
 }
 
 .posicionRecibiendo{
 	padding:2px;
 	margin-right:0px;
+	width:20px;
 }
 
 .marginDiv{
