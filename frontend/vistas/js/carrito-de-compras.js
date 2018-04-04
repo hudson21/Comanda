@@ -515,6 +515,69 @@ function cestaCarrito(cantidadProductos){
 
 }
 
+//==============================================================================================================
+$(".seleccioneOrigen").html('<select class="form-control" name="seleccionarOrigen" id="seleccionarOrigen" >'+
+
+							'<option value="">Seleccione el lugar de origen</option>'+
+							
+						'</select><br>');
+
+$(".seleccioneLugarPreparacion").html('<select class="form-control" name="seleccionarPreparacion" id="seleccionarPreparacion" >'+
+
+							'<option value="">Seleccione el lugar de preparación</option>'+
+							
+						'</select>');
+
+			$(".formEnvio").show();
+
+			$(".btnPagar").attr("tipo","fisico");
+
+			 
+
+			 	$.ajax({
+						url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
+		                    												de esta petición Ajax*/
+						type: "GET",
+						cache: false,
+						contentType: false,
+						processData:false,
+						dataType:"json",
+						success: function(respuesta){
+							
+							respuesta.forEach(seleccionarPalapa);
+
+							function seleccionarPalapa(item, index){
+
+								var pais = item.name;
+								var codPais = item.code;
+								$("#seleccionarOrigen").append('<option value="'+codPais+'">'+pais+'</option>');
+							  }
+
+						    }
+						})
+
+					$.ajax({
+						url:rutaOculta+"vistas/js/plugins/preparacion.json",/*De esta manera estoy llamando a un archivo json a través
+		                    												de esta petición Ajax*/
+						type: "GET",
+						cache: false,
+						contentType: false,
+						processData:false,
+						dataType:"json",
+						success: function(respuesta){
+							
+							respuesta.forEach(seleccionarPalapa);
+
+							function seleccionarPalapa(item, index){
+
+								var bar = item.name;
+								var codigo = item.code;
+								$("#seleccionarPreparacion").append('<option value="'+codigo+'">'+bar+'</option>');
+							  }
+
+						    }
+							})
+
 
 /*==============================================
 /*==============================================
@@ -597,76 +660,24 @@ $("#btnCheckout").click(function(){
 		
 		function checkTipo(tipo){
 
-			return tipo == "fisico";
+			return tipo == "virtual";
 		}
 
 		/*====================================================================  
   			EXISTEN PRODUCTOS FÍSICOS     
 		======================================================================*/
 		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
-		if(tipoArray.find(checkTipo) == "fisico"){
+		
+		
+			/*if(tipoArray.find(checkTipo) == "fisico" && a == 0)*/
 
-			$(".seleccioneOrigen").html('<select class="form-control" name="seleccionarOrigen" id="seleccionarOrigen" >'+
+			if(tipoArray.find(checkTipo) == "virtual"){
 
-							'<option value="">Seleccione el lugar de origen</option>'+
-							
-						'</select><br>');
+				$(".seleccioneLugarPreparacion").remove();
 
-			$(".seleccioneLugarPreparacion").html('<select class="form-control" name="seleccionarPreparacion" id="seleccionarPreparacion" >'+
+			}
 
-							'<option value="">Seleccione el lugar de preparación</option>'+
-							
-						'</select>');
-
-			$(".formEnvio").show();
-
-			$(".btnPagar").attr("tipo","fisico");
-
-			
-			
-					$.ajax({
-						url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
-		                    												de esta petición Ajax*/
-						type: "GET",
-						cache: false,
-						contentType: false,
-						processData:false,
-						dataType:"json",
-						success: function(respuesta){
-							
-							respuesta.forEach(seleccionarPalapa);
-
-							function seleccionarPalapa(item, index){
-
-								var pais = item.name;
-								var codPais = item.code;
-								$("#seleccionarOrigen").append('<option value="'+codPais+'">'+pais+'</option>');
-							  }
-
-						    }
-					})
-
-					$.ajax({
-						url:rutaOculta+"vistas/js/plugins/preparacion.json",/*De esta manera estoy llamando a un archivo json a través
-		                    												de esta petición Ajax*/
-						type: "GET",
-						cache: false,
-						contentType: false,
-						processData:false,
-						dataType:"json",
-						success: function(respuesta){
-							
-							respuesta.forEach(seleccionarPalapa);
-
-							function seleccionarPalapa(item, index){
-
-								var bar = item.name;
-								var codigo = item.code;
-								$("#seleccionarPreparacion").append('<option value="'+codigo+'">'+bar+'</option>');
-							  }
-
-						    }
-					})
+				
 			/*====================================================================  
   				EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO      
 			======================================================================*/
@@ -677,74 +688,9 @@ $("#btnCheckout").click(function(){
 			$("#seleccionarOrigen").change(function(){ //Las tasas de las palapas es como si fueran los países
 
 				$(".alert").remove();
-
-				var pais = $(this).val();
-				var tasaPais = $("#tasaPais").val();
-
-				if(pais == tasaPais){ //Si país es igual a tasaPais significa que estará en el mismo país
-
-					var resultadoPeso = sumaTotalPeso * $("#envioNacional").val();
-
-					if(resultadoPeso < $("#tasaMinimaNacional").val()){
-
-						$(".valorTotalEnvio").html($("#tasaMinimaNacional").val());
-						$(".valorTotalEnvio").attr("valor",$("#tasaMinimaNacional").val());
-
-					}else{
-
-						$(".valorTotalEnvio").html(resultadoPeso);
-						$(".valorTotalEnvio").attr("valor",resultadoPeso);
-
-					}
-
-				}else{ //Si país es diferente a tasa país (que es el país local que donde se establecen los impuestos mínimos)
-
-					var resultadoPeso = sumaTotalPeso * $("#envioInternacional").val();
-
-					if(resultadoPeso < $("#tasaMinimaInternacional").val()){
-
-						$(".valorTotalEnvio").html($("#tasaMinimaInternacional").val());
-						$(".valorTotalEnvio").attr("valor",$("#tasaMinimaInternacional").val());
-
-					}else{
-
-						$(".valorTotalEnvio").html(resultadoPeso);
-						$(".valorTotalEnvio").attr("valor",resultadoPeso);
-
-					}
-
-				}
-
-				/*====================================================================  
-  					RETORNAR EL CAMBIO DE DIVISA A USD    
-				======================================================================*/
-
-				$("#cambiarDivisa").val("USD");
-
-				$(".cambioDivisa").html("USD");
-
-				$(".valorSubtotal").html((1 * Number($(".valorSubtotal").attr("valor"))).toFixed(2))
-		    	$(".valorTotalEnvio").html((1 * Number($(".valorTotalEnvio").attr("valor"))).toFixed(2))
-		    	$(".valorTotalImpuesto").html((1 * Number($(".valorTotalImpuesto").attr("valor"))).toFixed(2))
-		    	$(".valorTotalCompra").html((1 * Number($(".valorTotalCompra").attr("valor"))).toFixed(2))
-
-		    	var valorItem = $(".valorItem");
-
-		    	for(var i = 0; i < valorItem.length; i++){
-
-		    		$(valorItem[i]).html((1 * Number($(valorItem[i]).attr("valor"))).toFixed(2))
-		    	 }
-
-				sumaTotalCompra();
-
 			})
+} 
 
-		}else{
-
-				$(".btnPagar").attr("tipo","virtual");
-				
-		}
-	}
 })
 
 /*==============================================
@@ -1167,12 +1113,29 @@ $(".btnPagar ").click(function(){
 ================================================*/
 $(".quitarItemPedido").click(function(){
 
-	$(this).parent().parent().parent().remove();
+	//$(this).parent().parent().parent().remove();
 
 	var idProductoPedidoEliminar = $(this).attr("noPedido");
 	//console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
 
-	var datos = new FormData();
+	swal({
+				title: "¿Desea eliminar este pedido?",
+				text: "¿Esta usted seguro de eliminar este pedido?",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor:"#DD6B55",
+				confirmButtonText: "¡Si, borrar cuenta!",
+				closeOnConfirm: false
+			},
+
+		function(isConfirm){
+			  if (isConfirm) {	   
+				window.location="index.php?ruta=pedidos&idproducto="+idProductoPedidoEliminar;
+
+			} 
+		});
+
+	/*var datos = new FormData();
 	datos.append("idProductoPedidoEliminar", idProductoPedidoEliminar);
 
 	$.ajax({
@@ -1186,7 +1149,7 @@ $(".quitarItemPedido").click(function(){
 				//console.log("respuesta",respuesta);
 			 }
 
-			})
+			})*/
 
 
 })

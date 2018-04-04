@@ -159,7 +159,7 @@ if(!isset($_SESSION["validarSesion"])){
 			  //////////////////////////Aquí va a ser el fin del foreach()//////////////////////////////////////	
 			  	echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
 				echo'<div class="chat-form">
-					   <input type="text" name="textareaGeneral" id="textareaGeneral">
+					   <input class="inputGenerales" type="text" name="textareaGeneral" id="textareaGeneral">
 					   <button class="enviarGeneral">Enviar</button>
 				    </div>
 
@@ -176,7 +176,7 @@ if(!isset($_SESSION["validarSesion"])){
    				 echo'</div><!--DIV DEL CHATLOGS GENERALES-->';
  
      				echo'<div class="chat-form">
-		   					 <input type="text" name="textareaGeneral" id="textareaGeneral">
+		   					 <input class="inputGenerales" type="text" name="textareaGeneral" id="textareaGeneral">
 		  				     <button class="enviarGeneral">Enviar</button>
 	     				</div>';
 	 		 echo'</div><!--DIV DEL CHATBOX-->';

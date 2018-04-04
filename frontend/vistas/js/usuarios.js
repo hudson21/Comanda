@@ -469,21 +469,16 @@ $(".quitarDeseo").click(function(){
 $("#eliminarUsuario").click(function(){
 
 	var id = $("#idUsuario").val();
+	console.log("id", id);
 
 	if($("#modoUsuario").val() == "directo"){
-
 		if($("#fotoUsuario").val() != ""){
-
 			var foto = $("#fotoUsuario").val();
-
-
-
 		}
-
 	}
 
 	swal({
-				title: "¿Está usted seguro(a) de elimiar su cuenta?",
+				title: "¿Desea eliminar su cuenta?",
 				text: "¡Si borra esta cuenta ya no se pueden recuperar los datos!",
 				type: "warning",
 				showCancelButton: true,
@@ -498,6 +493,10 @@ $("#eliminarUsuario").click(function(){
 			} 
 		});
 })
+
+/*============================================================
+	ELIMINAR PRODUCTO EN EL CARRITO DE COMPRAS       
+==============================================================*/
 
 
 

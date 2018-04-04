@@ -605,11 +605,11 @@ if(!isset($_SESSION["validarSesion"])){
 							
 							if($_SESSION["modo"] == "directo"){
 							
-							echo '<button type="button" class="btn btn-default" id="btnCambiarFoto">
+							/*echo '<button type="button" class="btn btn-default" id="btnCambiarFoto">
 									
 									Cambiar foto de perfil
 									
-									</button>';
+									</button>';*/
 
 							}
 
@@ -649,7 +649,7 @@ if(!isset($_SESSION["validarSesion"])){
 									<div class="input-group">
 								
 										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input type="text" class="form-control"  value="'.$_SESSION["email"].'" readonly>
+										<input type="text" class="form-control"  value="'.$_SESSION["nickname"].'" readonly>
 
 									</div>
 
@@ -680,12 +680,12 @@ if(!isset($_SESSION["validarSesion"])){
 
 								<br>
 
-								<label class="control-label text-muted text-uppercase" for="editarEmail">Cambiar Correo Electrónico:</label>
+								<label class="control-label text-muted text-uppercase" for="editarNickname">Cambiar Nombre de usuario:</label>
 
 								<div class="input-group">
 								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
-										<input type="text" class="form-control" id="editarEmail" name="editarEmail" value="'.$_SESSION["email"].'">
+										<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" id="editarNickname" name="editarNickname" value="'.$_SESSION["nickname"].'">
 
 									</div>
 
@@ -704,6 +704,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 								<button type="submit" class="btn btn-default backColor btn-md pull-left">Actualizar Datos</button>';
 
+								echo'<button style="margin-bottom:10px" type="button" class="btn btn-danger btn-md pull-right" id="eliminarUsuario">Eliminar Cuenta</button>';
+
 						}
 
 						?>
@@ -716,11 +718,11 @@ if(!isset($_SESSION["validarSesion"])){
 							$actualizarPerfil->ctrActualizarPerfil();
 
 						?>					
-
+						
 
 		    		</form>
 		    		
-		    		<button class="btn btn-danger btn-md pull-right" id="eliminarUsuario">Eliminar Cuenta</button>
+		    	
 
 		    		<?php 
 

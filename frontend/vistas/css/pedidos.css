@@ -25,6 +25,15 @@
 .textoAlignPrecio{
 	text-align:cente2;
 }
+.posicionListo{
+	overflow:hidden;
+}
+.posicionPreparando{
+	overflow:hidden;
+}
+.posicionRecibiendo{
+	overflow:hidden;
+}
 
 }
 	
@@ -64,19 +73,19 @@
 .posicionListo{
 	padding:2px;
 	margin-right:0px;
-	width:20px;
+	width:15px;
  }
 
 .posicionPreparando{
 	padding:2px;
 	margin-right:0px;
-	width:20px;
+	width:15px;
 }
 
 .posicionRecibiendo{
 	padding:2px;
 	margin-right:0px;
-	width:20px;
+	width:15px;
 }
 
 .marginDiv{

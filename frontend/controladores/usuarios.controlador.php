@@ -549,19 +549,19 @@ class ControladorUsuarios{
 
 		if(isset($_POST["editarNombre"])){
 
-/*=============================================
+          /*=============================================
 			VALIDAR IMAGEN
 			=============================================*/
 
 			$ruta = "";
 
-			if(isset($_FILES["datosImagen"]["tmp_name"])){
+		//	if(isset($_FILES["datosImagen"]["tmp_name"])){
 
 				/*=============================================
 				PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
 				=============================================*/
 
-				$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
+			/*	$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
 
 				if(!empty($_POST["fotoUsuario"])){
 
@@ -571,21 +571,21 @@ class ControladorUsuarios{
 
 					mkdir($directorio, 0755);
 
-				}
+				}*/
 
 				/*=============================================
 				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 				=============================================*/
 
-				$aleatorio = mt_rand(100, 999);
+				/*$aleatorio = mt_rand(100, 999);
 
-				$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";
+				$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";*/
 
 				/*=============================================
 				MOFICAMOS TAMAÑO DE LA FOTO
 				=============================================*/
 
-				list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
+				/*list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
 
 				$nuevoAncho = 500;
 				$nuevoAlto = 500;
@@ -598,7 +598,7 @@ class ControladorUsuarios{
 
 				imagejpeg($destino, $ruta);
 
-			}
+			}*/
 
 
 
@@ -613,7 +613,7 @@ class ControladorUsuarios{
 			}
 
 			$datos = array("nombre" => $_POST["editarNombre"],
-						   "email" => $_POST["editarEmail"],
+						   "nickname" => $_POST["editarNickname"],
 						   "password" => $password,
 						   "foto" => $ruta,
 						   "id" => $_POST["idUsuario"]);
@@ -628,7 +628,7 @@ class ControladorUsuarios{
 				$_SESSION["id"] = $datos["id"];
 				$_SESSION["nombre"] = $datos["nombre"];
 				$_SESSION["foto"] = $datos["foto"];
-				$_SESSION["email"] = $datos["email"];
+				$_SESSION["nickname"] = $datos["nickname"];
 				$_SESSION["password"] = $datos["password"];
 				$_SESSION["modo"] = $_POST["modoUsuario"];
 
@@ -648,7 +648,9 @@ class ControladorUsuarios{
 									function(isConfirm){
 
 										if(isConfirm){
+										  document.getElementById("editarPassword").value = "";
 										  history.back();
+
 										}
 									});
 
@@ -830,11 +832,11 @@ class ControladorUsuarios{
 
 			$id = $_GET["id"];
 
-			if($_GET["foto"] != ""){
+			/*if($_GET["foto"] != ""){
 
 				unlink($_GET["foto"]);//Para que se vacíe la variable foto que está viajando por el POST
 				rmdir('vistas/img/usuarios/'.$_GET["id"]);//Esto es para poder borrar la carpeta donde está alojada la foto del usuario
-			}
+			}*/
 
 			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
 
@@ -843,6 +845,8 @@ class ControladorUsuarios{
 			ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
 
 			ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
+
+			$url = Ruta::ctrRuta();
 
 
 			if($respuesta == "ok"){
