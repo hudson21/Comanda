@@ -1130,7 +1130,7 @@ $(".quitarItemPedido").click(function(){
 
 		function(isConfirm){
 			  if (isConfirm) {	   
-				window.location="index.php?ruta=pedidos&idproducto="+idProductoPedidoEliminar;
+				window.location="index.php?idproducto="+idProductoPedidoEliminar+"&ruta=pedidos";
 
 			} 
 		});
