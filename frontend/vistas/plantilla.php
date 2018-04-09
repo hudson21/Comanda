@@ -115,7 +115,6 @@
 
             if($value1["estado"]==2 && $value1["id_usuario"] == $_SESSION["id"] && $value1["mensaje_confirmacion"]==0){
 
-
                 echo '<script>
 
                  //localStorage.setItem("pushPedidos","'.$value1["no_pedido"].'");
