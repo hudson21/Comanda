@@ -1130,26 +1130,30 @@ $(".quitarItemPedido").click(function(){
 
 		function(isConfirm){
 			  if (isConfirm) {	   
-				window.location="index.php?idproducto="+idProductoPedidoEliminar+"&ruta=pedidos";
+				//window.location="index.php?idproducto="+idProductoPedidoEliminar+"&ruta=pedidos";
+
+			  var datos = new FormData();
+				datos.append("idProductoPedidoEliminar", idProductoPedidoEliminar);
+
+				$.ajax({
+						 url:rutaOculta+"ajax/usuarios.ajax.php",
+						 method:"POST",
+						 data: datos,
+						 cache: false,
+						 contentType: false,
+						 processData: false,
+						 success:function(respuesta){
+							//console.log("respuesta",respuesta);
+						 }
+
+			         })
+
+				window.location = rutaOculta+"pedidos";
 
 			} 
 		});
 
-	/*var datos = new FormData();
-	datos.append("idProductoPedidoEliminar", idProductoPedidoEliminar);
-
-	$.ajax({
-			 url:rutaOculta+"ajax/usuarios.ajax.php",
-			 method:"POST",
-			 data: datos,
-			 cache: false,
-			 contentType: false,
-			 processData: false,
-			 success:function(respuesta){
-				//console.log("respuesta",respuesta);
-			 }
-
-			})*/
+	/**/
 
 
 })

@@ -281,9 +281,9 @@ class AjaxUsuarios{
 	/*===============================================
 		QUITAR PRODUCTO DE LISTA DE PEDITOS     
 	=================================================*/
-	if(isset($_GET["idproducto"])){
+	if(isset($_POST["idProductoPedidoEliminar"])){
 		$pedidosEliminar = new AjaxUsuarios();
-		$pedidosEliminar -> idProductoPedidoEliminar = $_GET["idproducto"];
+		$pedidosEliminar -> idProductoPedidoEliminar = $_POST["idProductoPedidoEliminar"];
 		$pedidosEliminar -> ajaxEliminarPedidos();
 	}
 
