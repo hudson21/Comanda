@@ -208,7 +208,6 @@ class ModeloProductos{
 	/*==============================================
 	  ACTUALIZAR VISTA PRODUCTO
 	===============================================*/
-
 	static public function mdlActualizarVistaProducto($tabla, $datos, $item){ //Variable $item en producto.ajax.php
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item = :$item WHERE ruta = :ruta");
@@ -231,4 +230,8 @@ class ModeloProductos{
 		$stmt = null;
 
 	}
+
+		
+
+
 }

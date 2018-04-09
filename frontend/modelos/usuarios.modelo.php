@@ -691,6 +691,31 @@ class ModeloUsuarios{
 
 	}
 
+	/*===============================================
+		NO MOSTRAR DE NUEVO LAS NOTIFICACIONES PUSH     
+	    =================================================*/
+	static public function mdlNoMostrarNotificacionesPush($tabla, $datos, $item1, $item2){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :item1 WHERE $item2 = :item2");
+
+		$stmt -> bindParam(":item1", $datos["mensaje_confirmacion"], PDO::PARAM_STR);
+		$stmt -> bindParam(":item2",$datos["no_pedido"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+	}
+
 
 }
 

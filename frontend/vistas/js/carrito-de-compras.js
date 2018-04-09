@@ -1124,7 +1124,7 @@ $(".quitarItemPedido").click(function(){
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor:"#DD6B55",
-				confirmButtonText: "¡Si, borrar cuenta!",
+				confirmButtonText: "Aceptar",
 				closeOnConfirm: false
 			},
 
@@ -1245,14 +1245,6 @@ $(".btnListo").click(function(){
 			 contentType: false,
 			 processData: false,
 			 success:function(respuesta){
-
-			 	if(respuesta == "ok"){
-
-			 		Push.create("El pedido está listo",{
-			 			body:"Este es un pedido que ya está listo"
-			 		});
-			 	}
-			 	
 
 			 }
 
