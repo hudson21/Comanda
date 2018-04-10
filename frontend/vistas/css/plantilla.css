@@ -188,6 +188,31 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	  font-size:100px;
   	  text-shadow:4px 4px 1px #dadada;
   }
+
+   .btn-circle {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+   }
+
+   .txtCantidad{
+    position:absolute;
+    margin-top:50px;
+    margin-left:38px;
+    z-index:100;
+    margin-right:0px
+  }
+
+  .anchoBotonCantidad{
+    width:55px;
+  }
+
+  .tamañoDivEnlaces{
+    width:240px;
+  }
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -258,7 +283,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   .productsImg{
     width:100px;
     float:left;
-    margin-bottom:15px;
+    margin-bottom:30px;
   }
 
   .productsH4{
@@ -270,13 +295,6 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     position:absolute;
     margin-top:72px;
     margin-left:55px;
-  }
-
-  .productsEnlaces{
-    position:absolute;
-    margin-top:90px;
-    margin-left:65px;
-    z-index:100;
   }
 
   .productsNuevo{
@@ -326,8 +344,91 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     margin-left:7px;
   }
 
+  .productsEnlaces{
+    position:absolute;
+    margin-top:50px;
+    margin-left:110px;
+    z-index:100;
+  }
+
+  
+
+  .topBotones{
+    position:absolute;
+    margin-top:35px;
+  }
+
+  .margenBotonMas{
+    position:absolute;
+    margin-left:40px; 
+  }
+
   h1{
     font-size:24px;
     font-weight:bold;
   }
+
+  .posicionBotonMenos{
+    position:absolute;
+    margin-top:49px;
+    margin-left:0px;
+    z-index:100;
+    margin-right:7px;
+  }
+
+  .txtCantidad{
+    position:absolute;
+    margin-top:50px;
+    margin-left:38px;
+    z-index:100;
+    margin-right:0px
+  }
+
+  .posicionBotonMas{
+    position:absolute;
+    margin-top:49px;
+    margin-left:83px;
+    z-index:100;
+  }
+
+  .botonOrdenar{
+    position:absolute;
+    margin-top:59px;
+    margin-left:105px;
+    z-index:100;
+  }
+
+  .tamañoBotonesMasyMenos{
+    width:32px; 
+    height:32px;
+    padding:0px;
+    font-weight:bold;
+  }
+
+  .anchoBotonCantidad{
+    width:43px;
+  }
+
+  .tamañoDiv{
+    width:160px;
+  }
+
+  .btn-circle {
+  width: 50px;
+  height: 50px;
+  padding: 10px 16px;
+  font-size: 18px;
+  line-height: 1.33;
+  border-radius: 25px;
+}
+
+.btn-circle.btn-xl {
+  width: 70px;
+  height: 70px;
+  padding: 10px 16px;
+  font-size: 24px;
+  line-height: 1.33;
+  border-radius: 35px;
+}
+
 }

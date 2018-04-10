@@ -157,11 +157,13 @@ if(!isset($_SESSION["validarSesion"])){
 			     echo'<button style="margin-right:15px" id="quitarItemPedido" repeticion="'.$i.'" class="btn btn-default backColor quitarItemPedido " noPedido="'.$value1["no_pedido"].'"><i class="fa fa-times"></i>
 					  </button>';
 
-				  echo'<a class="tamañoA" style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$value1["no_pedido"].'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["nombre_usuario"].' / '.$value1["origen"].' / '.$value1["lugar_preparacion"].' /'; 
+				  echo'<a class="tamañoA" style="font-weight:bold;" data-toggle="collapse" data-parent="#accordion" href="#pedido'.$value1["no_pedido"].'">'.$resultado1.' / '.$value1["no_pedido"].' / '.$value1["origen"]; 
 								     
 					  $resultado = substr($value1["fecha"], 10);
 								   
 					  echo $resultado;
+
+					  //echo'<br>';
 
 					  
 			   echo'</a>'; 

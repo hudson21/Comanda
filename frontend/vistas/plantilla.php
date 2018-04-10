@@ -43,7 +43,7 @@
 	  
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
 
-    <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
+     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/font-awesome.css">
   
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/flexslider.css">
 
@@ -55,7 +55,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Mukta+Vaani" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >-->
   
 
     <!--===============================================
@@ -72,6 +72,7 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/fonts.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/pedidos.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/notificaciones.css">
+
     
 
     
@@ -103,11 +104,6 @@
 
 
 <body > <!--onload="ajax();"-->
-  
-  <div id="pedidosProject" onload="pushPedidos();">
-    
-  </div>
-  
 
     <?php
         if(isset($_SESSION["validarSesion"])){
@@ -120,8 +116,11 @@
 
             if($value1["estado"]==2 && $value1["id_usuario"] == $_SESSION["id"] && $value1["mensaje_confirmacion"]==0){
 
-                
-              /*  Push.create("Pedido Listo", {
+                echo '<script>
+
+                 //localStorage.setItem("pushPedidos","'.$value1["no_pedido"].'");
+
+                Push.create("Pedido Listo", {
                      body: "El pedido '.$value1["no_pedido"].' se encuentra listo",
                      icon: "vistas/js/logo.jpg",
                      onClick: function(){
@@ -129,8 +128,8 @@
                         window.location = rutaOculta+"notificaciones";
                         this.close();
                       }
-                  });*/
-              
+                  });
+              </script>';
 
               $tablaModelo = "cabecera_pedidos";
               $item1 = "mensaje_confirmacion";
@@ -465,7 +464,7 @@
 
 
 <script>
-  window.fbAsyncInit = function() {
+ /* window.fbAsyncInit = function() {
     FB.init({
       appId      : '398752310585470',
       cookie     : true,
@@ -483,28 +482,7 @@
      js = d.createElement(s); js.id = id;
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-    /*======================================
-      AJAX PARA LAS NOTIFICACIONES PUSH DE PEDIDOS       
-    ========================================*/
-        function pushPedidos(){
-        var req1 = new XMLHttpRequest();
-
-        req1.onreadystatechange = function(){
-          if(req1.readyState == 4 && req1.status == 200){
-              document.getElementById("pedidosProject").innerHTML = req1.responseText;
-              console.log("req1.responseText",req1.responseText);
-            }
-        }
-
-         req1.open("GET","vistas/modulos/pushPedidos.php", true);
-        req1.send();
-      }
-        setInterval(function(){pushPedidos();}, 1000);
-
-
-    //localStorage.setItem("pushPedidos","'.$value1["no_pedido"].'"); 
+   }(document, 'script', 'facebook-jssdk'));*/
 </script>
 
 
