@@ -9,13 +9,13 @@ class AjaxUsuarios{
 		VALIDAR EMAIL EXISTENTE        
 	=================================================*/
 
-	public $validarEmail;
+	public $validarUsuario;
 
-	public function ajaxValidarEmail(){
+	public function ajaxValidarUsuario(){
 
-		$datos = $this->validarEmail;
+		$datos = $this->validarUsuario;
 
-		$respuesta = ControladorUsuarios::ctrMostrarUsuario("email", $datos);
+		$respuesta = ControladorUsuarios::ctrMostrarUsuario($datos);
 
 		echo json_encode($respuesta);
 
@@ -205,10 +205,10 @@ class AjaxUsuarios{
 /*===============================================
 	VALIDAR EMAIL EXISTENTE        
 =================================================*/
-	if(isset($_POST["validarEmail"])){
+	if(isset($_POST["validarUsuario"])){
 		$valEmail = new AjaxUsuarios();
-		$valEmail -> validarEmail = $_POST["validarEmail"];
-		$valEmail -> ajaxValidarEmail();
+		$valEmail -> validarUsuario = $_POST["validarUsuario"];
+		$valEmail -> ajaxValidarUsuario();
 
 	}
 
