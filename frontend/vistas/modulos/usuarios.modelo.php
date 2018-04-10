@@ -10,17 +10,14 @@ class ModeloUsuarios{
 	========================================*/
 	static public function mdlRegistroUsuario($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, email, foto, modo, verificacion,emailEncriptado)
-			VALUES (:nombre, :password, :email, :foto, :modo, :verificacion, :emailEncriptado)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, nickname, foto, modo)
+			VALUES (:nombre, :password, :nickname, :foto, :modo)");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
 		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
-		$stmt -> bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
 		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":modo", $datos["modo"], PDO::PARAM_STR);
-		$stmt -> bindParam(":verificacion", $datos["verificacion"], PDO::PARAM_INT);
-		$stmt -> bindParam(":emailEncriptado", $datos["emailEncriptado"], PDO::PARAM_STR);
-
 
 		if($stmt->execute()){
 
@@ -40,11 +37,11 @@ class ModeloUsuarios{
 	MOSTRAR USUARIO
 	=============================================*/
 
-	static public function mdlMostrarUsuario($tabla, $item, $valor){
+	static public function mdlMostrarUsuario($tabla, $valor){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :$item");
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE nickname = :item");
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$stmt -> bindParam(":item", $valor, PDO::PARAM_STR);
 
 		$stmt -> execute();
 
@@ -60,11 +57,11 @@ class ModeloUsuarios{
 	ACTUALIZAR USUARIO
 	=============================================*/
 
-	static public function mdlActualizarUsuario($tabla, $id, $item, $valor){
+	static public function mdlActualizarUsuario($tabla, $id, $valor){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item = :$item WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET password = :item WHERE id = :id");
 
-		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+		$stmt -> bindParam(":item", $valor, PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
@@ -88,10 +85,10 @@ class ModeloUsuarios{
 	=============================================*/
 	static public function mdlActualizarPerfil($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, email = :email, password = :password, foto = :foto WHERE id = :id");
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, nickname = :nickname, password = :password, foto = :foto WHERE id = :id");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-		$stmt -> bindParam(":email", $datos["email"], PDO::PARAM_STR);
+		$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
 		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
 		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
@@ -660,6 +657,59 @@ class ModeloUsuarios{
 		$stmt -> execute();
 
 		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+	}
+
+	/*===============================================
+		AGREGAR MENSAJES A LA TABLA DE NOTIFICACIONES     
+	=================================================*/
+	static public function mdlAgregarMensajesNotificaciones($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla (no_usuario, nombre_usuario, tipo, mensaje) VALUES (:no_usuario, :nombre_usuario, :tipo, :mensaje)");
+
+		$stmt -> bindParam(":no_usuario", $datos["idUsuarioGenerales"], PDO::PARAM_INT);
+		$stmt -> bindParam(":nombre_usuario", $datos["nombreUsuarioGenerales"], PDO::PARAM_STR);
+		$stmt -> bindParam(":tipo", $datos["tipoGeneral"], PDO::PARAM_INT);
+		$stmt -> bindParam(":mensaje", $datos["mensajeGeneral"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+	/*===============================================
+		NO MOSTRAR DE NUEVO LAS NOTIFICACIONES PUSH     
+	    =================================================*/
+	static public function mdlNoMostrarNotificacionesPush($tabla, $datos, $item1, $item2){
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :item1 WHERE $item2 = :item2");
+
+		$stmt -> bindParam(":item1", $datos["mensaje_confirmacion"], PDO::PARAM_STR);
+		$stmt -> bindParam(":item2",$datos["no_pedido"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
 
 		$stmt -> close();
 
