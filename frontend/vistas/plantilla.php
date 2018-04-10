@@ -103,6 +103,11 @@
 
 
 <body > <!--onload="ajax();"-->
+  
+  <div id="pedidosProject" onload="pushPedidos();">
+    
+  </div>
+  
 
     <?php
         if(isset($_SESSION["validarSesion"])){
@@ -115,21 +120,17 @@
 
             if($value1["estado"]==2 && $value1["id_usuario"] == $_SESSION["id"] && $value1["mensaje_confirmacion"]==0){
 
-                echo '<script>
-
-                 //localStorage.setItem("pushPedidos","'.$value1["no_pedido"].'");
-
-                Push.create("Pedido Listo", {
+                
+              /*  Push.create("Pedido Listo", {
                      body: "El pedido '.$value1["no_pedido"].' se encuentra listo",
                      icon: "vistas/js/logo.jpg",
                      onClick: function(){
 
                         window.location = rutaOculta+"notificaciones";
                         this.close();
-                        Push.clear();
                       }
-                  });
-              </script>';
+                  });*/
+              
 
               $tablaModelo = "cabecera_pedidos";
               $item1 = "mensaje_confirmacion";
@@ -483,6 +484,27 @@
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+    /*======================================
+      AJAX PARA LAS NOTIFICACIONES PUSH DE PEDIDOS       
+    ========================================*/
+        function pushPedidos(){
+        var req1 = new XMLHttpRequest();
+
+        req1.onreadystatechange = function(){
+          if(req1.readyState == 4 && req1.status == 200){
+              document.getElementById("pedidosProject").innerHTML = req1.responseText;
+              console.log("req1.responseText",req1.responseText);
+            }
+        }
+
+         req1.open("GET","vistas/modulos/pushPedidos.php", true);
+        req1.send();
+      }
+        setInterval(function(){pushPedidos();}, 1000);
+
+
+    //localStorage.setItem("pushPedidos","'.$value1["no_pedido"].'"); 
 </script>
 
 

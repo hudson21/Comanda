@@ -8,6 +8,7 @@ class Ruta{
 	static public function ctrRuta(){
 
 		return "http://localhost/Comanda/frontend/";
+		//172.16.46.94
 	}
 
 	/*======================================
