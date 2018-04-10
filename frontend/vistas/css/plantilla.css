@@ -213,6 +213,36 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   .tamañoDivEnlaces{
     width:240px;
   }
+
+  .posicionBotonMenos{
+    position:absolute;
+    margin-top:49px;
+    margin-left:0px;
+    z-index:100;
+    margin-right:7px;
+  }
+
+  .posicionBotonMas{
+    position:absolute;
+    margin-top:49px;
+    margin-left:83px;
+    z-index:100;
+  }
+
+  .botonOrdenar{
+    position:absolute;
+    margin-top:59px;
+    margin-left:105px;
+    z-index:100;
+  }
+
+  .tamañoBotonesMasyMenos{
+    width:32px; 
+    height:32px;
+    padding:0px;
+    font-weight:bold;
+  }
+
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
