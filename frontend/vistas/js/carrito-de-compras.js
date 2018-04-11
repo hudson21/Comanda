@@ -342,7 +342,7 @@ var num1=localStorage.getItem("num1");
 var count_click = 0;
 
 function count_click_add(variable) {
-  	count_click = count_click + 1;
+  	count_click += 1;
   	//console.log("count_click", count_click);
   	document.getElementById('producto'+variable).value = count_click;
 
