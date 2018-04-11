@@ -198,12 +198,43 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     border-radius: 25px;
    }
 
+   .productsH4{
+    position:absolute;
+  }
+
    .txtCantidad{
     position:absolute;
-    margin-top:50px;
-    margin-left:38px;
+    margin-top:30px;
+    margin-left:88px;
     z-index:100;
     margin-right:0px
+    width:100px;
+  }
+
+  .anchoBotonCantidad{
+    width:200px;
+  }
+
+  .tamañoBotonesMasyMenos{
+    width:32px; 
+    height:32px;
+    padding:0px;
+    font-weight:bold;
+  }
+
+  .posicionBotonMenos{
+    position:absolute;
+    margin-top:29px;
+    margin-left:50px;
+    z-index:100;
+    margin-right:7px;
+  }
+
+  .posicionBotonMas{
+    position:absolute;
+    margin-top:29px;
+    margin-left:145px;
+    z-index:100;
   }
 
   .anchoBotonCantidad{
@@ -214,34 +245,19 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     width:240px;
   }
 
-  .posicionBotonMenos{
-    position:absolute;
-    margin-top:49px;
-    margin-left:0px;
-    z-index:100;
-    margin-right:7px;
-  }
-
-  .posicionBotonMas{
-    position:absolute;
-    margin-top:49px;
-    margin-left:83px;
-    z-index:100;
-  }
+  
 
   .botonOrdenar{
     position:absolute;
-    margin-top:59px;
-    margin-left:105px;
+    margin-top:0px;
+    margin-left:185px;
     z-index:100;
   }
-
-  .tamañoBotonesMasyMenos{
-    width:32px; 
-    height:32px;
-    padding:0px;
-    font-weight:bold;
+  
+  .margenAbajo{
+    margin-bottom:40px;
   }
+  
 
 }
 /*------------------------------------------------

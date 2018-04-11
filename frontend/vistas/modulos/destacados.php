@@ -155,7 +155,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 				foreach ($modulos[$i] as $key => $value) {
 					
-					echo '<li class="col-md-3 col-sm-6 col-xs-12">
+					echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
 
 							<figure class="productsImg">
 								
@@ -212,7 +212,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 									
 									<div class="col-xs-10"></div>
 
-									<div class="botonOrdenar col-xs-2">
+									<div class="botonOrdenar col-lg-1 col-xs-2">
 
 								     <button type="button" class="btn btn-default btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip">
 
