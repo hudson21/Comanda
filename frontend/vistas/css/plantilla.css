@@ -203,16 +203,15 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   }
 
    .txtCantidad{
-    position:absolute;
+    
     margin-top:30px;
-    margin-left:88px;
+    margin-left:43px;
     z-index:100;
-    margin-right:0px
-    width:100px;
+    
   }
 
   .anchoBotonCantidad{
-    width:200px;
+    width:100px;
   }
 
   .tamañoBotonesMasyMenos{
@@ -225,7 +224,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   .posicionBotonMenos{
     position:absolute;
     margin-top:29px;
-    margin-left:50px;
+    margin-left:5px;
     z-index:100;
     margin-right:7px;
   }
@@ -237,16 +236,6 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     z-index:100;
   }
 
-  .anchoBotonCantidad{
-    width:55px;
-  }
-
-  .tamañoDivEnlaces{
-    width:240px;
-  }
-
-  
-
   .botonOrdenar{
     position:absolute;
     margin-top:0px;
@@ -255,7 +244,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   }
   
   .margenAbajo{
-    margin-bottom:40px;
+    margin-bottom:5px;
   }
   
 
@@ -439,7 +428,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 
   .botonOrdenar{
     position:absolute;
-    margin-top:59px;
+    margin-top:65px;
     margin-left:105px;
     z-index:100;
   }

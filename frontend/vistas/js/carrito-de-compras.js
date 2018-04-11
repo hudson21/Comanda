@@ -176,11 +176,57 @@ $(".agregarCarrito").click(function(){
 	/*====================================================================
   		CAPTURAR DETALLES        
 	======================================================================*/
-	if(tipo == "virtual"){
+	if(tipo == "virtual" || tipo == "fisico"){
 
-		agregarAlCarrito = true;
+		if($('.cantidadProducto'+idProducto).val() == ""){
 
-	}else{
+			swal({
+						title: "No hay una cantidad",
+						text: "",
+						type:"warning",
+						showCancelButton: false,
+						confirmButtonColor:"#DD6B55",
+						confirmButtonText:"Aceptar",
+						closeOnConfirm: false
+					})
+		}
+
+		else{
+
+			var valorCantidad = $('.cantidadProducto'+idProducto).val();
+
+			var expresion = /^[0-9]*$/;
+
+			if(!expresion.test(valorCantidad)){
+
+				swal({
+						title: "Solo se permiten números",
+						text: "",
+						type:"warning",
+						showCancelButton: false,
+						confirmButtonColor:"#DD6B55",
+						confirmButtonText:"Aceptar",
+						closeOnConfirm: false
+						
+					})
+				document.getElementById('producto'+idProducto).value = "";
+				
+
+			}else{
+
+				agregarAlCarrito = true;
+
+			}
+
+			
+
+		}
+
+		
+
+	}
+
+	/*else{
 
 		var seleccionarDetalle = $(".seleccionarDetalle");//Estoy almacenando varios detalles
 
@@ -207,7 +253,7 @@ $(".agregarCarrito").click(function(){
 
 		}
 
-	}
+	}*/
 
 	/*====================================================================
   		ALMACENAR EN EL LOCALSTORAGE LOS PRODUCTOS AGREGADOS AL CARRITO        
@@ -261,7 +307,7 @@ $(".agregarCarrito").click(function(){
 				type:"success",
 				showCancelButton: true,
 				confirmButtonColor:"#DD6B55",
-				cancelButtonText:"¡Continuar comprando!",
+				cancelButtonText:"¡Seguir ordenando!",
 				confirmButtonText:"¡Ir a mi carrito de compras!",
 				closeOnConfirm: false,
 				icon: "success"
@@ -272,12 +318,42 @@ $(".agregarCarrito").click(function(){
 
 			if(isConfirm){
 				window.location = rutaOculta+"carrito-de-compras";
+			}else{
+
+				document.getElementById('producto'+idProducto).value = "";
 			}
 		});
 
     }
 
 
+})
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  DAR CLICK EN LOS BOTONES CON SIGNO DE MÁS O MENOS        
+================================================*/
+var num1=localStorage.getItem("num1");
+//console.log("num1", num1);
+
+var count_click = 0;
+
+function count_click_add(variable) {
+  	count_click = count_click + 1;
+  	//console.log("count_click", count_click);
+  	document.getElementById('producto'+variable).value = count_click;
+
+}
+
+$(".mas").click(function(){
+
+	var idProducto = $(this).attr("idProducto");
+	var num1=localStorage.setItem("num1", idProducto);
+
+	count_click_add(idProducto);	
 })
 
 

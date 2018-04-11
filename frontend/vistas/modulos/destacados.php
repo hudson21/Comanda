@@ -3,7 +3,7 @@ BANNER
 ======================================-->
 
 <?php
-
+$a=0;
 $servidor = Ruta::ctrRutaServidor();
 
 $ruta = "sin-categoria";
@@ -153,6 +153,8 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 				<ul class="grid'.$i.'">';
 
+				
+
 				foreach ($modulos[$i] as $key => $value) {
 					
 					echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
@@ -187,24 +189,20 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 								
 								<div class=" tamañoDiv  ">
 									
-									<!--<button type="button" class="btn btn-default btn-xs deseos" idProducto="'.$value["id"].'" data-toggle="tooltip" title="Agregar a mi lista de deseos">
-										<i class="fa fa-heart" aria-hidden="true"></i>
-									</button>-->
-									
 									<div class="col-lg-2 col-xs-2 posicionBotonMenos" >
 
-										<button class="tamañoBotonesMasyMenos btn btn-danger">-</button>
+										<button idProducto="'.$value["id"].'" class="menos tamañoBotonesMasyMenos btn btn-danger">-</button>
 									</div>
 									
 									
-									<div  class="col-xs-3 txtCantidad">
+									<div  class="col-lg-12 col-xs-3 txtCantidad" name="txtCantidad">
 
-										<input type="number" class="anchoBotonCantidad form-control cantidadItem" min="1" value="" tipo="" precio="" idProducto="">
+										<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$value["id"].'" min="1" id="producto'.$value["id"].'" tipo="" precio="" >
 									</div>
 
 									<div class="posicionBotonMas col-lg-2 col-xs-2">
 
-										<button class="tamañoBotonesMasyMenos btn btn-success">+</button>
+										<button idProducto="'.$value["id"].'" repeticion= "'.$a.'"class="mas tamañoBotonesMasyMenos btn btn-success">+</button>
 									</div>
 
 									
@@ -228,7 +226,13 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 							</div>
 
 						</li>';
+
+						$a++;
+
+						
 				}
+
+
 
 				
 
