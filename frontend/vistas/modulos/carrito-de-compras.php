@@ -126,12 +126,12 @@
 
 						if($_SESSION["validarSesion"] == "ok"){
 
-							echo '<a id="btnCheckout" idUsuario="'.$_SESSION["id"].'" href="#modalCheckout" data-toggle="modal"><button class="btn btn-default backColor btn-lg pull-right">REALIZAR PAGO</button></a>';
+							echo '<a id="btnCheckout" idUsuario="'.$_SESSION["id"].'" href="#modalCheckout" data-toggle="modal"><button class="btn btn-default backColor btn-lg pull-right">REALIZAR ORDEN</button></a>';
 
 						}
 
 					}else{
-							echo '<a href="#modalIngreso" data-toggle="modal"><button class="btn btn-default backColor btn-lg pull-right">REALIZAR PAGO</button></a>';
+							echo '<a href="#modalIngreso" data-toggle="modal"><button class="btn btn-default backColor btn-lg pull-right">REALIZAR ORDEN</button></a>';
 					} 
 
 				?>
@@ -153,7 +153,7 @@
 
 		<div class="modal-body modalTitulo">
 
-			<h3 class="backColor">REALIZAR PAGO</h3>
+			<h3 class="backColor">REALIZAR ORDEN</h3>
 
 			<button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -298,7 +298,7 @@
 
 					<button type="button" data-dismiss="modal" class="btn btn-danger btn-default btn-lg  btnCerrarCelular ">CERRAR</button>
 					
-					<button id="botonPagar" class="btn btn-block btn-lg btn-default backColor btnPagar">PAGAR</button>
+					<button type="button" id="botonPagar" class="btn btn-block btn-lg  btn-default backColor btnPagar btnPagarCelular">ORDENAR</button>
 
 						
 					

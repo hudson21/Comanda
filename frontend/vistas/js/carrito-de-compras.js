@@ -1196,7 +1196,6 @@ $(".quitarItemPedido").click(function(){
 
 	swal({
 				title: "¿Desea eliminar este pedido?",
-				text: "¿Esta usted seguro de eliminar este pedido?",
 				type: "warning",
 				showCancelButton: true,
 				confirmButtonColor:"#DD6B55",
@@ -1224,7 +1223,7 @@ $(".quitarItemPedido").click(function(){
 
 			         })
 
-				window.location = rutaOculta+"pedidos";
+				window.location = localStorage.getItem("rutaPedido");
 
 			} 
 		});

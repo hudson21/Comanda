@@ -1,9 +1,4 @@
-<style>
 
-	.menuDesplegable{display:none;}
-
-	/*.cesta{display:none;*/}
-</style>
 
 
 
@@ -43,7 +38,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 
 ?>
-<style>.menuDesplegable{display:none;}</style>
+
 <!--===============================================
      BREADCRUMB DE MENSAJES
 ===================================================-->

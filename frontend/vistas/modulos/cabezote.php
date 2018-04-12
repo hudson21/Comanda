@@ -169,7 +169,7 @@ if($cliente->getAccessToken()){
                      <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                      
                      <li>|</li>
-                     <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+                     <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
 
                      <li>|</li>
                      <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
@@ -191,7 +191,7 @@ if($cliente->getAccessToken()){
                          <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                          
                          <li>|</li>
-                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+                         <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
 
                          <li>|</li>
                          <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
@@ -214,7 +214,7 @@ if($cliente->getAccessToken()){
                          <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                          
                          <li>|</li>
-                         <li><a href="'.$url.'pedidos" >Pedidos</a></li>
+                         <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
 
                          <li>|</li>
                          <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
@@ -233,7 +233,7 @@ if($cliente->getAccessToken()){
                     <li>|</li>
                     <li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
                     <li>|</li>
-                    <li><a href="'.$url.'pedidos" >Pedidos</a></li>';
+                    <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>';
 
             }
 

@@ -546,13 +546,33 @@ class ModeloUsuarios{
 	}
 
 	/*===============================================
-		MOSTRAR LISTA DE PEDIDOS      
+		MOSTRAR LISTA DE PEDIDOS POR USUARIO    
 	=================================================*/
 	static public function mdlMostrarCabeceraPedidosByUsuario($tabla, $item){
 
 		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario ORDER BY no_pedido ASC");
 
 		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*===============================================
+		MOSTRAR LISTA DE PEDIDOS POR USUARIO Y ESTADO    
+	=================================================*/
+	static public function mdlMostrarCabeceraPedidosByUsuarioAndEstado($tabla, $item, $estado){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE id_usuario = :id_usuario AND estado = :estado ORDER BY no_pedido ASC");
+
+		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
+		$stmt -> bindParam(":estado", $estado, PDO::PARAM_INT);
 
 		$stmt -> execute();
 

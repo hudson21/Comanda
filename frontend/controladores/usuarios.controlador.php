@@ -987,6 +987,19 @@ class ControladorUsuarios{
 	}
 
 	/*===============================================
+	   MOSTRAR CABECERA DE PEDIDOS POR ID DE USUARIO     
+	=================================================*/
+	static public function ctrMostrarCabeceraPedidosByUsuarioAndEstado($item, $estado){//ESTE SI LO USO
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosByUsuarioAndEstado($tabla, $item, $estado);
+
+		return $respuesta;
+
+	}
+
+	/*===============================================
 		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
 	=================================================*/
 	static public function ctrCambiarEstadoCabeceraPedidos($datos){

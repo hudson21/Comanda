@@ -13,6 +13,8 @@
 ------------------------------------------------*/
 @media (min-width:1200px){
 
+.menuDesplegable{display:none;}
+
 	
 .chatboxPedidos , .chatboxGenerales, .chatboxPersonalizados{
 	width:500px;
@@ -175,6 +177,8 @@
 ------------------------------------------------*/
 @media (max-width:1199px) and (min-width:992px){
 
+	.menuDesplegable{display:none;}
+
    
 
 }
@@ -182,6 +186,8 @@
    ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
 ------------------------------------------------*/
 @media (max-width:991px) and (min-width:768px){
+
+	.menuDesplegable{display:none;}
 
     
 

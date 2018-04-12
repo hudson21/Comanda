@@ -3,6 +3,8 @@
 ===================================================-->
 <?php
 
+
+
 $url = Ruta::ctrRuta();
 $servidor = Ruta::ctrRutaServidor();
 
@@ -35,14 +37,49 @@ if(!isset($_SESSION["validarSesion"])){
 ?>
 <style>
 
-	.menuDesplegable{display:none;}
+
+		/*Estamos configurando las resloluciones para lg, md, sm y xm*/
+/*------------------------------------------------
+   ESCRITORIO GRANDE (LG revisamos en 1366px en adelante)
+------------------------------------------------*/
+@media (min-width:1200px){
+
+.menuDesplegable{display:none;}
+	
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+
+   .menuDesplegable{display:none;}
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+    .menuDesplegable{display:none;}
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+    
+}
+
+
+	
 
 	.cesta{display:none;}
 </style>
 
 
 <!--===============================================
-     BREADCRUMB CARRITO DE COMPRAS
+     BREADCRUMB LISTA DE PEDIDOS
 ===================================================-->
 <div class="container-fluid well well-sm">
 
@@ -50,13 +87,44 @@ if(!isset($_SESSION["validarSesion"])){
 
 		<div class="row">
 
-			<ul class="breadcrumb  fondoBreadcrumb text-uppercase" style="margin-bottom:0px; background:rgba(0,0,0,0);">
+			<ul style="display:inline-block;" class="breadcrumb  fondoBreadcrumb text-uppercase" style="margin-bottom:0px; background:rgba(0,0,0,0);">
 
 				<li><a style="text-decoration:none;" href="<?php echo $url; ?>">LISTA</a></li>
-			    <li class="active pagActiva"><?php echo $rutas[0]; ?></li>
+			    <li class="active pagActiva"><?php echo $rutas[0]." ".$rutas[1] ; ?></li>
+
+
 				
 			</ul>
+
 			
+		
+			<!--Con solo colocar la clase mas pequeña de tamaño
+		 	estamos diciento que esta clase va abarcar toda la 
+		 	pantalla de nuestro sitio web-->
+
+				<div class=" pull-right">
+
+					<div class="btn-group">
+
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						
+						Ordenar Pedidos <span class="caret"></span></button>
+
+					<ul class="dropdown-menu" role="menu">
+                    <?php
+
+						echo'<li><a href="'.$url.$rutas[0].'/recibiendo">Recibiendo</a></li>
+						      <li><a href="'.$url.$rutas[0].'/preparando">Preparando</a></li>
+						      <li><a href="'.$url.$rutas[0].'/listo">Listo</a></li>';
+
+						 
+					?>						
+					</ul>
+
+				</div>
+										
+				</div>
+				
 		</div>
 		
 	</div>
@@ -96,11 +164,38 @@ if(!isset($_SESSION["validarSesion"])){
 
 	<?php
 
+		if(isset($rutas[1])){
+
+			echo'<script>
+
+				localStorage.setItem("rutaPedido","'.$url.$rutas[0]."/".$rutas[1].'");
+
+   				</script>';
+
+			//var_dump($rutas[1]);
+
+			if($rutas[1] == "recibiendo"){
+				$estado = 0;
+			}
+
+			if($rutas[1] == "preparando"){
+				$estado = 1;
+			}
+
+			if($rutas[1] == "listo"){
+				$estado = 2;
+			}
+
+
+		}
+
+		 
+
 		 $item = $_SESSION["id"];
 		 $item1 = 1;
 		 $usuario = $_SESSION["nombre"];
 
-		 $cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosByUsuario($item);
+		 $cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosByUsuarioAndEstado($item, $estado);
 
 		 $contarPedidos=count($cabeceraPedidos);
 
@@ -124,7 +219,7 @@ if(!isset($_SESSION["validarSesion"])){
 				               
 				     <h1><small>¡Oops!</small></h1>
 				    
-				     <h2>Aún no tiene productos en su lista de pedidos</h2>
+				     <h2>Aún no tiene pedidos en estado <span style="color:red" >'.$rutas[1].'</span> en su lista de pedidos</h2>
 
 				   </div>';
 
@@ -161,7 +256,7 @@ if(!isset($_SESSION["validarSesion"])){
 								     
 					  $resultado = substr($value1["fecha"], 10);
 								   
-					  echo $resultado;
+					  //echo $resultado;
 
 					  //echo'<br>';
 
@@ -400,6 +495,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 		 	echo'</div> <!--Div del id accordion-->';
    }//=========FIN DE TODO EL ELSE
+
+   
 			  
 		     					
  

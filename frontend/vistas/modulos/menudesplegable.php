@@ -1,6 +1,6 @@
 <header id="menuDes" class="menuDesplegable">
     <div style="z-index:2000"  class="menu_bar">
-      <a  class="bt-menu text-uppercase backColor"><span class="icon-home"></span>Categorías</a>
+      <a  class="bt-menu text-uppercase backColor"><span class="fa fa-apple"></span>Productos</a>
     </div>
  
     <nav >
