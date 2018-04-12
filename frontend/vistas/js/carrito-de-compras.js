@@ -279,7 +279,7 @@ $(".agregarCarrito").click(function(){
 					   	   "tipo":tipo, 
 					   	   "peso":peso, 
 					   	   "excepciones":excepciones,
-					   	   "cantidad":"1"});
+					   	   "cantidad":valorCantidad});
 
 		
 
@@ -1251,6 +1251,8 @@ var contarPedidos = localStorage.getItem("contarPedidos");
 	
 $(".btnPreparando").click(function(){
 
+	var repeticion =$(this).attr("repeticion");
+
 	for (var i = 1; i <= contarPedidos; i++) {
 
 	var datos = new FormData();
@@ -1273,7 +1275,7 @@ $(".btnPreparando").click(function(){
 
 			})
 
-		if(i==idProductoPedidoEliminar){
+		if(i==repeticion){
 
 			$("#preparando"+i).removeClass("fa-clock-o");
 			$("#preparando"+i).addClass("fa-check");

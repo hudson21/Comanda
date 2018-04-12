@@ -93,7 +93,7 @@
 
    <script src="<?php echo $url;?>vistas/js/plugins/push.min.js"></script>
 
-   <script src="<?php echo $url;?>vistas/js/menu.js"></script>
+   
 
    
 
@@ -459,7 +459,7 @@
 <script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
-<script src="<?php echo $url;?>vistas/js/notificaciones.js"></script>
+<script src="<?php echo $url;?>vistas/js/menu.js"></script>
 
 
 

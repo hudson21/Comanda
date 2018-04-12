@@ -147,7 +147,7 @@
 <!--===============================================
     VENTANA MODAL PARA CHECKOUT
 ===================================================-->
-<div id="modalCheckout" class="modal fade modalFormulario" role="dialog">
+<div style="z-index:10000" id="modalCheckout" class="modal fade modalFormulario" role="dialog">
 
 	<div class="modal-content modal-dialog">
 

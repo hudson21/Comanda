@@ -323,7 +323,7 @@ if($cliente->getAccessToken()){
 
 			      	<button class="btn backColor btn-default pull-left " style="background:#C1CA2C;color:white;">
                         	
-                  <i class="fa fa-shopping-cart "></i>
+                  <i class="fa fa-th-list "></i>
 
               </button>
 			      	
@@ -404,7 +404,7 @@ VENTANA MODAL PARA EL REGISTRO
 ===================================================-->
 
 <!-- Modal -->
-<div class="modal fade modalFormulario" id="modalRegistro"  role="dialog">
+<div style="z-index:10000" class="modal fade modalFormulario" id="modalRegistro"  role="dialog">
 
   <div class="modal-content modal-dialog ">
 
@@ -558,7 +558,7 @@ VENTANA MODAL PARA EL INGRESO
 ===================================================-->
 
 <!-- Modal -->
-<div class="modal fade modalFormulario" id="modalIngreso"  role="dialog">
+<div style="z-index:10000" class="modal fade modalFormulario" id="modalIngreso"  role="dialog">
 
   <div class="modal-content modal-dialog ">
 
@@ -673,7 +673,7 @@ VENTANA MODAL PARA OLVIDO DE CONTRASEÑA
 ===================================================-->
 
 <!-- Modal -->
-<div class="modal fade modalFormulario" id="modalPassword"  role="dialog">
+<div style="z-index:10000" class="modal fade modalFormulario" id="modalPassword"  role="dialog">
 
   <div class="modal-content modal-dialog ">
 

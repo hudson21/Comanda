@@ -189,10 +189,10 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 								
 								<div class=" tamañoDiv  ">
 									
-									<div class="col-lg-2 col-xs-2 posicionBotonMenos" >
+									<!--<div class="col-lg-2 col-xs-2 posicionBotonMenos" >
 
 										<button idProducto="'.$value["id"].'" class="menos tamañoBotonesMasyMenos btn btn-danger">-</button>
-									</div>
+									</div>-->
 									
 									
 									<div  class="col-lg-12 col-xs-3 txtCantidad" name="txtCantidad">
@@ -200,13 +200,13 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 										<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$value["id"].'" min="1" id="producto'.$value["id"].'" tipo="" precio="" >
 									</div>
 
-									<div class="posicionBotonMas col-lg-2 col-xs-2">
+									<!--<div class="posicionBotonMas col-lg-2 col-xs-2">
 
 										<button idProducto="'.$value["id"].'" repeticion= "'.$a.'"class="mas tamañoBotonesMasyMenos btn btn-success">+</button>
-									</div>
+									</div>-->
 
 									
-									<br>
+									
 									
 									<div class="col-xs-10"></div>
 
@@ -214,7 +214,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 								     <button type="button" class="btn btn-default btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip">
 
-								     <i class="fa fa-shopping-cart"></i>
+								     <i style="color:white" class="fa fa-check"></i>
 								     </button>
 
 									
