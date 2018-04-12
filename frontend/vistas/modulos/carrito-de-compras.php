@@ -155,7 +155,7 @@
 
 			<h3 class="backColor">REALIZAR ORDEN</h3>
 
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
+			<button style="color:black; font-size:35px; font-weight:bold;" type="button" class="close" data-dismiss="modal">&times;</button>
 
 			<div class="contenidoCheckout">
 
@@ -296,9 +296,11 @@
 
 					<div class="clearfix"></div>
 
-					<button type="button" data-dismiss="modal" class="btn btn-danger btn-default btn-lg  btnCerrarCelular ">CERRAR</button>
+					<!--<button type="button" data-dismiss="modal" class="btn pull-left btn-default btn-danger  btn-lg  btnCerrarCelular ">CERRAR</button>-->
+
 					
-					<button type="button" id="botonPagar" class="btn btn-block btn-lg  btn-default backColor btnPagar btnPagarCelular">ORDENAR</button>
+					
+					<button type="button"  id="botonPagar" class=" btn btn-default btn-block btn-lg   backColor btnPagar ">ORDENAR</button>
 
 						
 					

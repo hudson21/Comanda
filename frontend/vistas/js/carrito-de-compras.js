@@ -1363,6 +1363,15 @@ $(".btnListo").click(function(){
 	}
 })
 
+if(window.matchMedia("(min-width:768px)").matches){
+	//$("#botonPagar").removeClass("btn-block");
+	//$("#botonPagar").addClass("pull-right");
+
+}else{
+	$("#botonPagar").addClass("btn-block");
+	//$("#botonPagar").removeClass("pull-right");
+}
+
 /*===================================================
 /*===================================================
 /*===================================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO

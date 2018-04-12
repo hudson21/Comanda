@@ -496,6 +496,14 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	z-index:10000;
 	}
 
+	.modalFormulario .close{
+	position:absolute; /*La posición absoluta permite que podamos establecer coordenadas de ubicación a los elementos que queramos 
+	su posición*/
+	right:27px;
+	top:10px;
+	color:white;
+}
+
 	
 
 }
