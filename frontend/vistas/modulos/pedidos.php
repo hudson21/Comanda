@@ -298,7 +298,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			  	
 			  echo'</h4>';
-			 echo'</div>
+			 echo'</div><!--Quiero ver que div cierra este-->
 
 
 	
