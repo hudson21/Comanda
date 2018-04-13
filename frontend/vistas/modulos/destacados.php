@@ -76,6 +76,8 @@ $vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $ba
 
 $modulos = array($gratis, $ventas, $vistas);
 
+//====================================PRODUCTOS EN GRID========================================
+
 for($i = 0; $i < count($titulosModulos); $i ++){
 
 	echo '<div class="container-fluid well well-sm barraProductos">
@@ -96,13 +98,13 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 							 </button>
 
-							 <!--<button type="button" class="btn btn-default btnList" id="btnList'.$i.'">
+							 <button type="button" class="col-xs-0 btn btn-default btnList" id="btnList'.$i.'">
 							 	
 								<i class="fa fa-list" aria-hidden="true"></i> 
 
 								<span class="col-xs-0 pull-right"> LIST</span>
 
-							 </button>-->
+							 </button>
 							
 						</div>		
 
@@ -221,6 +223,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 									</div>
 
+
 								</div>
 
 							</div>
@@ -232,9 +235,89 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 						
 				}
 
+		echo'</ul>';
 
+//====================================PRODUCTOS EN LISTA========================================
 
-				
+		echo'<ul class="list'.$i.'" style="display:none">';
+
+				foreach ($modulos[$i] as $key => $value) {
+					echo '<li class="col-xs-12">
+					  
+				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+							   
+							<figure>
+						
+								<a href="'.$value["ruta"].'" class="pixelProducto">
+									
+									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
+								</a>
+							</figure>
+					  	</div>
+							  
+						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+							
+							<h1>
+								<small>
+								
+									<a href="'.$value["ruta"].'" class="pixelProducto">
+										
+										'.$value["titulo"].'<br>';
+
+										/*if($value["nuevo"] != 0){
+											echo '<span class="label label-warning">Nuevo</span> ';
+										}
+										if($value["oferta"] != 0){
+											echo '<span class="label label-warning">'.$value["descuentoOferta"].'% off</span>';
+										}*/		
+									echo '</a>
+								</small>
+							</h1>
+							<!--<p class="text-muted">'.$value["titular"].'</p>-->';
+
+							/*if($value["precio"] == 0){
+								echo '<h2><small>GRATIS</small></h2>';
+							}else{
+								if($value["oferta"] != 0){
+									echo '<h2>
+											<small>
+						
+												<strong class="oferta">USD $'.$value["precio"].'</strong>
+											</small>
+											<small>$'.$value["precioOferta"].'</small>
+										
+										</h2>';
+								}else{
+									echo '<h2><small>USD $'.$value["precio"].'</small></h2>';
+								}
+								
+							}*/
+							echo '<div class="btn-group pull-left enlaces">';
+
+						  		if($value["tipo"] == "virtual" && $value["precio"] != 0){
+										if($value["oferta"] != 0){
+											echo '<button type="button" class="btn btn-default btn-xs agregarCarrito"  idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precioOferta"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip" title="Agregar al carrito de compras">
+											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+											</button>';
+										}else{
+											echo '<button type="button" class="btn btn-default btn-xs agregarCarrito"  idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip" title="Agregar al carrito de compras">
+											<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+											</button>';
+										}
+									}
+						  	  echo '<!--<a href="'.$value["ruta"].'" class="pixelProducto">
+							  		<button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
+							  		<i class="fa fa-eye" aria-hidden="true"></i>
+							  		</button>
+						  		</a>-->
+							
+							</div>
+						</div>
+						<div class="col-xs-12"><hr></div>
+					</li>';
+				}
+
+		  echo '</ul>';
 
 		echo'</div>
 
