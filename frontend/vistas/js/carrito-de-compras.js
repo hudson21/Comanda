@@ -159,7 +159,7 @@ if(localStorage.getItem("listaProductos") != null){
 /*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
 /*==============================================
 /*==============================================
-  AGREGAR AL CARRITO        
+  AGREGAR AL CARRITO GRID       
 ================================================*/
 $(".agregarCarrito").click(function(){
 
@@ -178,7 +178,9 @@ $(".agregarCarrito").click(function(){
 	======================================================================*/
 	if(tipo == "virtual" || tipo == "fisico"){
 
-		if($('.cantidadProducto'+idProducto).val() == ""){
+		//---------------------------------------------EN GRID
+
+		if($('.cantidadProducto'+idProducto).val() == "" ){
 
 			swal({
 						title: "No hay una cantidad",
@@ -210,50 +212,14 @@ $(".agregarCarrito").click(function(){
 						
 					})
 				document.getElementById('producto'+idProducto).value = "";
-				
 
 			}else{
 
 				agregarAlCarrito = true;
 
 			}
-
-			
-
 		}
-
-		
-
 	}
-
-	/*else{
-
-		var seleccionarDetalle = $(".seleccionarDetalle");//Estoy almacenando varios detalles
-
-		for(var i = 0; i < seleccionarDetalle.length; i++){
-
-			if($(seleccionarDetalle[i]).val() == ""){
-
-				swal({
-						title: "Debe seleccionar Talla y Color",
-						text: "",
-						type:"warning",
-						showCancelButton: false,
-						confirmButtonColor:"#DD6B55",
-						confirmButtonText:"¡Seleccionar!",
-						closeOnConfirm: false
-					})
-
-			}else{
-
-				titulo = titulo + "-" + $(seleccionarDetalle[i]).val();
-
-				agregarAlCarrito = true;
-			}
-
-		}
-
-	}*/
 
 	/*====================================================================
   		ALMACENAR EN EL LOCALSTORAGE LOS PRODUCTOS AGREGADOS AL CARRITO        
@@ -328,6 +294,152 @@ $(".agregarCarrito").click(function(){
 
 
 })
+
+
+/*==============================================
+/*==============================================
+/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
+/*==============================================
+/*==============================================
+  AGREGAR AL CARRITO    LISTA     
+================================================*/
+$(".agregarCarritoLista").click(function(){
+
+	var idProducto = $(this).attr("idProducto");
+	var imagen = $(this).attr("imagen");
+	var titulo = $(this).attr("titulo");
+	var precio = $(this).attr("precio");
+	var tipo = $(this).attr("tipo");
+	var peso = $(this).attr("peso");
+	var excepciones = $(this).attr("excepciones");
+
+	var agregarAlCarrito = false;
+
+	/*====================================================================
+  		CAPTURAR DETALLES        
+	======================================================================*/
+	if(tipo == "virtual" || tipo == "fisico"){
+
+		//---------------------------------------------EN LISTA
+
+		if($('.cantidadProductoLista'+idProducto).val() == ""){
+
+			swal({
+						title: "No hay una cantidad",
+						text: "",
+						type:"warning",
+						showCancelButton: false,
+						confirmButtonColor:"#DD6B55",
+						confirmButtonText:"Aceptar",
+						closeOnConfirm: false
+					})
+		}
+
+		else{
+			var valorCantidadLista = $('.cantidadProductoLista'+idProducto).val();
+
+			var expresion = /^[0-9]*$/;
+
+			if(!expresion.test(valorCantidadLista) ){
+
+				swal({
+						title: "Solo se permiten números",
+						text: "",
+						type:"warning",
+						showCancelButton: false,
+						confirmButtonColor:"#DD6B55",
+						confirmButtonText:"Aceptar",
+						closeOnConfirm: false
+						
+					})
+
+				document.getElementById('productoLista'+idProducto).value = "";
+				
+
+			}else{
+
+				agregarAlCarrito = true;
+
+			}
+		}
+
+
+	}
+
+	/*====================================================================
+  		ALMACENAR EN EL LOCALSTORAGE LOS PRODUCTOS AGREGADOS AL CARRITO        
+	======================================================================*/
+	if(agregarAlCarrito){
+
+		/*====================================================================
+  			RECUPERAR ALMACENAMIENTO DEL LOCALSTORAGE        
+		======================================================================*/
+		if(localStorage.getItem("listaProductos") == null){ //Si la variable del localStorage está vacía o nula que la deje como está
+
+			listaCarrito = [];
+
+		}else{
+
+			listaCarrito.concat(localStorage.getItem("listaProductos"));
+		}
+
+		listaCarrito.push({"idProducto":idProducto,
+					   	   "imagen":imagen, 
+					   	   "titulo":titulo,
+					   	   "precio":precio,
+					   	   "tipo":tipo, 
+					   	   "peso":peso, 
+					   	   "excepciones":excepciones,
+					   	   "cantidad":valorCantidadLista});
+
+		
+
+		localStorage.setItem("listaProductos", JSON.stringify(listaCarrito)); 
+		//EL JSON.stringgify es para poder convertir a cadena de texto un array
+
+		/*====================================================================
+  			ACTUALIZAR CESTA      
+		======================================================================*/
+		var cantidadCesta = Number($(".cantidadCesta").html()) + 1;
+		var sumaCesta = Number($(".sumaCesta").html()) + Number(precio);
+
+		$(".cantidadCesta").html(cantidadCesta);
+		$(".sumaCesta").html(sumaCesta);
+
+		localStorage.setItem("cantidadCesta", cantidadCesta);//Estamos almacenando estas nuevas variables en el localStorage
+		localStorage.setItem("sumaCesta", sumaCesta);//Estamos almacenando estas nuevas variables en el localStorage
+	
+		/*====================================================================
+  			MOSTRAR ALERTA DE QUE EL PRODUCTO YA FUE AGREGADO        
+		======================================================================*/
+		swal({
+				title: "",
+				text: "¡Se ha agregado un nuevo producto al carrito de compras",
+				type:"success",
+				showCancelButton: true,
+				confirmButtonColor:"#DD6B55",
+				cancelButtonText:"¡Seguir ordenando!",
+				confirmButtonText:"¡Ir a mi carrito de compras!",
+				closeOnConfirm: false,
+				icon: "success"
+											  
+			},
+
+		function(isConfirm){
+
+			if(isConfirm){
+				window.location = rutaOculta+"carrito-de-compras";
+			}else{
+
+				document.getElementById('productoLista'+idProducto).value = "";
+			}
+		});
+
+    }
+
+
+})
+
 
 /*==============================================
 /*==============================================

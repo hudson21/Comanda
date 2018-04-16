@@ -200,7 +200,7 @@
         include "modulos/infoproducto.php";
 
       }else if($rutas[0] == "buscador" ||  $rutas[0] == "verificar" ||  $rutas[0] == "salir" ||  $rutas[0] == "perfil" 
-        ||  $rutas[0] == "carrito-de-compras" ||  $rutas[0] == "pedidos" || $rutas[0]== "notificaciones"){
+        ||  $rutas[0] == "carrito-de-compras" ||  $rutas[0] == "pedidos" || $rutas[0]== "notificaciones" || $rutas[0]== "configuraciones"){
 
         include "modulos/".$rutas[0].".php";
       
