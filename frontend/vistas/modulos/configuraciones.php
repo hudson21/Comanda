@@ -56,12 +56,13 @@ if(!isset($_SESSION["validarSesion"])){
 
 		  <li>
 		  	<a data-toggle="tab" href="#altasBajas">
-		  	<i class="fa fa-user"></i> ALTAS Y BAJAS DE PRODUCTOS</a>
+		  	<i class="fa fa-thumbs-up"></i>
+		  	<i class="fa fa-thumbs-down"></i> ALTAS Y BAJAS DE PRODUCTOS</a>
 		  </li>
 
 		  <li>
 		  	<a data-toggle="tab" href="#nuevoProducto">
-		  	<i class="fa fa-user"></i> AGREGAR NUEVO PRODUCTO</a>
+		  	<i class="fa fa-plus"></i> AGREGAR NUEVO PRODUCTO</a>
 		  </li>
 
 		</ul>
