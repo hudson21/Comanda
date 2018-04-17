@@ -13,7 +13,7 @@
 ------------------------------------------------*/
 @media (min-width:1200px){
 
-.menuDesplegable{display:none;}
+
 
 	
 .chatboxPedidos , .chatboxGenerales, .chatboxPersonalizados{
@@ -177,7 +177,8 @@
 ------------------------------------------------*/
 @media (max-width:1199px) and (min-width:992px){
 
-	.menuDesplegable{display:none;}
+	
+
 
    
 
@@ -187,7 +188,7 @@
 ------------------------------------------------*/
 @media (max-width:991px) and (min-width:768px){
 
-	.menuDesplegable{display:none;}
+	
 
     
 

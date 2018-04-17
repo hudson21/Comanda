@@ -159,22 +159,7 @@
 
 			<div class="contenidoCheckout">
 
-				<?php
-
-				$tabla = "comercio"; 
-
-				$respuesta = ControladorCarrito::ctrMostrarTarifas($tabla);
-
-				//var_dump($respuesta);
-
-				echo '<input type="hidden" id="tasaImpuesto" value="'.$respuesta["impuesto"].'">
-					  <input type="hidden" id="envioNacional" value="'.$respuesta["envioNacional"].'">
-					  <input type="hidden" id="envioInternacional" value="'.$respuesta["envioInternacional"].'">
-					  <input type="hidden" id="tasaMinimaNacional" value="'.$respuesta["tasaMinimaNacional"].'">
-					  <input type="hidden" id="tasaMinimaInternacional" value="'.$respuesta["tasaMinimaInternacional"].'">
-					  <input type="hidden" id="tasaPais" value="'.$respuesta["pais"].'">'
-
-				?>
+				
 
 				<div class="formEnvio row">
 

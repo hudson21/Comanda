@@ -47,6 +47,19 @@ class ControladorProductos{
 	}
 
 	/*==============================================
+	  MOSTRAR PRODUCTOS SIN BASE Y TOPE
+	===============================================*/
+
+	static public function ctrMostrarProductosSinBaseYTope($item, $valor){
+
+		$tabla="productos";
+
+		$respuesta= ModeloProductos::mdlMostrarProductosSinBaseYTope($tabla, $item, $valor);
+
+		return $respuesta;
+	}
+
+	/*==============================================
 	  MOSTRAR INFO PRODUCTOS
 	===============================================*/
 

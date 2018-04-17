@@ -1,7 +1,3 @@
-
-
-
-
 <!--===============================================
    VALIDAR SESIÓN
 ===================================================-->
@@ -38,7 +34,40 @@ if(!isset($_SESSION["validarSesion"])){
 
 
 ?>
+<style>
 
+@media (min-width:1200px){
+
+.menuDesplegable{display:none;}
+
+	
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+
+.menuDesplegable{display:none;}   
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+.menuDesplegable{display:none;}   
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+    
+}	
+
+
+</style>
 <!--===============================================
      BREADCRUMB DE MENSAJES
 ===================================================-->

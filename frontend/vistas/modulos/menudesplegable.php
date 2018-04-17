@@ -13,7 +13,7 @@
 
                 $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
 
-                forEach($categorias as $key => $value){
+                foreach($categorias as $key => $value){
 
                    echo ' <li class="submenu ">
                             <a style="font-weight:bold;" ><span class="icon-checkmark2 "></span>'.$value["categoria"].'<span class="caret icon-arrow-down6"></span></a>';

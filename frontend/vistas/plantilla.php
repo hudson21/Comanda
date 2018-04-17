@@ -248,53 +248,6 @@
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla1);
   }
 
-  /*======================================
-           TABLA COMENTARIOS  
-  ========================================*/
-  $tabla2 = "comentarios";
-
-  $tablaComentarios = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla2);
-
-  if($tablaComentarios == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla2);
-  }
-
-  /*======================================
-           TABLA COMERCIO  
-  ========================================*/
-  $tabla3 = "comercio";
-
-  $tablaComercio = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla3);
-
-  if($tablaComercio == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla3);
-  }
-
-  /*======================================
-           TABLA COMPRAS 
-  ========================================*/
-  $tabla4 = "compras";
-
-  $tablaCompras = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla4);
-
-  if($tablaCompras == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla4);
-  }
-
-  /*======================================
-           TABLA DESEOS 
-  ========================================*/
-  $tabla5 = "deseos";
-
-  $tablaDeseos = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla5);
-
-  if($tablaDeseos == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla5);
-  }
 
   /*======================================
            TABLA PLANTILLA   

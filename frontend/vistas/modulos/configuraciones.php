@@ -3,6 +3,35 @@
 ===================================================-->
 <style>
 
+@media (min-width:1200px){
+
+.menuDesplegable{display:none;}
+
+	
+}
+/*------------------------------------------------
+   ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
+------------------------------------------------*/
+@media (max-width:1199px) and (min-width:992px){
+
+.menuDesplegable{display:none;}   
+
+}
+/*------------------------------------------------
+   ESCRITORIO PEQUEÑO O TABLET VERTICAL (SM revisamos  en 768px)
+------------------------------------------------*/
+@media (max-width:991px) and (min-width:768px){
+
+.menuDesplegable{display:none;}   
+
+}
+/*------------------------------------------------
+  MOVIL (XS revisamos en 320px)
+------------------------------------------------*/
+@media (max-width:767px){
+
+    
+}
 
 </style>
 <?php
@@ -54,7 +83,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 		<ul class="nav nav-tabs">
 
-		  <li>
+		  <li class="active">
 		  	<a data-toggle="tab" href="#altasBajas">
 		  	<i class="fa fa-thumbs-up"></i>
 		  	<i class="fa fa-thumbs-down"></i> ALTAS Y BAJAS DE PRODUCTOS</a>
@@ -72,743 +101,110 @@ if(!isset($_SESSION["validarSesion"])){
 			<!--===============================================
 			   PESTAÑA ALTAS Y BAJAS DE PRODUCTOS
 			===================================================-->
-		  <div id="altasBajas" class="tab-pane fade ">
+		  <div id="altasBajas" class="tab-pane fade in active">
 
-		  	<div class="panel-group">
+		  	<?php
 
-		  		<?php
+		  	$item=null;
+            $valor=null;
+            $i = 0;
 
-					$item = "id_usuario";
-					$valor = $_SESSION["id"];
+                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
 
-					$compras = ControladorUsuarios::ctrMostrarCompras($item, $valor);
+		  		echo'<div style="margin-top:30px" class="panel-group" id="accordion">';
 
-					if(!$compras){
+		  		foreach($categorias as $key => $value){
 
-						echo '<div class="col-xs-12 text-center error404">
-				               
-				    		<h1><small>¡Oops!</small></h1>
-				    
-				    		<h2>Aún no tienes compras realizadas en esta tienda</h2>
+		  		echo'<div class="panel panel-default">
+			   	      <div class="panel-heading">
+			   	      
+					  <h4 class="panel-title">
+			           <a style="font-weight:bold" data-toggle="collapse" data-parent="#accordion" href="#collapse'.$i.'">
+			           '.$value["categoria"].'</a>
+			          </h4>
+			   	      
+			           
+			        </div>
 
-				  		</div>';
+			        <div id="collapse'.$i.'" class="panel-collapse collapse">
+			         <div class="panel-body">';
 
-					}else{
+			         $item = "id_categoria";
+                     $valor = $value["id"];
+                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
+                     $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
 
-						foreach ($compras as $key => $value1) {
+                     foreach($subcategorias as $key => $value1){
+                        echo'<h3 style="text-align:center; font-weight:bold;margin-bottom:20px;">'.$value1["subcategoria"].'</h3>';
 
-							$ordenar = "id";
-							$item = "id";
-							$valor = $value1["id_producto"];
+                        $item1 = "id_subcategoria";
+                        $valor1 = $value1["id"];
 
-							$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
+                        $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1);
 
-							foreach ($productos as $key => $value2) {
-							
-								echo '<div class="panel panel-default">
-									    
-									    <div class="panel-body">
+                        	foreach($productoSubcategoria as $key => $value2){
 
-											<div class="col-md-2 col-sm-6 col-xs-12">
+                        	echo '<div style="margin-bottom:20px" class="row">';	
 
-												<figure>
-												
-													<img class="img-thumbnail" src="'.$servidor.$value2["portada"].'">
 
-												</figure>
+                        	echo'<div class="col-xs-3">
+                        			<button id="quitarProducto" repeticion="'.$i.'" class="btn btn-default btn-danger quitarProducto pull-right " ><i class="fa fa-times"></i>
+					  				</button>
+					  			 </div>';
 
-											</div>
+					  		
 
-											<div class="col-sm-6 col-xs-12">
+                        	echo'<div class="col-xs-6">
+                        			<h5 style="text-align:center; 
+                        					font-weight:bold;">'.$value2["titulo"].'
+                        			</h5>
+                        		 </div>';
 
-												<h1><small>'.$value2["titulo"].'</small></h1>
+                        	echo'<div class="col-xs-2">
+                        			<button  id="ponerProducto" repeticion="'.$i.'" class="btn btn-default btn-success ponerProducto " ><i class="fa fa-check"></i>
+					  				</button>
+					  			</div>';
 
-												<p>'.$value2["titular"].'</p>';
+                        	echo'</div>';
 
-												if($value2["tipo"] == "virtual"){
+                        	}
+                        echo'<div class="clearfix"></div>
 
-													echo '<a href="'.$url.'/curso">
-														<button class="btn btn-default pull-left">Ir al curso</button>
-														</a>';
+							<hr>';
+                     }
 
-												}else{
+			     echo'</div><!--FIN DEL DIV DEL BODY-->
+			         </div><!--FIN DEL DIV DEL COLLAPSE-->
+			        </div><!--FIN DEL PANEL DEFAULT -->';
 
-													echo '<h6>Proceso de entrega: '.$value2["entrega"].' días hábiles</h6>';
+			        $i++;
+		  		}
 
-													if($value1["envio"] == 0){
 
-														echo '<div class="progress">
+		  		echo'</div> <!--Div del id accordion-->';
 
-															<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-																<i class="fa fa-check"></i> Despachado
-															</div>
+		  	?>
 
-															<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-																<i class="fa fa-clock-o"></i> Enviando
-															</div>
+		 </div>
 
-															<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-																<i class="fa fa-clock-o"></i> Entregado
-															</div>
-
-														</div>';
-
-													}
-
-													if($value1["envio"] == 1){
-
-														echo '<div class="progress">
-
-															<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-																<i class="fa fa-check"></i> Despachado
-															</div>
-
-															<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-																<i class="fa fa-check"></i> Enviando
-															</div>
-
-															<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-																<i class="fa fa-clock-o"></i> Entregado
-															</div>
-
-														</div>';
-
-													}
-
-													if($value1["envio"] == 2){
-
-														echo '<div class="progress">
-
-															<div class="progress-bar progress-bar-info" role="progressbar" style="width:33.33%">
-																<i class="fa fa-check"></i> Despachado
-															</div>
-
-															<div class="progress-bar progress-bar-default" role="progressbar" style="width:33.33%">
-																<i class="fa fa-check"></i> Enviando
-															</div>
-
-															<div class="progress-bar progress-bar-success" role="progressbar" style="width:33.33%">
-																<i class="fa fa-check"></i> Entregado
-															</div>
-
-														</div>';
-
-													}
-
-												}
-
-												echo '<h4 class="pull-right"><small>Comprado el '.substr($value1["fecha"],0,-8).'</small></h4>
-																
-											</div>
-
-											<div class="col-md-4 col-xs-12">';
-
-											$datos = array("idUsuario"=>$_SESSION["id"],
-															"idProducto"=>$value2["id"] );
-
-											$comentarios = ControladorUsuarios::ctrMostrarComentariosPerfil($datos);
-
-												echo '<div class="pull-right">
-
-													<a class="calificarProducto" href="#modalComentarios" data-toggle="modal" idComentario="'.$comentarios["id"].'">
-													
-														<button class="btn btn-default backColor">Calificar Producto</button>
-
-													</a>
-
-												</div>
-
-												<br><br>
-
-												<div class="pull-right">
-
-													<h3 class="text-right">';
-
-													if($comentarios["calificacion"] == 0 && $comentarios["comentario"] == ""){
-
-														echo '<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																<i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																<i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-
-													}else{
-
-														switch($comentarios["calificacion"]){
-
-															case 0.5:
-															echo '<i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 1.0:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 1.5:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 2.0:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 2.5:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 3.0:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 3.5:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 4.0:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 4.5:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star-half-o text-success" aria-hidden="true"></i>';
-															break;
-
-															case 5.0:
-															echo '<i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>
-																  <i class="fa fa-star text-success" aria-hidden="true"></i>';
-															break;
-
-														}
-
-
-													}
-												
-														
-													echo '</h3>
-
-													<p class="panel panel-default text-right" style="padding:5px">
-
-														<small>
-
-														'.$comentarios["comentario"].'
-
-														</small>
-													
-													</p>
-
-												</div>
-
-											</div>
-
-									    </div>
-
-									</div>';
-
-							}
-							
-						}
-					}
-				?>
-
-			  
-
-			</div>
-		    
-		  </div>
 
 		  <!--===============================================
-			   PESTAÑA DESEOS
+			   PESTAÑA DE AGREGAR UN NUEVO PRODUCTO
 			===================================================-->
-		  <div id="deseos" class="tab-pane fade">
-		    
-			<?php 
+		  <div id="nuevoProducto" class="tab-pane fade ">
 
-				$item = $_SESSION["id"];
-
-				$deseos = ControladorUsuarios::ctrMostrarDeseos($item);
-
-				if(!$deseos){//Si no hay nada en la lista de deseos
-
-					echo '<div class="col-xs-12 text-center error404">
-				               
-				    		<h1><small>¡Oops!</small></h1>
-				    
-				    		<h2>Aún no tiene productos en su lista de deseos</h2>
-
-				  		</div>';
-
-				}else {
-
-					foreach($deseos as $key => $value1){
-
-						$ordenar = "id";
-						$valor = $value1["id_producto"];
-						$item = "id";
-
-						$productos = ControladorProductos::ctrListarProductos($ordenar, $item, $valor);
-
-
-						echo '<ul class="grid0">';
-
-							foreach($productos as $key => $value2){
-						 							
-						 	  echo '<li class=" col-md-3 col-sm-6 col-xs-12">
-
-						 		<figure>
-						 		
-						 			<a href="'.$url.$value2["ruta"].'" class="pixelProducto">
-						 			
-						 			<img src="'.$servidor.$value2["portada"].'" class="img-responsive">
-
-						 			</a>
-
-						 		</figure>
-
-
-
-						 	<h4>
-
-						 		<small>
-						 			
-						 			<a href="'.$url.$value2["ruta"].'" class="pixelProducto">
-
-						 			'.$value2["titulo"].' <br>
-
-						 			<span style="color:rgba(0,0,0,0)">-</span>';
-
-						 			
-						 				if($value2["nuevo"] != 0){
-
-						 					echo '<span class="label label-warning fontSize">Nuevo</span> ';
-						 		    	}
-
-						 				if($value2["oferta"] != 0){
-
-						 					echo '<span class="label label-warning fontSize">
-						 					'.$value2["descuentoOferta"].'% Off</span>';
-
-						 				}
-
-						 	echo'</a> 
-
-						 		</small>
-
-						 	</h4>
-
-						          <div class="col-xs-6 precio">';
-
-										if($value2["precio"] == 0){
-
-											echo '<h2 style="margin-top:-10px"><small>GRATIS</small></h2>';
-
-										}else{
-
-										
-										if($value2["oferta"] != 0){
-
-										    echo ' <h2 style="margin-top:-10px">
-
-						 		 						<small>
-						 		 	
-						 		 		                <strong class="oferta" style="font-size:15px;">
-						 		 		                USD $'.$value2["precio"].'</strong>
-						 		 	
-						 		 						</small>
-
-						 		 		                <small style="font-size:20px;font-weight:bold;">
-						 		 		                $'.$value2["precioOferta"].'</small>
-
-						 		 				  </h2>';
-
-										}else{
-
-											echo '<h2 style="margin-top:-10px">
-
-										                <small style="font-size:20px;font-weight:bold;">
-										                USD $'.$value2["precio"].'</small></h2>';
-
-											  }
-
-										}
-						 	
-						 					
-
-						echo '</div>
-						 			
-						 		<div class="col-xs-6 enlaces">	
-
-						 			<div class="btn-group pull-right">
-						 			
-										<button type="button" class="btn btn-danger btn-xs quitarDeseo" idDeseo="'.$value1["id"].'" 
-										data-toggle="tooltip" title="Quitar de mi lista de deseos">
-											
-											<i class="fa fa-heart" aria-hidden="true"></i>
-
-										</button>';
-
-									  if($value2["tipo"] == "virtual" && $value2["precio"] != 0){
-
-
-									    if($value2["oferta"] != 0){
-
-											echo '<button type="button" class="btn btn-default btn-xs agregarCarrito" idProducto="'.$value2["id"].'" 
-												  imagen="'.$servidor.$value2["portada"].'"
-												  titulo="'.$value2["titulo"].'" 
-												  precio="'.$value2["precioOferta"].'" 
-												  tipo="'.$value2["tipo"].'" 
-												  peso="'.$value2["peso"].'" 
-												  data-toggle="tooltip" 
-										          title="Agregar al carrito de compras">
-											
-											      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-
-										          </button>';
-										}else{
-
-											echo '<button type="button" class="btn btn-default btn-xs agregarCarrito" idProducto="'.$value2["id"].'" 
-												  imagen="'.$servidor.$value2["portada"].'"
-												  titulo="'.$value2["titulo"].'" 
-												  precio="'.$value2["precio"].'" 
-												  tipo="'.$value2["tipo"].'" 
-												  peso="'.$value2["peso"].'" 
-												  data-toggle="tooltip" 
-										          title="Agregar al carrito de compras">
-											
-											      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-
-										          </button>';
-												}
-
-											
-											}
-
-										    
-										  echo '<a href="'.$url.$value2["ruta"].'" class="pixelProducto">
-											
-												   <button type="button" class="btn btn-default btn-xs" 
-													data-toggle="tooltip" title="Ver producto">
-												
-													  <i class="fa fa-eye" aria-hidden="true"></i>
-																			
-												    </button>
-
-												</a>
-
-						 				</div>
-
-						 			</div>
-
-						 	
-								 </li>';
-
-								}
-
-						echo '</ul>';
-
-					}
-				}
-
-
-			?>
-
-  		  </div>
-
-  		    <!--===============================================
-			   PESTAÑA PERFIL
-			===================================================-->
-  		  <div id="perfil" class="tab-pane fade in active">
-		    
-		    	<div class="row">
-
-		    		<form method="POST" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->
-		    			
-						<div class="col-md-3 col-sm-4 col-xs-12 text-center">
-							<br>
-
-							<figure id="imgPerfil">
-								
-							<?php
-
-								echo '<input type="hidden" value="'.$_SESSION["id"].'" id="idUsuario" name="idUsuario">
-							      	  <input type="hidden" value="'.$_SESSION["password"].'" name="passUsuario">
-							          <input type="hidden" value="'.$_SESSION["foto"].'" name="fotoUsuario" id="fotoUsuario">
-							          <input type="hidden" value="'.$_SESSION["modo"].'" name="modoUsuario" id="modoUsuario">';
-
-								if($_SESSION["modo"] == "directo"){
-
-									if($_SESSION["foto"] != ""){
-
-										echo '<img src="'.$url.$_SESSION["foto"].'" class="img-thumbnail">';
-
-									}else{
-
-										echo '<img src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" class="img-thumbnail">';
-
-									}
-
-								}else{
-
-									echo '<img src="'.$_SESSION["foto"].'" class="img-thumbnail">';
-								}
-
-
-							?>
-
-							</figure>
-
-							<br>
-
-							<?php 
-							
-							if($_SESSION["modo"] == "directo"){
-							
-							/*echo '<button type="button" class="btn btn-default" id="btnCambiarFoto">
-									
-									Cambiar foto de perfil
-									
-									</button>';*/
-
-							}
-
-							?>
-
-							<div id="subirImagen">
-								
-								<input type="file" class="form-control" id="datosImagen" name="datosImagen">
-
-								<img class="previsualizar">
-
-							</div>
-
-						</div>	
-
-						<div class="col-md-9 col-sm-8 col-xs-12">
-
-						<br>
-							
-						<?php
-
-						if($_SESSION["modo"] != "directo"){
-
-							echo '<label class="control-label text-muted text-uppercase">Nombre:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input type="text" class="form-control"  value="'.$_SESSION["nombre"].'" readonly>
-
-									</div>
-
-									<br>
-
-									<label class="control-label text-muted text-uppercase">Correo electrónico:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input type="text" class="form-control"  value="'.$_SESSION["nickname"].'" readonly>
-
-									</div>
-
-									<br>
-
-									<label class="control-label text-muted text-uppercase">Modo de registro en el sistema:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="fa fa-'.$_SESSION["modo"].'"></i></span>
-										<input type="text" class="form-control text-uppercase"  value="'.$_SESSION["modo"].'" readonly>
-
-									</div>
-
-									<br>';
-		
-
-						}else{
-
-							echo '<label class="control-label text-muted text-uppercase" for="editarNombre">Cambiar Nombre:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input type="text" class="form-control" id="editarNombre" name="editarNombre" value="'.$_SESSION["nombre"].'">
-
-									</div>
-
-								<br>
-
-								<label class="control-label text-muted text-uppercase" for="editarNickname">Cambiar Nombre de usuario:</label>
-
-								<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-										<input type="text" class="form-control" id="editarNickname" name="editarNickname" value="'.$_SESSION["nickname"].'">
-
-									</div>
-
-								<br>
-
-								<label class="control-label text-muted text-uppercase" for="editarPassword">Cambiar Contraseña:</label>
-
-								<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-										<input type="text" class="form-control" id="editarPassword" name="editarPassword" placeholder="Escribe la nueva contraseña">
-
-									</div>
-
-								<br>
-
-								<button type="submit" class="btn btn-default backColor btn-md pull-left">Actualizar Datos</button>';
-
-								echo'<button style="margin-bottom:10px" type="button" class="btn btn-danger btn-md pull-right" id="eliminarUsuario">Eliminar Cuenta</button>';
-
-						}
-
-						?>
-
-						</div>
-
-						<?php
-
-							$actualizarPerfil = new ControladorUsuarios();
-							$actualizarPerfil->ctrActualizarPerfil();
-
-						?>					
-						
-
-		    		</form>
-		    		
-		    	
-
-		    		<?php 
-
-		    			$borrarUsuario = new ControladorUsuarios();
-		    			$borrarUsuario -> ctrEliminarUsuario();
-
-
-		    		?>
-
-		    	</div>
-  		  </div>
-		
-		</div>
-		
-	</div>
-
-</div>
-
-<!--===============================================
-     VENTANA MODAL PARA COMENTARIOS
-===================================================-->
-<div id="modalComentarios" class="modal fade modalFormulario" role="dialog">
-
-	<div class="modal-content modal-dialog">
-
-		<div class="modal-body modalTitulo">
-
-			<h3 class="backColor">CALIFICA ESTE PRODUCTO</h3>
-
-			<button type="button" class="close" data-dismiss="modal">&times;</button>
-
-			<form method="POST" onsubmit="return validarComentario()">
-
-				<input type="hidden" value="" id="idComentario" name="idComentario">
-				
-				<h1 class="text-center" id="estrellas">
-
-					<i class="fa fa-star text-success" aria-hidden="true"></i>
-					<i class="fa fa-star text-success" aria-hidden="true"></i>
-					<i class="fa fa-star text-success" aria-hidden="true"></i>
-					<i class="fa fa-star text-success" aria-hidden="true"></i>
-					<i class="fa fa-star text-success" aria-hidden="true"></i>
-					
-				</h1>
-
-				<div class="form-group text-center">
-
-		       		<label class="radio-inline"><input type="radio" name="puntaje" value="0.5">0.5</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="1.0">1.0</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="1.5">1.5</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="2.0">2.0</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="2.5">2.5</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="3.0">3.0</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="3.5">3.5</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="4.0">4.0</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="4.5">4.5</label>
-					<label class="radio-inline"><input type="radio" name="puntaje" value="5.0" checked>5.0</label>
-
-				</div>
-
-				<div class="form-group">
-					
-					<label for="comment" class="text-muted">Tu opinión de este producto: <span><small>(Máximo 300 caracteres)</small></span></label>
-
-					<textarea class="form-control" rows="5" id="comentario" name="comentario" maxlength="300" required></textarea>
-					
-					<br>
-					<input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
-
-				</div>
-
-				<?php
-
-					$actualizarComentario = new ControladorUsuarios();
-					$actualizarComentario ->ctrActualizarComentario();
-
-				?>
-
-			</form>
+			<h2>Nuevo Producto</h2>
 			
+		  </div>
+
+
+
+		    
 		</div>
 
-		<div class="modal-footer">
-			
-		</div>
+	 </div>
+
+   </div>
 		
-	</div>	
-
-</div>
-
-
-
-
+		
 

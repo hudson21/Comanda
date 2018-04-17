@@ -597,11 +597,11 @@ INFO PRODUCTOS
 
 		     			if($infoproducto["tipo"] == "virtual"){
 
-						   echo'<button class="btn btn-default btn-block btn-lg backColor">ACCEDER AHORA</button>';
+						   echo'<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor">ACCEDER AHORA</button>';
 					    
 					     }else{
 
-					       echo'<button class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>';
+					       echo'<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor">SOLICITAR AHORA</button>';
 
 					     }
 							  echo'</div>';
@@ -622,7 +622,7 @@ INFO PRODUCTOS
 		     				  <div class="col-md-6 col-xs-12">
 
 					
-							<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+							<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
 									  imagen="'.$servidor.$infoproducto["portada"].'"
 									  titulo="'.$infoproducto["titulo"].'"
 									  precio="'.$infoproducto["precio"].'" 
@@ -642,7 +642,7 @@ INFO PRODUCTOS
 
 		     		    	echo '<div class="col-lg-6 col-md-8 col-xs-12">
 					
-							<button class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+							<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
 									  imagen="'.$servidor.$infoproducto["portada"].'"
 									  titulo="'.$infoproducto["titulo"].'"
 									  precio="'.$infoproducto["precio"].'" 
@@ -691,7 +691,7 @@ INFO PRODUCTOS
 		  COMENTARIOS
 		  ===================================================-->
 
-		  <br>
+		<!--  <br>
 
 		  <div class="row">
 
@@ -719,7 +719,7 @@ INFO PRODUCTOS
 		  	
 			<ul class="nav nav-tabs">
 
-				<?php 
+				<?php/* 
 
 					if($cantidad == 0){
 
@@ -1104,13 +1104,13 @@ INFO PRODUCTOS
 	</div>
 	
 
-</div>
+</div>-->
 
 <!--=================================================================================
  ARTÍCULOS RELACIONADOS
 ====================================================================================-->
 
-			<div class="container-fluid productos">
+	<!--		<div class="container-fluid productos">
 
 					<div class="container">
 				
@@ -1126,7 +1126,7 @@ INFO PRODUCTOS
 
 					  <div class="col-sm-6 col-xs-12">
 
-					  	<?php
+					  	<?php /*
 
 					  	$item = "id";
 
@@ -1343,12 +1343,12 @@ INFO PRODUCTOS
 			echo '</ul>';
 
 				}
-
+				*/
 			?> 
 
 		</div>
 
-	</div>
+	</div> -->
 
 <script>
 

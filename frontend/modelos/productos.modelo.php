@@ -93,6 +93,26 @@ class ModeloProductos{
 	  }
 
 	  /*==============================================
+	  	MOSTRAR PRODUCTOS SIN BASE Y TOPE
+	  ===============================================*/
+	  static public function mdlMostrarProductosSinBaseYTope($tabla, $item, $valor){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :valor");
+
+       //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
+		$stmt -> bindParam(":valor", $valor, PDO::PARAM_INT);
+
+		$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+	  }
+
+	  /*==============================================
 	  	MOSTRAR INFO PRODUCTO
 	  ===============================================*/
 
