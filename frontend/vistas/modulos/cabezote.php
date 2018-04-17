@@ -135,7 +135,7 @@ if($cliente->getAccessToken()){
 				=            REGISTRO            =
 			======================================-->
 			
-			<div class="col-lg-4 col-md-5 col-sm-7 col-xs-12 registro pull-right">	
+			<div class="col-lg-5 col-md-5 col-sm-7 col-xs-12 registro pull-right">	
 
 				<ul class="acciones">
 
@@ -157,11 +157,18 @@ if($cliente->getAccessToken()){
 
                     }else{
 
-                      echo '<li>
+                      echo '<li>';
 
-                        <img class="img-circle" src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" width="10%">
+                      if($_SESSION["tipo_usuario"] == 0){
 
-                      </li>';
+                        echo'<img class="img-circle" src="'.$servidor.'vistas/img/usuarios/admin/admin.png" width="10%">';
+
+                      }else{
+
+                        echo'<img class="img-circle" src="'.$servidor.'vistas/img/usuarios/admin/usuario.png" width="10%">';
+                      }
+
+                      echo'</li>';
 
                     }
 
@@ -172,9 +179,16 @@ if($cliente->getAccessToken()){
                      <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
 
                      <li>|</li>
-                     <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
+                     <li><a href="'.$url.'notificaciones" >Mensajes</a></li>';
 
-                     <li>|</li>
+                     if($_SESSION["tipo_usuario"] == 0){
+
+                       echo' <li>|</li>
+                      <li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>';
+                     }
+                    
+
+                echo'<li>|</li>
                      <li><a href="'.$url.'salir" >Salir</a></li>';
 
                   } 
@@ -229,11 +243,7 @@ if($cliente->getAccessToken()){
 
             }else{
 
-              echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>
-                    <li>|</li>
-                    <li><a href="#modalRegistro" data-toggle="modal">Crear una cuenta</a></li>
-                    <li>|</li>
-                    <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>';
+              echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>';
 
             }
 
@@ -410,7 +420,7 @@ VENTANA MODAL PARA EL REGISTRO
 
       <div class="modal-body modalTitulo">
 
-         <h3 class="backColor">REGISTRARSE</h3>
+         <h3 class="backColor">REGISTRAR MESERO</h3>
 
         <button type="button" class="close" data-dismiss="modal">&times;</button>
 
@@ -499,6 +509,19 @@ VENTANA MODAL PARA EL REGISTRO
                 </div>
                 
              </div>
+
+
+             <!--===============================================
+              CAMPO DE BAR
+            ===================================================-->
+            
+            <div style="margin-left:0px; margin-bottom:25px" class="col-lg-4 col-xs-12 seleccioneBar">
+            
+
+            </div>
+
+
+
 
             <!--=========================================================================
             https://www.iubenda.com/en     CONDICIONES DE USO Y POLÍTICAS  DE PRIVADIDAD

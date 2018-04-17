@@ -716,11 +716,17 @@ $(".seleccioneLugarPreparacion").html('<select class="form-control" name="selecc
 							
 						'</select>');
 
+$(".seleccioneBar").html('<select class="form-control" name="seleccionarBar" id="seleccionarBar" >'+
+
+							'<option value="">Seleccione Bar</option>'+
+							
+						'</select>');
+
 			$(".formEnvio").show();
 
 			$(".btnPagar").attr("tipo","fisico");
 
-			 
+
 
 			 	$.ajax({
 						url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
@@ -761,6 +767,7 @@ $(".seleccioneLugarPreparacion").html('<select class="form-control" name="selecc
 								var bar = item.name;
 								var codigo = item.code;
 								$("#seleccionarPreparacion").append('<option value="'+codigo+'">'+bar+'</option>');
+								$("#seleccionarBar").append('<option value="'+codigo+'">'+bar+'</option>');
 							  }
 
 						    }
@@ -980,7 +987,7 @@ $("#cambiarDivisa").change(function(){
 		return;
 
 	}
-
+	
 	var divisa = $(this).val();
 
 	$.ajax({

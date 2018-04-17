@@ -157,6 +157,18 @@ function registroUsuario(){
 		return false;
 
 	}
+
+	/*============================================================
+	VALIDAR EL SELECT DEL BAR         
+	==============================================================*/
+
+	if($("#seleccionarBar").val() == ""){
+
+		$("#seleccionarBar").after('<div class="alert alert-warning">No ha seleccionado el Bar</div>');
+
+		return false;
+
+	}
 	
 
 	/*============================================================

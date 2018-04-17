@@ -20,6 +20,9 @@ class ControladorUsuarios{
 			//El crypt es un modo para encriptar las contraseñas a través de PHP
 
 				$datos = array("nombre"=>$_POST["regUsuario"],
+							   "tipo_usuario"=>1,
+							   "hotel"=>$_SESSION["hotel"],
+							   "bar"=>1,
 			                   "password"=>$encriptar,
 			                   "nickname"=>$_POST["regNickname"],
 			                   "foto"=>"",
@@ -240,6 +243,8 @@ class ControladorUsuarios{
 
 			    		$_SESSION["validarSesion"] = "ok";
 			    		$_SESSION["id"] = $respuesta["id"];
+			    		$_SESSION["hotel"] = $respuesta["hotel"];
+			    		$_SESSION["tipo_usuario"] = $respuesta["tipo_usuario"];
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
 			    		$_SESSION["foto"] = $respuesta["foto"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
