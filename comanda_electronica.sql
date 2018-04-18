@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-04-2018 a las 22:17:31
+-- Tiempo de generación: 18-04-2018 a las 23:45:29
 -- Versión del servidor: 10.1.30-MariaDB
 -- Versión de PHP: 7.2.1
 
@@ -21,6 +21,29 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `comanda_electronica`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `almacenes`
+--
+
+CREATE TABLE `almacenes` (
+  `id` int(11) NOT NULL,
+  `bares` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `almacenes`
+--
+
+INSERT INTO `almacenes` (`id`, `bares`) VALUES
+(1, 'BAR SOL'),
+(2, 'BAR LUNA'),
+(3, 'BAR ITALIANO'),
+(4, 'BAR ESPAÑOL'),
+(5, 'BAR FRANCÉS'),
+(6, 'BAR CHINO');
 
 -- --------------------------------------------------------
 
@@ -71,32 +94,31 @@ CREATE TABLE `cabecera_pedidos` (
 --
 
 INSERT INTO `cabecera_pedidos` (`no_pedido`, `id_usuario`, `nombre_usuario`, `origen`, `lugar_preparacion`, `comentarios`, `mostrar`, `estado`, `disponible`, `mensaje_confirmacion`, `fecha`) VALUES
-(000000001, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', 'ouuuuuuuuuuuuuuuuyeahhhhhhhh', 1, 0, 1, 0, '2018-04-16 17:40:46'),
-(000000002, 53, 'JULIAN ', 'Palapa 1', 'BAR SOL', 'zapatosssssssssssssssssssssssss', 1, 2, 1, 1, '2018-04-16 20:26:36'),
-(000000003, 53, 'JULIAN ', 'Palapa 1', 'BAR SOL', 'dsadgfsafdsa', 1, 2, 0, 1, '2018-04-16 20:31:12'),
-(000000004, 53, 'JULIAN ', '', '', '', 0, 2, 1, 1, '2018-04-16 20:26:32'),
-(000000005, 53, 'JULIAN ', 'Palapa 3', 'BAR ITALIANO', '453454323', 1, 1, 0, 0, '2018-04-12 21:42:22'),
-(000000006, 53, 'JULIAN ', 'Palapa 1', 'BAR SOL', 'wqwerwqer', 1, 0, 1, 0, '2018-04-16 17:40:47'),
-(000000007, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', 'sadfsdfasdfsaf', 1, 0, 1, 0, '2018-04-16 17:40:49'),
-(000000008, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', '', 0, 0, 1, 0, '2018-04-16 17:40:50'),
-(000000009, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', 'holaaaaaaaaa', 1, 2, 1, 1, '2018-04-16 20:26:30'),
-(000000010, 53, 'JULIAN ', '', '', 'ruyruuyruytryt', 1, 0, 1, 0, '2018-04-16 17:41:09'),
-(000000011, 53, 'JULIAN ', 'Palapa 2', '', 'askjsajfjsaksa', 1, 0, 1, 0, '2018-04-16 17:41:07'),
-(000000012, 53, 'JULIAN ', 'Palapa 1', 'BAR SOL', 'kjhasljhalhsf', 1, 0, 1, 0, '2018-04-16 17:40:54'),
-(000000013, 53, 'JULIAN ', 'Palapa 1', '', '', 0, 0, 1, 0, '2018-04-16 17:40:52'),
-(000000014, 53, 'JULIAN ', 'Palapa 1', '', '', 0, 0, 1, 0, '2018-04-16 17:41:05'),
-(000000015, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', '', 0, 0, 1, 0, '2018-04-16 17:40:55'),
-(000000016, 55, 'CARLOS ALFONSO', 'Palapa 1', '', 'jjjkhlñgjlkfjg', 1, 0, 0, 0, '2018-04-12 15:14:24'),
-(000000017, 55, 'CARLOS ALFONSO', 'Palapa 2', '', '', 0, 0, 0, 0, '2018-04-12 15:14:27'),
-(000000018, 55, 'CARLOS ALFONSO', 'Palapa 5', '', '', 0, 0, 0, 0, '2018-04-12 15:14:28'),
-(000000019, 53, 'JULIAN ', 'Palapa 6', '', '', 0, 0, 1, 0, '2018-04-16 17:41:04'),
-(000000020, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', '', 0, 0, 1, 0, '2018-04-16 17:40:57'),
-(000000021, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', '', 0, 0, 1, 0, '2018-04-16 17:41:00'),
-(000000022, 53, 'JULIAN ', 'Palapa 3', '', '', 0, 0, 1, 0, '2018-04-16 17:40:58'),
-(000000023, 40, 'Carlos Miguel Hudson Diaz', 'Palapa 3', 'BAR ITALIANO', '', 0, 0, 0, 0, '2018-04-16 18:30:17'),
-(000000024, 53, 'JULIAN ', 'Palapa 5', '', '', 0, 2, 0, 1, '2018-04-16 20:26:54'),
-(000000025, 53, 'JULIAN ', 'Palapa 3', '', 'Quiero todos estos productos :(. Pero soy pobreee :(', 1, 0, 0, 0, '2018-04-16 20:30:48'),
-(000000026, 53, 'JULIAN ', 'Palapa 2', 'BAR LUNA', 'sadgsgsadgsagdsagdsadsadsagdsagdsagsadgdsagdsagdsagdsagdsagdsagdsagdsag', 1, 0, 0, 0, '2018-04-17 18:57:48');
+(000000001, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', 'ouuuuuuuuuuuuuuuuyeahhhhhhhh', 1, 0, 0, 0, '2018-04-18 17:39:19'),
+(000000002, 1, 'CARLOS HUDSON', 'Palapa 1', 'BAR SOL', 'zapatosssssssssssssssssssssssss', 1, 0, 0, 0, '2018-04-18 17:41:34'),
+(000000003, 1, 'CARLOS HUDSON', 'Palapa 1', 'BAR SOL', 'dsadgfsafdsa', 1, 0, 0, 0, '2018-04-18 17:41:37'),
+(000000004, 1, 'CARLOS HUDSON', '', '', '', 0, 0, 0, 0, '2018-04-18 17:41:40'),
+(000000005, 1, 'CARLOS HUDSON', 'Palapa 3', 'BAR ITALIANO', '453454323', 1, 0, 0, 0, '2018-04-18 17:41:47'),
+(000000006, 1, 'CARLOS HUDSON', 'Palapa 1', 'BAR SOL', 'wqwerwqer', 1, 0, 0, 0, '2018-04-18 17:41:50'),
+(000000007, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', 'sadfsdfasdfsaf', 1, 0, 0, 0, '2018-04-18 17:41:53'),
+(000000008, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-04-18 17:41:55'),
+(000000009, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', 'holaaaaaaaaa', 1, 0, 0, 0, '2018-04-18 17:41:59'),
+(000000010, 1, 'CARLOS HUDSON', '', '', 'ruyruuyruytryt', 1, 0, 0, 0, '2018-04-18 17:42:04'),
+(000000011, 1, 'CARLOS HUDSON', 'Palapa 2', '', 'askjsajfjsaksa', 1, 0, 0, 0, '2018-04-18 17:42:02'),
+(000000012, 1, 'CARLOS HUDSON', 'Palapa 1', 'BAR SOL', 'kjhasljhalhsf', 1, 0, 0, 0, '2018-04-18 17:42:08'),
+(000000013, 1, 'CARLOS HUDSON', 'Palapa 1', '', '', 0, 0, 0, 0, '2018-04-18 17:42:12'),
+(000000014, 1, 'CARLOS HUDSON', 'Palapa 1', '', '', 0, 0, 0, 0, '2018-04-18 17:42:14'),
+(000000015, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-04-18 17:42:17'),
+(000000016, 1, 'CARLOS HUDSON', 'Palapa 1', '', 'jjjkhlñgjlkfjg', 1, 0, 0, 0, '2018-04-18 17:42:20'),
+(000000017, 1, 'CARLOS HUDSON', 'Palapa 2', '', '', 0, 0, 0, 0, '2018-04-18 17:42:23'),
+(000000018, 1, 'CARLOS HUDSON', 'Palapa 5', '', '', 0, 0, 0, 0, '2018-04-18 17:42:26'),
+(000000019, 1, 'CARLOS HUDSON', 'Palapa 6', '', '', 0, 0, 0, 0, '2018-04-18 17:42:29'),
+(000000020, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-04-18 17:42:32'),
+(000000021, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-04-18 17:42:35'),
+(000000022, 1, 'CARLOS HUDSON', 'Palapa 3', '', '', 0, 0, 0, 0, '2018-04-18 17:42:38'),
+(000000023, 1, 'CARLOS HUDSON', 'Palapa 3', 'BAR ITALIANO', '', 0, 0, 0, 0, '2018-04-18 17:42:42'),
+(000000024, 1, 'CARLOS HUDSON', 'Palapa 5', '', '', 0, 0, 0, 0, '2018-04-18 17:42:45'),
+(000000025, 1, 'CARLOS HUDSON', 'Palapa 3', '', 'Quiero todos estos productos :(. Pero soy pobreee :(', 1, 0, 0, 0, '2018-04-18 17:42:48');
 
 -- --------------------------------------------------------
 
@@ -188,7 +210,8 @@ INSERT INTO `linea_pedidos` (`id`, `id_producto`, `cantidad`, `no_pedido`, `fech
 (41, 490, 100, 000000025, '2018-04-16 20:30:48'),
 (42, 432, 10, 000000025, '2018-04-16 20:30:48'),
 (43, 459, 4, 000000025, '2018-04-16 20:30:48'),
-(44, 469, 23, 000000026, '2018-04-17 18:57:48');
+(44, 469, 23, 000000026, '2018-04-17 18:57:48'),
+(45, 469, 3, 000000027, '2018-04-18 16:00:45');
 
 -- --------------------------------------------------------
 
@@ -205,19 +228,6 @@ CREATE TABLE `notificaciones` (
   `mensaje` text COLLATE utf8_spanish_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `notificaciones`
---
-
-INSERT INTO `notificaciones` (`id`, `no_usuario`, `nombre_usuario`, `no_pedido`, `tipo`, `mensaje`, `fecha`) VALUES
-(1, 53, 'JULIAN ', NULL, 1, 'Ya dejenme en paz :(', '2018-04-12 18:53:14'),
-(2, 53, 'JULIAN ', 000000002, 0, '', '2018-04-12 21:42:19'),
-(3, 53, 'JULIAN ', 000000004, 0, '', '2018-04-12 21:42:35'),
-(4, 53, 'JULIAN ', 000000009, 0, '', '2018-04-16 17:41:12'),
-(5, 53, 'JULIAN ', 000000024, 0, '', '2018-04-16 20:26:51'),
-(6, 53, 'JULIAN ', NULL, 1, 'Como están toddos por allá ? ', '2018-04-16 20:27:27'),
-(7, 53, 'JULIAN ', 000000003, 0, '', '2018-04-16 20:31:07');
 
 -- --------------------------------------------------------
 
@@ -800,6 +810,19 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `tipo`, `ruta`
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `productos_almacen`
+--
+
+CREATE TABLE `productos_almacen` (
+  `id` int(11) NOT NULL,
+  `id_bar` int(11) NOT NULL,
+  `id_producto` int(11) NOT NULL,
+  `disponible` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `slide`
 --
 
@@ -884,10 +907,11 @@ INSERT INTO `subcategorias` (`id`, `subcategoria`, `id_categoria`, `ruta`, `fech
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `nombre` text COLLATE utf8_spanish_ci NOT NULL,
+  `tipo_usuario` int(11) NOT NULL,
+  `hotel` text COLLATE utf8_spanish_ci NOT NULL,
+  `bar` text COLLATE utf8_spanish_ci NOT NULL,
   `password` text COLLATE utf8_spanish_ci NOT NULL,
   `nickname` text COLLATE utf8_spanish_ci NOT NULL,
-  `modo` text COLLATE utf8_spanish_ci NOT NULL,
-  `foto` text COLLATE utf8_spanish_ci NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -895,17 +919,19 @@ CREATE TABLE `usuarios` (
 -- Volcado de datos para la tabla `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `nombre`, `password`, `nickname`, `modo`, `foto`, `fecha`) VALUES
-(33, 'carlos hudson', '$2a$07$asxx54ahjppf45sd87a5au9GwEgs5MnkbG6ONqeqhJ82fX8WkASAm', 'carlosmigu27@hotmail.com', 'directo', '', '2018-02-19 21:02:09'),
-(44, 'CARLOS MIGUEL HUDSON DIAZ', 'null', 'camihudsondiaz@ittepic.edu.mx', 'google', 'https://lh4.googleusercontent.com/-isYzkVn8-wc/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjWLu7lQGK4U7_tRCNunt2E870ADIg/s96-c/photo.jpg', '2018-02-21 18:18:47'),
-(45, 'CARLOSMIGU27 CARLOS', 'null', 'carlosmiguc@gmail.com', 'google', 'https://lh5.googleusercontent.com/-OdZitNzJFV4/AAAAAAAAAAI/AAAAAAAAAAA/ACSILjUXXpNv2sOUHpAqjtcOTpbPJxeVbQ/s96-c/photo.jpg', '2018-02-21 18:49:44'),
-(53, 'JULIAN ', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'admin', 'directo', '', '2018-04-16 21:21:09'),
-(54, 'Alberto ruz', '$2a$07$asxx54ahjppf45sd87a5auJRR6foEJ7ynpjisKtbiKJbvJsoQ8VPS', 'Aruz', 'directo', '', '2018-04-10 16:24:46'),
-(55, 'CARLOS ALFONSO', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'carlos', 'directo', '', '2018-04-11 22:05:29');
+INSERT INTO `usuarios` (`id`, `nombre`, `tipo_usuario`, `hotel`, `bar`, `password`, `nickname`, `fecha`) VALUES
+(1, 'CARLOS HUDSON', 0, 'finest', 'BE', '12345', 'admin', '2018-04-18 14:56:08'),
+(11, 'X ALFONSO', 1, 'finest', 'BC', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-04-18 18:21:16');
 
 --
 -- Índices para tablas volcadas
 --
+
+--
+-- Indices de la tabla `almacenes`
+--
+ALTER TABLE `almacenes`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `banner`
@@ -950,6 +976,12 @@ ALTER TABLE `productos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `productos_almacen`
+--
+ALTER TABLE `productos_almacen`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `slide`
 --
 ALTER TABLE `slide`
@@ -974,6 +1006,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `almacenes`
+--
+ALTER TABLE `almacenes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
 -- AUTO_INCREMENT de la tabla `banner`
 --
 ALTER TABLE `banner`
@@ -983,7 +1021,7 @@ ALTER TABLE `banner`
 -- AUTO_INCREMENT de la tabla `cabecera_pedidos`
 --
 ALTER TABLE `cabecera_pedidos`
-  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -995,13 +1033,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `linea_pedidos`
 --
 ALTER TABLE `linea_pedidos`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
@@ -1014,6 +1052,12 @@ ALTER TABLE `plantilla`
 --
 ALTER TABLE `productos`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=501;
+
+--
+-- AUTO_INCREMENT de la tabla `productos_almacen`
+--
+ALTER TABLE `productos_almacen`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `slide`
@@ -1031,7 +1075,7 @@ ALTER TABLE `subcategorias`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Restricciones para tablas volcadas
