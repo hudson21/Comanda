@@ -199,6 +199,22 @@ class AjaxUsuarios{
 		echo $respuesta;
 	}
 
+	/*=================================================================================
+		AGREGAR O MODIFICAR LOS PRODUCTOS DESHABILITADOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	public $productoDeshabilitar;
+	public $bar;
+
+	public function ajaxAgregaroModificarDeshabilitadosProductosAlmacen(){
+
+		$datos = array("productoDeshabilitar"=>$this->productoDeshabilitar,
+					   "bar"=>$this->bar);
+
+		$respuesta = ControladorUsuarios::ctrAgregaroModificarDeshabilitadosProductosAlmacen($datos);
+
+		echo $respuesta;
+	}
+
 	
 }
 

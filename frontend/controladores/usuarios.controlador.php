@@ -251,6 +251,7 @@ class ControladorUsuarios{
 			    		$_SESSION["validarSesion"] = "ok";
 			    		$_SESSION["id"] = $respuesta["id"];
 			    		$_SESSION["hotel"] = $respuesta["hotel"];
+			    		$_SESSION["bar"] = $respuesta["bar"];
 			    		$_SESSION["tipo_usuario"] = $respuesta["tipo_usuario"];
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
@@ -259,7 +260,7 @@ class ControladorUsuarios{
 
 			    		echo '<script>
 
-			    		localStorage.setItem("bar","'.$_SESSION["id"].'");
+			    		localStorage.setItem("bar","'.$_SESSION["bar"].'");
 
 								window.location = localStorage.getItem("rutaActual");
 

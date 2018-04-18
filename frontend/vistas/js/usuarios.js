@@ -507,10 +507,44 @@ $("#eliminarUsuario").click(function(){
 ===========================================================================*/
 $(".deshabilitarProducto").click(function(){
 
-	var producto = $(this).attr("noProducto");
-	console.log("producto", producto);
+	var productoDeshabilitar = $(this).attr("noProducto");
 
-	
+   swal({
+		 title: "¿Desea deshabilitar este producto?",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor:"#DD6B55",
+		 confirmButtonText: "Aceptar",
+		 closeOnConfirm: false
+	  },
+
+   function(isConfirm){
+	  
+	  if (isConfirm) {	   
+				
+	   var datos = new FormData();
+	   datos.append("productoDeshabilitar", productoDeshabilitar);
+	   datos.append("bar",localStorage.getItm("bar"));
+
+		$.ajax({
+				 url:rutaOculta+"ajax/usuarios.ajax.php",
+				 method:"POST",
+				 data: datos,
+				 cache: false,
+				 contentType: false,
+				 processData: false,
+				 success:function(respuesta){
+							//console.log("respuesta",respuesta);
+			   }
+			})
+
+		window.location = rutaOculta+"configuraciones";
+
+	   } 
+
+	})
+
+
 
 
 
