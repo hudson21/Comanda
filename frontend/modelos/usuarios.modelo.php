@@ -10,14 +10,15 @@ class ModeloUsuarios{
 	========================================*/
 	static public function mdlRegistroUsuario($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, password, nickname, foto, modo)
-			VALUES (:nombre, :password, :nickname, :foto, :modo)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(nombre, tipo_usuario, hotel, bar, password, nickname)
+			VALUES (:nombre, :tipo_usuario, :hotel, :bar, :password, :nickname)");
 
 		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+		$stmt -> bindParam(":tipo_usuario", $datos["tipo_usuario"], PDO::PARAM_INT);
+		$stmt -> bindParam(":hotel", $datos["hotel"], PDO::PARAM_STR);
+		$stmt -> bindParam(":bar", $datos["bar"], PDO::PARAM_STR);
 		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
 		$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
-		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
-		$stmt -> bindParam(":modo", $datos["modo"], PDO::PARAM_STR);
 
 		if($stmt->execute()){
 

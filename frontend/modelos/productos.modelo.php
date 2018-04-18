@@ -35,7 +35,7 @@ class ModeloProductos{
 
 		$stmt -> close();
 
-		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+		$stmt = null; //Podemos cerrar la conexión de la BD con mayor seguridad de esta forma
 
 		
 	}

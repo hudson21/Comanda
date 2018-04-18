@@ -22,11 +22,9 @@ class ControladorUsuarios{
 				$datos = array("nombre"=>$_POST["regUsuario"],
 							   "tipo_usuario"=>1,
 							   "hotel"=>$_SESSION["hotel"],
-							   "bar"=>1,
+							   "bar"=>$_POST["seleccionarBar"],
 			                   "password"=>$encriptar,
-			                   "nickname"=>$_POST["regNickname"],
-			                   "foto"=>"",
-			                   "modo"=>"directo");
+			                   "nickname"=>$_POST["regNickname"]);
 
 			    $tabla = "usuarios";
 
@@ -215,7 +213,16 @@ class ControladorUsuarios{
 
 			    $respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $valor);
 
-			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $encriptar){
+			    if($respuesta["tipo_usuario"] == 0){
+
+			    	$password = $_POST["ingPassword"];
+			    
+			    }else{
+
+			    	$password = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			    }
+
+			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $password){
 
 			    	/*if($respuesta["verificacion"] == 1){
 
@@ -246,12 +253,13 @@ class ControladorUsuarios{
 			    		$_SESSION["hotel"] = $respuesta["hotel"];
 			    		$_SESSION["tipo_usuario"] = $respuesta["tipo_usuario"];
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
-			    		$_SESSION["foto"] = $respuesta["foto"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
 			    		$_SESSION["password"] = $respuesta["password"]; 
-			    		$_SESSION["modo"] = $respuesta["modo"]; 
+			    		
 
 			    		echo '<script>
+
+			    		localStorage.setItem("bar","'.$_SESSION["id"].'");
 
 								window.location = localStorage.getItem("rutaActual");
 

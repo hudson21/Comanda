@@ -102,15 +102,31 @@ if($cliente->getAccessToken()){
 			<!--=====================================
 				=          SOCIAL            =
 			======================================-->
-			<div  class="col-lg-7 col-md-7 col-sm-5 col-xs-12 social ">
+			<div style="margin-top:10px" class="col-lg-7 col-md-7 col-sm-5 col-xs-12 social ">
 
-                <ul>
+                <ul >
                     
                     <?php
 
                     $social = ControladorPlantilla::ctrEstiloPlantilla();
 
-                    echo'<li><a href="'.$url.'configuraciones"><i class="fa fa-wrench"></i>  Configuraciones</a></li>';
+                    if(isset($_SESSION["validarSesion"])){
+
+                        if($_SESSION["validarSesion"] == "ok"){
+
+                          if($_SESSION["tipo_usuario"] == 0){
+
+                        echo'<li "><a href="'.$url.'configuraciones"><i class="fa fa-wrench"></i>  Configuraciones</a></li>';
+
+                            }
+
+                        }
+
+                    }
+
+                    
+
+                    
 
                    /* $jsonRedesSociales = json_decode($social["redesSociales"],true);
 
@@ -145,18 +161,6 @@ if($cliente->getAccessToken()){
 
                 if($_SESSION["validarSesion"] == "ok"){
 
-                  if($_SESSION["modo"] == "directo"){ //Si viene en modo directo
-
-                    if($_SESSION["foto"] != ""){
-
-                      echo '<li>
-
-                          <img class="img-circle" src="'.$url.$_SESSION["foto"].'" width="10%">
-
-                         </li>';
-
-                    }else{
-
                       echo '<li>';
 
                       if($_SESSION["tipo_usuario"] == 0){
@@ -170,9 +174,9 @@ if($cliente->getAccessToken()){
 
                       echo'</li>';
 
-                    }
+                    
 
-                    echo '<li>|</li>
+               echo '<li>|</li>
                      <li><a href="'.$url.'perfil">Ver Perfil</a></li>
                      
                      <li>|</li>
@@ -191,61 +195,16 @@ if($cliente->getAccessToken()){
                 echo'<li>|</li>
                      <li><a href="'.$url.'salir" >Salir</a></li>';
 
-                  } 
-
-                  if($_SESSION["modo"] == "facebook"){
-
-                      echo '<li>
-
-                          <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%">
-
-                         </li>
-
-                         <li>|</li>
-                         <li><a href="'.$url.'perfil">Ver Perfil</a></li>
-                         
-                         <li>|</li>
-                         <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
-
-                         <li>|</li>
-                         <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
-
-                         <li>|</li>
-                         <li><a href="'.$url.'salir" class="salir">Salir</a></li>';
-
-
-                  }//Si viene en modo de facebook o de google
-
-                  if($_SESSION["modo"] == "google"){
-
-                      echo '<li>
-
-                          <img class="img-circle" src="'.$_SESSION["foto"].'" width="10%">
-
-                         </li>
-
-                         <li>|</li>
-                         <li><a href="'.$url.'perfil">Ver Perfil</a></li>
-                         
-                         <li>|</li>
-                         <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
-
-                         <li>|</li>
-                         <li><a href="'.$url.'notificaciones" >Mensajes</a></li>
-
-                         <li>|</li>
-                         <li><a href="'.$url.'salir" >Salir</a></li>';
-
-                  }
-
-              }         
-            
-
-            }else{
-
-              echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>';
-
+              }
             }
+
+              if(!isset($_SESSION["validarSesion"])){
+
+                 echo '<li><a href="#modalIngreso" data-toggle="modal">Ingresar</a></li>';
+
+              }
+
+            
 
           ?>
 
@@ -554,7 +513,7 @@ VENTANA MODAL PARA EL REGISTRO
 
             ?>
 
-            <input type="submit" class="btn btn-default backColor btn-block" value="ENVIAR">
+            <input type="submit" class="btn btn-default backColor btn-block btnEnviar" value="ENVIAR">
           
         </form>
         

@@ -20,6 +20,11 @@ $("input").focus(function(){
 	$(".alert").remove();//Cuando se esté arriba de cualquier input y se esté escribiendo se removerán las alertas que estén en la pantalla
 })
 
+$("#seleccionarBar").change(function(){ 
+
+   $(".alert").remove();
+})
+
 
 /*======================================
 VALIDAR EMAIL REPETIDO          
@@ -52,18 +57,10 @@ $("#regNickname").change(function(){
 				validarUsuarioRepetido = false;
 
 			}else{//Si es verdadero
-
-				var modo = JSON.parse(respuesta).modo;//De esta manera podemos accesar a los atributos que hay dentro del JSON que está dentro de la respuesta
-				//console.log(modo);
-
-				if(modo == "directo"){
-
-					modo = "esta página";
-				}
 		
-				$("#regNickname").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, fue resgistrado a través de '+modo+', por favor ingrese otro diferente</div>');	
+				$("#regNickname").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> El nombre de usuario ya existe en la base de datos, por favor ingrese otro diferente</div>');	
 			
-					validarUsuarioRepetido = true;
+				validarUsuarioRepetido = true;
 			}
 			
 		}
@@ -170,7 +167,6 @@ function registroUsuario(){
 
 	}
 	
-
 	/*============================================================
 	VALIDAR POLÍTICAS DE PRIVACIDAD         
 	==============================================================*/
@@ -506,9 +502,25 @@ $("#eliminarUsuario").click(function(){
 		});
 })
 
-/*============================================================
-	ELIMINAR PRODUCTO EN EL CARRITO DE COMPRAS       
-==============================================================*/
+/*=========================================================================
+	HABILITAR Y DESHABILITAR PRODUCTOS DEL INVENTARIO EN CONFIGURACIONES      
+===========================================================================*/
+$(".deshabilitarProducto").click(function(){
+
+	var producto = $(this).attr("noProducto");
+	console.log("producto", producto);
+
+	
+
+
+
+})
+
+$(".habilitarProducto").click(function(){
+
+	var producto = $(this).attr("noProducto");
+	console.log("producto", producto);
+})
 
 
 

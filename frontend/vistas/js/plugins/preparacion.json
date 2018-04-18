@@ -1,9 +1,9 @@
 [
-	{"name": "BAR SOL", "code": "BR"},
-	{"name": "BAR LUNA", "code": "BL"},
-	{"name": "BAR ITALIANO", "code": "BI"},
-	{"name": "BAR ESPAÑOL", "code": "BE"},
-	{"name": "BAR FRANCES", "code": "BF"},
-	{"name": "BAR CHINO", "code": "BC"}
+	{"name": "BAR SOL", "code": "BAR SOL"},
+	{"name": "BAR LUNA", "code": "BAR LUNA"},
+	{"name": "BAR ITALIANO", "code": "BAR ITALIANO"},
+	{"name": "BAR ESPAÑOL", "code": "BAR ESPAÑOL"},
+	{"name": "BAR FRANCES", "code": "BAR FRANCES"},
+	{"name": "BAR CHINO", "code": "BAR CHINO"}
 	
 ]

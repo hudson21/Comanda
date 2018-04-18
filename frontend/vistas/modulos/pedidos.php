@@ -306,7 +306,11 @@ if(!isset($_SESSION["validarSesion"])){
 
 			   echo' <div class="panel-body">';
 
-				 echo' <div class=" panel-default"> 
+				 echo' <div class=" panel-default">
+
+				 	<p><span style="font-weight:bold">Mesero: '.$value1["nombre_usuario"].'</span><br> 
+				 	   <span style="font-weight:bold">Lugar de preparación: '.$value1["lugar_preparacion"].'</span><br>
+				 	   <span style="font-weight:bold">Hora: '.$resultado.'</span></p> 
 
 				        <div class="panel-heading cabeceraPedidos">
 
@@ -450,7 +454,7 @@ if(!isset($_SESSION["validarSesion"])){
 							
 								echo'<textarea class="form-control" rows="7" id="comentario" name="comentario" maxlength="300">';			
 								  
-								  echo $value1["origen"]." a cargo de ".$value1["nombre_usuario"].": ".$value1["comentarios"]." \n";
+								  echo $value1["comentarios"]." \n";
 								  		
 								 echo'</textarea>';
 

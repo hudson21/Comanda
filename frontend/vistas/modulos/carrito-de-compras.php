@@ -178,36 +178,7 @@
 
 				<br>
 
-			<!--	<div  class="formaPago row">
-
-					<h4 class="text-center well text-muted text-uppercase">Elige la forma de pago</h4>
-
-					<figure class="col-xs-6">
-
-						<center>
-
-							<input id="checkPaypal" type="radio" name="pago" value="paypal" checked>
-
-						</center>
-
-							<img src="<?php //echo $url; ?>vistas/img/plantilla/paypal.jpg" class="img-thumbnail" alt="">		
-						
-					</figure>
-
-
-					<figure class="col-xs-6">
-
-						<center>
-
-							<input id="checkPayu" type="radio" name="pago" value="payu">
-
-						</center>
-
-							<img src="<?php//echo $url; ?>vistas/img/plantilla/payu.jpg" class="img-thumbnail" alt="">
-
-					</figure>
-					
-				</div>-->
+			
 
 				<br>
 
@@ -280,12 +251,8 @@
 					</div>
 
 					<div class="clearfix"></div>
-
-					<!--<button type="button" data-dismiss="modal" class="btn pull-left btn-default btn-danger  btn-lg  btnCerrarCelular ">CERRAR</button>-->
-
 					
-					
-					<button type="button"  id="botonPagar" class=" btn btn-default btn-block btn-lg   backColor btnPagar ">ORDENAR</button>
+					<button type="submit"  id="botonPagar" class=" btn btn-default btn-block btn-lg   backColor btnPagar ">ORDENAR</button>
 
 						
 					

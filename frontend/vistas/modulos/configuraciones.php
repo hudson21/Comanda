@@ -148,20 +148,18 @@ if(!isset($_SESSION["validarSesion"])){
 
 
                         	echo'<div class="col-xs-3">
-                        			<button id="quitarProducto" repeticion="'.$i.'" class="btn btn-default btn-danger quitarProducto pull-right " ><i class="fa fa-times"></i>
+                        			<button noProducto="'.$value2["id"].'" id="deshabilitarProducto" repeticion="'.$i.'" class="btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
 					  				</button>
 					  			 </div>';
 
-					  		
-
                         	echo'<div class="col-xs-6">
                         			<h5 style="text-align:center; 
-                        					font-weight:bold;">'.$value2["titulo"].'
+                        					font-weight:bold;">'.$value2["id"].'. '.$value2["titulo"].'
                         			</h5>
                         		 </div>';
 
                         	echo'<div class="col-xs-2">
-                        			<button  id="ponerProducto" repeticion="'.$i.'" class="btn btn-default btn-success ponerProducto " ><i class="fa fa-check"></i>
+                        			<button  noProducto="'.$value2["id"].'" id="habilitarProducto" repeticion="'.$i.'" class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
 					  				</button>
 					  			</div>';
 
