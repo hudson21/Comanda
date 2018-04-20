@@ -403,6 +403,22 @@
             }
 
          }
+
+/*==============================================================================================
+      GUARDAR EN EL LOCALSTORAGE LA CANTIDAD DE PRODUCTOS QUE HAY EN LA TABLA DE PRODUCTOS
+================================================================================================*/
+        $productos = ControladorProductos::ctrVerificarCantidadProductosTabla("productos");
+
+        $contarProductos=count($productos);
+
+        echo'<script>
+
+            localStorage.setItem("contarProductos","'.$contarProductos.'");
+
+        </script>';
+
+
+
     
 ?>
 

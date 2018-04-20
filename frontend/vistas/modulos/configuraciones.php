@@ -94,6 +94,11 @@ if(!isset($_SESSION["validarSesion"])){
 		  	<i class="fa fa-plus"></i> AGREGAR NUEVO PRODUCTO</a>
 		  </li>
 
+		  <li>
+		  	<a data-toggle="tab" href="#todosLosProductos">
+		  	<i class="fa fa-eye"></i> AGREGAR O QUITAR TODOS LOS PRODUCTOS EN ALMACEN</a>
+		  </li>
+
 		</ul>
 
 		<div class="tab-content">
@@ -192,6 +197,72 @@ if(!isset($_SESSION["validarSesion"])){
 		  <div id="nuevoProducto" class="tab-pane fade ">
 
 			<h2>Nuevo Producto</h2>
+			
+		  </div>
+
+		  <!--===============================================
+			   PESTAÑA DE AGREGAR TODOS LOS PRODUCTOS O ELIMINARLOS TODOS
+			===================================================-->
+		  <div id="todosLosProductos" class="tab-pane fade ">
+
+			<?php
+
+				$i = 0;
+
+				$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
+
+				foreach($bares as $key => $value){
+
+					$validacionBotonesBares = ControladorProductos::ctrValidacionBotonesBares($value["id"]);
+
+					echo '<div style=" margin-top:20px;" class="row">';	
+
+
+                      echo'<div class="col-xs-3">
+                        <button noBar="'.$value["id"].'" id="eliminarProductos'.$i.'" repeticion="'.$i.'" class="btn btn-default btn-danger eliminarProductos pull-right " ><i class="fa fa-times"></i>
+					  	</button>
+					  	</div>';
+
+					 if($validacionBotonesBares == null){
+
+					  	echo'<script>
+								document.getElementById("eliminarProductos'.$i.'").disabled=true;
+			  				</script>';
+
+					  }
+
+                      echo'<div class="col-xs-6">
+                        	<h4 style="text-align:center; 
+                        		font-weight:bold;">'.$value["id"].'. '.$value["bares"].'
+                          </h4>
+                         </div>';
+
+                      echo'<div class="col-xs-2">
+                        	<button  noBar="'.$value["id"].'" id="agregarProductos'.$i.'" repeticion="'.$i.'" class="btn btn-default btn-success agregarProductos " ><i class="fa fa-check"></i>
+					  		</button>
+					  	   </div>';
+
+					  if($validacionBotonesBares != null){
+
+					  	echo'<script>
+								document.getElementById("agregarProductos'.$i.'").disabled=true;
+			  				</script>';
+
+					  }
+
+                    echo'</div>';
+
+                    echo'<div class="clearfix"></div>
+
+						 <hr>';
+
+                    $i++;
+
+				}
+
+			?>
+
+
 			
 		  </div>
 

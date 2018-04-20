@@ -24,6 +24,38 @@ class AjaxProductos{
 		/*json_decode me convierte un String en un Array
 		  json_encode me convierte un Array en un String*/
 	}
+
+
+	/*====================================================================================================
+   		AGREGAR TODOS LOS PRODUCTOS DE LA TABLA PRODUCTOS A LA TABLA DE PRODUCTOS POR ALMACEN     
+	======================================================================================================*/
+	public $id_productoAgregar;
+	public $id_barAgregar;
+	public $estAgregar;
+
+	public function ajaxAgregarTodosProductosAProductos(){
+
+		$datos = array("id_productoAgregar"=>$this->id_productoAgregar,
+					   "id_barAgregar"=>$this->id_barAgregar,
+					   "estAgregar"=>$this->estAgregar);
+
+			$respuesta = ControladorProductos::ctrAgregarProductosBares($datos);
+
+	}
+
+	/*====================================================================================================
+   		ELIMINAR TODOS LOS PRODUCTOS DE LA TABLA PRODUCTOS A LA TABLA DE PRODUCTOS POR ALMACEN     
+	======================================================================================================*/
+	public $id_barEliminar;
+
+	public function ajaxEliminarTodosProductosAProductos(){
+
+		$datos = array("id_barEliminar"=>$this->id_barEliminar);
+
+		$respuesta = ControladorProductos::ctrEliminarProductosBares($datos);
+
+	}
+
 }
 
 if(isset($_POST["valor"])){
@@ -35,4 +67,24 @@ if(isset($_POST["valor"])){
 	$vista -> ajaxVistaProducto();
 
 }
+
+/*====================================================================================================
+   		AGREGAR TODOS LOS PRODUCTOS DE LA TABLA PRODUCTOS A LA TABLA DE PRODUCTOS POR ALMACEN     
+	======================================================================================================*/
+	if(isset($_POST["id_barAgregar"])){
+		$agregarProductos = new AjaxProductos();
+		$agregarProductos -> id_productoAgregar = $_POST["id_productoAgregar"];
+		$agregarProductos -> id_barAgregar = $_POST["id_barAgregar"];
+		$agregarProductos -> estAgregar = $_POST["estAgregar"];
+		$agregarProductos -> ajaxAgregarTodosProductosAProductos();
+	}
+
+	/*====================================================================================================
+   		ELIMINAR TODOS LOS PRODUCTOS DE LA TABLA PRODUCTOS A LA TABLA DE PRODUCTOS POR ALMACEN     
+	======================================================================================================*/
+	if(isset($_POST["id_barEliminar"])){
+		$eliminarProductos = new AjaxProductos();
+		$eliminarProductos -> id_barEliminar = $_POST["id_barEliminar"];
+		$eliminarProductos -> ajaxEliminarTodosProductosAProductos();
+	}
 

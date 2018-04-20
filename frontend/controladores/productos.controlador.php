@@ -140,10 +140,56 @@ class ControladorProductos{
 		$respuesta = ModeloProductos::mdlActualizarVistaProducto($tabla, $datos, $item);
 
 		return $respuesta;
+	}
 
+
+	/*=========================================================
+	  VERIFICAR LA CANTIDAD DE PRODUCTOS EN LA TABLA PRODUCTOS
+	===========================================================*/
+	static public function ctrVerificarCantidadProductosTabla($tablaModelo){
+
+		$tabla = $tablaModelo;
+
+		$respuesta = ModeloProductos::mdlVerificarCantidadProductosTabla($tabla);
+
+		return $respuesta;
 
 	}
 
-  
+	/*=========================================================
+	  VALIDACION DE LOS BOTONES DE BARES
+	===========================================================*/
+	static public function ctrValidacionBotonesBares($datos){
+		
+		$tabla = "productos_almacen";
 
+		$respuesta = ModeloProductos::mdlValidacionBotonesBares($tabla, $datos);
+
+		return $respuesta;
+	}
+
+
+	/*=========================================================
+	  AGREGAR PRODUCTOS A LOS BARES
+	===========================================================*/
+	static public function ctrAgregarProductosBares($datos){
+		
+		$tabla = "productos_almacen";
+
+		$respuesta = ModeloProductos::mdlAgregarProductosBares($tabla, $datos);
+
+		return $respuesta;
+	}
+
+	/*=========================================================
+	  AGREGAR PRODUCTOS A LOS BARES
+	===========================================================*/
+	static public function ctrEliminarProductosBares($datos){
+		
+		$tabla = "productos_almacen";
+
+		$respuesta = ModeloProductos::mdlEliminarProductosBares($tabla, $datos);
+
+		return $respuesta;
+	}
 }

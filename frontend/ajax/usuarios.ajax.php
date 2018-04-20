@@ -228,7 +228,6 @@ class AjaxUsuarios{
 	
 	}
 
-	
 }
 
 /*===============================================
@@ -362,6 +361,8 @@ class AjaxUsuarios{
 		$deshabilitarProducto -> est = $_POST["est"];
 		$deshabilitarProducto -> ajaxAgregaroModificarProductosAlmacen();
 	}
+
+	
 
 
 

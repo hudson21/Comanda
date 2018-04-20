@@ -251,6 +251,92 @@ class ModeloProductos{
 
 	}
 
+
+	/*=========================================================
+	  VERIFICAR LA CANTIDAD DE PRODUCTOS EN LA TABLA PRODUCTOS
+	===========================================================*/
+	static public function mdlVerificarCantidadProductosTabla($tabla){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * from $tabla");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+	/*=========================================================
+	  VALIDACION DE LOS BOTONES DE BARES
+	===========================================================*/
+	static public function mdlValidacionBotonesBares($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where id_bar = :id_bar");
+
+		$stmt -> bindParam(":id_bar", $datos, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+	/*=========================================================
+	  AGREGAR PRODUCTOS A LOS BARES
+	===========================================================*/
+	static public function mdlAgregarProductosBares($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_bar, id_producto, disponible) VALUES (:id_bar, :id_producto, :est)");
+
+		$stmt -> bindParam(":id_bar", $datos["id_barAgregar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto",$datos["id_productoAgregar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":est",$datos["estAgregar"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+
+	/*=========================================================
+	  AGREGAR PRODUCTOS A LOS BARES
+	===========================================================*/
+	static public function mdlEliminarProductosBares($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("DELETE from $tabla where id_bar = :id_bar");
+
+		$stmt -> bindParam(":id_bar", $datos["id_barEliminar"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+	
 		
 
 

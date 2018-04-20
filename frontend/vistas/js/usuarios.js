@@ -598,6 +598,104 @@ $(".habilitarProducto").click(function(){
 	
 })
 
+/*========================================================================================
+   AGREGAR TODOS LOS PRODUCTOS DE LA TABLA PRODUCTOS A LA TABLA DE PRODUCTOS POR ALMACEN     
+==========================================================================================*/
+$(".agregarProductos").click(function(){
+
+	var bar = $(this).attr("noBar");
+	//console.log("bar", bar);
+
+	swal({
+		 title: "¿Desea agregar todos los productos?",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor:"#DD6B55",
+		 confirmButtonText: "Aceptar",
+		 closeOnConfirm: false
+	  },
+
+   function(isConfirm){
+	  
+	  if (isConfirm) {
+
+	  for (var i = 1; i <= localStorage.getItem("contarProductos"); i++) {
+
+	  	var datos = new FormData();
+	   	datos.append("id_productoAgregar",i);
+	   	datos.append("id_barAgregar",bar);
+	   	datos.append("estAgregar",1);
+
+		$.ajax({
+				 url:rutaOculta+"ajax/producto.ajax.php",
+				 method:"POST",
+				 data: datos,
+				 cache: false,
+				 contentType: false,
+				 processData: false,
+				 success:function(respuesta){
+							console.log("respuesta",respuesta);
+			   }
+			})
+	  }	   
+				
+	  function redireccionar(){
+	  	window.location = rutaOculta+"configuraciones";
+	  } 
+		
+		setTimeout ("redireccionar();", 5000);
+
+	 } 
+
+  })
+})
+
+
+
+
+$(".eliminarProductos").click(function(){
+
+	var bar = $(this).attr("noBar");
+	//console.log("bar", bar);
+
+	swal({
+		 title: "¿Desea eliminar todos los productos?",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor:"#DD6B55",
+		 confirmButtonText: "Aceptar",
+		 closeOnConfirm: false
+	  },
+
+   function(isConfirm){
+	  
+	  if (isConfirm) {
+
+	  for (var i = 1; i <= localStorage.getItem("contarProductos"); i++) {
+
+	  	var datos = new FormData();
+	   	datos.append("id_barEliminar",bar);
+
+		$.ajax({
+				 url:rutaOculta+"ajax/producto.ajax.php",
+				 method:"POST",
+				 data: datos,
+				 cache: false,
+				 contentType: false,
+				 processData: false,
+				 success:function(respuesta){
+							console.log("respuesta",respuesta);
+			   }
+			})
+	  }	   
+				
+	  window.location = rutaOculta+"configuraciones";
+
+	 } 
+
+	})
+})
+
 
 
 
