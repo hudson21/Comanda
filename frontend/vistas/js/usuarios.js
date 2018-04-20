@@ -639,11 +639,9 @@ $(".agregarProductos").click(function(){
 			})
 	  }	   
 				
-	  function redireccionar(){
-	  	window.location = rutaOculta+"configuraciones";
-	  } 
+	  setTimeout("window.location = rutaOculta+'configuraciones'", 12000);
 		
-		setTimeout ("redireccionar();", 5000);
+		
 
 	 } 
 
