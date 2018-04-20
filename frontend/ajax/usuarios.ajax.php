@@ -204,15 +204,28 @@ class AjaxUsuarios{
 	===================================================================================*/
 	public $productoDeshabilitar;
 	public $bar;
+	public $est;
 
-	public function ajaxAgregaroModificarDeshabilitadosProductosAlmacen(){
+	public function ajaxAgregaroModificarProductosAlmacen(){
 
-		$datos = array("productoDeshabilitar"=>$this->productoDeshabilitar,
-					   "bar"=>$this->bar);
+		$datos = array("id_producto"=>$this->productoDeshabilitar,
+					   "id_bar"=>$this->bar,
+					   "est"=>$this->est);
 
-		$respuesta = ControladorUsuarios::ctrAgregaroModificarDeshabilitadosProductosAlmacen($datos);
+		$respuesta = ControladorUsuarios::ctrVerificarExistenciaProductosAlmacen($datos);
 
-		echo $respuesta;
+		if($respuesta == null){
+
+		$respuesta = ControladorUsuarios::ctrInsertarProductosAlmacen($datos);
+
+		}else{
+
+		$respueta = ControladorUsuarios::ctrModificarProductosAlmacen($datos);
+			
+		}
+
+	  
+	
 	}
 
 	
@@ -337,6 +350,17 @@ class AjaxUsuarios{
 		$mensajesGenerales -> idUsuarioGenerales = $_POST["idUsuarioGenerales"];
 		$mensajesGenerales -> nombreUsuarioGenerales = $_POST["nombreUsuarioGenerales"];
 		$mensajesGenerales -> ajaxAgregarMensajesNotificaciones();
+	}
+
+	/*=================================================================================
+		AGREGAR O MODIFICAR LOS PRODUCTOS DESHABILITADOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	if(isset($_POST["id_bar"])){
+		$deshabilitarProducto = new AjaxUsuarios();
+		$deshabilitarProducto -> productoDeshabilitar = $_POST["id_producto"];
+		$deshabilitarProducto -> bar = $_POST["id_bar"];
+		$deshabilitarProducto -> est = $_POST["est"];
+		$deshabilitarProducto -> ajaxAgregaroModificarProductosAlmacen();
 	}
 
 

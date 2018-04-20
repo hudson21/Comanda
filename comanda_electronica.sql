@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-04-2018 a las 23:45:29
+-- Tiempo de generación: 20-04-2018 a las 06:08:09
 -- Versión del servidor: 10.1.30-MariaDB
--- Versión de PHP: 7.2.1
+-- Versión de PHP: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -820,6 +820,14 @@ CREATE TABLE `productos_almacen` (
   `disponible` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+--
+-- Volcado de datos para la tabla `productos_almacen`
+--
+
+INSERT INTO `productos_almacen` (`id`, `id_bar`, `id_producto`, `disponible`) VALUES
+(1, 4, 1, 1),
+(2, 4, 2, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -920,8 +928,8 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nombre`, `tipo_usuario`, `hotel`, `bar`, `password`, `nickname`, `fecha`) VALUES
-(1, 'CARLOS HUDSON', 0, 'finest', 'BE', '12345', 'admin', '2018-04-18 14:56:08'),
-(11, 'X ALFONSO', 1, 'finest', 'BC', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-04-18 18:21:16');
+(1, 'CARLOS HUDSON', 0, 'finest', 'BAR ESPAÑOL', '12345', 'admin', '2018-04-19 18:59:56'),
+(11, 'X ALFONSO', 1, 'finest', 'BAR CHINO', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-04-19 19:00:01');
 
 --
 -- Índices para tablas volcadas
@@ -1057,7 +1065,7 @@ ALTER TABLE `productos`
 -- AUTO_INCREMENT de la tabla `productos_almacen`
 --
 ALTER TABLE `productos_almacen`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `slide`

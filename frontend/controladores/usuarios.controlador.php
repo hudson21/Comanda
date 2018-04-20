@@ -248,6 +248,8 @@ class ControladorUsuarios{
 
 			    	}else{*/
 
+			    $respuestaIdBar = ModeloUsuarios::mdlMostrarAlmacenes("almacenes", $respuesta["bar"]);
+
 			    		$_SESSION["validarSesion"] = "ok";
 			    		$_SESSION["id"] = $respuesta["id"];
 			    		$_SESSION["hotel"] = $respuesta["hotel"];
@@ -260,7 +262,7 @@ class ControladorUsuarios{
 
 			    		echo '<script>
 
-			    		localStorage.setItem("bar","'.$_SESSION["bar"].'");
+			    		localStorage.setItem("bar","'.$respuestaIdBar["id"].'");
 
 								window.location = localStorage.getItem("rutaActual");
 
@@ -1085,6 +1087,46 @@ class ControladorUsuarios{
 		$respuesta = ModeloUsuarios::mdlNoMostrarNotificacionesPush($tabla, $datos, $item1, $item2);
 
 		return $respuesta;
+
+	}
+
+	/*=================================================================================
+	   VERIFICAR LOS PRODUCTOS EN ALMACEN       
+	===================================================================================*/
+	static public function ctrVerificarExistenciaProductosAlmacen($datos){
+
+	  $tabla = "productos_almacen";
+
+	  $respuesta = ModeloUsuarios::mdlVerificarExistenciaProductosAlmacen($tabla, $datos);
+
+	  return $respuesta;
+	}
+
+
+	/*=================================================================================
+	   MODIFICAR LOS PRODUCTOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	static public function ctrModificarProductosAlmacen($datos){
+
+	  $tabla = "productos_almacen";
+
+	  $respuesta = ModeloUsuarios::mdlModificarProductosAlmacen($tabla, $datos);
+
+	  return $respuesta;
+	}
+
+
+
+	/*=================================================================================
+	   INSERTAR LOS PRODUCTOS DESHABILITADOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	static public function ctrInsertarProductosAlmacen($datos){
+
+	  $tabla = "productos_almacen";
+
+	  $respuesta = ModeloUsuarios::mdlInsertarProductosAlmacen($tabla, $datos);
+
+	  return $respuesta;
 
 	}
 

@@ -350,6 +350,20 @@
   }
 
 
+  /*======================================
+           TABLA PRODUCTOS_ALMACEN  
+  ========================================*/
+  $tabla14 = "productos_almacen";
+
+  $tablaProductosAlmacen = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla14);
+
+  if($tablaProductosAlmacen == null){
+
+     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla14);
+    // ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
+  }
+
+
  
         if(isset($_SESSION["validarSesion"])){
 

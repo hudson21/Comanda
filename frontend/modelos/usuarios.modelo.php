@@ -714,7 +714,7 @@ class ModeloUsuarios{
 
 	/*===============================================
 		NO MOSTRAR DE NUEVO LAS NOTIFICACIONES PUSH     
-	    =================================================*/
+	=================================================*/
 	static public function mdlNoMostrarNotificacionesPush($tabla, $datos, $item1, $item2){
 
 		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item1 = :item1 WHERE $item2 = :item2");
@@ -735,6 +735,94 @@ class ModeloUsuarios{
 		$stmt -> close();
 
 		$stmt = null;
+	}
+
+	/*=================================================================================
+	   VERIFICAR LOS PRODUCTOS EN ALMACEN    
+	===================================================================================*/
+	static public function mdlVerificarExistenciaProductosAlmacen($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * from $tabla WHERE id_producto = :id_producto AND id_bar = :id_bar");
+
+		$stmt -> bindParam(":id_bar", $datos["id_bar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto",$datos["id_producto"], PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+	/*=================================================================================
+	   MODIFICAR LOS PRODUCTOS  EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	static public function mdlModificarProductosAlmacen($tabla, $datos){
+
+	 $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET disponible = :est WHERE id_producto = :id_producto AND id_bar = :id_bar");
+
+		$stmt -> bindParam(":id_bar", $datos["id_bar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto",$datos["id_producto"], PDO::PARAM_INT);
+		$stmt -> bindParam(":est",$datos["est"], PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt-> close();
+
+		$stmt = null;
+
+	}
+
+
+	/*=================================================================================
+	  INSERTAR LOS PRODUCTOS DESHABILITADOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	static public function mdlInsertarProductosAlmacen($tabla, $datos){
+
+	 $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_bar, id_producto, disponible) VALUES (:id_bar, :id_producto, :est)");
+
+		$stmt -> bindParam(":id_bar", $datos["id_bar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto",$datos["id_producto"], PDO::PARAM_INT);
+		$stmt -> bindParam(":est",$datos["est"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
+	/*===============================================
+		MOSTRAR EL ID DE BAR EN LA TABLA DE ALMACENES     
+	=================================================*/
+	static public function mdlMostrarAlmacenes($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("SELECT id from $tabla where bares = :bares");
+
+		$stmt -> bindParam(":bares", $datos, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt-> close();
+
+		$stmt = null;
+
 	}
 
 

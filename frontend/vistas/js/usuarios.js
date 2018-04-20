@@ -463,7 +463,7 @@ $(".quitarDeseo").click(function(){
 			 contentType: false,
 			 processData: false,
 			 success:function(respuesta){
-				//console.log("respuesta",respuesta);
+				console.log("respuesta",respuesta);
 			 }
 
 			})
@@ -503,11 +503,14 @@ $("#eliminarUsuario").click(function(){
 })
 
 /*=========================================================================
-	HABILITAR Y DESHABILITAR PRODUCTOS DEL INVENTARIO EN CONFIGURACIONES      
+   DESHABILITAR PRODUCTOS DEL INVENTARIO EN CONFIGURACIONES      
 ===========================================================================*/
 $(".deshabilitarProducto").click(function(){
 
 	var productoDeshabilitar = $(this).attr("noProducto");
+	//console.log("productoDeshabilitar", productoDeshabilitar);
+	var bar = localStorage.getItem("bar");
+	//console.log("bar", bar);
 
    swal({
 		 title: "¿Desea deshabilitar este producto?",
@@ -523,8 +526,9 @@ $(".deshabilitarProducto").click(function(){
 	  if (isConfirm) {	   
 				
 	   var datos = new FormData();
-	   datos.append("productoDeshabilitar", productoDeshabilitar);
-	   datos.append("bar",localStorage.getItm("bar"));
+	   datos.append("id_producto", productoDeshabilitar);
+	   datos.append("id_bar",bar);
+	   datos.append("est",0);
 
 		$.ajax({
 				 url:rutaOculta+"ajax/usuarios.ajax.php",
@@ -543,17 +547,55 @@ $(".deshabilitarProducto").click(function(){
 	   } 
 
 	})
-
-
-
-
-
 })
 
+
+/*=========================================================================
+   HABILITAR PRODUCTOS DEL INVENTARIO EN CONFIGURACIONES      
+===========================================================================*/
 $(".habilitarProducto").click(function(){
 
-	var producto = $(this).attr("noProducto");
-	console.log("producto", producto);
+	var productoDeshabilitar = $(this).attr("noProducto");
+	//console.log("productoDeshabilitar", productoDeshabilitar);
+	var bar = localStorage.getItem("bar");
+	//console.log("bar", bar);
+
+   swal({
+		 title: "¿Desea habilitar este producto?",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor:"#DD6B55",
+		 confirmButtonText: "Aceptar",
+		 closeOnConfirm: false
+	  },
+
+   function(isConfirm){
+	  
+	  if (isConfirm) {	   
+				
+	   var datos = new FormData();
+	   datos.append("id_producto", productoDeshabilitar);
+	   datos.append("id_bar",bar);
+	   datos.append("est",1);
+
+		$.ajax({
+				 url:rutaOculta+"ajax/usuarios.ajax.php",
+				 method:"POST",
+				 data: datos,
+				 cache: false,
+				 contentType: false,
+				 processData: false,
+				 success:function(respuesta){
+							//console.log("respuesta",respuesta);
+			   }
+			})
+
+		window.location = rutaOculta+"configuraciones";
+
+	   } 
+
+	})
+	
 })
 
 
