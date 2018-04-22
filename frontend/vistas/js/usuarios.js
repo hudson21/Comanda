@@ -639,7 +639,7 @@ $(".agregarProductos").click(function(){
 			})
 	  }	   
 				
-	  setTimeout("window.location = rutaOculta+'configuraciones'", 12000);
+	  setTimeout("window.location = rutaOculta+'configuraciones'", 7000);
 		
 		
 
@@ -669,8 +669,6 @@ $(".eliminarProductos").click(function(){
 	  
 	  if (isConfirm) {
 
-	  for (var i = 1; i <= localStorage.getItem("contarProductos"); i++) {
-
 	  	var datos = new FormData();
 	   	datos.append("id_barEliminar",bar);
 
@@ -685,7 +683,7 @@ $(".eliminarProductos").click(function(){
 							console.log("respuesta",respuesta);
 			   }
 			})
-	  }	   
+	   
 				
 	  window.location = rutaOculta+"configuraciones";
 
