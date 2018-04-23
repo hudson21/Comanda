@@ -95,12 +95,15 @@ class ModeloProductos{
 	  /*==============================================
 	  	MOSTRAR PRODUCTOS SIN BASE Y TOPE
 	  ===============================================*/
-	  static public function mdlMostrarProductosSinBaseYTope($tabla, $item, $valor){
+	  static public function mdlMostrarProductosSinBaseYTope($item, $valor, $bar){
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE $item = :valor");
+	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE $item = :valor");*/
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE $item = :valor and id_bar = :id_bar");
 
        //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
 		$stmt -> bindParam(":valor", $valor, PDO::PARAM_INT);
+		$stmt -> bindParam(":id_bar", $bar, PDO::PARAM_INT);
 
 		$stmt-> execute();
 

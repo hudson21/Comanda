@@ -826,5 +826,24 @@ class ModeloUsuarios{
 	}
 
 
+	/*=================================================================================
+	   MOSTRAR FILA DE BAR POR LA COLUMNA DE ID   
+	===================================================================================*/
+	static public function mdlMostrarFilaBarById($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where id = :bares");
+
+		$stmt -> bindParam(":bares", $datos, PDO::PARAM_STR);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+
 }
 

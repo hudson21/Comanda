@@ -1130,5 +1130,17 @@ class ControladorUsuarios{
 
 	}
 
+	/*=================================================================================
+	   MOSTRAR FILA DE BAR POR LA COLUMNA DE ID   
+	===================================================================================*/
+	static public function ctrMostrarFilaBarById($datos){
+
+	  $tabla = "almacenes";
+
+	  $respuesta = ModeloUsuarios::mdlMostrarFilaBarById($tabla, $datos);
+
+	  return $respuesta;
+	}
+
 
 }

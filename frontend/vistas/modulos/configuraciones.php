@@ -110,7 +110,69 @@ if(!isset($_SESSION["validarSesion"])){
 
 		  	<?php
 
-		  	$item=null;
+		  	echo'<div style="margin-top: 20px" class="btn-group">
+
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						
+						<span style="font-weight:bold; font-size:15px;">Filtrar por bares</span> <span class="caret"></span></button>
+
+					<ul class="dropdown-menu" role="menu">';
+
+		  	$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
+
+				foreach($bares as $key => $value){
+
+                     echo'<li><a href="'.$url.$rutas[0].'/'.$value["id"].'"><span style="font-weight:bold;">'.$value["bares"].'</span></a></li>';
+				}	
+
+			echo'</ul>
+
+			  </div>';
+
+
+		if(!isset($rutas[1])){
+
+			echo'<div class="col-xs-12 text-center error404">
+				               
+				     <h1><small>¡Oops!</small></h1>
+				    
+				     <h2>No ha seleccionado un bar para filtrar</h2>
+
+				   </div>';
+
+			//var_dump($rutas[1]);
+
+			/*if($rutas[1] == "recibiendo"){
+				$estado = 0;
+			}
+
+			if($rutas[1] == "preparando"){
+				$estado = 1;
+			}
+
+			if($rutas[1] == "listo"){
+				$estado = 2;
+			}*/
+
+
+		}else{
+
+			echo'<br><h3 style="text-align:center; 
+                        font-weight:bold;">';
+
+                  $nombreBar = ControladorUsuarios::ctrMostrarFilaBarById($rutas[1]);
+
+                  echo $nombreBar["bares"];
+                        
+               echo'</h3>';
+
+			echo'<script>
+
+				localStorage.setItem("rutaBares","'.$url.$rutas[0]."/".$rutas[1].'");
+
+   				</script>';
+
+			$item=null;
             $valor=null;
             $i = 0;
 
@@ -140,20 +202,31 @@ if(!isset($_SESSION["validarSesion"])){
                      $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
 
                      foreach($subcategorias as $key => $value1){
-                        echo'<h3 style="text-align:center; font-weight:bold;margin-bottom:20px;">'.$value1["subcategoria"].'</h3>';
+                        echo'<h4 style="text-align:center; font-weight:bold;margin-bottom:20px;">'.$value1["subcategoria"].'</h4>';
 
                         $item1 = "id_subcategoria";
                         $valor1 = $value1["id"];
+                        $bar = $rutas[1];
+                        $_SESSION["barFiltro"]=$rutas[1];
 
-                        $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1);
+                        echo '<script>
+
+			    		localStorage.setItem("barFiltro","'.$rutas[1].'");
+
+			    		</script>';
+
+                       $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1, $bar);
+
+                       //var_dump($productoSubcategoria);
+                       $c = 0;
 
                         	foreach($productoSubcategoria as $key => $value2){
 
                         	echo '<div style="margin-bottom:20px" class="row">';	
 
 
-                        	echo'<div class="col-xs-3">
-                        			<button noProducto="'.$value2["id"].'" id="deshabilitarProducto" repeticion="'.$i.'" class="btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
+                        	echo'<div class=" col-xs-3">
+                        			<button noProductoDes="'.$value2["id"].'" id="deshabilitarProducto'.$c.'" repeticion="'.$i.'" class=" btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
 					  				</button>
 					  			 </div>';
 
@@ -163,14 +236,34 @@ if(!isset($_SESSION["validarSesion"])){
                         			</h5>
                         		 </div>';
 
+
+
                         	echo'<div class="col-xs-2">
-                        			<button  noProducto="'.$value2["id"].'" id="habilitarProducto" repeticion="'.$i.'" class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
+                        			<button  noProductoHa="'.$value2["id"].'" id="habilitarProducto'.$c.'" repeticion="'.$i.'" class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
 					  				</button>
 					  			</div>';
 
+					  		/*if($value2["disponible"] == 1){
+					  			echo'<script>
+					  				document.getElementById("habilitarProducto'.$c.'").disabled=true;
+			  						</script>';
+			  				}
+
+			  				if($value2["disponible"] == 0){
+
+			  					echo'<script>
+									document.getElementById("deshabilitarProducto'.$c.'").disabled=true;
+					  	
+			  						</script>';
+			  				}*/
+
                         	echo'</div>';
 
+                        		$c++;
+
                         	}
+
+
                         echo'<div class="clearfix"></div>
 
 							<hr>';
@@ -186,7 +279,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 		  		echo'</div> <!--Div del id accordion-->';
 
-		  	?>
+		}
+			?>
 
 		 </div>
 

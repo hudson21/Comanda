@@ -17,7 +17,6 @@ class ControladorProductos{
 		return $respuesta;
 	}
 
-
    
    /*==============================================
      MOSTRAR SUBCATEGORIAS
@@ -50,11 +49,9 @@ class ControladorProductos{
 	  MOSTRAR PRODUCTOS SIN BASE Y TOPE
 	===============================================*/
 
-	static public function ctrMostrarProductosSinBaseYTope($item, $valor){
+	static public function ctrMostrarProductosSinBaseYTope($item, $valor, $bar){
 
-		$tabla="productos";
-
-		$respuesta= ModeloProductos::mdlMostrarProductosSinBaseYTope($tabla, $item, $valor);
+		$respuesta= ModeloProductos::mdlMostrarProductosSinBaseYTope($item, $valor, $bar);
 
 		return $respuesta;
 	}

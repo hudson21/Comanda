@@ -507,9 +507,9 @@ $("#eliminarUsuario").click(function(){
 ===========================================================================*/
 $(".deshabilitarProducto").click(function(){
 
-	var productoDeshabilitar = $(this).attr("noProducto");
+	var productoDeshabilitar = $(this).attr("noProductoDes");
 	//console.log("productoDeshabilitar", productoDeshabilitar);
-	var bar = localStorage.getItem("bar");
+	var bar = localStorage.getItem("barFiltro");
 	//console.log("bar", bar);
 
    swal({
@@ -542,7 +542,7 @@ $(".deshabilitarProducto").click(function(){
 			   }
 			})
 
-		window.location = rutaOculta+"configuraciones";
+		window.location = localStorage.getItem("rutaBares");
 
 	   } 
 
@@ -555,9 +555,9 @@ $(".deshabilitarProducto").click(function(){
 ===========================================================================*/
 $(".habilitarProducto").click(function(){
 
-	var productoDeshabilitar = $(this).attr("noProducto");
+	var productoDeshabilitar = $(this).attr("noProductoHa");
 	//console.log("productoDeshabilitar", productoDeshabilitar);
-	var bar = localStorage.getItem("bar");
+	var bar = localStorage.getItem("barFiltro");
 	//console.log("bar", bar);
 
    swal({
@@ -590,7 +590,7 @@ $(".habilitarProducto").click(function(){
 			   }
 			})
 
-		window.location = rutaOculta+"configuraciones";
+		window.location = localStorage.getItem("rutaBares");
 
 	   } 
 
