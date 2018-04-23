@@ -619,10 +619,7 @@ $(".agregarProductos").click(function(){
 	  
 	  if (isConfirm) {
 
-	  for (var i = 1; i <= localStorage.getItem("contarProductos"); i++) {
-
 	  	var datos = new FormData();
-	   	datos.append("id_productoAgregar",i);
 	   	datos.append("id_barAgregar",bar);
 	   	datos.append("estAgregar",1);
 
@@ -637,12 +634,11 @@ $(".agregarProductos").click(function(){
 							console.log("respuesta",respuesta);
 			   }
 			})
-	  }	   
-				
-	  setTimeout("window.location = rutaOculta+'configuraciones'", 7000);
-		
-		
 
+			window.location = rutaOculta+"configuraciones";	   
+				
+	  //setTimeout("window.location = rutaOculta+'configuraciones'", 7000);
+		
 	 } 
 
   })

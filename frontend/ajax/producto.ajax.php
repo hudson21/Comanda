@@ -29,14 +29,12 @@ class AjaxProductos{
 	/*====================================================================================================
    		AGREGAR TODOS LOS PRODUCTOS DE LA TABLA PRODUCTOS A LA TABLA DE PRODUCTOS POR ALMACEN     
 	======================================================================================================*/
-	public $id_productoAgregar;
 	public $id_barAgregar;
 	public $estAgregar;
 
 	public function ajaxAgregarTodosProductosAProductos(){
 
-		$datos = array("id_productoAgregar"=>$this->id_productoAgregar,
-					   "id_barAgregar"=>$this->id_barAgregar,
+		$datos = array("id_barAgregar"=>$this->id_barAgregar,
 					   "estAgregar"=>$this->estAgregar);
 
 			$respuesta = ControladorProductos::ctrAgregarProductosBares($datos);
@@ -73,7 +71,6 @@ if(isset($_POST["valor"])){
 	======================================================================================================*/
 	if(isset($_POST["id_barAgregar"])){
 		$agregarProductos = new AjaxProductos();
-		$agregarProductos -> id_productoAgregar = $_POST["id_productoAgregar"];
 		$agregarProductos -> id_barAgregar = $_POST["id_barAgregar"];
 		$agregarProductos -> estAgregar = $_POST["estAgregar"];
 		$agregarProductos -> ajaxAgregarTodosProductosAProductos();

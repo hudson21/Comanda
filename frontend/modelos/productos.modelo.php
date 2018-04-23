@@ -291,10 +291,9 @@ class ModeloProductos{
 	===========================================================*/
 	static public function mdlAgregarProductosBares($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_bar, id_producto, disponible) VALUES (:id_bar, :id_producto, :est)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_bar, id_producto, disponible) SELECT :id_bar,id,:est FROM productos ");
 
 		$stmt -> bindParam(":id_bar", $datos["id_barAgregar"], PDO::PARAM_INT);
-		$stmt -> bindParam(":id_producto",$datos["id_productoAgregar"], PDO::PARAM_INT);
 		$stmt -> bindParam(":est",$datos["estAgregar"], PDO::PARAM_INT);
 
 		if($stmt -> execute()){
