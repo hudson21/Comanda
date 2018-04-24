@@ -219,7 +219,9 @@ if(!isset($_SESSION["validarSesion"])){
 
                        //var_dump($productoSubcategoria);
 
-                        	foreach($productoSubcategoria as $key => $value2){
+                       if($productoSubcategoria){
+
+                       	 foreach($productoSubcategoria as $key => $value2){
 
                         	echo '<div style="margin-bottom:20px" class="row">';	
 
@@ -261,6 +263,14 @@ if(!isset($_SESSION["validarSesion"])){
                         		
 
                         	}
+
+
+                       }else{
+
+                       		echo'<h5 style="text-align:center; font-weight:bold;">No hay productos en esta sección</h5>';
+                       }
+
+                        	
 
 
                         echo'<div class="clearfix"></div>
