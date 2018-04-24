@@ -218,7 +218,6 @@ if(!isset($_SESSION["validarSesion"])){
                        $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1, $bar);
 
                        //var_dump($productoSubcategoria);
-                       $c = 0;
 
                         	foreach($productoSubcategoria as $key => $value2){
 
@@ -226,7 +225,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 
                         	echo'<div class=" col-xs-3">
-                        			<button noProductoDes="'.$value2["id"].'" id="deshabilitarProducto'.$c.'" repeticion="'.$i.'" class=" btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
+                        			<button noProductoDes="'.$value2["id"].'" id="deshabilitarProducto'.$value2["id"].'"  class=" btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
 					  				</button>
 					  			 </div>';
 
@@ -239,27 +238,27 @@ if(!isset($_SESSION["validarSesion"])){
 
 
                         	echo'<div class="col-xs-2">
-                        			<button  noProductoHa="'.$value2["id"].'" id="habilitarProducto'.$c.'" repeticion="'.$i.'" class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
+                        			<button  noProductoHa="'.$value2["id"].'" id="habilitarProducto'.$value2["id"].'"  class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
 					  				</button>
 					  			</div>';
 
-					  		/*if($value2["disponible"] == 1){
+					  		if($value2["disponible"] == 1){
 					  			echo'<script>
-					  				document.getElementById("habilitarProducto'.$c.'").disabled=true;
+					  				document.getElementById("habilitarProducto'.$value2["id"].'").disabled=true;
 			  						</script>';
 			  				}
 
 			  				if($value2["disponible"] == 0){
 
 			  					echo'<script>
-									document.getElementById("deshabilitarProducto'.$c.'").disabled=true;
+									document.getElementById("deshabilitarProducto'.$value2["id"].'").disabled=true;
 					  	
 			  						</script>';
-			  				}*/
+			  				}
 
                         	echo'</div>';
 
-                        		$c++;
+                        		
 
                         	}
 
