@@ -43,10 +43,10 @@ $tope = 4;
 
 if($titulosModulos[0] == "ARTÍCULOS CON DESCUENTO"){
 
-$ordenar = "id";
-$item = "precio";
-$valor = 0;
-$modo = "DESC";
+$ordenar = "";
+$item = null;
+$valor = null;
+$modo = "Rand()";
 
 $gratis = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
@@ -54,10 +54,10 @@ $gratis = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $ba
 
 if($titulosModulos[1] == "LO MÁS VENDIDO"){
 
-$ordenar = "ventas";
+$ordenar = "";
 $item = null;
 $valor = null;
-$modo = "DESC";
+$modo = "Rand()";
 
 $ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
@@ -65,10 +65,10 @@ $ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $ba
 
 if($titulosModulos[2] == "LO MÁS VISTO"){
 
-$ordenar = "vistas";
+$ordenar = "";
 $item = null;
 $valor = null;
-$modo = "DESC";
+$modo = "Rand()";
 
 $vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 
@@ -198,7 +198,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 									<div class="botonOrdenar col-lg-1 col-xs-2">
 
-								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip">
+								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
 
 								     <i style="color:white" class="fa fa-check"></i>
 								     </button>

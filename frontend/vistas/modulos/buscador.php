@@ -177,7 +177,7 @@ LISTAR PRODUCTOS
 
 							<figure class="productsImg">
 								
-								<a href="'.$value["ruta"].'" class="pixelProducto">
+								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 									
 									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
@@ -191,7 +191,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
 										'.$value["titulo"].'<br>
 
@@ -216,7 +216,7 @@ LISTAR PRODUCTOS
 
 									<div class="botonOrdenar col-lg-1 col-xs-2">
 
-								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'" peso="'.$value["peso"].'" data-toggle="tooltip">
+								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
 
 								     <i style="color:white" class="fa fa-check"></i>
 								     </button>
@@ -245,7 +245,7 @@ LISTAR PRODUCTOS
 							   
 							<figure>
 						
-								<a href="'.$value["ruta"].'" class="pixelProducto">
+								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 									
 									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 								</a>
@@ -260,7 +260,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
 										'.$value["titulo"].'<br>';
 	

@@ -440,35 +440,6 @@ $(".agregarCarritoLista").click(function(){
 
 })
 
-
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  DAR CLICK EN LOS BOTONES CON SIGNO DE MÁS O MENOS        
-================================================*/
-var num1=localStorage.getItem("num1");
-//console.log("num1", num1);
-
-var count_click = 0;
-
-function count_click_add(variable) {
-  	count_click += 1;
-  	//console.log("count_click", count_click);
-  	document.getElementById('producto'+variable).value = count_click;
-
-}
-
-$(".mas").click(function(){
-
-	var idProducto = $(this).attr("idProducto");
-	var num1=localStorage.setItem("num1", idProducto);
-
-	count_click_add(idProducto);	
-})
-
-
 /*==============================================
 /*==============================================
 /*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
@@ -1467,16 +1438,6 @@ $(".btnListo").click(function(){
 
 	}
 })
-
-
-
-/*===================================================
-/*===================================================
-/*===================================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*===================================================
-/*===================================================
- EJECUTAR PETICIONES DE AJAX PARA RECARGAR LAS BANDEJAS DE MENSAJES   
-=====================================================*/
 
 
 
