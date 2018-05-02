@@ -169,6 +169,8 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 							</figure>
 
+							<span class="productsNumero pull-right">'.$value["id"].'</span>
+
 							<h4 class="productsH4">
 					
 								<small>

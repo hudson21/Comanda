@@ -185,7 +185,7 @@ LISTAR PRODUCTOS
 
 							</figure>
 
-							<span class="productsNumero pull-left">'.$value["id"].'</span>
+							<span class="productsNumero pull-right">'.$value["id"].'</span>
 
 							<h4 class="productsH4Productos productsH4">
 					
