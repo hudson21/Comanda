@@ -474,9 +474,23 @@ VENTANA MODAL PARA EL REGISTRO
               CAMPO DE BAR
             ===================================================-->
             
-            <div style="margin-left:0px; margin-bottom:25px" class="col-lg-4 col-xs-12 seleccioneBar">
+            <div style="margin-left:0px; margin-bottom:25px" class=" form-group seleccioneBar">
             
+                 <select class="form-control" name="seleccionarBar" id="seleccionarBar" >
+                  
+                  <?php
+                    
+                    $bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
 
+                        echo'<option value="">Seleccione Bar</option>';
+
+                      foreach($bares as $key => $value){
+
+                        echo'<option value='.$value["id"].'>'.$value["bares"].'</option>';
+                      }
+                  ?>
+          
+                </select>           
             </div>
 
 

@@ -140,20 +140,6 @@ if(!isset($_SESSION["validarSesion"])){
 
 				   </div>';
 
-			//var_dump($rutas[1]);
-
-			/*if($rutas[1] == "recibiendo"){
-				$estado = 0;
-			}
-
-			if($rutas[1] == "preparando"){
-				$estado = 1;
-			}
-
-			if($rutas[1] == "listo"){
-				$estado = 2;
-			}*/
-
 
 		}else{
 

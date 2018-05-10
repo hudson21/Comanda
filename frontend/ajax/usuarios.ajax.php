@@ -228,6 +228,18 @@ class AjaxUsuarios{
 	
 	}
 
+	/*======================================
+	       ELIMINAR USUARIO   
+	========================================*/
+	public function ajaxEliminarUsuario(){
+
+		$datos = $this->idUEli;
+
+		$respuesta = ControladorUsuarios::ctrEliminarUsuario($datos);
+
+		echo $respuesta;
+	}
+
 }
 
 /*===============================================
@@ -273,6 +285,17 @@ class AjaxUsuarios{
 		$quitarDeseo = new AjaxUsuarios();
 		$quitarDeseo -> idDeseo = $_POST["idDeseo"];
 		$quitarDeseo -> ajaxQuitarDeseo();
+
+	}
+
+/*===============================================
+	ELIMINAR USUARIO     
+=================================================*/
+	if(isset($_POST["idUEli"])){
+
+		$quitarDeseo = new AjaxUsuarios();
+		$quitarDeseo -> idUEli = $_POST["idUEli"];
+		$quitarDeseo -> ajaxEliminarUsuario();
 
 	}
 

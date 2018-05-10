@@ -477,13 +477,7 @@ $(".quitarDeseo").click(function(){
 $("#eliminarUsuario").click(function(){
 
 	var id = $("#idUsuario").val();
-	console.log("id", id);
-
-	if($("#modoUsuario").val() == "directo"){
-		if($("#fotoUsuario").val() != ""){
-			var foto = $("#fotoUsuario").val();
-		}
-	}
+	//console.log("id", id);
 
 	swal({
 				title: "¿Desea eliminar su cuenta?",
@@ -496,11 +490,52 @@ $("#eliminarUsuario").click(function(){
 			},
 
 		function(isConfirm){
-			  if (isConfirm) {	   
-				window.location = "index.php?ruta=perfil&id="+id+"&foto="+foto;
+
+			  if (isConfirm) {
+
+			  	var datos = new FormData();
+				datos.append("idUEli", id);
+
+				$.ajax({
+					url:rutaOculta+"ajax/usuarios.ajax.php",
+					method:"POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+						if( respuesta == "ok"){
+
+							swal({
+								title: "¡SU CUENTA HA SIDO BORRADA!",
+								text: "¡Debe registrarse nuevamente si desea ingresar!",
+								type: "success",
+								confirmButtonText: "Cerrar",
+								closeOnConfirm: false
+							},
+
+								function(isConfirm){
+										 if (isConfirm) {	   
+										   window.location = rutaOculta+"salir";
+										  } 
+								});
+						}
+
+					}
+
+				})
+
+				
+
+					   
+				//window.location = rutaOculta+"salir";	 
+				//window.location = "index.php?ruta=perfil&id="+id+"&foto="+foto;
+				//window.location = "index.php?ruta=perfil";
 			} 
 		});
 })
+
+
 
 /*=========================================================================
    DESHABILITAR PRODUCTOS DEL INVENTARIO EN CONFIGURACIONES      

@@ -86,13 +86,27 @@ class ModeloUsuarios{
 	=============================================*/
 	static public function mdlActualizarPerfil($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, nickname = :nickname, password = :password, foto = :foto WHERE id = :id");
+		if($datos["bar"] == ""){
 
-		$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
-		$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
-		$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
-		$stmt -> bindParam(":foto", $datos["foto"], PDO::PARAM_STR);
-		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, nickname = :nickname, password = :password WHERE id = :id");
+
+			$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+			$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
+			$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
+			$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
+		
+		}else{
+
+			$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre = :nombre, nickname = :nickname, password = :password, bar = :bar  WHERE id = :id");
+
+			$stmt -> bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+			$stmt -> bindParam(":nickname", $datos["nickname"], PDO::PARAM_STR);
+			$stmt -> bindParam(":password", $datos["password"], PDO::PARAM_STR);
+			$stmt -> bindParam(":bar", $datos["bar"], PDO::PARAM_STR);
+			$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
+		}
+
+		
 
 		if($stmt -> execute()){
 
@@ -273,84 +287,6 @@ class ModeloUsuarios{
 		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id = :id");
 
 		$stmt -> bindParam(":id", $id, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
-
-	}
-
-
-	/*===============================================
-		ELIMINAR COMENTARIOS DE USUARIO       
-	=================================================*/
-	static public function mdlEliminarComentarios($tabla, $id){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
-
-		$stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
-
-	}
-
-
-	/*===============================================
-		ELIMINAR COMPRAS DE USUARIO       
-	=================================================*/
-	static public function mdlEliminarCompras($tabla, $id){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
-
-		$stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
-
-		if($stmt -> execute()){
-
-			return "ok";
-
-		}else{
-
-			return "error";
-
-		}
-
-		$stmt-> close();
-
-		$stmt = null;
-
-	}
-
-
-	/*===============================================
-		ELIMINAR LISTA DE DESEOS DE USUARIO       
-	=================================================*/
-	static public function mdlEliminarListaDeseos($tabla, $id){
-
-		$stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
-
-		$stmt -> bindParam(":id_usuario", $id, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 
@@ -811,9 +747,9 @@ class ModeloUsuarios{
 	=================================================*/
 	static public function mdlMostrarAlmacenes($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("SELECT id from $tabla where bares = :bares");
+		$stmt = Conexion::conectar()->prepare("SELECT id from $tabla where id = :id");
 
-		$stmt -> bindParam(":bares", $datos, PDO::PARAM_STR);
+		$stmt -> bindParam(":id", $datos, PDO::PARAM_STR);
 
 		$stmt -> execute();
 

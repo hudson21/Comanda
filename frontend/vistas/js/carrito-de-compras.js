@@ -687,12 +687,6 @@ $(".seleccioneLugarPreparacion").html('<select class="form-control" name="selecc
 							
 						'</select>');
 
-$(".seleccioneBar").html('<select class="form-control" name="seleccionarBar" id="seleccionarBar" >'+
-
-							'<option value="">Seleccione Bar</option>'+
-							
-						'</select>');
-
 			$(".formEnvio").show();
 
 			$(".btnPagar").attr("tipo","fisico");
@@ -738,7 +732,6 @@ $(".seleccioneBar").html('<select class="form-control" name="seleccionarBar" id=
 								var bar = item.name;
 								var codigo = item.code;
 								$("#seleccionarPreparacion").append('<option value="'+codigo+'">'+bar+'</option>');
-								$("#seleccionarBar").append('<option value="'+codigo+'">'+bar+'</option>');
 							  }
 
 						    }

@@ -93,7 +93,7 @@ if(!isset($_SESSION["validarSesion"])){
 		  	<i class="fa fa-gift"></i> MI LISTA DE DESEOS</a>
 		  </li>-->
 
-		  <li>
+		  <li class="active">
 		  	<a data-toggle="tab" href="#perfil">
 		  	<i class="fa fa-user"></i> EDITAR PERFIL</a>
 		  </li>
@@ -124,28 +124,19 @@ if(!isset($_SESSION["validarSesion"])){
 							<?php
 
 								echo '<input type="hidden" value="'.$_SESSION["id"].'" id="idUsuario" name="idUsuario">
-							      	  <input type="hidden" value="'.$_SESSION["password"].'" name="passUsuario">
-							          <input type="hidden" value="'.$_SESSION["foto"].'" name="fotoUsuario" id="fotoUsuario">
-							          <input type="hidden" value="'.$_SESSION["modo"].'" name="modoUsuario" id="modoUsuario">';
+							      	  <input type="hidden" value="'.$_SESSION["password"].'" name="passUsuario">';
 
-								if($_SESSION["modo"] == "directo"){
+							if($_SESSION["tipo_usuario"] == 1){
 
-									if($_SESSION["foto"] != ""){
+							echo '<img src="'.$servidor.'vistas/img/usuarios/admin/usuario.png" class="img-thumbnail">';
+							
+							}else{
+							echo '<img src="'.$servidor.'vistas/img/usuarios/admin/admin.png" class="img-thumbnail">';
+							}
 
-										echo '<img src="'.$url.$_SESSION["foto"].'" class="img-thumbnail">';
+								
 
-									}else{
-
-										echo '<img src="'.$servidor.'vistas/img/usuarios/default/anonymous.png" class="img-thumbnail">';
-
-									}
-
-								}else{
-
-									echo '<img src="'.$_SESSION["foto"].'" class="img-thumbnail">';
-								}
-
-
+									
 							?>
 
 							</figure>
@@ -154,7 +145,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 							<?php 
 							
-							if($_SESSION["modo"] == "directo"){
+							//if($_SESSION["modo"] == "directo"){
 							
 							/*echo '<button type="button" class="btn btn-default" id="btnCambiarFoto">
 									
@@ -162,7 +153,7 @@ if(!isset($_SESSION["validarSesion"])){
 									
 									</button>';*/
 
-							}
+							//}
 
 							?>
 
@@ -182,7 +173,7 @@ if(!isset($_SESSION["validarSesion"])){
 							
 						<?php
 
-						if($_SESSION["modo"] != "directo"){
+						/*if($_SESSION["modo"] != "directo"){
 
 							echo '<label class="control-label text-muted text-uppercase">Nombre:</label>
 									
@@ -218,7 +209,9 @@ if(!isset($_SESSION["validarSesion"])){
 									<br>';
 		
 
-						}else{
+						}*/
+
+						//else{
 
 							echo '<label class="control-label text-muted text-uppercase" for="editarNombre">Cambiar Nombre:</label>
 									
@@ -240,16 +233,49 @@ if(!isset($_SESSION["validarSesion"])){
 
 									</div>
 
-								<br>
+								<br>';
 
-								<label class="control-label text-muted text-uppercase" for="editarPassword">Cambiar Contraseña:</label>
+
+
+						if($_SESSION["tipo_usuario"] == 1){
+
+							echo'<label class="control-label text-muted text-uppercase" for="editarBar">Cambiar Bar:</label>';
+							
+
+							echo'<div class="form-group">
+						
+									<select class="selectpicker form-control" name="modificarBar" id="modificarbar">';
+
+										$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
+
+
+
+											$nombreBar = ControladorUsuarios::ctrMostrarFilaBarById($_SESSION["bar"]);
+
+                  								echo'<option value='.$_SESSION["bar"].'>'.$nombreBar["bares"].'</option>';
+											
+
+											foreach($bares as $key => $value){
+
+												if($value["id"] != $_SESSION["bar"]){
+
+													echo'<option value='.$value["id"].'>'.$value["bares"].'</option>';
+												}	
+											}
+
+								echo'</select>
+							
+								</div><br>';
+						}
+
+						 echo'<label class="control-label text-muted text-uppercase" for="editarPassword">Cambiar Contraseña:</label>
 
 								<div class="input-group">
 								
 										<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
 										<input type="text" class="form-control" id="editarPassword" name="editarPassword" placeholder="Escribe la nueva contraseña">
 
-									</div>
+								</div>
 
 								<br>
 
@@ -257,7 +283,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 								echo'<button style="margin-bottom:10px" type="button" class="btn btn-danger btn-md pull-right" id="eliminarUsuario">Eliminar Cuenta</button>';
 
-						}
+						//}
 
 						?>
 
@@ -272,16 +298,6 @@ if(!isset($_SESSION["validarSesion"])){
 						
 
 		    		</form>
-		    		
-		    	
-
-		    		<?php 
-
-		    			$borrarUsuario = new ControladorUsuarios();
-		    			$borrarUsuario -> ctrEliminarUsuario();
-
-
-		    		?>
 
 		    	</div>
   		  </div>

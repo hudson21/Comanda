@@ -213,16 +213,17 @@ class ControladorUsuarios{
 
 			    $respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $valor);
 
-			    if($respuesta["tipo_usuario"] == 0){
+			   // if($respuesta["tipo_usuario"] == 0){
 
-			    	$password = $_POST["ingPassword"];
+			    	$password1 = $_POST["ingPassword"];
 			    
-			    }else{
+			    //}else{
 
-			    	$password = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
-			    }
+			    	$password2 = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			    //}
 
-			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $password){
+			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $password1 
+			    	|| $respuesta["password"] == $password2 ){
 
 			    	/*if($respuesta["verificacion"] == 1){
 
@@ -253,7 +254,7 @@ class ControladorUsuarios{
 			    		$_SESSION["validarSesion"] = "ok";
 			    		$_SESSION["id"] = $respuesta["id"];
 			    		$_SESSION["hotel"] = $respuesta["hotel"];
-			    		$_SESSION["bar"] = $respuesta["bar"];
+			    		$_SESSION["bar"] = $respuestaIdBar["id"];
 			    		$_SESSION["tipo_usuario"] = $respuesta["tipo_usuario"];
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
@@ -628,12 +629,36 @@ class ControladorUsuarios{
 
 			}
 
-			$datos = array("nombre" => $_POST["editarNombre"],
-						   "nickname" => $_POST["editarNickname"],
-						   "password" => $password,
-						   "foto" => $ruta,
-						   "id" => $_POST["idUsuario"]);
+			if($_SESSION["tipo_usuario"] == 1){
 
+				if($_POST["modificarBar"] != ""){
+
+					$datos = array("nombre" => $_POST["editarNombre"],
+							   "nickname" => $_POST["editarNickname"],
+							   "password" => $password,
+							   "bar" => $_POST["modificarBar"],
+							   "id" => $_POST["idUsuario"]);
+				}else{
+
+					$datos = array("nombre" => $_POST["editarNombre"],
+							   "nickname" => $_POST["editarNickname"],
+							   "password" => $password,
+							   "bar" => "",
+							   "id" => $_POST["idUsuario"]);
+
+				}
+
+
+			}else{
+
+					$datos = array("nombre" => $_POST["editarNombre"],
+							   "nickname" => $_POST["editarNickname"],
+							   "password" => $password,
+							   "bar" => "",
+							   "id" => $_POST["idUsuario"]);
+			}
+
+			
 			$tabla = "usuarios";
 
 			$respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
@@ -643,10 +668,11 @@ class ControladorUsuarios{
 				$_SESSION["validarSesion"] = "ok";
 				$_SESSION["id"] = $datos["id"];
 				$_SESSION["nombre"] = $datos["nombre"];
-				$_SESSION["foto"] = $datos["foto"];
 				$_SESSION["nickname"] = $datos["nickname"];
+					if($_SESSION["tipo_usuario"] == 1){
+						$_SESSION["bar"] = $datos["bar"];
+					}
 				$_SESSION["password"] = $datos["password"];
-				$_SESSION["modo"] = $_POST["modoUsuario"];
 
 				echo '<script> 
 
@@ -837,32 +863,17 @@ class ControladorUsuarios{
 	/*===============================================
 		ELIMINAR USUARIO       
 	=================================================*/
-	public function ctrEliminarUsuario(){
-
-		if(isset($_GET["id"])){
+	public function ctrEliminarUsuario($datos){
 
 			$tabla1 = "usuarios";
-			$tabla2 = "comentarios";
-			$tabla3 = "compras";
-			$tabla4 = "deseos";
 
-			$id = $_GET["id"];
-
-			/*if($_GET["foto"] != ""){
-
-				unlink($_GET["foto"]);//Para que se vacíe la variable foto que está viajando por el POST
-				rmdir('vistas/img/usuarios/'.$_GET["id"]);//Esto es para poder borrar la carpeta donde está alojada la foto del usuario
-			}*/
+			$id = $datos;
 
 			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
 
-			ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
+			return $respuesta;
 
-			ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
-
-			ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
-
-			$url = Ruta::ctrRuta();
+			/*$url = Ruta::ctrRuta();
 
 
 			if($respuesta == "ok"){
@@ -885,9 +896,9 @@ class ControladorUsuarios{
 
 							  </script>';
 
-					}
+					}*/
 
-		}
+		
 	
 	}
 	/*============================================================================================================  
