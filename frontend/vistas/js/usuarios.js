@@ -493,6 +493,9 @@ $("#eliminarUsuario").click(function(){
 
 			  if (isConfirm) {
 
+			  	//localStorage.removeItem("usuario");
+				//localStorage.clear();
+
 			  	var datos = new FormData();
 				datos.append("idUEli", id);
 
@@ -506,6 +509,7 @@ $("#eliminarUsuario").click(function(){
 					success:function(respuesta){
 						if( respuesta == "ok"){
 
+							
 							swal({
 								title: "¡SU CUENTA HA SIDO BORRADA!",
 								text: "¡Debe registrarse nuevamente si desea ingresar!",
@@ -515,10 +519,13 @@ $("#eliminarUsuario").click(function(){
 							},
 
 								function(isConfirm){
-										 if (isConfirm) {	   
+										 if (isConfirm) {
+										
 										   window.location = rutaOculta+"salir";
 										  } 
 								});
+
+							 
 						}
 
 					}

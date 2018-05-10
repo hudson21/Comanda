@@ -238,6 +238,7 @@ class AjaxUsuarios{
 		$respuesta = ControladorUsuarios::ctrEliminarUsuario($datos);
 
 		echo $respuesta;
+
 	}
 
 }
