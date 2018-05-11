@@ -285,7 +285,148 @@ if(!isset($_SESSION["validarSesion"])){
 			===================================================-->
 		  <div id="nuevoProducto" class="tab-pane fade ">
 
-			<h2>Nuevo Producto</h2>
+			<div class="container">
+
+		    		<form method="POST" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->
+		    			
+						<div class="col-md-2 col-sm-0 col-xs-0">
+						</div >	
+
+				<div class="col-md-8 col-sm-12 col-xs-12">
+
+						<br>
+							
+						<?php
+
+						
+						echo'<label class="control-label text-muted text-uppercase" for="editarBar">Categoría:</label>';
+
+							echo'<div class="form-group">
+						
+									<select class="selectpicker form-control" name="categoria" id="categoria">';
+
+										$item=null;
+            							$valor=null;
+
+										$categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+											
+												echo'<option value="">Seleccione una categoría</option>';
+
+											foreach($categorias as $key => $value){
+
+												echo'<option value='.$value["id"].'>'.$value["categoria"].'</option>';
+													
+											}
+
+								echo'</select>
+							
+								</div>';
+
+						echo'<label class="control-label text-muted text-uppercase" for="editarBar">Subcategoría:</label>';
+
+							echo'<div class="form-group">
+						
+									<select class="selectpicker form-control" name="subcategoria" id="subcategoria">';
+                         
+                    					/*$subcategorias = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria();
+											
+												echo'<option value="">Seleccione una subcategoría</option>';
+											foreach($subcategorias as $key => $value){
+
+												echo'<option value='.$value["id"].'>'.$value["subcategoria"].'</option>';
+													
+											}*/
+
+								echo'</select>
+							
+								</div>';
+							
+							echo'<label class="control-label text-muted text-uppercase" for="ruta">Ruta:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+										<input type="text" class="form-control" id="ruta" name="ruta" value="">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="nombre_producto">Nombre del producto:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" id="nombre_producto" name="nombre_producto" value="">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="codigo_busqueda">Código de búsqueda:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+										<input type="text" class="form-control" id="codigo_busqueda" name="codigo_busqueda" value="">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="descripcion">Descripción:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" id="descripcion" name="descripcion" value="">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="precio">Precio:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
+										<input type="text" class="form-control" id="precio" name="precio" value="">
+
+									</div>
+
+								<br>
+
+								<label class="control-label text-muted text-uppercase" for="imagen">Imagen:</label>
+
+								<div class="input-group">
+								
+										<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
+										<input type="text" class="form-control" id="imagen" name="imagen" value="">
+
+									</div>
+
+								<br>';
+
+
+
+						
+
+						 echo'<button style="margin-bottom:10px" type="button" class="btn btn-success btn-md pull-right" id="agregarProducto">Agregar producto</button>';
+
+						//}
+
+						?>
+
+						</div>
+
+						<div class="col-md-2 col-sm-0 col-xs-0">
+
+						</div >	
+									
+
+		    		</form>
+
+		    	</div>
 			
 		  </div>
 

@@ -54,6 +54,22 @@ class AjaxProductos{
 
 	}
 
+	/*===============================================
+		VALIDAR SUBCATEGORIAS        
+	=================================================*/
+
+	public $validarSubcategorias;
+
+	public function ajaxValidarSubcategorias(){
+
+		$datos = $this->validarSubcategorias;
+
+		$respuesta = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria($datos);
+
+		echo json_encode($respuesta);
+
+	}
+
 }
 
 if(isset($_POST["valor"])){
@@ -83,5 +99,15 @@ if(isset($_POST["valor"])){
 		$eliminarProductos = new AjaxProductos();
 		$eliminarProductos -> id_barEliminar = $_POST["id_barEliminar"];
 		$eliminarProductos -> ajaxEliminarTodosProductosAProductos();
+	}
+
+
+	/*===============================================
+		VALIDAR SUBCATEGORIAS        
+	=================================================*/
+	if(isset($_POST["validarSubcategorias"])){
+		$validarSub = new AjaxProductos();
+		$validarSub -> validarSubcategorias = $_POST["validarSubcategorias"];
+		$validarSub -> ajaxValidarSubcategorias();
 	}
 

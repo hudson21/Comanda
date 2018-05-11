@@ -246,7 +246,8 @@ $("#datosImagen").change(function(){
 	}else{
 
 		var datosImagen = new FileReader;
-		datosImagen.readAsDataURL(imagen); //Convierte el archivo que está dentro de imagen en una cadena de código que se pueda visualizar
+		datosImagen.readAsDataURL(imagen); 
+		//Convierte el archivo que está dentro de imagen en una cadena de código que se pueda visualizar
 
 		$(datosImagen).on("load",function(event){
 
@@ -391,84 +392,6 @@ function validarComentario(){
 
 }
 
-/*============================================================
-	LISTA DE DESEOS       
-==============================================================*/
-$(".deseos").click(function(){
-
-	var idProducto = $(this).attr("idProducto");
-	//console.log("idProducto",idProducto);
-	var idUsuario = localStorage.getItem("usuario");
-	//console.log("idUsuario",idUsuario);
-
-	if(idUsuario == null){
-
-		swal({
-				title: "¡Debe ingresar al sistema!",
-				text: "¡Para agregar un producto a la 'lista de deseos' debe primero ingresar al sistema!",
-				type: "warning",
-				confirmButtonText: "¡Cerrar!",
-				closeOnConfirm: false
-			},
-
-		function(isConfirm){
-			  if (isConfirm) {	   
-				window.location = rutaOculta;
-			} 
-		});
-
-	}else{
-
-			$(this).addClass("btn-danger");
-
-			var datos = new FormData();
-			datos.append("idUsuario", idUsuario);
-			datos.append("idProducto", idProducto);
-
-			$.ajax({
-					url:rutaOculta+"ajax/usuarios.ajax.php",
-					method:"POST",
-					data: datos,
-					cache: false,
-					contentType: false,
-					processData: false,
-					success:function(respuesta){
-						
-						
-					}
-
-			})
-
-	}
-})
-
-
-/*============================================================
-	QUITAR PRODUCTO DE LISTA DE DESEOS       
-==============================================================*/
-$(".quitarDeseo").click(function(){
-
-	var idDeseo = $(this).attr("idDeseo");
-
-	$(this).parent().parent().parent().remove();
-
-	var datos = new FormData();
-	datos.append("idDeseo", idDeseo);
-
-	$.ajax({
-			 url:rutaOculta+"ajax/usuarios.ajax.php",
-			 method:"POST",
-			 data: datos,
-			 cache: false,
-			 contentType: false,
-			 processData: false,
-			 success:function(respuesta){
-				console.log("respuesta",respuesta);
-			 }
-
-			})
-
-})
 
 
 /*============================================================
@@ -507,38 +430,17 @@ $("#eliminarUsuario").click(function(){
 					contentType: false,
 					processData: false,
 					success:function(respuesta){
-						if( respuesta == "ok"){
-
-							
-							swal({
-								title: "¡SU CUENTA HA SIDO BORRADA!",
-								text: "¡Debe registrarse nuevamente si desea ingresar!",
-								type: "success",
-								confirmButtonText: "Cerrar",
-								closeOnConfirm: false
-							},
-
-								function(isConfirm){
-										 if (isConfirm) {
-										
-										   window.location = rutaOculta+"salir";
-										  } 
-								});
-
-							 
-						}
+						//console.log("respuesta", respuesta);
 
 					}
-
 				})
-
-				
-
-					   
-				//window.location = rutaOculta+"salir";	 
+		   
+				window.location = rutaOculta+"salir";	 
 				//window.location = "index.php?ruta=perfil&id="+id+"&foto="+foto;
 				//window.location = "index.php?ruta=perfil";
-			} 
+			}
+
+			 
 		});
 })
 
@@ -687,7 +589,9 @@ $(".agregarProductos").click(function(){
 })
 
 
-
+/*===================================================================
+  ELIMINAR TODOS LOS PRODUCTOS DE LA TABLA DE PRODUCTOS_ALMACEN        
+=====================================================================*/
 
 $(".eliminarProductos").click(function(){
 
@@ -729,6 +633,108 @@ $(".eliminarProductos").click(function(){
 
 	})
 })
+
+if($("#categoria").val() == ""){
+
+	$('#subcategoria').prop('disabled', 'disabled');
+
+}
+
+/*======================================
+	   VALIDAR CATEGORÍA  y SUBCATEGORIA     
+========================================*/
+	$("#categoria").change(function(){ 
+
+	   		if($("#categoria").val() == ""){
+
+					$('#subcategoria').prop('disabled', 'disabled');
+
+			}else{
+
+				$('#subcategoria').prop('disabled', false);
+
+				/*============================================================
+					MOSTRAR LAS SUBCATEGORIAS   EN BASE A LA CATEGORIA      
+				  ============================================================*/
+				var validarSubcategorias = false;
+				var categoria = $("#categoria").val();
+				//console.log("categoria", categoria);
+				var datos = new FormData();
+
+				datos.append("validarSubcategorias", categoria);
+
+				$.ajax({
+					
+					url:rutaOculta+"ajax/producto.ajax.php",
+					method: "POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+
+					//console.log("respuesta",respuesta);
+
+					var sub = JSON.parse(respuesta);
+
+					//sub[0]["id"];
+					
+
+					sub.forEach(funcionForEach);
+
+					//$("#subcategoria").child().remove();
+					
+					//$("#subcategoria").children("option").remove();
+
+					function funcionForEach(item, index){
+
+						$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
+					}
+					//$("#subcategoria").children("option").hide();
+
+					
+
+						
+				}
+					
+	 		})
+
+		}
+
+	
+
+
+
+})// FIN DEL CHANGE DE CATEGORIA
+
+
+/*====================================================================
+    VALIDAR EL FORMULARIO DE REGISTRO DE AGREGAR UN PRODUCTO       
+======================================================================*/
+$("#agregarProducto").click(function(){
+
+	/*======================================
+	   VALIDAR CATEGORÍA       
+	========================================*/
+	$("#categoria").change(function(){ 
+
+   		$(".alert").remove();
+	})
+
+
+	if($("#categoria").val() == ""){
+
+		$("#categoria").after('<div class="alert alert-warning">No ha seleccionado la categoría</div>');
+
+		return false;
+
+	}
+
+	
+
+
+})
+	
 
 
 

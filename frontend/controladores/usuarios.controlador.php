@@ -873,10 +873,10 @@ class ControladorUsuarios{
 
 			return $respuesta;
 
-			/*$url = Ruta::ctrRuta();
+			//$url = Ruta::ctrRuta();
 
 
-			if($respuesta == "ok"){
+			/*if($respuesta == "ok"){
 
 						echo'<script>
 
@@ -890,7 +890,7 @@ class ControladorUsuarios{
 
 								function(isConfirm){
 										 if (isConfirm) {	   
-										   window.location = "'.$url.'salir";
+										   window.location = "http://localhost/Comanda/frontend/salir";
 										  } 
 								});
 

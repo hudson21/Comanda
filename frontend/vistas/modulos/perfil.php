@@ -173,45 +173,7 @@ if(!isset($_SESSION["validarSesion"])){
 							
 						<?php
 
-						/*if($_SESSION["modo"] != "directo"){
-
-							echo '<label class="control-label text-muted text-uppercase">Nombre:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input type="text" class="form-control"  value="'.$_SESSION["nombre"].'" readonly>
-
-									</div>
-
-									<br>
-
-									<label class="control-label text-muted text-uppercase">Correo electrónico:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-										<input type="text" class="form-control"  value="'.$_SESSION["nickname"].'" readonly>
-
-									</div>
-
-									<br>
-
-									<label class="control-label text-muted text-uppercase">Modo de registro en el sistema:</label>
-									
-									<div class="input-group">
-								
-										<span class="input-group-addon"><i class="fa fa-'.$_SESSION["modo"].'"></i></span>
-										<input type="text" class="form-control text-uppercase"  value="'.$_SESSION["modo"].'" readonly>
-
-									</div>
-
-									<br>';
-		
-
-						}*/
-
-						//else{
+						
 
 							echo '<label class="control-label text-muted text-uppercase" for="editarNombre">Cambiar Nombre:</label>
 									
@@ -265,7 +227,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 								echo'</select>
 							
-								</div><br>';
+								</div>';
 						}
 
 						 echo'<label class="control-label text-muted text-uppercase" for="editarPassword">Cambiar Contraseña:</label>

@@ -33,6 +33,20 @@ class ControladorProductos{
 	}
 
 	/*==============================================
+     MOSTRAR SUBCATEGORIAS COMPLETAS
+     ===============================================*/
+
+    //Recuerda que es static porque estamos trayendo valores
+	static public function ctrMostrarSubCategoriasByIdCategoria($datos){
+
+		$tabla="subcategorias";
+
+		$respuesta = ModeloProductos::mdlMostrarSubCategoriasByIdCategoria($tabla, $datos);
+
+		return $respuesta;
+	}
+
+	/*==============================================
 	  MOSTRAR PRODUCTOS
 	===============================================*/
 
