@@ -650,7 +650,7 @@ if($("#categoria").val() == ""){
 					$('#subcategoria').prop('disabled', 'disabled');
 
 			}else{
-
+				$("#subcategoria").children("option").remove();
 				$('#subcategoria').prop('disabled', false);
 
 				/*============================================================
@@ -676,13 +676,14 @@ if($("#categoria").val() == ""){
 					//console.log("respuesta",respuesta);
 
 					var sub = JSON.parse(respuesta);
+					console.log("sub", sub);
 
 					//sub[0]["id"];
 					
 
 					sub.forEach(funcionForEach);
 
-					//$("#subcategoria").child().remove();
+					
 					
 					//$("#subcategoria").children("option").remove();
 
@@ -691,10 +692,7 @@ if($("#categoria").val() == ""){
 						$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
 					}
 					//$("#subcategoria").children("option").hide();
-
-					
-
-						
+	
 				}
 					
 	 		})
