@@ -673,26 +673,14 @@ if($("#categoria").val() == ""){
 					processData: false,
 					success:function(respuesta){
 
-					//console.log("respuesta",respuesta);
-
 					var sub = JSON.parse(respuesta);
-					console.log("sub", sub);
-
-					//sub[0]["id"];
-					
 
 					sub.forEach(funcionForEach);
-
-					
-					
-					//$("#subcategoria").children("option").remove();
 
 					function funcionForEach(item, index){
 
 						$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
 					}
-					//$("#subcategoria").children("option").hide();
-	
 				}
 					
 	 		})
