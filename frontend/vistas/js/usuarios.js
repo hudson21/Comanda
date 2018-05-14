@@ -721,16 +721,12 @@ $("#nombre_producto").change(function(){
 	   		}
 	      
 		}
-	$("#rutaProducto").val() == separado;
+
+		//$("#rutaProducto").val() == separado;
 	
-	document.getElementById("rutaProducto").value=separado;
+		document.getElementById("rutaProducto").value=separado;
 
-	localStorage.setItem("productoURL", separado);
-
-	
-
-	//console.log("ruta",$("#ruta").val());
-	//document.getElementById("ruta").value=res;
+		localStorage.setItem("productoURL", separado);
 	
 })
 
@@ -742,12 +738,11 @@ $("#categoria").change(function(){
    		$(".alert").remove();
 })
 
+$("#rutaProducto").val() == localStorage.getItem("productoURL");
 /*====================================================================
     VALIDAR EL FORMULARIO DE REGISTRO DE AGREGAR UN PRODUCTO       
 ======================================================================*/
 //$("#agregarProducto").click(function(){
-
-$("#rutaProducto").val() == localStorage.getItem("productoURL");	
 
 function registroProducto(){
 

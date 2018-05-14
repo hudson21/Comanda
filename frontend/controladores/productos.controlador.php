@@ -264,7 +264,12 @@ class ControladorProductos{
 			//echo'<script> var ruta = localStorage.getItem("productoURL"); </script>';
 
 			//$ruta = echo"<script> document.write(ruta) </script>";
-			
+
+			echo'<script> var ruta = localStorage.getItem("productoURL");; </script>';
+
+
+			$ruta = echo'<script> document.write(variableJS) </script>';
+
 			$datos = array("categoria" => $_POST["categoria"],
 						   "subcategoria" => $_POST["subcategoria"],
 						   "nombre_producto" => $_POST["nombre_producto"],
