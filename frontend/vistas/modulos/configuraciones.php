@@ -287,90 +287,157 @@ if(!isset($_SESSION["validarSesion"])){
 
 			<div class="container">
 
-		    		<form method="POST" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->
-		    			
-						<div class="col-md-2 col-sm-0 col-xs-0">
-						</div >	
+				<?php
 
+					echo'<div style="margin-top: 20px" class="btn-group">
+
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						
+						<span style="font-weight:bold; font-size:15px;">Filtrar por bares</span> <span class="caret"></span></button>
+
+					<ul class="dropdown-menu" role="menu">';
+
+				  	$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
+
+						foreach($bares as $key => $value){
+
+		                     echo'<li><a href="'.$url.$rutas[0].'/'.$value["id"].'"><span style="font-weight:bold;">'.$value["bares"].'</span></a></li>';
+						}	
+
+					echo'</ul>
+
+					  </div>';
+
+					  if(!isset($rutas[1])){
+
+					  	echo'<div class="col-xs-12 text-center error404">
+				               
+						     <h1><small>¡Oops!</small></h1>
+						    
+						     <h2>No ha seleccionado un bar para filtrar</h2>
+
+				   		</div>';
+
+
+					}else{
+
+				$_SESSION["nuevoProductoBar"] = $rutas[1]; 
+
+				echo'<br><h3 style="text-align:center; 
+                        font-weight:bold;">';
+
+                  $nombreBar = ControladorUsuarios::ctrMostrarFilaBarById($rutas[1]);
+
+                  echo $nombreBar["bares"];
+                        
+               echo'</h3>';
+
+				//onsubmit="return registroProducto()"
+				echo'<form method="POST" onsubmit="return registroProducto()" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->
+		    			
+				<div class="col-md-3 col-sm-4 col-xs-12 text-center ">
+							<br>
+
+					<figure id="imgProducto">';
+							
+					//echo'<input type="hidden" value="'.$_SESSION.'">';
+
+				/*echo'<img src="'.$servidor.'vistas/img/productos/subirProductos/subirImagen.png" class="img-thumbnail">*/
+
+				echo'</figure>
+
+							<br>
+
+						
+					<!--<button type="button" class="btn btn-default" id="btnCambiarFoto">
+									
+						Subir foto de producto
+									
+					</button>-->
+
+							
+
+					 <div id="subirImagenProducto">
+								
+						<input type="file" class="form-control" id="datosImagenProducto" name="datosImagenProducto">
+
+							<img class="previsualizar" src="">
+
+					 </div>
+
+				</div>
+
+
+				<!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
 				<div class="col-md-8 col-sm-12 col-xs-12">
 
-						<br>
+					<br>
 							
-						<?php
+				<label class="control-label text-muted text-uppercase" for="categoria">Categoría:</label>
 
+					<div class="form-group">
 						
-						echo'<label class="control-label text-muted text-uppercase" for="editarBar">Categoría:</label>';
+					<select class="selectpicker form-control" name="categoria" id="categoria">';
 
-							echo'<div class="form-group">
-						
-									<select class="selectpicker form-control" name="categoria" id="categoria">';
+					 $item=null;
+            		 $valor=null;
 
-										$item=null;
-            							$valor=null;
-
-										$categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+					 $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
 											
-												echo'<option value="">Seleccione una categoría</option>';
+					 echo'<option value="">Seleccione una categoría</option>';
 
-											foreach($categorias as $key => $value){
+						foreach($categorias as $key => $value){
 
-												echo'<option value='.$value["id"].'>'.$value["categoria"].'</option>';
+							echo'<option value='.$value["id"].'>'.$value["categoria"].'</option>';
 													
-											}
+						}
 
-								echo'</select>
+					echo'</select>
 							
-								</div>';
+					</div>';
 
-						echo'<label class="control-label text-muted text-uppercase" for="editarBar">Subcategoría:</label>';
+					 echo'<label class="control-label text-muted text-uppercase" for="editarBar">Subcategoría:</label>';
 
-							echo'<div class="form-group">
+						 echo'<div class="form-group">
 						
-									<select class="selectpicker form-control" name="subcategoria" id="subcategoria">';
-                         
-                    					/*$subcategorias = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria();
-											
-												echo'<option value="">Seleccione una subcategoría</option>';
-											foreach($subcategorias as $key => $value){
+							  <select class="selectpicker form-control" name="subcategoria" id="subcategoria">';
 
-												echo'<option value='.$value["id"].'>'.$value["subcategoria"].'</option>';
-													
-											}*/
-
-								echo'</select>
+						echo'</select>
 							
-								</div>';
+							</div>';
 							
-							echo'<label class="control-label text-muted text-uppercase" for="ruta">Ruta:</label>
+						echo'<label class="control-label text-muted text-uppercase" for="nombre_producto">Nombre del producto:</label>
 
-								<div class="input-group">
+							<div class="input-group">
 								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
-										<input type="text" class="form-control" id="ruta" name="ruta" value="">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+									<input type="text" class="form-control" id="nombre_producto" name="nombre_producto" value="">
 
-									</div>
+								</div>
 
-								<br>
+							<br>
 
-								<label class="control-label text-muted text-uppercase" for="nombre_producto">Nombre del producto:</label>
+						  <label class="control-label text-muted text-uppercase" for="rutaProducto">Ruta:</label>
 
-								<div class="input-group">
+							<div class="input-group">
 								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-										<input type="text" class="form-control" id="nombre_producto" name="nombre_producto" value="">
+									<span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+									<input type="text" class="form-control" id="rutaProducto" name="rutaProducto">
 
-									</div>
+								</div>
 
-								<br>
+							<br>
 
-								<label class="control-label text-muted text-uppercase" for="codigo_busqueda">Código de búsqueda:</label>
-
-								<div class="input-group">
 								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
-										<input type="text" class="form-control" id="codigo_busqueda" name="codigo_busqueda" value="">
 
-									</div>
+							<label class="control-label text-muted text-uppercase" for="codigo_busqueda">Código de búsqueda:</label>
+
+							 <div class="input-group">
+								
+								<span class="input-group-addon"><i class="glyphicon glyphicon-star"></i></span>
+								<input type="text" class="form-control" id="codigo_busqueda" name="codigo_busqueda" value="">
+
+							</div>
 
 								<br>
 
@@ -390,41 +457,31 @@ if(!isset($_SESSION["validarSesion"])){
 								<div class="input-group">
 								
 										<span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-										<input type="text" class="form-control" id="precio" name="precio" value="">
-
-									</div>
-
-								<br>
-
-								<label class="control-label text-muted text-uppercase" for="imagen">Imagen:</label>
-
-								<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-picture"></i></span>
-										<input type="text" class="form-control" id="imagen" name="imagen" value="">
+										<input type="number" class="form-control" id="precio" name="precio" value="">
 
 									</div>
 
 								<br>';
 
+					
+						 echo'<button style="margin-bottom:10px" type="submit" class="btn btn-success btn-md pull-right" id="agregarProducto">Agregar producto</button>';
 
-
-						
-
-						 echo'<button style="margin-bottom:10px" type="button" class="btn btn-success btn-md pull-right" id="agregarProducto">Agregar producto</button>';
-
-						//}
-
-						?>
-
-						</div>
+						echo'</div>
 
 						<div class="col-md-2 col-sm-0 col-xs-0">
 
-						</div >	
-									
+						</div>';
 
-		    		</form>
+							$insertarProducto = new ControladorProductos();
+							$insertarProducto->ctrInsertarProducto();
+
+		    			echo'</form>';
+
+					}
+
+				?>
+
+		    		
 
 		    	</div>
 			

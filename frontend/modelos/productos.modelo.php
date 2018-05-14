@@ -355,8 +355,39 @@ class ModeloProductos{
 
 		$stmt = null;
 	}
-	
-		
+
+
+	/*=========================================================
+	  AGREGAR UN PRODUCTO A LA TABLA DE PRODUCTOS
+	===========================================================*/
+	static public function mdlInsertarProducto($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, id_subcategoria, ruta, titulo, titular, descripcion, precio, portada)
+			VALUES (:id_categoria, :id_subcategoria, :ruta, :titulo, :titular, :descripcion, :precio, :portada)");
+
+		$stmt -> bindParam(":id_categoria", $datos["categoria"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_subcategoria", $datos["subcategoria"], PDO::PARAM_INT);
+		$stmt -> bindParam(":ruta", $datos["rutaProducto"], PDO::PARAM_STR);
+		$stmt -> bindParam(":titulo", $datos["nombre_producto"], PDO::PARAM_STR);
+		$stmt -> bindParam(":titular", $datos["codigo_busqueda"], PDO::PARAM_STR);
+		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
+		$stmt -> bindParam(":precio", $datos["precio"], PDO::PARAM_INT);
+		$stmt -> bindParam(":portada", $datos["portada"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
 
 
 }

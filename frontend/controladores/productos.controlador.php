@@ -203,4 +203,110 @@ class ControladorProductos{
 
 		return $respuesta;
 	}
+
+	/*===============================================================
+	  AGREGAR UN PRODUCTO A LA TABLA PRODUCTOS Y PRODUCTOS_ALMACEN
+	=================================================================*/
+	static public function ctrInsertarProducto(){
+
+		if(isset($_POST["categoria"])){
+
+			/*===================================================
+			    VALIDAR IMAGEN
+			=====================================================*/
+			$ruta = "";
+
+			if(isset($_FILES["datosImagenProducto"]["tmp_name"])){
+
+				/*===================================================
+			    	PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+				=====================================================*/
+
+				$directorio = "vistas/img/subirProductos"; 
+				/*
+				//PARA ELIMINAR LA FOTO DEL PRODUCTO
+
+				if(!empty($_POST[])){
+
+					unlink($_POST["portada"]);
+				}*/
+
+				//Creamos el directorio de la carpeta de la imagen con permisos de lectura y escritura
+				//mkdir($directorio, 0755);
+
+
+				/*===================================================
+			    	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+				=====================================================*/
+				$aleatorio = mt_rand(100, 999);
+
+				$imagen = "vistas/img/subirProductos/".$aleatorio.".jpeg";
+
+				/*===================================================
+			    	MODIFICAMOS TAMAÑO DE LA FOTO
+				=====================================================*/
+				list($ancho, $alto) = getimagesize($_FILES["datosImagenProducto"]["tmp_name"]);
+
+				$nuevoAncho = 500;
+				$nuevoAlto = 500;
+
+				$origen = imagecreatefromjpeg($_FILES["datosImagenProducto"]["tmp_name"]);
+
+				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+				imagejpeg($destino, $imagen);
+
+
+			}
+
+			//echo'<script> var ruta = localStorage.getItem("productoURL"); </script>';
+
+			//$ruta = echo"<script> document.write(ruta) </script>";
+			
+			$datos = array("categoria" => $_POST["categoria"],
+						   "subcategoria" => $_POST["subcategoria"],
+						   "nombre_producto" => $_POST["nombre_producto"],
+						   "rutaProducto" => $_POST["rutaProducto"],
+						   "codigo_busqueda" => $_POST["codigo_busqueda"],
+						   "descripcion" => $_POST["descripcion"],
+						   "precio" => $_POST["precio"],
+						   "portada" => $imagen);
+
+			$tabla = "productos";
+
+			$respuesta = ModeloProductos::mdlInsertarProducto($tabla, $datos);
+
+			if($respuesta == "ok"){
+
+				echo '<script> 
+
+						swal({
+
+							title: "¡OK!",
+							text: "¡Se ha insertado un nuevo producto",
+							type:"success",
+							confirmButtonText:"Cerrar",
+							closeOnConfirm: false,
+							icon: "success"
+												  
+						},
+
+						function(isConfirm){
+
+							if(isConfirm){
+									
+										  history.back();
+
+							}
+						});
+
+					</script>';
+			}
+
+		}
+	}
+
+
 }

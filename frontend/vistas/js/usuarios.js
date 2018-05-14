@@ -189,14 +189,15 @@ CAMBIAR FOTO
 =============================================*/
 $("#btnCambiarFoto").click(function(){
 
-	$("#imgPerfil").toggle();
-	$("#subirImagen").toggle();
+	//$("#imgProducto").toggle();
+	//$("#subirImagenProducto").toggle();
 
 })
 
-$("#datosImagen").change(function(){
+$("#datosImagenProducto").change(function(){
 
 	var imagen = this.files[0];
+	//console.log("imagen", imagen);
 
 	/*===================================================
 	     VALIDAMOS EL FORMATO DE LA IMAGEN     
@@ -218,7 +219,7 @@ $("#datosImagen").change(function(){
 		function(isConfirm){
 
 			if(isConfirm){
-				 window.location = rutaOculta+"perfil";
+				 window.location = rutaOculta+"configuraciones";
 			}
 		})
 	}
@@ -239,19 +240,20 @@ $("#datosImagen").change(function(){
 		function(isConfirm){
 
 			if(isConfirm){
-				 window.location = rutaOculta+"perfil";
+				 window.location = rutaOculta+"configuraciones";
 			}
 		})
 
 	}else{
 
-		var datosImagen = new FileReader;
+		var datosImagen = new FileReader;//Hacer lectura del nuevo archivo
 		datosImagen.readAsDataURL(imagen); 
 		//Convierte el archivo que está dentro de imagen en una cadena de código que se pueda visualizar
 
 		$(datosImagen).on("load",function(event){
 
-			var rutaImagen = event.target.result;
+			var rutaImagen = event.target.result;//El resultado de la cadena de código que nos trae el 
+												 //evento de readAsDataURL
 
 			$(".previsualizar").attr("src", rutaImagen);
 		})
@@ -640,6 +642,8 @@ if($("#categoria").val() == ""){
 
 }
 
+$('#rutaProducto').prop('disabled', 'disabled');
+
 /*======================================
 	   VALIDAR CATEGORÍA  y SUBCATEGORIA     
 ========================================*/
@@ -648,6 +652,7 @@ if($("#categoria").val() == ""){
 	   		if($("#categoria").val() == ""){
 
 					$('#subcategoria').prop('disabled', 'disabled');
+					$("#subcategoria").children("option").remove();
 
 			}else{
 				$("#subcategoria").children("option").remove();
@@ -687,27 +692,69 @@ if($("#categoria").val() == ""){
 
 		}
 
-	
-
-
-
 })// FIN DEL CHANGE DE CATEGORIA
 
+/*============================================================
+		VALIDAR LA RUTA        
+	==============================================================*/
+$("#nombre_producto").change(function(){
+
+	//$("#ruta").val() = $("#nombre_producto").val();
+	var producto = $("#nombre_producto").val();
+
+    var res = producto.split(" ");
+
+    var separado = "";
+
+	   for (var i=0; i < res.length; i++) {
+
+	   		if(i<res.length-1){
+
+	   		 separado = separado + res[i] + "-";		
+	   		
+	   		}
+
+	   		if(i == res.length-1){
+
+	   		 separado = separado + res[i];
+	   		 	
+	   		}
+	      
+		}
+	$("#rutaProducto").val() == separado;
+	
+	document.getElementById("rutaProducto").value=separado;
+
+	localStorage.setItem("productoURL", separado);
+
+	
+
+	//console.log("ruta",$("#ruta").val());
+	//document.getElementById("ruta").value=res;
+	
+})
+
+/*===================================================
+		LIMPIAR TODOS LOS CAMPOS
+=====================================================*/
+$("#categoria").change(function(){ 
+
+   		$(".alert").remove();
+})
 
 /*====================================================================
     VALIDAR EL FORMULARIO DE REGISTRO DE AGREGAR UN PRODUCTO       
 ======================================================================*/
-$("#agregarProducto").click(function(){
+//$("#agregarProducto").click(function(){
+
+$("#rutaProducto").val() == localStorage.getItem("productoURL");	
+
+function registroProducto(){
 
 	/*======================================
 	   VALIDAR CATEGORÍA       
 	========================================*/
-	$("#categoria").change(function(){ 
-
-   		$(".alert").remove();
-	})
-
-
+	
 	if($("#categoria").val() == ""){
 
 		$("#categoria").after('<div class="alert alert-warning">No ha seleccionado la categoría</div>');
@@ -716,10 +763,155 @@ $("#agregarProducto").click(function(){
 
 	}
 
+	/*======================================
+	   VALIDAR SUBCATEGORIA       
+	========================================*/
+	
+	if($("#subcategoria").val() == ""){
+
+		$("#subcategoria").after('<div class="alert alert-warning">No ha seleccionado una subcategoría</div>');
+
+		return false;
+
+	}
+
+
+	/*============================================================
+	VALIDAR EL NOMBRE        
+	==============================================================*/
+	var nombreProducto = $("#nombre_producto").val();
+
+	if(nombreProducto != ""){
+
+		var expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
+
+		if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
+
+			$("#nombre_producto").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		$("#nombre_producto").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+
+	}
+
+	/*============================================================
+		VALIDAR LA RUTA        
+	==============================================================*/
+	if($("#rutaProducto").val() == ""){
+
+		$("#rutaProducto").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+	}
+
+	/*============================================================
+		VALIDAR CÓDIGO DE BÚSQUEDA        
+	==============================================================*/
+	var codigo = $("#codigo_busqueda").val();
+	//console.log("codigo", codigo);
+
+	if(codigo != ""){
+
+		var expresion = /^[a-zA-Z0-9 ]*$/;
+
+		if(!expresion.test(codigo)){ //Sino cumple con la edxpresión regular
+
+			$("#codigo_busqueda").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		$("#codigo_busqueda").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+
+	}
+
+	/*============================================================
+		VALIDAR DESCRIPCIÓN         
+	==============================================================*/
+	var descripcion = $("#descripcion").val();
+
+	if(descripcion != ""){
+
+		var expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
+
+		if(!expresion.test(descripcion)){ //Sino cumple con la edxpresión regular
+
+			$("#descripcion").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		$("#descripcion").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+	}
+
+
+	/*============================================================
+		VALIDAR PRECIO        
+	==============================================================*/
+	var precio = $("#precio").val();
+
+	if(precio != ""){
+
+		var expresion = /^[0-9. ]*$/;
+
+		if(!expresion.test(precio)){ //Sino cumple con la edxpresión regular
+
+			$("#precio").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong>Solo se permiten números y puntos</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		$("#precio").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+
+	}
+
+	/*============================================================
+		VALIDAR IMAGEN        
+	==============================================================*/
+	if($(".previsualizar").attr("src") == ""){
+
+		$(".previsualizar").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> El campo de imagen es obligatorio</div>');
+
+		return false;
+	}
+
+	//console.log("rutaProducto", $("#rutaProducto").val());
+
+
+}
+
 	
 
 
-})
+
+/*var numeros="0123456789";
+
+function tiene_numeros(texto){
+   for(i=0; i<texto.length; i++){
+      if (numeros.indexOf(texto.charAt(i),0)!=-1){
+         console.log(1);
+      }
+   }
+   console.log(0);
+}*/
 	
 
 

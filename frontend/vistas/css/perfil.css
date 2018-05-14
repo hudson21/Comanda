@@ -30,6 +30,36 @@ PERFIL
 	height:65px;
 }
 
+/*=============================================
+	NUEVO PRODUCTO
+=============================================*/
+#nuevoProducto figure#imgProducto img{
+
+	width:80%;
+	margin:10px 0;
+
+}
+
+#nuevoProducto #subirImagenProducto{
+	display:block;
+	margin:20px 0px;
+	border:2px dotted #ccc;
+	overflow: hidden;
+	padding:40px;
+	cursor:pointer;
+}
+
+#nuevoProducto #subirImagenProducto #datosImagen{
+	height:65px;
+}
+
+#nuevoProducto #subirImagenProducto img{
+	width:100%;
+	padding:10px;
+}
+
+
+
 @media (min-width:1200px){
 
 
