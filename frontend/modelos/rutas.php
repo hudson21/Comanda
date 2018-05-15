@@ -17,6 +17,6 @@ class Ruta{
 
 	static public function ctrRutaServidor(){
 
-		return "http://localhost/Comanda/backend/";
+		return "http://localhost/Comanda/frontend/";
 	}
 }

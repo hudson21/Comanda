@@ -417,7 +417,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 							<br>
 
-						  <label class="control-label text-muted text-uppercase" for="rutaProducto">Ruta:</label>
+						  <!--<label class="control-label text-muted text-uppercase" for="rutaProducto">Ruta:</label>
 
 							<div class="input-group">
 								
@@ -426,7 +426,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 								</div>
 
-							<br>
+							<br>-->
 
 								
 

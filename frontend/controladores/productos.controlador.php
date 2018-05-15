@@ -238,7 +238,7 @@ class ControladorProductos{
 				/*===================================================
 			    	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 				=====================================================*/
-				$aleatorio = mt_rand(100, 999);
+				$aleatorio = mt_rand(100, 9999);
 
 				$imagen = "vistas/img/subirProductos/".$aleatorio.".jpeg";
 
@@ -248,7 +248,7 @@ class ControladorProductos{
 				list($ancho, $alto) = getimagesize($_FILES["datosImagenProducto"]["tmp_name"]);
 
 				$nuevoAncho = 500;
-				$nuevoAlto = 500;
+				$nuevoAlto = 562;
 
 				$origen = imagecreatefromjpeg($_FILES["datosImagenProducto"]["tmp_name"]);
 
@@ -261,20 +261,41 @@ class ControladorProductos{
 
 			}
 
-			//echo'<script> var ruta = localStorage.getItem("productoURL"); </script>';
+	
+	     //$res = producto.split(" ");
 
-			//$ruta = echo"<script> document.write(ruta) </script>";
+	     //$res = explode(" ",$_POST["nombre_producto"]);
 
-			echo'<script> var ruta = localStorage.getItem("productoURL");; </script>';
+		 $np = $_POST["nombre_producto"];
 
+	     //$res = explode(“ - “,$_POST["nombre_producto"], 1);
+		
+		 $res = (string)explode(" ",$np); 
 
-			$ruta = echo'<script> document.write(variableJS) </script>';
+	     /*$separado = "";
+
+		   for( $i=0; $i < count($res); $i++) {
+
+		   		if($i<count($res)-1){
+
+		   		 $separado = $separado + $res[$i] + "-";		
+		   		
+		   		}
+
+		   		if($i == count($res)-1){
+
+		   		 $separado = $separado + $res[$i];
+		   		 	
+		   		}
+		      
+			}*/
 
 			$datos = array("categoria" => $_POST["categoria"],
 						   "subcategoria" => $_POST["subcategoria"],
 						   "nombre_producto" => $_POST["nombre_producto"],
-						   "rutaProducto" => $_POST["rutaProducto"],
+						   "rutaProducto" => $res,
 						   "codigo_busqueda" => $_POST["codigo_busqueda"],
+						   "tipo"=>"fisico",
 						   "descripcion" => $_POST["descripcion"],
 						   "precio" => $_POST["precio"],
 						   "portada" => $imagen);

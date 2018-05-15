@@ -32,20 +32,20 @@ https://github.com/google/google-api-php-client  -->Instrucciones para instalar 
 /*======================================
     CREAR EL OBJETO DE LA API DE GOOGLE    
 ========================================*/
-$cliente = new Google_Client(); //Estamos instanciando una clase de google que esta dentro de la API
+/*$cliente = new Google_Client(); //Estamos instanciando una clase de google que esta dentro de la API
 $cliente->setAuthConfig('modelos/client_secret.json');
 $cliente->setAccessType('offline');
-$cliente->setScopes(['profile','email']);
+$cliente->setScopes(['profile','email']);*/
 
 /*======================================
     RUTA PARA EL LOGIN DE GOOGLE    
 ========================================*/
-$rutaGoogle = $cliente->createAuthUrl();
+//$rutaGoogle = $cliente->createAuthUrl();
 
 /*==================================================================
     RECIBIMOS LA VARIABLE GET DE GOOGLE LLAMADA CODE  
 ====================================================================*/
-if(isset($_GET["code"])){
+/*if(isset($_GET["code"])){
 
   $token = $cliente->authenticate($_GET["code"]);
 
@@ -53,13 +53,13 @@ if(isset($_GET["code"])){
 
   $cliente->setAccessToken($token);
 
-}
+}*/
 
 /*==================================================================
     RECIBIMOS LOS DATOS CIFRADOS DE GOOGLE EN UN ARRAY 
 ====================================================================*/
 
-if($cliente->getAccessToken()){
+/*if($cliente->getAccessToken()){
 
   $item = $cliente->verifyIdToken();
 
@@ -87,7 +87,7 @@ if($cliente->getAccessToken()){
 
     </script>'; 
 
-}
+}*/
 
 
 ?>

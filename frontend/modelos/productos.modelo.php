@@ -362,11 +362,12 @@ class ModeloProductos{
 	===========================================================*/
 	static public function mdlInsertarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, id_subcategoria, ruta, titulo, titular, descripcion, precio, portada)
-			VALUES (:id_categoria, :id_subcategoria, :ruta, :titulo, :titular, :descripcion, :precio, :portada)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, id_subcategoria, tipo, ruta, titulo, titular, descripcion, precio, portada)
+			VALUES (:id_categoria, :id_subcategoria, :tipo,:ruta, :titulo, :titular, :descripcion, :precio, :portada)");
 
 		$stmt -> bindParam(":id_categoria", $datos["categoria"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_subcategoria", $datos["subcategoria"], PDO::PARAM_INT);
+		$stmt -> bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
 		$stmt -> bindParam(":ruta", $datos["rutaProducto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":titulo", $datos["nombre_producto"], PDO::PARAM_STR);
 		$stmt -> bindParam(":titular", $datos["codigo_busqueda"], PDO::PARAM_STR);
