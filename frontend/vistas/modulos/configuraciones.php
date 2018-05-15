@@ -411,7 +411,7 @@ if(!isset($_SESSION["validarSesion"])){
 							<div class="input-group">
 								
 									<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
-									<input type="text" class="form-control" id="nombre_producto" name="nombre_producto" value="">
+									<input type="text" class="form-control" id="nombre_producto" name="nombre_producto">
 
 								</div>
 

@@ -261,39 +261,32 @@ class ControladorProductos{
 
 			}
 
-	
-	     //$res = producto.split(" ");
+		 $res = array();
 
-	     //$res = explode(" ",$_POST["nombre_producto"]);
+		 $res = str_split($_POST["nombre_producto"]);
 
-		 $np = $_POST["nombre_producto"];
-
-	     //$res = explode(“ - “,$_POST["nombre_producto"], 1);
+		 $separado = "";
 		
-		 $res = (string)explode(" ",$np); 
+		 //$res = implode("-",$np); 
 
-	     /*$separado = "";
+		   for( $i=0; $i < count($res); $i++){
 
-		   for( $i=0; $i < count($res); $i++) {
+		   		if($res[$i] == " "){
 
-		   		if($i<count($res)-1){
-
-		   		 $separado = $separado + $res[$i] + "-";		
+		   		  $separado = $separado + "-";	
 		   		
-		   		}
+		   		}else{
 
-		   		if($i == count($res)-1){
-
-		   		 $separado = $separado + $res[$i];
-		   		 	
+		   			$separado = $separado + $res[$i];
 		   		}
+		   		
 		      
-			}*/
+			}
 
 			$datos = array("categoria" => $_POST["categoria"],
 						   "subcategoria" => $_POST["subcategoria"],
 						   "nombre_producto" => $_POST["nombre_producto"],
-						   "rutaProducto" => $res,
+						   "rutaProducto" => $separado,
 						   "codigo_busqueda" => $_POST["codigo_busqueda"],
 						   "tipo"=>"fisico",
 						   "descripcion" => $_POST["descripcion"],
