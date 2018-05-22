@@ -1153,5 +1153,18 @@ class ControladorUsuarios{
 	  return $respuesta;
 	}
 
+	/*=========================================================
+	          MOSTRAR TODOS LOS PEDIDOS
+	===========================================================*/
+	static public function ctrMostrarCabeceraPedidosTodos($estado){
 
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosTodos($tabla, $estado);
+
+		return $respuesta;
+
+	}
+
+	
 }

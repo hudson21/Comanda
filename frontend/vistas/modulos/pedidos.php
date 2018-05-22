@@ -192,11 +192,18 @@ if(!isset($_SESSION["validarSesion"])){
 		 
 
 		 $item = $_SESSION["id"];
-		 $item1 = 1;
 		 $usuario = $_SESSION["nombre"];
 
-		 $cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosByUsuarioAndEstado($item, $estado);
+		 if($_SESSION["tipo_usuario"]==1){
 
+		 	$cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosByUsuarioAndEstado($item, $estado);
+		 
+		 }else{
+
+		 	$cabeceraPedidos = ControladorUsuarios::ctrMostrarCabeceraPedidosTodos($estado);
+		 }
+
+		 
 		 $contarPedidos=count($cabeceraPedidos);
 
 		 $cuenta = 0;
@@ -261,42 +268,48 @@ if(!isset($_SESSION["validarSesion"])){
 					  //echo'<br>';
 
 					  
-			   echo'</a>'; 
-			   if($value1["estado"]==0){
-			   	echo'<button  onClick="this.disabled=true"id="botonListo'.$i.'" repeticion="'.$i.'"class=" posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" repeticion="'.$i.'"class="tamañoA fa fa-clock-o"></i></button>';
-			  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'" class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-clock-o"></i></button>';
-			  	echo'<button onClick="this.disabled=true"id="botonRecibiendo'.$i.'" repeticion="'.$i.'"class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
-			  	echo'<script>
-				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
-			  	</script>';
-			  }
+			   echo'</a>';
 
-			  if($value1["estado"]==1){
-			   	echo'<button onClick="this.disabled=true"id="botonListo'.$i.'" class="posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" class="tamañoA fa fa-clock-o"></i></button>';
-			  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'"  class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-check"></i></button>';
-			  	echo'<button id="botonRecibiendo'.$i.'" class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
-
-			  	echo'<script>
-				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
-				document.getElementById("botonPreparando'.$i.'").disabled=true;
-			  	</script>';
-			  }
-
-			  if($value1["estado"]==2){
-			   	echo'<button  id="botonListo'.$i.'" class="posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" class="tamañoA fa fa-check"></i></button>';
-			  	echo'<button id="botonPreparando'.$i.'" class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-check"></i></button>';
-			  	echo'<button  id="botonRecibiendo'.$i.'"  class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
-
-			  	echo'<script>
-			  	document.getElementById("botonListo'.$i.'").disabled=true;
-				document.getElementById("botonRecibiendo'.$i.'").disabled=true;
-				document.getElementById("botonPreparando'.$i.'").disabled=true;
-			  	</script>';
-
-			  }
+			   if($_SESSION["tipo_usuario"]==0){
 
 
-			  	
+			   		if($value1["estado"]==0){
+					   	echo'<button  onClick="this.disabled=true"id="botonListo'.$i.'" repeticion="'.$i.'"class=" posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" repeticion="'.$i.'"class="tamañoA fa fa-clock-o"></i></button>';
+					  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'" class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-clock-o"></i></button>';
+					  	echo'<button onClick="this.disabled=true"id="botonRecibiendo'.$i.'" repeticion="'.$i.'"class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
+					  	echo'<script>
+					document.getElementById("botonRecibiendo'.$i.'").disabled=true;
+				  	</script>';
+			  		}
+
+
+			  		if($value1["estado"]==1){
+					   	echo'<button onClick="this.disabled=true"id="botonListo'.$i.'" class="posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" class="tamañoA fa fa-clock-o"></i></button>';
+					  	echo'<button onClick="this.disabled=true" id="botonPreparando'.$i.'"  class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-check"></i></button>';
+					  	echo'<button id="botonRecibiendo'.$i.'" class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
+
+					  	echo'<script>
+						document.getElementById("botonRecibiendo'.$i.'").disabled=true;
+						document.getElementById("botonPreparando'.$i.'").disabled=true;
+					  	</script>';
+			 	 }
+
+
+			 	 	if($value1["estado"]==2){
+					   	echo'<button  id="botonListo'.$i.'" class="posicionListo btnListo btn  btn-danger" nombreUsuario="'.$value1["nombre_usuario"].'" noUsuario="'.$value1["id_usuario"].'" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">LISTO</span> <i id="listo'.$i.'" class="tamañoA fa fa-check"></i></button>';
+					  	echo'<button id="botonPreparando'.$i.'" class="posicionPreparando btnPreparando btn-success btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'" ><span class="col-xs-0 tamañoA">PREPARANDO</span> <i id="preparando'.$i.'" class="tamañoA fa fa-check"></i></button>';
+					  	echo'<button  id="botonRecibiendo'.$i.'"  class="posicionRecibiendo btnRecibiendo btn-info btn" repeticion="'.$i.'" noPedido="'.$value1["no_pedido"].'"><span class="col-xs-0 tamañoA">RECIBIENDO</span> <i id="recibiendo'.$i.'"class="tamañoA fa fa-check"></i></button>';
+
+					  	echo'<script>
+					  	document.getElementById("botonListo'.$i.'").disabled=true;
+						document.getElementById("botonRecibiendo'.$i.'").disabled=true;
+						document.getElementById("botonPreparando'.$i.'").disabled=true;
+					  	</script>';
+
+			 	 }
+	}	
+
+			   
 			  echo'</h4>';
 			 echo'</div><!--Quiero ver que div cierra este-->
 

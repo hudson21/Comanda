@@ -781,5 +781,25 @@ class ModeloUsuarios{
 	}
 
 
+	/*===============================================
+		MOSTRAR TODOS LOS PEDIDOS    
+	=================================================*/
+	static public function mdlMostrarCabeceraPedidosTodos($tabla, $estado){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE estado = :estado ORDER BY no_pedido ASC");
+
+		$stmt -> bindParam(":estado", $estado, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+
 }
 
