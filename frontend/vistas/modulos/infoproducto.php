@@ -180,35 +180,24 @@ INFO PRODUCTOS
 
 			 echo '<p>'.$infoproducto["descripcion"].'</p>';
 
-			 echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+			 if(isset($_SESSION["validarSesion"])){
 
-			 ?>
+				  if($_SESSION["validarSesion"] == "ok"){
 
-			 <!--===============================================
-		     CARACTERÍSTICAS DEL PRODUCTO
-		     ===================================================-->
+				  	 echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+				  
 
-		     <hr>
+		     echo'<hr>';
 
-		     <div class="form-group row">
-		     	
-		     	<?php
-
-		     	
-
-		     	?>
-
-		     </div>
-
-		     <!--===============================================
+		     echo'<!--===============================================
 		     BOTONES DE COMPRA
-		     ===================================================-->
+		     ===================================================-->';
 
-		     <div class="row botonesCompra">
+		     echo'<div class="row botonesCompra">
 
-		     	<?php
+		     	
 
-		     	echo '<div class="col-md-6 col-xs-12">
+		     	<div class="col-md-6 col-xs-12">
 
 							<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
 									  imagen="'.$servidor.$infoproducto["portada"].'"
@@ -223,6 +212,8 @@ INFO PRODUCTOS
 								</button>
 
 							 </div>';
+			}
+		}
 
 		     	?>
 		     	

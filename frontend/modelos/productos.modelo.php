@@ -110,6 +110,37 @@ class ModeloProductos{
 	  }
 
 	  /*==============================================
+	  	 MOSTRAR PRODUCTOS POR BAR Y DISPONIBILIDAD
+	  ===============================================*/
+	  static public function mdlMostrarProductosPorBar($bar, $ordenar, $modo, $base, $tope, $item, $valor){
+
+	  	if($item != null){
+
+	  		$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and id_bar = $bar and productos.$item = :$item ORDER BY $ordenar $modo LIMIT $base, $tope");
+
+	  		$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
+
+	  		$stmt-> execute();
+
+			return $stmt -> fetchAll();
+
+	  	}else{
+
+	  		$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and id_bar = $bar ORDER BY $ordenar $modo LIMIT $base, $tope");
+
+	  		$stmt-> execute();
+
+			return $stmt -> fetchAll();
+	  	}
+		
+		
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	  }
+
+	  /*==============================================
 	  	MOSTRAR PRODUCTOS SIN BASE Y TOPE
 	  ===============================================*/
 	  static public function mdlMostrarProductosSinBaseYTope($item, $valor, $bar){
@@ -232,6 +263,48 @@ class ModeloProductos{
 	  static public function mdlListarProductosBusqueda($tabla, $busqueda){
 
 	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%' OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+
+	  }
+
+	  /*==============================================
+	  	BUSCADOR POR BAR
+	  ===============================================*/
+
+	  static public function mdlBuscarProductosPorBar( $busqueda, $ordenar, $modo, $base, $tope, $bar){
+
+	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");*/
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+
+	  }
+
+	  /*==============================================
+	  	LISTAR PRODUCTOS BUSCADOR POR BAR
+	  ===============================================*/
+
+	  static public function mdlListarProductosBusquedaPorBar( $busqueda, $bar){
+
+	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%' OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ");*/
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%'");
 
 	  	$stmt-> execute();
 

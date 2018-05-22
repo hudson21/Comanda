@@ -49,7 +49,6 @@ class ControladorProductos{
 	/*==============================================
 	  MOSTRAR PRODUCTOS
 	===============================================*/
-
 	static public function ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo){
 
 		$tabla="productos";
@@ -60,12 +59,35 @@ class ControladorProductos{
 	}
 
 	/*==============================================
+	  MOSTRAR PRODUCTOS POR BAR
+	===============================================*/
+	static public function ctrMostrarProductosPorBar($bar, $ordenar, $modo, $base, $tope, $item, $valor){
+
+		$respuesta= ModeloProductos::mdlMostrarProductosPorBar($bar, $ordenar, $modo, $base, $tope, $item, $valor);
+
+		return $respuesta;
+	}
+
+
+
+	/*==============================================
 	  MOSTRAR PRODUCTOS SIN BASE Y TOPE
 	===============================================*/
 
 	static public function ctrMostrarProductosSinBaseYTope($item, $valor, $bar){
 
 		$respuesta= ModeloProductos::mdlMostrarProductosSinBaseYTope($item, $valor, $bar);
+
+		return $respuesta;
+	}
+
+	/*====================================================================
+	  MOSTRAR PRODUCTOS POR DISPONIBILIDAD Y POR BAR PARA LOS MESEROS
+	======================================================================*/
+
+	static public function ctrMostrarProductosJoinProductosAlmacen($item, $valor, $bar){
+
+		$respuesta= ModeloProductos::mdlMostrarProductosJoinProductosAlmacen($item, $valor, $bar);
 
 		return $respuesta;
 	}
@@ -134,6 +156,31 @@ class ControladorProductos{
 		$tabla = "productos";
 
 		$respuesta = ModeloProductos::mdlListarProductosBusqueda($tabla, $busqueda);
+
+		return $respuesta;
+
+	}
+
+
+	/*==============================================
+	  BUSCADOR POR BAR
+	===============================================*/
+
+	static public function ctrBuscarProductosPorBar($busqueda, $ordenar, $modo, $base, $tope, $bar){
+
+		$respuesta = ModeloProductos::mdlBuscarProductosPorBar( $busqueda, $ordenar, $modo, $base, $tope, $bar);
+
+		return $respuesta;
+
+	}
+
+	/*==============================================
+	  LISTAR PRODUCTOS BUSQUEDA POR BAR
+	===============================================*/
+
+	static public function ctrListarProductosBusquedaPorBar($busqueda, $bar){
+
+		$respuesta = ModeloProductos::mdlListarProductosBusquedaPorBar( $busqueda, $bar);
 
 		return $respuesta;
 

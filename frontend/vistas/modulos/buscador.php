@@ -152,9 +152,35 @@ LISTAR PRODUCTOS
 
 						$busqueda = $rutas[3];
 
-					   $productos = ControladorProductos::ctrBuscarProductos($busqueda, $ordenar, $modo, $base, $tope);
+						if(isset($_SESSION["validarSesion"])){
+
+						  if($_SESSION["validarSesion"] == "ok"){
+
+						  	if($_SESSION["tipo_usuario"] == 0){
+
+						  		$productos = ControladorProductos::ctrBuscarProductos($busqueda, $ordenar, $modo, $base, $tope);
+					   
+					   			$listaProductos = ControladorProductos::ctrListarProductosBusqueda($busqueda);
+						  		
+						  	}else{
+
+						  		$productos = ControladorProductos::ctrBuscarProductosPorBar($busqueda, $ordenar, $modo, $base, $tope, $_SESSION["bar"]);
+					   
+					   			$listaProductos = ControladorProductos::ctrListarProductosBusquedaPorBar($busqueda, $_SESSION["bar"]);
+						  	}
+
+						 }
+
+					}else{
+
+						$productos = ControladorProductos::ctrBuscarProductos($busqueda, $ordenar, $modo, $base, $tope);
+
+
 					   
 					   $listaProductos = ControladorProductos::ctrListarProductosBusqueda($busqueda);
+					}
+
+					   //var_dump($productos);
 					}
 
 					if(!$productos){
@@ -171,11 +197,20 @@ LISTAR PRODUCTOS
 
 						echo ' <ul class="grid0">';
 
-						foreach ($productos as $key => $value) {
+				foreach ($productos as $key => $value) {
 					
-					echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
+					if(!isset($_SESSION["validarSesion"])){
 
-							<figure class="productsImg">
+						echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
+
+					}else{
+
+						echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
+					}
+
+					if($value["disponible"] == null or $value["disponible"] == 1){
+
+						echo'<figure class="productsImg">
 								
 								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 									
@@ -203,7 +238,11 @@ LISTAR PRODUCTOS
 
 							</h4>';
 
-						echo '<div class="tamañoDivEnlaces col-xs-6 enlaces">
+					if(isset($_SESSION["validarSesion"])){
+
+					  if($_SESSION["validarSesion"] == "ok"){
+
+					  	echo '<div class="tamañoDivEnlaces col-xs-6 enlaces">
 								
 								
 									
@@ -223,17 +262,20 @@ LISTAR PRODUCTOS
 
 									</div>
 
-							</div>
+							</div>';
+					  }
+				}
+			}
 
-						</li>';
+		echo'</li>';
 		
-					}
+	}echo'<!--FIN DEL FOREACH DEL GRID-->';
 
-				echo '</ul>
+	echo '</ul>
 
-				<!--===============================================
-				VITRINA DE PRODUCTOS EN LISTA
-				===================================================-->
+	<!--===============================================
+	VITRINA DE PRODUCTOS EN LISTA
+	===================================================-->
 
 		<ul class="list0" style="display:none;" >';
 
@@ -270,7 +312,11 @@ LISTAR PRODUCTOS
 
 							</h1>';
 
-				echo '<div class="btn-group pull-left enlaces">';
+				if(isset($_SESSION["validarSesion"])){
+
+					if($_SESSION["validarSesion"] == "ok"){
+
+						echo '<div class="btn-group pull-left enlaces">';
 
 
 				 echo'<div class=" tamañoDiv  ">
@@ -284,19 +330,25 @@ LISTAR PRODUCTOS
 
 						<div class="botonOrdenar col-lg-1 col-xs-2">
 
-						 <button type="button" class="btn  btn-circle btn-lg agregarCarritoLista" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
+							 <button type="button" class="btn  btn-circle btn-lg agregarCarritoLista" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
 
-						 <i style="color:white" class="fa fa-check"></i>
-						 </button>
+							 <i style="color:white" class="fa fa-check"></i>
+							 </button>
 
 						</div>
 
 
 					</div>';
 
-			echo '</div>
+			echo '</div>';
 
-				</div>
+			}
+		}
+
+				
+
+				
+			echo'</div>
 
              <div class="col-xs-12">
 
@@ -306,7 +358,7 @@ LISTAR PRODUCTOS
 
 	 </li>';
 
-		}
+		}echo'<!--FIN DEL FOREACH DE LISTA-->';
 
 	echo'</ul>';
 					}

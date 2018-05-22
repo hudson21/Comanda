@@ -48,7 +48,26 @@ $item = null;
 $valor = null;
 $modo = "Rand()";
 
-$gratis = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+if(isset($_SESSION["validarSesion"])){
+
+	if($_SESSION["validarSesion"] == "ok"){
+
+		if($_SESSION["tipo_usuario"] == 0){
+
+		$gratis = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	
+		}else{
+
+		$gratis = ControladorProductos::ctrMostrarProductosPorBar($_SESSION["bar"], $ordenar, $modo, $base, $tope, $item, $valor);
+		}
+	}
+
+	}else{
+
+		$gratis = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	}
+
+	
 
 }
 
@@ -59,7 +78,24 @@ $item = null;
 $valor = null;
 $modo = "Rand()";
 
-$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	if(isset($_SESSION["validarSesion"])){
+
+	if($_SESSION["validarSesion"] == "ok"){
+
+		if($_SESSION["tipo_usuario"] == 0){
+
+		$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	
+		}else{
+
+		$ventas = ControladorProductos::ctrMostrarProductosPorBar($_SESSION["bar"], $ordenar, $modo, $base, $tope, $item, $valor);
+		}
+	}
+
+	}else{
+
+	$ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	}
 
 }
 
@@ -70,7 +106,24 @@ $item = null;
 $valor = null;
 $modo = "Rand()";
 
-$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	if(isset($_SESSION["validarSesion"])){
+
+	if($_SESSION["validarSesion"] == "ok"){
+
+		if($_SESSION["tipo_usuario"] == 0){
+
+		$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	
+		}else{
+
+		$vistas = ControladorProductos::ctrMostrarProductosPorBar($_SESSION["bar"], $ordenar, $modo, $base, $tope, $item, $valor);
+		}
+	}
+
+	}else{
+
+		$vistas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+	}
 
 }
 
@@ -80,9 +133,16 @@ $modulos = array($gratis, $ventas, $vistas);
 
 for($i = 0; $i < count($titulosModulos); $i ++){
 
-	echo '<div class="container-fluid well well-sm barraProductos">
+	if(!isset($_SESSION["validarSesion"])){
 
-			<div class="container">
+		echo '<div style="margin-top:30px" class="container-fluid well well-sm barraProductos">';
+
+	}else{
+
+		echo '<div class="container-fluid well well-sm barraProductos">';
+	}
+
+		echo'<div class="container">
 				
 				<div class="row">
 					
@@ -187,6 +247,10 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 							</h4>';
 
+			if(isset($_SESSION["validarSesion"])){
+
+				if($_SESSION["validarSesion"] == "ok"){
+
 					echo '<div class="tamañoDivEnlaces col-xs-6 enlaces">
 								
 								<div class=" tamañoDiv  ">
@@ -210,14 +274,16 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 								</div>
 
-							</div>
+							</div>';
+				}
+			}
 
-						</li>';
+						echo'</li>';
 
 						$a++;
 
 						
-				}
+		}
 
 		echo'</ul>';
 
@@ -252,7 +318,11 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 								</small>
 							</h1>';
 
-		echo '<div class="btn-group pull-left enlaces">';
+			if(isset($_SESSION["validarSesion"])){
+
+				if($_SESSION["validarSesion"] == "ok"){
+
+					echo '<div class="btn-group pull-left enlaces">';
 
 				 echo'<div class=" tamañoDiv  ">
 									
@@ -265,19 +335,24 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 							<div class="botonOrdenar col-lg-1 col-xs-2">
 
-							 <button type="button" class="btn  btn-circle btn-lg agregarCarritoLista" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
+								 <button type="button" class="btn  btn-circle btn-lg agregarCarritoLista" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
 
-							 <i style="color:white" class="fa fa-check"></i>
-							 </button>
+								 <i style="color:white" class="fa fa-check"></i>
+								 </button>
 
 							</div>
 
 
 					</div>';
 
-		echo '</div>
+		echo '</div>';
 
-		</div>
+				}
+			}
+
+		
+
+		echo'</div>
 
 	<div class="col-xs-12"><hr></div>
 
