@@ -362,9 +362,10 @@ class ModeloProductos{
 	===========================================================*/
 	static public function mdlInsertarProducto($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id_categoria, id_subcategoria, tipo, ruta, titulo, titular, descripcion, precio, portada)
-			VALUES (:id_categoria, :id_subcategoria, :tipo,:ruta, :titulo, :titular, :descripcion, :precio, :portada)");
+		$stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(id, id_categoria, id_subcategoria, tipo, ruta, titulo, titular, descripcion, precio, portada)
+			VALUES (:id, :id_categoria, :id_subcategoria, :tipo,:ruta, :titulo, :titular, :descripcion, :precio, :portada)");
 
+		$stmt -> bindParam(":id", $datos["id"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_categoria", $datos["categoria"], PDO::PARAM_INT);
 		$stmt -> bindParam(":id_subcategoria", $datos["subcategoria"], PDO::PARAM_INT);
 		$stmt -> bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
@@ -374,6 +375,42 @@ class ModeloProductos{
 		$stmt -> bindParam(":descripcion", $datos["descripcion"], PDO::PARAM_STR);
 		$stmt -> bindParam(":precio", $datos["precio"], PDO::PARAM_INT);
 		$stmt -> bindParam(":portada", $datos["portada"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+	static public function mldContrarProductos(){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * from productos");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
+	static public function mdlInsertarProductosAlmacen($id_producto, $id_bar){
+
+		$stmt = Conexion::conectar()->prepare("INSERT INTO productos_almacen(id_bar, id_producto, disponible)
+			VALUES (:id_bar, :id_producto, 1)");
+
+		$stmt -> bindParam(":id_bar", $id_bar, PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto", $id_producto, PDO::PARAM_INT);
 
 		if($stmt -> execute()){
 

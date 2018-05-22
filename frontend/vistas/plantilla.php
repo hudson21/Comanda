@@ -1,3 +1,7 @@
+<?php
+  session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,8 +21,6 @@
   <title>Comanda Electrónica</title>
 
 	<?php
-
-         session_start(); 
 
          $servidor = Ruta::ctrRutaServidor(); 
 
@@ -103,13 +105,7 @@
 
 
 
-<body > <!--onload="ajax();"-->
-
-	<!--Para generar comentarios va a ser con 
-  
-  				comm-html-section
-	-->
-
+<body > 
 	<!--=====================================
 	=            Section comment            =
 	======================================-->
@@ -421,31 +417,6 @@
 <script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
 <script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
 <script src="<?php echo $url;?>vistas/js/menu.js"></script>
-
-
-
-<script>
- /* window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '398752310585470',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.12'
-    });
-      
-    FB.AppEvents.logPageView();   
-      
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));*/
-</script>
-
 
 </body>
 </html>

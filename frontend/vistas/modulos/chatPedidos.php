@@ -11,8 +11,7 @@ $url = Ruta::ctrRuta();
 $servidor = Ruta::ctrRutaServidor();
 
 $item = $_SESSION["id"];
-$item1 = 0;
-$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item, $item1);
+$notificaciones = ControladorUsuarios::ctrMostrarMensajesByUsuario($item);
 
 if($notificaciones){
 

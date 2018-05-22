@@ -1024,14 +1024,25 @@ class ControladorUsuarios{
 
 	}
 
-	/*==============================================================
-		MOSTRAR LOS MENSAJES DE LA TABLA PEDIDOS POR TIPO DE MENSAJE     
-	================================================================*/
-	static public function ctrMostrarMensajesByUsuario($item, $item1){
+	/*===============================================
+		MOSTRAR LOS MENSAJES DE LOS PEDIDOS HECHOS    
+	=================================================*/
+	static public function ctrMostrarMensajesByUsuario($datos){
 
 		$tabla = "notificaciones";
 
-		$respuesta = ModeloUsuarios::mdlMostrarMensajesByUsuario($tabla, $item, $item1);
+		$respuesta = ModeloUsuarios::mdlMostrarMensajesByUsuario($tabla, $datos);
+
+		return $respuesta;
+
+	}
+
+	/*==============================================================
+		MOSTRAR LOS MENSAJES DE LA TABLA PEDIDOS POR TIPO DE MENSAJE     
+	================================================================*/
+	static public function ctrMostrarMensajesJoinUsuarios(){
+
+		$respuesta = ModeloUsuarios::mdlMostrarMensajesJoinUsuarios();
 
 		return $respuesta;
 	}

@@ -260,35 +260,29 @@ class ControladorProductos{
 
 
 			}
+			$answer = ModeloProductos::mldContrarProductos();
 
-		 $res = array();
+			if($answer == null){
 
-		 $res = str_split($_POST["nombre_producto"]);
+				$contarProductos = 0;
+			
+			}else{
 
-		 $separado = "";
-		
-		 //$res = implode("-",$np); 
-
-		   for( $i=0; $i < count($res); $i++){
-
-		   		if($res[$i] == " "){
-
-		   		  $separado = $separado + "-";	
-		   		
-		   		}else{
-
-		   			$separado = $separado + $res[$i];
-		   		}
-		   		
-		      
+				$contarProductos = count($answer);
 			}
 
-			$datos = array("categoria" => $_POST["categoria"],
+			
+
+			$rutaProducto = str_replace(" ", "-", $_POST["nombre_producto"]);
+
+
+			$datos = array("id" => $contarProductos+1,
+						   "categoria" => $_POST["categoria"],
 						   "subcategoria" => $_POST["subcategoria"],
 						   "nombre_producto" => $_POST["nombre_producto"],
-						   "rutaProducto" => $separado,
+						   "rutaProducto" => $rutaProducto,
 						   "codigo_busqueda" => $_POST["codigo_busqueda"],
-						   "tipo"=>"fisico",
+						   "tipo"=>"fisico",		
 						   "descripcion" => $_POST["descripcion"],
 						   "precio" => $_POST["precio"],
 						   "portada" => $imagen);
@@ -296,6 +290,8 @@ class ControladorProductos{
 			$tabla = "productos";
 
 			$respuesta = ModeloProductos::mdlInsertarProducto($tabla, $datos);
+
+			$insertarProductosAlmacen = ModeloProductos::mdlInsertarProductosAlmacen($contarProductos+1,$_SESSION["nuevoProductoBar"]);
 
 			if($respuesta == "ok"){
 

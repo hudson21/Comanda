@@ -645,14 +645,27 @@ class ModeloUsuarios{
 	}
 
 	/*==============================================================
+		MOSTRAR LOS MENSAJES DE LOS PEDIDOS HECHOS     
+	================================================================*/
+	static public function mdlMostrarMensajesByUsuario($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM notificaciones WHERE no_usuario = $datos and  tipo = 0");
+
+		$stmt -> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null;
+	}
+
+	/*==============================================================
 		MOSTRAR LOS MENSAJES DE LA TABLA PEDIDOS POR TIPO DE MENSAJE     
 	================================================================*/
-	static public function mdlMostrarMensajesByUsuario($tabla, $item, $item1){
+	static public function mdlMostrarMensajesJoinUsuarios(){
 
-		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_usuario = :id_usuario AND tipo = :tipo ORDER BY id ASC");
-
-		$stmt -> bindParam(":id_usuario", $item, PDO::PARAM_INT);
-		$stmt -> bindParam(":tipo", $item1, PDO::PARAM_INT);
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM notificaciones inner join usuarios on notificaciones.no_usuario = usuarios.id WHERE notificaciones.tipo  = 1");
 
 		$stmt -> execute();
 
