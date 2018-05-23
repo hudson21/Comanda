@@ -95,6 +95,12 @@ if(!isset($_SESSION["validarSesion"])){
 		  </li>
 
 		  <li>
+		  	<a data-toggle="tab" href="#editarEliminarProducto">
+		  	<i class="fa fa-pencil"></i>
+		  	<i class="fa fa-times"></i> EDITAR O ELIMINAR UN PRODUCTO</a>
+		  </li>
+
+		  <li>
 		  	<a data-toggle="tab" href="#todosLosProductos">
 		  	<i class="fa fa-eye"></i> AGREGAR O QUITAR TODOS LOS PRODUCTOS EN ALMACEN</a>
 		  </li>
@@ -102,6 +108,8 @@ if(!isset($_SESSION["validarSesion"])){
 		</ul>
 
 		<div class="tab-content">
+
+			
 
 			<!--===============================================
 			   PESTAÑA ALTAS Y BAJAS DE PRODUCTOS
@@ -485,6 +493,182 @@ if(!isset($_SESSION["validarSesion"])){
 
 		    	</div>
 			
+		  </div>
+
+		  <!--===============================================
+			   PESTAÑA DE EDITAR O ELIMINAR UN PRODUCTO
+			===================================================-->
+		  <div id="editarEliminarProducto" class="tab-pane fade in active">
+			
+			<?php
+
+		  	echo'<div style="margin-top: 20px" class="btn-group">
+
+					<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+						
+						<span style="font-weight:bold; font-size:15px;">Filtrar por bares</span> <span class="caret"></span></button>
+
+					<ul class="dropdown-menu" role="menu">';
+
+		  	$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
+
+				foreach($bares as $key => $value){
+
+                     echo'<li><a href="'.$url.$rutas[0].'/'.$value["id"].'"><span style="font-weight:bold;">'.$value["bares"].'</span></a></li>';
+				}	
+
+			echo'</ul>
+
+			  </div>';
+
+
+		if(!isset($rutas[1])){
+
+			echo'<div class="col-xs-12 text-center error404">
+				               
+				     <h1><small>¡Oops!</small></h1>
+				    
+				     <h2>No ha seleccionado un bar para filtrar</h2>
+
+				   </div>';
+
+
+		}else{
+
+			echo'<br><h3 style="text-align:center; 
+                        font-weight:bold;">';
+
+                  $nombreBar = ControladorUsuarios::ctrMostrarFilaBarById($rutas[1]);
+
+                  echo $nombreBar["bares"];
+                        
+               echo'</h3>';
+
+			echo'<script>
+
+				localStorage.setItem("rutaBares","'.$url.$rutas[0]."/".$rutas[1].'");
+
+   				</script>';
+
+			$item=null;
+            $valor=null;
+            $i = 0;
+
+                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+
+		  		echo'<div style="margin-top:30px" class="panel-group" id="accordion">';
+
+		  		foreach($categorias as $key => $value){
+
+		  		echo'<div class="panel panel-default">
+			   	      <div class="panel-heading">
+			   	      
+					  <h4 class="panel-title">
+			           <a style="font-weight:bold" data-toggle="collapse" data-parent="#accordion" href="#collapses'.$i.'">
+			           '.$value["categoria"].'</a>
+			          </h4>
+			   	      
+			           
+			        </div>
+
+			        <div id="collapses'.$i.'" class="panel-collapse collapse">
+			         <div class="panel-body">';
+
+			         $item = "id_categoria";
+                     $valor = $value["id"];
+                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
+                     $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+
+                     foreach($subcategorias as $key => $value1){
+                        echo'<h4 style="text-align:center; font-weight:bold;margin-bottom:20px;">'.$value1["subcategoria"].'</h4>';
+
+                        $item1 = "id_subcategoria";
+                        $valor1 = $value1["id"];
+                        $bar = $rutas[1];
+                        $_SESSION["barFiltro"]=$rutas[1];
+
+                        echo '<script>
+
+			    		localStorage.setItem("barFiltro","'.$rutas[1].'");
+
+			    		</script>';
+
+                       $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1, $bar);
+
+                       //var_dump($productoSubcategoria);
+
+                       if($productoSubcategoria){
+
+                       	 foreach($productoSubcategoria as $key => $value2){
+
+                        	echo '<div style="margin-bottom:20px" class="row">';	
+
+
+                        	echo'<div class=" col-xs-3">
+                        			<button noProductoDes="'.$value2["id"].'" id="deshabilitarProducto'.$value2["id"].'"  class=" btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
+					  				</button>
+					  			 </div>';
+
+                        	echo'<div class="col-xs-6">
+                        			<h5 style="text-align:center; 
+                        					font-weight:bold;">'.$value2["id"].'. '.$value2["titulo"].'
+                        			</h5>
+                        		 </div>';
+
+
+
+                        	echo'<div class="col-xs-2">
+                        			<button  noProductoHa="'.$value2["id"].'" id="habilitarProducto'.$value2["id"].'"  class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
+					  				</button>
+					  			</div>';
+
+					  		if($value2["disponible"] == 1){
+					  			echo'<script>
+					  				document.getElementById("habilitarProducto'.$value2["id"].'").disabled=true;
+			  						</script>';
+			  				}
+
+			  				if($value2["disponible"] == 0){
+
+			  					echo'<script>
+									document.getElementById("deshabilitarProducto'.$value2["id"].'").disabled=true;
+					  	
+			  						</script>';
+			  				}
+
+                        	echo'</div>';
+
+                        		
+
+                        	}
+
+
+                       }else{
+
+                       		echo'<h5 style="text-align:center; font-weight:bold;">No hay productos en esta sección</h5>';
+                       }
+
+                        	
+
+
+                        echo'<div class="clearfix"></div>
+
+							<hr>';
+                     }
+
+			     echo'</div><!--FIN DEL DIV DEL BODY-->
+			         </div><!--FIN DEL DIV DEL COLLAPSE-->
+			        </div><!--FIN DEL PANEL DEFAULT -->';
+
+			        $i++;
+		  		}
+
+
+		  		echo'</div> <!--Div del id accordion-->';
+
+		}
+			?>
+
 		  </div>
 
 		  <!--===============================================
