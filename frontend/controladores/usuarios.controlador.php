@@ -1091,11 +1091,9 @@ class ControladorUsuarios{
 	/*===============================================
 		NO MOSTRAR DE NUEVO LAS NOTIFICACIONES PUSH     
 	=================================================*/
-	static public function ctrNoMostrarNotificacionesPush($datos, $tablaModelo, $item1, $item2){
+	static public function ctrNoMostrarNotificacionesPush($datos){
 
-		$tabla = $tablaModelo;
-
-		$respuesta = ModeloUsuarios::mdlNoMostrarNotificacionesPush($tabla, $datos, $item1, $item2);
+		$respuesta = ModeloUsuarios::mdlNoMostrarNotificacionesPush($datos);
 
 		return $respuesta;
 

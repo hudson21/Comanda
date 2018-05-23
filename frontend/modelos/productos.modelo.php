@@ -501,4 +501,18 @@ class ModeloProductos{
 	}
 
 
+	static public function mdlMostrarNotificacionesPushByUsuario($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE estado = 2 and id_usuario = $datos and mensaje_confirmacion = 0");
+
+		$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; 
+	}
+
+
 }

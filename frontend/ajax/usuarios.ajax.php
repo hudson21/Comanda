@@ -242,6 +242,22 @@ class AjaxUsuarios{
 
 	}
 
+
+
+	/*==================================================================
+		NO MOSTRAR DE NUEVO LOS MENSAJES QUE YA SE MOSTRARON UNA VEZ      
+	===================================================================*/
+	public $deshabilitarMensaje;
+
+	public function ajaxNoMostrarNotificacionesPush(){
+
+		$datos = $this->deshabilitarMensaje;
+
+        $respuesta = ControladorUsuarios::ctrNoMostrarNotificacionesPush($datos);
+
+		echo $respuesta;
+	}
+
 }
 
 /*===============================================
@@ -385,6 +401,15 @@ class AjaxUsuarios{
 		$deshabilitarProducto -> bar = $_POST["id_bar"];
 		$deshabilitarProducto -> est = $_POST["est"];
 		$deshabilitarProducto -> ajaxAgregaroModificarProductosAlmacen();
+	}
+
+	/*=================================================================================
+		AGREGAR O MODIFICAR LOS PRODUCTOS DESHABILITADOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	if(isset($_POST["deshabilitarMensaje"])){
+		$deshabilitarMen = new AjaxUsuarios();
+		$deshabilitarMen -> deshabilitarMensaje = $_POST["deshabilitarMensaje"];
+		$deshabilitarMen -> ajaxNoMostrarNotificacionesPush();
 	}
 
 	

@@ -15,6 +15,8 @@ if(isset($_SESSION["validarSesion"])){
 
             localStorage.setItem("usuario","'.$_SESSION["id"].'");
             localStorage.setItem("nombreUsuario","'.$_SESSION["nombre"].'");
+            localStorage.setItem("tipoUsuario","'.$_SESSION["tipo_usuario"].'");
+
 
           </script>';
   }

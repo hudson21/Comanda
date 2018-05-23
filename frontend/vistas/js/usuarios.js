@@ -843,13 +843,7 @@ function registroProducto(){
 	}
 
 	//console.log("rutaProducto", $("#rutaProducto").val());
-
-
 }
-
-	
-
-
 
 /*var numeros="0123456789";
 

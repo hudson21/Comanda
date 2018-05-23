@@ -371,4 +371,17 @@ class ControladorProductos{
 	}
 
 
+	/*=========================================================
+	  MOSTRAR NOTIFICACIONES PUSH DE PEDIDOS 
+	===========================================================*/
+	static public function ctrMostrarNotificacionesPushByUsuario($datos){
+		
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloProductos::mdlMostrarNotificacionesPushByUsuario($tabla, $datos);
+
+		return $respuesta;
+	}
+
+
 }

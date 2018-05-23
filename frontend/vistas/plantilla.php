@@ -363,7 +363,7 @@
 
 
  
-        if(isset($_SESSION["validarSesion"])){
+       /* if(isset($_SESSION["validarSesion"])){
 
           $item = $_SESSION["id"];
 
@@ -371,11 +371,9 @@
 
           foreach($cabeceraPedidos as $key => $value1){
 
-            if($value1["estado"]==2 && $value1["id_usuario"] == $_SESSION["id"] && $value1["mensaje_confirmacion"]==0){
+            if($value1["estado"]==2 && $value1["id_usuario"] == $_SESSION["id"] && $value1["mensaje_confirmacion"]==0){*/
 
-                echo '<script>
-
-                 //localStorage.setItem("pushPedidos","'.$value1["no_pedido"].'");
+               /* echo '<script>
 
                 Push.create("Pedido Listo", {
                      body: "El pedido '.$value1["no_pedido"].' se encuentra listo",
@@ -385,9 +383,9 @@
                         this.close();
                       }
                   });
-              </script>';
+              </script>';*/
 
-              $tablaModelo = "cabecera_pedidos";
+             /* $tablaModelo = "cabecera_pedidos";
               $item1 = "mensaje_confirmacion";
               $item2 = "no_pedido";
 
@@ -400,7 +398,7 @@
              
             }
 
-         }
+         }*/
     
 ?>
 

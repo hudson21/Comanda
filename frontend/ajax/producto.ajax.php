@@ -55,9 +55,8 @@ class AjaxProductos{
 	}
 
 	/*===============================================
-		VALIDAR SUBCATEGORIAS        
+		VALIDAR SUBCATEGORIAS       
 	=================================================*/
-
 	public $validarSubcategorias;
 
 	public function ajaxValidarSubcategorias(){
@@ -65,6 +64,22 @@ class AjaxProductos{
 		$datos = $this->validarSubcategorias;
 
 		$respuesta = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria($datos);
+
+		echo json_encode($respuesta);
+
+	}
+
+
+	/*===============================================
+		MOSTRAR NOTIFICACIONES PUSH DE PEDIDOS       
+	=================================================*/
+	public $userNotifications;
+
+	public function ajaxMostrarNotificacionesPushByUsuario(){
+
+		$datos = $this->userNotifications;
+
+		$respuesta = ControladorProductos::ctrMostrarNotificacionesPushByUsuario($datos);
 
 		echo json_encode($respuesta);
 
@@ -111,3 +126,11 @@ if(isset($_POST["valor"])){
 		$validarSub -> ajaxValidarSubcategorias();
 	}
 
+	/*===============================================
+		MOSTRAR NOTIFICACIONES PUSH DE PEDIDOS       
+	=================================================*/
+	if(isset($_POST["userNotifications"])){
+		$notificationsUser = new AjaxProductos();
+		$notificationsUser -> userNotifications = $_POST["userNotifications"];
+		$notificationsUser -> ajaxMostrarNotificacionesPushByUsuario();
+	}

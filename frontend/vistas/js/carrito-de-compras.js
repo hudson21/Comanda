@@ -1427,10 +1427,125 @@ $(".btnListo").click(function(){
 		   document.getElementById("botonPreparando"+i).disabled=true;
 
 		}
-	
-
 	}
+
+
+/*=========================================================
+     NOTIFICACIONES PUSH PARA LOS MENSAJES DE PEDIDOS     
+===========================================================*/
+var notifications = new FormData();
+
+notifications.append("userNotifications", localStorage.getItem("usuario"));
+
+		$.ajax({
+						
+			url:rutaOculta+"ajax/producto.ajax.php",
+			method: "POST",
+			data: notifications,	
+			cache: false,
+			contentType: false,
+			processData: false,
+			success:function(respuesta){
+
+			var not = JSON.parse(respuesta);
+			//console.log("not", not);
+
+			not.forEach(funcionForEach);
+
+			function funcionForEach(item, index){
+
+				//$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
+
+				if(item.id_usuario == localStorage.getItem("usuario")){
+
+					Push.create("Pedido Listo", {
+		              body: "El pedido "+item.no_pedido+" se encuentra listo",
+		              icon: rutaOculta+"vistas/img/plantilla/logo.jpg",
+
+		              onClick: function(){
+						window.location = rutaOculta+"notificaciones";
+						this.close();
+		    		  }
+
+	 				});
+
+				}		
+			}
+
+		}
+						
+	})
 })
+
+
+if(localStorage.getItem("tipoUsuario")==1){
+
+	var notifications = new FormData();
+
+	notifications.append("userNotifications", localStorage.getItem("usuario"));
+
+		$.ajax({
+						
+			url:rutaOculta+"ajax/producto.ajax.php",
+			method: "POST",
+			data: notifications,	
+			cache: false,
+			contentType: false,
+			processData: false,
+			success:function(respuesta){
+
+			var not = JSON.parse(respuesta);
+			//console.log("not", not);
+
+			not.forEach(funcionForEach);
+
+			function funcionForEach(item, index){
+
+				//$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
+
+				if(item.id_usuario == localStorage.getItem("usuario")){
+
+					Push.create("Pedido Listo", {
+		              body: "El pedido "+item.no_pedido+" se encuentra listo",
+		              icon: rutaOculta+"vistas/img/plantilla/logo.jpg",
+
+		              onClick: function(){
+						window.location = rutaOculta+"notificaciones";
+						this.close();
+		    		  }
+
+	 				});
+
+	 				/*=================================================================
+	 				    NO MOSTRAR DE NUEVO LOS MENSAJES QUE YA SE MOSTRARON UNA VEZ      
+	 				===================================================================*/
+	 				var noMostrar = new FormData();
+
+					noMostrar.append("deshabilitarMensaje", item.no_pedido);
+
+					$.ajax({
+						
+						url:rutaOculta+"ajax/usuarios.ajax.php",
+						method: "POST",
+						data: noMostrar,	
+						cache: false,
+						contentType: false,
+						processData: false,
+						success:function(respuesta){
+
+						}
+						
+					})
+
+				}		
+			}
+
+		}
+						
+	})
+}
+
+
 
 
 
