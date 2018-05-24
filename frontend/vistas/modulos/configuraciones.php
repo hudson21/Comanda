@@ -604,9 +604,9 @@ if(!isset($_SESSION["validarSesion"])){
 				echo'<td style="font-size:13px">'.$value3["titulo1"].'</td>';
 			}
 
-			if($value3["id_categoria1"] == 0){
-				echo'<td style="font-size:13px">'.$value3["id_categoria"].'</td>';
-			}else{
+			
+				//echo'<td style="font-size:13px">'.$value3["id_categoria"].'</td>';
+				//echo'<td><input  type="text" name="nombre" ></td>';
 				//echo'<td style="font-size:13px">'.$value3["id_categoria1"].'</td>';
 
 			echo'<td>';
@@ -616,7 +616,17 @@ if(!isset($_SESSION["validarSesion"])){
 				  <select class="selectpicker form-control" name="selectCategoriaEdit" id="selectCategoriaEdit">';
 
 					$item="id";
-            		 $valor=$value3["id_categoria"];
+
+					if($value3["id_categoria1"] == 0){
+						
+						$valor=$value3["id_categoria"];
+					
+					}else{
+
+						$valor=$value3["id_categoria1"];
+					}
+
+            		 
 
 					  $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
 
@@ -638,7 +648,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'</td>';
 
-			}
+			
 
 			if($value3["id_subcategoria1"] == 0){
 				echo'<td style="font-size:13px">'.$value3["id_subcategoria"].'</td>';
