@@ -147,11 +147,21 @@ class ModeloProductos{
 
 	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM productos WHERE $item = :valor");*/
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE $item = :valor and id_bar = :id_bar");
+	  	if($item == null and $valor == null){
 
-       //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
-		$stmt -> bindParam(":valor", $valor, PDO::PARAM_INT);
-		$stmt -> bindParam(":id_bar", $bar, PDO::PARAM_INT);
+	  		$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE  id_bar = :id_bar");
+	  		$stmt -> bindParam(":id_bar", $bar, PDO::PARAM_INT);
+	  	
+	  	}else{
+
+	  		$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE $item = :valor and id_bar = :id_bar");
+
+       		//EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
+			$stmt -> bindParam(":valor", $valor, PDO::PARAM_INT);
+			$stmt -> bindParam(":id_bar", $bar, PDO::PARAM_INT);
+	  	}
+
+	  	
 
 		$stmt-> execute();
 

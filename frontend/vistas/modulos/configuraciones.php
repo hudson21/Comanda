@@ -48,6 +48,20 @@ if(!isset($_SESSION["validarSesion"])){
 	</script>';
 
 	exit();//Esto es para cancelar cualquier acción que se hada dentro de PHP
+
+}else{
+
+	if($_SESSION["tipo_usuario"]==1){
+
+		echo '<script>
+	
+			window.location = "'.$url.'"
+
+	</script>';
+
+	exit();//Esto es para cancelar cualquier acción que se hada dentro de PHP
+
+	}
 }
 
 ?>
@@ -116,7 +130,9 @@ if(!isset($_SESSION["validarSesion"])){
 			===================================================-->
 		  <div id="altasBajas" class="tab-pane fade in active">
 
-		  	<?php
+			<div class="container">
+				
+				<?php
 
 		  	echo'<div style="margin-top: 20px" class="btn-group">
 
@@ -209,7 +225,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			    		</script>';
 
-                       $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1, $bar);
+                      $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1, $bar);
 
                        //var_dump($productoSubcategoria);
 
@@ -284,6 +300,8 @@ if(!isset($_SESSION["validarSesion"])){
 
 		}
 			?>
+
+			</div>
 
 		 </div>
 
@@ -498,9 +516,11 @@ if(!isset($_SESSION["validarSesion"])){
 		  <!--===============================================
 			   PESTAÑA DE EDITAR O ELIMINAR UN PRODUCTO
 			===================================================-->
-		  <div id="editarEliminarProducto" class="tab-pane fade in active">
-			
-			<?php
+		  <div id="editarEliminarProducto" class="tab-pane fade ">
+
+		  	<div class="container">
+
+		  	<?php
 
 		  	echo'<div style="margin-top: 20px" class="btn-group">
 
@@ -544,130 +564,137 @@ if(!isset($_SESSION["validarSesion"])){
                         
                echo'</h3>';
 
-			echo'<script>
+		echo'<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar producto por nombre">
 
-				localStorage.setItem("rutaBares","'.$url.$rutas[0]."/".$rutas[1].'");
+			<div style="overflow-x:auto;">
 
-   				</script>';
+				<table id="myTable">
 
-			$item=null;
-            $valor=null;
-            $i = 0;
+				  <tr class="header">
+				    <th style="width:10%;">Id</th>
+				    <th style="width:10%;">Nombre</th>
+				    <th style="width:10%;">Id_Categoria</th>
+				    <th style="width:10%;">Id_Subcategoria</th>
+				    <th style="width:10%;">Tipo</th>
+				    <th style="width:10%;">Ruta</th>
+				    <th style="width:10%;">Código_búsqueda</th>
+				    <th style="width:60%;">Descripcion</th>
+				    <th style="width:10%;">Precio</th>
+				    <th style="width:10%;">Imagen</th>
+				  </tr>';
 
-                $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+		    $item2 = null;
+            $valor2 = null;
+            $bar2 = $rutas[1];
 
-		  		echo'<div style="margin-top:30px" class="panel-group" id="accordion">';
+			$productos = ControladorProductos::ctrMostrarProductosSinBaseYTope($item2, $valor2, $bar2);
 
-		  		foreach($categorias as $key => $value){
-
-		  		echo'<div class="panel panel-default">
-			   	      <div class="panel-heading">
-			   	      
-					  <h4 class="panel-title">
-			           <a style="font-weight:bold" data-toggle="collapse" data-parent="#accordion" href="#collapses'.$i.'">
-			           '.$value["categoria"].'</a>
-			          </h4>
-			   	      
-			           
-			        </div>
-
-			        <div id="collapses'.$i.'" class="panel-collapse collapse">
-			         <div class="panel-body">';
-
-			         $item = "id_categoria";
-                     $valor = $value["id"];
-                         //De esta manera se va a llevar el id de la subcategoría que se esté mostrando
-                     $subcategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
-
-                     foreach($subcategorias as $key => $value1){
-                        echo'<h4 style="text-align:center; font-weight:bold;margin-bottom:20px;">'.$value1["subcategoria"].'</h4>';
-
-                        $item1 = "id_subcategoria";
-                        $valor1 = $value1["id"];
-                        $bar = $rutas[1];
-                        $_SESSION["barFiltro"]=$rutas[1];
-
-                        echo '<script>
-
-			    		localStorage.setItem("barFiltro","'.$rutas[1].'");
-
-			    		</script>';
-
-                       $productoSubcategoria = ControladorProductos::ctrMostrarProductosSinBaseYTope($item1, $valor1, $bar);
-
-                       //var_dump($productoSubcategoria);
-
-                       if($productoSubcategoria){
-
-                       	 foreach($productoSubcategoria as $key => $value2){
-
-                        	echo '<div style="margin-bottom:20px" class="row">';	
+			//var_dump($productos);
 
 
-                        	echo'<div class=" col-xs-3">
-                        			<button noProductoDes="'.$value2["id"].'" id="deshabilitarProducto'.$value2["id"].'"  class=" btn btn-default btn-danger deshabilitarProducto pull-right " ><i class="fa fa-times"></i>
-					  				</button>
-					  			 </div>';
+			foreach($productos as $key => $value3){
+			
+			echo'<tr>';
+					
+			echo'<td style="font-size:13px">'.$value3["id"].'</td>';
 
-                        	echo'<div class="col-xs-6">
-                        			<h5 style="text-align:center; 
-                        					font-weight:bold;">'.$value2["id"].'. '.$value2["titulo"].'
-                        			</h5>
-                        		 </div>';
+			if($value3["titulo1"] == ""){
+				echo'<td style="font-size:13px">'.$value3["titulo"].'</td>';
+			}else{
+				echo'<td style="font-size:13px">'.$value3["titulo1"].'</td>';
+			}
 
+			if($value3["id_categoria1"] == 0){
+				echo'<td style="font-size:13px">'.$value3["id_categoria"].'</td>';
+			}else{
+				//echo'<td style="font-size:13px">'.$value3["id_categoria1"].'</td>';
 
+			echo'<td>';
 
-                        	echo'<div class="col-xs-2">
-                        			<button  noProductoHa="'.$value2["id"].'" id="habilitarProducto'.$value2["id"].'"  class="btn btn-default btn-success habilitarProducto " ><i class="fa fa-check"></i>
-					  				</button>
-					  			</div>';
+				echo'<div class="form-group">
+						
+				  <select class="selectpicker form-control" name="selectCategoriaEdit" id="selectCategoriaEdit">';
 
-					  		if($value2["disponible"] == 1){
-					  			echo'<script>
-					  				document.getElementById("habilitarProducto'.$value2["id"].'").disabled=true;
-			  						</script>';
-			  				}
+					$item="id";
+            		 $valor=$value3["id_categoria"];
 
-			  				if($value2["disponible"] == 0){
+					  $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
 
-			  					echo'<script>
-									document.getElementById("deshabilitarProducto'.$value2["id"].'").disabled=true;
-					  	
-			  						</script>';
-			  				}
+                  	    echo'<option value='.$categorias["id"].'>'.$categorias["categoria"].'</option>';
 
-                        	echo'</div>';
+                  	  $categorias2 = ControladorProductos::ctrMostrarCategorias(null,null);
+											
+						foreach($categorias2 as $key => $value4){
 
-                        		
+							if($value4["id"] != $categorias["id"]){
 
-                        	}
+								echo'<option value='.$value4["id"].'>'.$value4["categoria"].'</option>';
+							}	
+						}
 
+				echo'</select>
+							
+				</div>';
 
-                       }else{
+			echo'</td>';
 
-                       		echo'<h5 style="text-align:center; font-weight:bold;">No hay productos en esta sección</h5>';
-                       }
+			}
 
-                        	
+			if($value3["id_subcategoria1"] == 0){
+				echo'<td style="font-size:13px">'.$value3["id_subcategoria"].'</td>';
+			}else{
+				echo'<td style="font-size:13px">'.$value3["id_subcategoria1"].'</td>';
+			}
 
+			if($value3["tipo1"] == ""){
+				echo'<td style="font-size:13px">'.$value3["tipo"].'</td>';
+			}else{
+				echo'<td style="font-size:13px">'.$value3["tipo1"].'</td>';
+			}
+			
+			if($value3["ruta1"] == ""){
+				echo'<td style="font-size:13px">'.$value3["ruta"].'</td>';
+			}else{
+				echo'<td style="font-size:13px">'.$value3["ruta1"].'</td>';
+			}
 
-                        echo'<div class="clearfix"></div>
+			if($value3["titular1"] == ""){
+				echo'<td style="font-size:13px">'.$value3["titular"].'</td>';
+			}else{
+				echo'<td style="font-size:13px">'.$value3["titular1"].'</td>';
+			}
 
-							<hr>';
-                     }
+			if($value3["descripcion1"] == ""){
+				echo'<td style="font-size:10.5px">'.$value3["descripcion"].'</td>';
+			}else{
+				echo'<td style="font-size:10.5px">'.$value3["descripcion1"].'</td>';
+			}
 
-			     echo'</div><!--FIN DEL DIV DEL BODY-->
-			         </div><!--FIN DEL DIV DEL COLLAPSE-->
-			        </div><!--FIN DEL PANEL DEFAULT -->';
+			if($value3["precio1"] == 0){
+				echo'<td style="font-size:13px">'.$value3["precio"].'</td>';
+			}else{
+				echo'<td style="font-size:13px">'.$value3["precio1"].'</td>';
+			}
 
-			        $i++;
-		  		}
+			if($value3["portada1"] == ""){
+				echo'<td style="font-size:10.5px">'.$value3["portada"].'</td>';
+			}else{
+				echo'<td style="font-size:10.5px">'.$value3["portada1"].'</td>';
+			}	
 
+				echo'</tr>';
+			  
+			}
 
-		  		echo'</div> <!--Div del id accordion-->';
+			echo'</table>
 
+			</div>';
 		}
-			?>
+
+
+	?>
+		  		
+		  	</div>
 
 		  </div>
 
@@ -736,15 +763,42 @@ if(!isset($_SESSION["validarSesion"])){
 
 			
 		  </div>
-
-
-
 		    
 		</div>
 
 	 </div>
 
    </div>
+
+
+
+  <!--=============================================================================
+  		SCRIPT PARA LA BÚSQUEDA EN TIEMPO REAL DE PRODUCTOS POR NOMBRE CON JQUERY
+  =================================================================================-->
+  <script>
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+
+  }
+}
+</script>
 		
 		
 

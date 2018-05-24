@@ -74,6 +74,7 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/fonts.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/pedidos.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/notificaciones.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/buscadorProductosEditarOEliminar.css">
 
     
 
