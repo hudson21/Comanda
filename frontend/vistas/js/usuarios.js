@@ -845,17 +845,71 @@ function registroProducto(){
 	//console.log("rutaProducto", $("#rutaProducto").val());
 }
 
-/*var numeros="0123456789";
 
-function tiene_numeros(texto){
-   for(i=0; i<texto.length; i++){
-      if (numeros.indexOf(texto.charAt(i),0)!=-1){
-         console.log(1);
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
       }
-   }
-   console.log(0);
-}*/
-	
+    } 
+  }
+}
+
+/*======================================
+	   VALIDAR CATEGORÍA  y SUBCATEGORIA     
+========================================*/
+	$(".selectCategoriaEdit").change(function(){ 
+
+	   			var identity = $(this).attr("identity");
+
+				$(".selectSubCategoriaEdit"+identity).children("option").remove();
+
+				/*============================================================
+				  MOSTRAR LAS SUBCATEGORIAS   EN BASE A LA CATEGORIA      
+				 ============================================================*/
+				var categoria = $("#selectCategoriaEdit"+identity).val();
+				//console.log("categoria", categoria);
+				var datos = new FormData();
+
+				datos.append("validarSubcategorias", categoria);
+
+				$.ajax({
+					
+					url:rutaOculta+"ajax/producto.ajax.php",
+					method: "POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+
+					var sub = JSON.parse(respuesta);
+
+					sub.forEach(funcionForEach);
+
+					function funcionForEach(item, index){
+
+						$(".selectSubCategoriaEdit"+identity).append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
+					}
+				}
+					
+	 		})
+
+		
+
+})// FIN DEL CHANGE DE CATEGORIA
 
 
 

@@ -34,6 +34,34 @@
 }
 
 </style>
+
+  <!--=============================================================================
+  		SCRIPT PARA LA BÚSQUEDA EN TIEMPO REAL DE PRODUCTOS POR NOMBRE CON JQUERY
+  =================================================================================-->
+<!--<script>
+
+function myFunction() {
+  // Declare variables 
+  var input, filter, table, tr, td, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[1];
+    if (td) {
+      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    } 
+  }
+}
+</script>-->
+
 <?php
 
 $url = Ruta::ctrRuta();
@@ -323,8 +351,6 @@ if(!isset($_SESSION["validarSesion"])){
 
 					<ul class="dropdown-menu" role="menu">';
 
-				  	$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
-
 						foreach($bares as $key => $value){
 
 		                     echo'<li><a href="'.$url.$rutas[0].'/'.$value["id"].'"><span style="font-weight:bold;">'.$value["bares"].'</span></a></li>';
@@ -351,8 +377,6 @@ if(!isset($_SESSION["validarSesion"])){
 
 				echo'<br><h3 style="text-align:center; 
                         font-weight:bold;">';
-
-                  $nombreBar = ControladorUsuarios::ctrMostrarFilaBarById($rutas[1]);
 
                   echo $nombreBar["bares"];
                         
@@ -530,8 +554,6 @@ if(!isset($_SESSION["validarSesion"])){
 
 					<ul class="dropdown-menu" role="menu">';
 
-		  	$bares = ControladorProductos::ctrVerificarCantidadProductosTabla("almacenes");
-
 				foreach($bares as $key => $value){
 
                      echo'<li><a href="'.$url.$rutas[0].'/'.$value["id"].'"><span style="font-weight:bold;">'.$value["bares"].'</span></a></li>';
@@ -558,11 +580,9 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'<br><h3 style="text-align:center; 
                         font-weight:bold;">';
 
-                  $nombreBar = ControladorUsuarios::ctrMostrarFilaBarById($rutas[1]);
-
                   echo $nombreBar["bares"];
                         
-               echo'</h3>';
+               echo'</h3><br>';
 
 		echo'<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Buscar producto por nombre">
 
@@ -572,7 +592,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 				  <tr class="header">
 				    <th style="width:10%;">Id</th>
-				    <th style="width:10%;">Nombre</th>
+				    <th style="width:30%;">Nombre</th>
 				    <th style="width:10%;">Id_Categoria</th>
 				    <th style="width:10%;">Id_Subcategoria</th>
 				    <th style="width:10%;">Tipo</th>
@@ -599,12 +619,21 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'<td style="font-size:13px">'.$value3["id"].'</td>';
 
 			if($value3["titulo1"] == ""){
-				echo'<td style="font-size:13px">'.$value3["titulo"].'</td>';
+				$titulo = $value3["titulo"];
 			}else{
-				echo'<td style="font-size:13px">'.$value3["titulo1"].'</td>';
+				$titulo = $value3["titulo1"];
 			}
 
-			
+			echo'<td style="font-size:13px">'.$titulo.'
+
+			<input type="text" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
+
+			</td>';
+
+			/*<input type="text" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">*/
+
+			//echo'<td><section style="visibility:hidden">'.$titulo.'</section></td>';
+
 				//echo'<td style="font-size:13px">'.$value3["id_categoria"].'</td>';
 				//echo'<td><input  type="text" name="nombre" ></td>';
 				//echo'<td style="font-size:13px">'.$value3["id_categoria1"].'</td>';
@@ -613,7 +642,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 				echo'<div class="form-group">
 						
-				  <select class="selectpicker form-control" name="selectCategoriaEdit" id="selectCategoriaEdit">';
+				  <select identity = "'.$value3["id"].'" class="selectpicker form-control selectCategoriaEdit" name="selectCategoriaEdit" id="selectCategoriaEdit'.$value3["id"].'">';
 
 					$item="id";
 
@@ -648,13 +677,51 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'</td>';
 
+
+			/*======================================
+			    SUBCATEGORIA      
+			========================================*/
+			echo'<td>';
+
+				echo'<div class="form-group">
+						
+				  <select  class="selectpicker form-control selectSubCategoriaEdit'.$value3["id"].'" name="selectSubCategoriaEdit" id="selectSubCategoriaEdit'.$value3["id"].'">';
+
+					$item="id";
+
+					if($value3["id_subcategoria1"] == 0){
+						
+						$idSub=$value3["id_subcategoria"];
+					
+					}else{
+
+						$idSub=$value3["id_subcategoria1"];
+					}
+
+						$subcategorias = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria($valor);
+
+						foreach ($subcategorias as $key => $value5) {
+
+							if($value5["id"] == $idSub){
+								echo'<option value='.$value5["id"].'>'.$value5["subcategoria"].'</option>';
+							
+							}else{
+								echo'<option value='.$value5["id"].'>'.$value5["subcategoria"].'</option>';
+							}	
+						}
+
+				echo'</select>
+							
+				</div>';
+
+			echo'</td>';
 			
 
-			if($value3["id_subcategoria1"] == 0){
+			/*if($value3["id_subcategoria1"] == 0){
 				echo'<td style="font-size:13px">'.$value3["id_subcategoria"].'</td>';
 			}else{
 				echo'<td style="font-size:13px">'.$value3["id_subcategoria1"].'</td>';
-			}
+			}*/
 
 			if($value3["tipo1"] == ""){
 				echo'<td style="font-size:13px">'.$value3["tipo"].'</td>';
@@ -711,7 +778,7 @@ if(!isset($_SESSION["validarSesion"])){
 		  <!--===============================================
 			   PESTAÑA DE AGREGAR TODOS LOS PRODUCTOS O ELIMINARLOS TODOS
 			===================================================-->
-		  <div id="todosLosProductos" class="tab-pane fade ">
+		  <div id="todosLosProductos" class="tab-pane fade">
 
 			<?php
 
@@ -782,33 +849,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 
 
-  <!--=============================================================================
-  		SCRIPT PARA LA BÚSQUEDA EN TIEMPO REAL DE PRODUCTOS POR NOMBRE CON JQUERY
-  =================================================================================-->
-  <script>
-function myFunction() {
-  // Declare variables 
-  var input, filter, table, tr, td, i;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    
-    if (td) {
-      if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-
-  }
-}
-</script>
 		
 		
 
