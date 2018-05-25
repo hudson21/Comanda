@@ -595,8 +595,8 @@ if(!isset($_SESSION["validarSesion"])){
 				    <th style="width:30%;">Nombre</th>
 				    <th style="width:10%;">Id_Categoria</th>
 				    <th style="width:10%;">Id_Subcategoria</th>
-				    <th style="width:10%;">Tipo</th>
-				    <th style="width:10%;">Ruta</th>
+				    <th style="width:25%;">Tipo</th>
+				    <th style="width:30%;">Ruta</th>
 				    <th style="width:10%;">Código_búsqueda</th>
 				    <th style="width:60%;">Descripcion</th>
 				    <th style="width:10%;">Precio</th>
@@ -723,29 +723,74 @@ if(!isset($_SESSION["validarSesion"])){
 				echo'<td style="font-size:13px">'.$value3["id_subcategoria1"].'</td>';
 			}*/
 
-			if($value3["tipo1"] == ""){
-				echo'<td style="font-size:13px">'.$value3["tipo"].'</td>';
+			if($value3["tipo1"] == 0){
+				$tipo=$value3["tipo"];		
 			}else{
-				echo'<td style="font-size:13px">'.$value3["tipo1"].'</td>';
-			}
-			
-			if($value3["ruta1"] == ""){
-				echo'<td style="font-size:13px">'.$value3["ruta"].'</td>';
-			}else{
-				echo'<td style="font-size:13px">'.$value3["ruta1"].'</td>';
+				$tipo=$value3["tipo1"];
 			}
 
-			if($value3["titular1"] == ""){
-				echo'<td style="font-size:13px">'.$value3["titular"].'</td>';
+			echo'<td>';
+
+				echo'<div class="form-group">
+						
+				  <select  class="selectpicker form-control tipoEdit'.$value3["id"].'" name="tipoEdit" id="selectSubCategoriaEdit'.$value3["id"].'">';
+
+				  if($tipo == "fisico"){
+				  	echo'<option value='.$tipo.'>'.$tipo.'</option>';
+				  	echo'<option value="virtual">virtual</option>';
+				  
+				  }else{
+				  	echo'<option value='.$tipo.'>'.$tipo.'</option>';
+				  	echo'<option value="fisico">fisico</option>';
+				  }
+
+			echo'</select>
+							
+				</div>';
+
+			echo'</td>';
+
+
+			if($value3["ruta1"] == 0){
+				$ruta=$value3["ruta"];		
 			}else{
-				echo'<td style="font-size:13px">'.$value3["titular1"].'</td>';
+				$ruta=$value3["ruta1"];
 			}
 
-			if($value3["descripcion1"] == ""){
+			echo'<td style="font-size:13px">
+
+			<input type="text" class="form-control" id="rutaEdit'.$value3["id"].'" name="rutaEdit" class="rutaEdit" value="'.$ruta.'">
+			</td>';
+
+			if($value3["titular1"] == 0){
+				$codigo=$value3["titular"];		
+			}else{
+				$codigo=$value3["titular1"];
+			}
+
+			echo'<td style="font-size:13px">
+
+			<input type="text" class="form-control" id="codigoEdit'.$value3["id"].'" name="codigoEdit" class="codigoEdit" value="'.$codigo.'">
+			</td>';
+
+
+			if($value3["descripcion1"] == 0){
+				$descripcion=$value3["descripcion"];		
+			}else{
+				$descripcion=$value3["descripcion1"];
+			}
+
+			echo'<td style="font-size:13px">
+
+			<textarea class="form-control" id="codigoEdit'.$value3["id"].'" 
+			name="codigoEdit" class="codigoEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
+		
+
+			/*if($value3["descripcion1"] == ""){
 				echo'<td style="font-size:10.5px">'.$value3["descripcion"].'</td>';
 			}else{
 				echo'<td style="font-size:10.5px">'.$value3["descripcion1"].'</td>';
-			}
+			}*/
 
 			if($value3["precio1"] == 0){
 				echo'<td style="font-size:13px">'.$value3["precio"].'</td>';
