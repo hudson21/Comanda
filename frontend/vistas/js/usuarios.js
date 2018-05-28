@@ -185,15 +185,94 @@ function registroUsuario(){
 
 
 /*=============================================
-CAMBIAR FOTO
+CAMBIAR FOTO DE UN PRODUCTO EN ESPECÍFICO
 =============================================*/
-$("#btnCambiarFoto").click(function(){
+$(".btnCambiarFotoProducto").click(function(){
 
-	//$("#imgProducto").toggle();
-	//$("#subirImagenProducto").toggle();
+	var id = $(this).attr("identificacion");
+	//console.log("id", id);
+
+	$(".imgProductoCambiar"+id).toggle();
+	$(".cambiarImagenProducto"+id).toggle();
 
 })
 
+/*============================================================================
+	ESTE ES PARA VALIDAR EN LA PESTAÑA DE CAMBIAR FOTO DE UN PRODUCTO EN ESPECÍFICO          
+==============================================================================*/
+$(".datoscambiarImagenProducto").change(function(){
+
+	var id = $(this).attr("i");
+
+	var imagen = this.files[0];
+	//console.log("imagen", imagen);
+
+	/*===================================================
+	     VALIDAMOS EL FORMATO DE LA IMAGEN     
+	=====================================================*/
+
+	if(imagen["type"] != "image/jpeg"){
+
+		$("#datoscambiarImagenProducto"+id).val("");
+
+		swal({
+				title: "Error al subir la imagen",
+				text: "¡La imagen debe de estar en formato JPG!",
+				type:"error",
+				confirmButtonText:"Cerrar",
+				closeOnConfirm: false,
+				icon: "error"
+		    },
+
+		function(isConfirm){
+
+			if(isConfirm){
+				 window.location = rutaOculta+"configuraciones";
+			}
+		})
+	}
+
+	else if(Number(imagen["size"]) > 2000000){
+
+		$("#datoscambiarImagenProducto"+id).val("");
+
+		swal({
+				title: "Error al subir la imagen",
+				text: "¡La imagen la imagen no debe de pesar mas de 2 MB!",
+				type:"error",
+				confirmButtonText:"Cerrar",
+				closeOnConfirm: false,
+				icon: "error"
+		    },
+
+		function(isConfirm){
+
+			if(isConfirm){
+				 window.location = rutaOculta+"configuraciones";
+			}
+		})
+
+	}else{
+
+		var datosImagen = new FileReader;//Hacer lectura del nuevo archivo
+		datosImagen.readAsDataURL(imagen); 
+		//Convierte el archivo que está dentro de imagen en una cadena de código que se pueda visualizar
+
+		$(datosImagen).on("load",function(event){
+
+			var rutaImagen = event.target.result;//El resultado de la cadena de código que nos trae el 
+												 //evento de readAsDataURL
+
+			$(".previsualizar"+id).attr("src", rutaImagen);
+		})
+	}
+})
+
+
+
+/*============================================================================
+	ESTE ES PARA VALIDAR EN LA PESTAÑA DE AGREGAR UN PRODUCTO EN ESPECÍFICO          
+==============================================================================*/
 $("#datosImagenProducto").change(function(){
 
 	var imagen = this.files[0];

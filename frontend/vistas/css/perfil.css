@@ -30,6 +30,34 @@ PERFIL
 	height:65px;
 }
 
+/*=====================================================
+    EDITAR O ELIMINAR UN PRODUCTO EN ESPECÍFICO   
+=======================================================*/
+#editarEliminarProducto figure#imgProductoCambiar img{
+
+	width:80%;
+	margin:10px 0;
+
+}
+
+#editarEliminarProducto #cambiarImagenProducto{
+	display:none;
+	margin:20px 0px;
+	border:2px dotted #ccc;
+	overflow: hidden;
+	padding:40px;
+	cursor:pointer;
+}
+
+#editarEliminarProducto #cambiarImagenProducto img{
+	width:100%;
+	padding:10px;
+}
+
+#editarEliminarProducto #cambiarImagenProducto #datoscambiarImagenProducto{
+	height:65px;
+}
+
 /*=============================================
 	NUEVO PRODUCTO
 =============================================*/

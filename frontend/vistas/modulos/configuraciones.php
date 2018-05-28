@@ -782,27 +782,62 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<textarea class="form-control" id="codigoEdit'.$value3["id"].'" 
+			<textarea class="form-control" rows=5 cols=100 id="codigoEdit'.$value3["id"].'" 
 			name="codigoEdit" class="codigoEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
 		
 
-			/*if($value3["descripcion1"] == ""){
-				echo'<td style="font-size:10.5px">'.$value3["descripcion"].'</td>';
-			}else{
-				echo'<td style="font-size:10.5px">'.$value3["descripcion1"].'</td>';
-			}*/
-
 			if($value3["precio1"] == 0){
-				echo'<td style="font-size:13px">'.$value3["precio"].'</td>';
+				$precio=$value3["precio"];		
 			}else{
-				echo'<td style="font-size:13px">'.$value3["precio1"].'</td>';
+				$precio=$value3["precio1"];
 			}
 
-			if($value3["portada1"] == ""){
+			echo'<td style="font-size:13px">
+
+			<input type="text" class="form-control" id="precioEdit'.$value3["id"].'" name="precioEdit" class="precioEdit" value="'.$precio.'">
+			</td>';
+
+			if($value3["portada1"] == 0){
+				$portada=$value3["portada"];		
+			}else{
+				$portada=$value3["portada1"];
+			}
+
+			echo'<td>
+
+				<figure id="imgProductoCambiar" class="imgProductoCambiar'.$value3["id"].'">';
+							
+					//echo'<input type="hidden" value="'.$_SESSION.'">';
+
+				echo'<img src="'.$servidor.$portada.'" class="img-thumbnail">';
+
+			echo'</figure>
+
+						<br>
+
+						<button type="button" class="btn btn-default btnCambiarFotoProducto"  identificacion="'.$value3["id"].'">
+									
+						Cambiar foto de producto
+									
+					</button>
+
+						
+					 <div id="cambiarImagenProducto" class="cambiarImagenProducto'.$value3["id"].'">
+								
+						<input type="file" class="form-control datoscambiarImagenProducto" id="datoscambiarImagenProducto'.$value3["id"].'" i="'.$value3["id"].'" name="datoscambiarImagenProducto">
+
+							<img class="previsualizar'.$value3["id"].'" src="">
+
+					 </div>
+
+
+				</td>';
+
+			/*if($value3["portada1"] == ""){
 				echo'<td style="font-size:10.5px">'.$value3["portada"].'</td>';
 			}else{
 				echo'<td style="font-size:10.5px">'.$value3["portada1"].'</td>';
-			}	
+			}*/	
 
 				echo'</tr>';
 			  
