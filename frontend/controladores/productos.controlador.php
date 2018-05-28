@@ -251,6 +251,7 @@ class ControladorProductos{
 		return $respuesta;
 	}
 
+
 	/*===============================================================
 	  AGREGAR UN PRODUCTO A LA TABLA PRODUCTOS Y PRODUCTOS_ALMACEN
 	=================================================================*/
