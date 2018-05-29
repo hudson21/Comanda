@@ -85,6 +85,36 @@ class AjaxProductos{
 
 	}
 
+
+	/*======================================
+	  ELIMINAR PRODUCTO ESPECÍFICO POR ID          
+	========================================*/
+	public $noProductoEliminar;
+	public $noBarEliminar;
+	public $eliminarImagen;
+
+	public function ajaxEliminarProductoEspecificoByIdAndBar(){
+
+		$datos = array("noProductoEliminar"=>$this->noProductoEliminar,
+					   "noBarEliminar"=>$this->noBarEliminar,
+					   "eliminarImagen"=>$this->eliminarImagen);
+
+		$respuesta = ControladorProductos::ctrEliminarProductoEspecificoByIdAndBar($datos);
+
+		echo $respuesta;
+
+	}
+
+	public function ajaxEliminarProductoEspecificoByIdAndBarSinImagenActualizar(){
+
+		$datos = array("noProductoEliminar"=>$this->noProductoEliminar,
+					   "noBarEliminar"=>$this->noBarEliminar);
+
+		$respuesta = ControladorProductos::ctrEliminarProductoEspecificoByIdAndBar($datos);
+
+		echo $respuesta;
+	}
+
 }
 
 if(isset($_POST["valor"])){
@@ -133,4 +163,23 @@ if(isset($_POST["valor"])){
 		$notificationsUser = new AjaxProductos();
 		$notificationsUser -> userNotifications = $_POST["userNotifications"];
 		$notificationsUser -> ajaxMostrarNotificacionesPushByUsuario();
+	}
+
+	/*======================================
+	  ELIMINAR PRODUCTO ESPECÍFICO POR ID          
+	========================================*/
+	if(isset($_POST["eliminarImagen"])){
+		$eliminarProducto = new AjaxProductos();
+		$eliminarProducto -> noProductoEliminar = $_POST["noProductoEliminar"];
+		$eliminarProducto -> noBarEliminar = $_POST["noBarEliminar"];
+		$eliminarProducto -> eliminarImagen = $_POST["eliminarImagen"];
+		$eliminarProducto -> ajaxEliminarProductoEspecificoByIdAndBar();
+	
+	}
+
+	if(isset($_POST["noProductoEliminarSinImagen"])){
+		$eliminarProductoSinImagen = new AjaxProductos();
+		$eliminarProductoSinImagen -> noProductoEliminar = $_POST["noProductoEliminarSinImagen"];
+		$eliminarProductoSinImagen -> noBarEliminar = $_POST["noBarEliminarSinImagen"];
+		$eliminarProductoSinImagen -> ajaxEliminarProductoEspecificoByIdAndBarSinImagenActualizar();
 	}

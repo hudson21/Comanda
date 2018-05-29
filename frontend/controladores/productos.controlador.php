@@ -266,29 +266,38 @@ class ControladorProductos{
 
 			if(isset($_FILES["datosImagenProducto"]["tmp_name"])){
 
+				$numero = ModeloProductos::mldContrarProductos();
+
+				if($numero == null){
+
+					$num = 1;
+				
+				}else{
+					$num = count($numero)+1;
+				}
+
 				/*===================================================
 			    	PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
 				=====================================================*/
-
-				$directorio = "vistas/img/subirProductos"; 
-				/*
+				$directorio = "vistas/img/subirProductos/".$num."/"; 
 				//PARA ELIMINAR LA FOTO DEL PRODUCTO
+				if(is_dir($directorio)){
 
-				if(!empty($_POST[])){
-
-					unlink($_POST["portada"]);
-				}*/
+					unlink($directorio);
+				}
 
 				//Creamos el directorio de la carpeta de la imagen con permisos de lectura y escritura
-				//mkdir($directorio, 0755);
+				mkdir($directorio, 0755);
 
 
 				/*===================================================
 			    	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
 				=====================================================*/
-				$aleatorio = mt_rand(100, 9999);
+				//$aleatorio = mt_rand(100, 9999);
 
-				$imagen = "vistas/img/subirProductos/".$aleatorio.".jpeg";
+				
+
+				$imagen = "vistas/img/subirProductos/".$num."/".$num.".jpeg";
 
 				/*===================================================
 			    	MODIFICAMOS TAMAÑO DE LA FOTO
@@ -380,6 +389,29 @@ class ControladorProductos{
 		$tabla = "cabecera_pedidos";
 
 		$respuesta = ModeloProductos::mdlMostrarNotificacionesPushByUsuario($tabla, $datos);
+
+		return $respuesta;
+	}
+
+	/*======================================
+	  ELIMINAR PRODUCTO ESPECÍFICO POR ID          
+	========================================*/
+	static public function ctrEliminarProductoEspecificoByIdAndBar($datos){
+
+		if (in_array("eliminarImagen", $datos)){
+
+			$dirImagen = $datos["eliminarImagen"];
+
+			if(is_dir($dirImagen)){
+
+				unlink($dirImagen);
+			}
+
+		}
+
+		$tabla = "productos_almacen";
+
+		$respuesta = ModeloProductos::mdlEliminarProductoEspecificoByIdAndBar($tabla, $datos);
 
 		return $respuesta;
 	}

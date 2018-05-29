@@ -824,12 +824,24 @@ if(!isset($_SESSION["validarSesion"])){
 
 				</td>';
 
-			echo'<td>
+			echo'<td>';
 
-					<button style="margin-bottom:15px" class="btn btn-default btn-danger eliminarProducto " noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-times"></i>
-					  </button> 
+			if($value3["portada1"] == null){
 
-					<button  type="submit" class="btn btn-default btn-success actualizarProducto " noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
+				$portada=$value3["portada"];
+
+				echo'<button type="button" style="margin-bottom:15px" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-times"></i>
+					  </button>';
+
+			}else{
+				$portada=$value3["portada1"];
+
+				echo'<button type="button" style="margin-bottom:15px" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'" dirImage="'.$portada.'" ><i class="fa fa-times"></i>
+					  </button>'; 
+			}
+
+					
+			   echo'<button  type="submit" class="btn btn-default btn-success actualizarProducto " noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
 					  </button>
 		
 			</td>

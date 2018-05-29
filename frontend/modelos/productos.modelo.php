@@ -524,5 +524,27 @@ class ModeloProductos{
 		$stmt = null; 
 	}
 
+	static public function mdlEliminarProductoEspecificoByIdAndBar($tabla, $datos){
+
+		$stmt = Conexion::conectar()->prepare("DELETE from $tabla where id_bar = :id_bar and id_producto = :id_producto");
+
+		$stmt -> bindParam(":id_bar", $datos["noBarEliminar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_producto", $datos["noProductoEliminar"], PDO::PARAM_INT);
+
+		if($stmt -> execute()){
+
+			return "ok";
+
+		}else{
+
+			return "error";
+
+		}
+
+		$stmt-> close();
+
+		$stmt = null;
+	}
+
 
 }

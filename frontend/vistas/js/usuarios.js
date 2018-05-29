@@ -990,6 +990,64 @@ function myFunction() {
 
 })// FIN DEL CHANGE DE CATEGORIA
 
+	/*===============================================
+     ELIMINAR PRODUCTO ESPECÍFICO POR ID     
+=================================================*/
+$(".eliminarProducto").click(function(){
+
+	noProducto = $(this).attr("noProducto");
+	noBar = $(this).attr("id_bar");
+	portada = $(this).attr("dirImage");
+	console.log("portada", portada);
+	
+	swal({
+		 title: "¿Desea eliminar este producto?",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor:"#DD6B55",
+		 confirmButtonText: "Aceptar",
+		 closeOnConfirm: false
+	  },
+
+   function(isConfirm){
+	  
+	  if (isConfirm) {
+
+	  	
+	  	var datosEliminar = new FormData();
+
+	  	if(portada != null){
+		   	datosEliminar.append("noProductoEliminar",noProducto);
+		   	datosEliminar.append("noBarEliminar",noBar);
+		   	datosEliminar.append("eliminarImagen",portada);
+
+	   	}else{
+		   	datosEliminar.append("noProductoEliminarSinImagen",noProducto);
+		   	datosEliminar.append("noBarEliminarSinImagen",noBar);
+	   	}
+	   	
+
+		$.ajax({
+				 url:rutaOculta+"ajax/producto.ajax.php",
+				 method:"POST",
+				 data: datosEliminar,
+				 cache: false,
+				 contentType: false,
+				 processData: false,
+				 success:function(respuesta){
+							console.log("respuesta",respuesta);
+			   }
+			})
+	   
+				
+	  //window.location = localStorage.getItem("rutaBares");
+
+	 } 
+
+	})
+
+})
+
 
 
 
