@@ -597,7 +597,7 @@ if(!isset($_SESSION["validarSesion"])){
 				    <th style="width:10%;">Id_Subcategoria</th>
 				    <th style="width:25%;">Tipo</th>
 				    <th style="width:30%;">Ruta</th>
-				    <th style="width:10%;">Código_búsqueda</th>
+				    <th style="width:10%;">Código</th>
 				    <th style="width:60%;">Descripcion</th>
 				    <th style="width:10%;">Precio</th>
 				    <th style="width:10%;">Imagen</th>
@@ -773,7 +773,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<textarea style="width:257px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
+			<textarea style="width:150px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
 			name="descripcionEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
 		
 
