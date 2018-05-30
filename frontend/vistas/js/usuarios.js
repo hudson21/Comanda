@@ -821,7 +821,7 @@ function registroProducto(){
 
 	if(nombreProducto != ""){
 
-		var expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
+		var expresion = /^[a-zA-Z0-9 ]*$/;
 
 		if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
 
@@ -870,11 +870,11 @@ function registroProducto(){
 
 	if(descripcion != ""){
 
-		var expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
+		var expresion = /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]*$/;
 
 		if(!expresion.test(descripcion)){ //Sino cumple con la edxpresión regular
 
-			$("#descripcion").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten número ni caracteres especiales</div>');
+			$("#descripcion").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten  caracteres especiales</div>');
 			
 			return false;
 		}
@@ -998,7 +998,7 @@ $(".eliminarProducto").click(function(){
 	noProducto = $(this).attr("noProducto");
 	noBar = $(this).attr("id_bar");
 	portada = $(this).attr("dirImage");
-	console.log("portada", portada);
+	console.log("noProducto", noProducto);
 	
 	swal({
 		 title: "¿Desea eliminar este producto?",
@@ -1012,8 +1012,7 @@ $(".eliminarProducto").click(function(){
    function(isConfirm){
 	  
 	  if (isConfirm) {
-
-	  	
+	
 	  	var datosEliminar = new FormData();
 
 	  	if(portada != null){
@@ -1035,18 +1034,164 @@ $(".eliminarProducto").click(function(){
 				 contentType: false,
 				 processData: false,
 				 success:function(respuesta){
-							console.log("respuesta",respuesta);
-			   }
-			})
-	   
-				
+							
+						if(respuesta == "ok"){
+
+							swal({
+							 title: "El producto se ha eliminado satisfactoriamente",
+							 type: "success",
+							 showCancelButton: false,
+							 confirmButtonColor:"#DD6B55",
+							 confirmButtonText: "Aceptar",
+							 closeOnConfirm: false
+						  },
+
+						   function(isConfirm){
+							  
+							  if (isConfirm) {
+
+							 	window.location = localStorage.getItem("rutaBares");			
+							  } 
+						  })
+
+					}//FIN DEL IF OK
+			    }
+			})			
 	  //window.location = localStorage.getItem("rutaBares");
 
-	 } 
+	  } 
 
-	})
+   })
 
 })
+
+
+function actualizarProducto(identity){
+
+	/*============================================================
+	VALIDAR EL NOMBRE        
+	==============================================================*/
+	var nombreProducto = $("#productoName"+identity).val();
+
+	if(nombreProducto != ""){
+
+		var expresion = /^[a-zA-Z0-9 ]*$/;
+
+		if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
+
+			//$("#productoName"+identity).parent().after('<p class="errores" style="font-size:8px; color:red"><strong>ERROR:</strong> No se permiten caracteres especiales en el Nombre</p>');
+			
+			return false;
+		}
+
+	}else{
+
+		//$("#productoName"+identity).parent().after('<p class="errores" style="font-size:8px; color:red"><strong>ATENCIÓN:</strong> Este campo es obligatorio</p>');
+		
+		return false;
+
+	}
+
+	/*============================================================
+	VALIDAR LA RUTA        
+	==============================================================*/
+	var ruta = $("#rutaEdit"+identity).val();
+
+	if(ruta != ""){
+
+		var expresion = /^[a-zA-Z0-9 -]*$/;
+
+		if(!expresion.test(ruta)){ //Sino cumple con la edxpresión regular
+
+			//$("#rutaEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se  caracteres especiales en la Ruta</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		//$("#rutaEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+
+	}
+
+	/*============================================================
+		VALIDAR CÓDIGO DE BÚSQUEDA        
+	==============================================================*/
+	var codigo = $("#codigoEdit"+identity).val();
+	//console.log("codigo", codigo);
+
+	if(codigo != ""){
+
+		var expresion = /^[a-zA-Z0-9]*$/;
+
+		if(!expresion.test(codigo)){ //Sino cumple con la edxpresión regular
+
+			//$("#codigoEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales en el Código</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		//$("#codigoEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+
+	}
+
+	/*============================================================
+		VALIDAR DESCRIPCIÓN         
+	==============================================================*/
+	var descripcion = $("#descripcionEdit"+identity).val();
+	//console.log("descripcion", descripcion);
+
+	if(descripcion != ""){
+
+		var expresion = /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ,-@.+ ]*$/;
+
+		if(!expresion.test(descripcion)){ //Sino cumple con la edxpresión regular
+
+			//$("#descripcionEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales en la Descripción</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		//$("#descripcionEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+	}
+
+
+	/*============================================================
+		VALIDAR PRECIO        
+	==============================================================*/
+	var precio = $("#precioEdit"+identity).val();
+
+	if(precio != ""){
+
+		var expresion = /^[0-9. ]*$/;
+
+		if(!expresion.test(precio)){ //Sino cumple con la edxpresión regular
+
+			//$("#precioEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong>Solo se permiten números y puntos en el Precio</div>');
+			
+			return false;
+		}
+
+	}else{
+
+		//$("#precioEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
+		
+		return false;
+
+	}
+
+	
+}
 
 
 

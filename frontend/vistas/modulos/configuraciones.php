@@ -619,7 +619,7 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'<tr>';
 
 			//onsubmit="return registroProducto()"
-		echo'<form method="POST" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->';
+		echo'<form method="POST" onsubmit="return actualizarProducto('.$value3["id"].')" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->';
 					
 			echo'<td style="font-size:13px">'.$value3["id"].'</td>';
 
@@ -631,7 +631,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">'.$titulo.'
 
-			<input type="text" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
+			<input type="text" style="width:100px" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
 
 			</td>';
 
@@ -724,7 +724,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 				echo'<div class="form-group">
 						
-				  <select  class="selectpicker form-control tipoEdit'.$value3["id"].'" name="selectTipoEdit" id="selectTipoEdit'.$value3["id"].'">';
+				  <select style="width:80px" class="selectpicker form-control tipoEdit'.$value3["id"].'" name="selectTipoEdit" id="selectTipoEdit'.$value3["id"].'">';
 
 				  if($tipo == "fisico"){
 				  	echo'<option value='.$tipo.'>'.$tipo.'</option>';
@@ -750,7 +750,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<input type="text" class="form-control rutaEdit" id="rutaEdit'.$value3["id"].'" name="rutaEdit" value="'.$ruta.'">
+			<input type="text" style="width:120px" class="form-control rutaEdit" id="rutaEdit'.$value3["id"].'" name="rutaEdit" value="'.$ruta.'">
 			</td>';
 
 			if($value3["titular1"] == 0){
@@ -761,7 +761,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<input type="text" class="form-control codigoEdit" id="codigoEdit'.$value3["id"].'" name="codigoEdit" value="'.$codigo.'">
+			<input type="text" style="width:60px"class="form-control codigoEdit" id="codigoEdit'.$value3["id"].'" name="codigoEdit" value="'.$codigo.'">
 			</td>';
 
 
@@ -773,7 +773,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<textarea class="form-control descripcionEdit" rows=5 cols=100 id="descripcionEdit'.$value3["id"].'" 
+			<textarea style="width:257px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
 			name="descripcionEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
 		
 
@@ -844,9 +844,12 @@ if(!isset($_SESSION["validarSesion"])){
 			   echo'<button  type="submit" class="btn btn-default btn-success actualizarProducto " noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
 					  </button>
 		
-			</td>
+			</td>';
 
-		</form>';
+			//$actualizarProducto = new ControladorProductos();
+			//$actualizarProducto->ctrActualizarProducto();
+
+		echo'</form>';
 
 			echo'</tr>';
 			  

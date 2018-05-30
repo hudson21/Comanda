@@ -398,7 +398,7 @@ class ControladorProductos{
 	========================================*/
 	static public function ctrEliminarProductoEspecificoByIdAndBar($datos){
 
-		if (in_array("eliminarImagen", $datos)){
+		/*if (in_array("eliminarImagen", $datos)){
 
 			$dirImagen = $datos["eliminarImagen"];
 
@@ -407,7 +407,7 @@ class ControladorProductos{
 				unlink($dirImagen);
 			}
 
-		}
+		}*/
 
 		$tabla = "productos_almacen";
 
