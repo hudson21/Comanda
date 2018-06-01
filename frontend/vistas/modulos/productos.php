@@ -260,13 +260,7 @@ LISTAR PRODUCTOS
 
 					echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
-				}else{
-
-					echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
-				}
-					
-					
-						echo'<figure class="productsImg">
+					echo'<figure class="productsImg">
 								
 								<a href="'.$value["ruta"].'" class="pixelProducto">
 									
@@ -294,26 +288,125 @@ LISTAR PRODUCTOS
 
 							</h4>';
 
+				}else{
+
+					echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
+
+					if($_SESSION["tipo_usuario"] == 0){
+
+						echo'<figure class="productsImg">
+								
+								<a href="'.$value["ruta"].'" class="pixelProducto">
+									
+									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
+
+								</a>
+
+							</figure>
+
+							<span class="productsNumero pull-right">'.$value["id"].'</span>
+
+							<h4 class="productsH4Productos productsH4">
+					
+								<small>
+									
+									<a href="'.$value["ruta"].'" class="pixelProducto">
+										
+										'.$value["titulo"].'<br>
+
+										<span style="color:rgba(0,0,0,0)">-</span>';
+
+									echo '</a>	
+
+								</small>			
+
+							</h4>';
+					}else{
+
+							if($value["ruta1"] == null){
+								$ruta=$value["ruta"];		
+							}else{
+								$ruta=$value["ruta1"];
+							}
+
+							if($value["portada1"] == null){
+								$portada=$value["portada"];		
+							}else{
+								$portada=$value["portada1"];
+							}
+
+							if($value["titulo1"] == null){
+								$titulo = $value["titulo"];
+							}else{
+								$titulo = $value["titulo1"];
+							}
+
+							if($value["precio1"] == null){
+								$precio=$value["precio"];		
+							}else{
+								$precio=$value["precio1"];
+							}
+
+							if($value["tipo1"] == null){
+								$tipo=$value["tipo"];		
+							}else{
+								$tipo=$value["tipo1"];
+							}
+
+						echo'<figure class="productsImg">
+								
+								<a href="'.$ruta.'" class="pixelProducto">
+									
+									<img src="'.$servidor.$portada.'" class="img-responsive">
+
+								</a>
+
+							</figure>
+
+							<span class="productsNumero pull-right">'.$value["id"].'</span>
+
+							<h4 class="productsH4Productos productsH4">
+					
+								<small>
+									
+									<a href="'.$ruta.'" class="pixelProducto">
+										
+										'.$titulo.'<br>
+
+										<span style="color:rgba(0,0,0,0)">-</span>';
+
+									echo '</a>	
+
+								</small>			
+
+							</h4>';
+					}
+				}
+					
 				if(isset($_SESSION["validarSesion"])){
 
 				  if($_SESSION["validarSesion"] == "ok"){
 
 				  	echo '<div class="tamañoDivEnlaces col-xs-6 enlaces">
-								
-								
-									
-									<div  class="col-lg-12 col-xs-3 txtCantidad" name="txtCantidad">
+										
+							 <div  class="col-lg-12 col-xs-3 txtCantidad" name="txtCantidad">
 
-										<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$value["id"].'" min="1" id="producto'.$value["id"].'" tipo="" precio="" >
-									</div>
+								 <input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$value["id"].'" min="1" id="producto'.$value["id"].'" tipo="" precio="" >
+							 </div>
 
-									<div class="col-xs-10"></div>
+							 <div class="col-xs-10"></div>
 
-									<div class="botonOrdenar col-lg-1 col-xs-2">
+							 <div class="botonOrdenar col-lg-1 col-xs-2">';
 
-								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
+						   if($_SESSION["tipo_usuario"] == 1){
 
-								     <i style="color:white" class="fa fa-check"></i>
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$portada.'" titulo="'.$titulo.'" precio="'.$precio.'" tipo="'.$tipo.'"  data-toggle="tooltip">';
+							}else{
+
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">';
+							}
+
+								    echo' <i style="color:white" class="fa fa-check"></i>
 								     </button>
 
 									</div>
@@ -321,8 +414,6 @@ LISTAR PRODUCTOS
 							</div>';
 				  }
 			}
-
-						
 
 			echo'</li>';
 		
@@ -334,7 +425,11 @@ LISTAR PRODUCTOS
 
 				foreach ($productos as $key => $value) {
 
-					echo '<li class="col-xs-12">
+					if(isset($_SESSION["validarSesion"])){
+
+						if($_SESSION["tipo_usuario"] == 0){
+
+							echo '<li class="col-xs-12">
 					  
 				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
 							   
@@ -363,6 +458,106 @@ LISTAR PRODUCTOS
 
 								</small>
 							</h1>';
+
+						}else{
+
+							if($value["ruta1"] == null){
+								$ruta=$value["ruta"];		
+							}else{
+								$ruta=$value["ruta1"];
+							}
+
+							if($value["portada1"] == null){
+								$portada=$value["portada"];		
+							}else{
+								$portada=$value["portada1"];
+							}
+
+							if($value["titulo1"] == null){
+								$titulo = $value["titulo"];
+							}else{
+								$titulo = $value["titulo1"];
+							}
+
+							if($value["precio1"] == null){
+								$precio=$value["precio"];		
+							}else{
+								$precio=$value["precio1"];
+							}
+
+							if($value["tipo1"] == null){
+								$tipo=$value["tipo"];		
+							}else{
+								$tipo=$value["tipo1"];
+							}
+
+							echo '<li class="col-xs-12">
+					  
+				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+							   
+							<figure>
+						
+								<a href="'.$ruta.'" class="pixelProducto">
+									
+									<img src="'.$servidor.$portada.'" class="img-responsive">
+								</a>
+							</figure>
+
+							<span class="productsNumero pull-left">'.$value["id"].'</span>
+
+					  	</div>
+							  
+						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+							
+							<h1>
+								<small>
+								
+									<a href="'.$ruta.'" class="pixelProducto">
+										
+										'.$titulo.'<br>';
+	
+									echo '</a>
+
+								</small>
+							</h1>';
+
+						}
+
+
+					}else{
+
+						echo '<li class="col-xs-12">
+					  
+				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
+							   
+							<figure>
+						
+								<a href="'.$value["ruta"].'" class="pixelProducto">
+									
+									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
+								</a>
+							</figure>
+
+							<span class="productsNumero pull-left">'.$value["id"].'</span>
+
+					  	</div>
+							  
+						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
+							
+							<h1>
+								<small>
+								
+									<a href="'.$value["ruta"].'" class="pixelProducto">
+										
+										'.$value["titulo"].'<br>';
+	
+									echo '</a>
+
+								</small>
+							</h1>';
+					}
+
+					
 			if(isset($_SESSION["validarSesion"])){
 
 				if($_SESSION["validarSesion"] == "ok"){
@@ -379,11 +574,17 @@ LISTAR PRODUCTOS
 
 						 <div class="col-xs-10"></div>
 
-						<div class="botonOrdenar col-lg-1 col-xs-2">
+						<div class="botonOrdenar col-lg-1 col-xs-2">';
 
-							 <button type="button" class="btn  btn-circle btn-lg agregarCarritoLista" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
+							 if($_SESSION["tipo_usuario"] == 1){
 
-							 <i style="color:white" class="fa fa-check"></i>
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$portada.'" titulo="'.$titulo.'" precio="'.$precio.'" tipo="'.$tipo.'"  data-toggle="tooltip">';
+							}else{
+
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">';
+							}
+
+						echo'<i style="color:white" class="fa fa-check"></i>
 							 </button>
 
 						</div>

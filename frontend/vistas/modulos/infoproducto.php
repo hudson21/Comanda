@@ -43,10 +43,33 @@ INFO PRODUCTOS
 
 			<?php
 
+			    
 			    $item = "ruta";
 			    $valor = $rutas[0];
 
-				$infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
+			    if(isset($_SESSION["validarSesion"])){
+
+				  if($_SESSION["validarSesion"] == "ok"){
+
+					 if($_SESSION["tipo_usuario"] == 0){
+
+					 	$infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
+					 
+					 }else{
+
+					 	$bar= $_SESSION["bar"];
+					 	$valor = $rutas[0];
+
+					 	$infoproducto = ControladorProductos::ctrMostrarInfoProductoJoin($valor, $bar);
+					 }
+				  }
+				
+				}else{
+
+					$infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
+				}
+
+				
 
 				//$multimedia = json_decode($infoproducto["multimedia"], true);
 

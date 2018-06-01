@@ -107,6 +107,18 @@ class ControladorProductos{
 	}
 
 	/*==============================================
+	  MOSTRAR INFO PRODUCTOS JOIN
+	===============================================*/
+
+	static public function ctrMostrarInfoProductoJoin($valor, $bar){
+
+		$respuesta= ModeloProductos::mdlMostrarInfoProductoJoin($valor, $bar);
+
+		return $respuesta;
+
+	}
+
+	/*==============================================
 	  LISTAR PRODUCTOS
 	===============================================*/
 
@@ -414,6 +426,122 @@ class ControladorProductos{
 		$respuesta = ModeloProductos::mdlEliminarProductoEspecificoByIdAndBar($tabla, $datos);
 
 		return $respuesta;
+	}
+
+
+	/*===============================================================
+	  ACTUALIZAR UN PRODUCTO A LA TABLA PRODUCTOS Y PRODUCTOS_ALMACEN
+	=================================================================*/
+	static public function ctrActualizarProducto(){
+
+		if(isset($_POST["productoName"])){
+
+			if(isset($_FILES["datoscambiarImagenProducto"]["tmp_name"])){
+
+				$idProducto = $_POST["idProducto"];
+
+				/*===================================================
+			    	PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
+				=====================================================*/
+				$directorio = "vistas/img/subirProductos/".$idProducto."/"; 
+				//PARA ELIMINAR LA FOTO DEL PRODUCTO
+				if(is_dir($directorio)){
+
+					unlink($directorio);
+				}
+
+				//Creamos el directorio de la carpeta de la imagen con permisos de lectura y escritura
+				mkdir($directorio, 0755);
+
+
+				/*===================================================
+			    	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
+				=====================================================*/
+				//$aleatorio = mt_rand(100, 9999);
+
+				$imagen = "vistas/img/subirProductos/".$idProducto."/".$idProducto.".jpeg";
+
+				/*===================================================
+			    	MODIFICAMOS TAMAÑO DE LA FOTO
+				=====================================================*/
+				list($ancho, $alto) = getimagesize($_FILES["datoscambiarImagenProducto"]["tmp_name"]);
+
+				$nuevoAncho = 500;
+				$nuevoAlto = 562;
+
+				$origen = imagecreatefromjpeg($_FILES["datoscambiarImagenProducto"]["tmp_name"]);
+
+				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
+
+				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
+
+				imagejpeg($destino, $imagen);
+			}
+
+			if($imagen != null){
+
+				$datos = array("id_producto"=>$_POST["idProducto"],
+						   "id_bar"=>$_POST["idBar"],
+						   "titulo1"=>$_POST["productoName"],
+						   "id_categoria1"=>$_POST["selectCategoriaEdit"],
+						   "id_subcategoria1"=>$_POST["selectSubCategoriaEdit"],
+						   "tipo1"=>$_POST["selectTipoEdit"],
+			               "ruta1"=>$_POST["rutaEdit"],
+			               "titular1"=>$_POST["codigoEdit"],
+			               "descripcion1"=>$_POST["descripcionEdit"],
+			               "precio1"=>$_POST["precioEdit"],
+			               "portada1"=>$imagen);
+			}else{
+
+			$datos = array("id_producto"=>$_POST["idProducto"],
+						   "id_bar"=>$_POST["idBar"],
+						   "titulo1"=>$_POST["productoName"],
+						   "id_categoria1"=>$_POST["selectCategoriaEdit"],
+						   "id_subcategoria1"=>$_POST["selectSubCategoriaEdit"],
+						   "tipo1"=>$_POST["selectTipoEdit"],
+			               "ruta1"=>$_POST["rutaEdit"],
+			               "titular1"=>$_POST["codigoEdit"],
+			               "descripcion1"=>$_POST["descripcionEdit"],
+			               "precio1"=>$_POST["precioEdit"],
+			               "portada1"=>"");
+			}
+
+			$tabla = "productos_almacen";
+
+			$respuesta = ModeloProductos::mdlActualizarProducto($tabla, $datos);
+
+
+			if($respuesta == "ok"){
+
+				echo '<script> 
+
+						swal({
+
+							title: "¡OK!",
+							text: "¡Se ha actualizado el producto satisfactoriamente!",
+							type:"success",
+							confirmButtonText:"Aceptar",
+							closeOnConfirm: false,
+							icon: "success"
+												  
+						},
+
+						function(isConfirm){
+
+							if(isConfirm){
+									
+								 window.location = localStorage.getItem("rutaBares");
+
+							}
+						});
+
+					</script>';
+			}
+
+			
+
+		}
+
 	}
 
 
