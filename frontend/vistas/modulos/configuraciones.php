@@ -622,10 +622,14 @@ if(!isset($_SESSION["validarSesion"])){
 			//
 	echo'<form method="POST" onsubmit="return actualizarProducto('.$value3["id"].')" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->';
 
-		    echo'<td style="font-size:13px">'.$value3["id"].'</td>';
+		    echo'<td style="font-size:13px">'.$value3["id"];
 
-			echo'<input type="hidden" value="'.$value3["id"].'" name="idProducto">';
+		    echo'<input type="hidden" value="'.$value3["id"].'" name="idProducto">';
 			echo'<input type="hidden" value="'.$value3["id_bar"].'" name="idBar">';
+
+		    echo'</td>';
+
+			
 
 			if($value3["titulo1"] == null){
 				$titulo = $value3["titulo"];

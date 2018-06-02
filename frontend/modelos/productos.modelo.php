@@ -315,7 +315,7 @@ class ModeloProductos{
 
 	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");*/
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR productos_almacen.titulo1 like '%$busqueda%' OR titulo like '%$busqueda%'OR productos_almacen.titular1 like '%$busqueda%'OR titular like '%$busqueda%' OR productos_almacen.descripcion1 like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");
 
 	  	$stmt-> execute();
 
@@ -336,7 +336,7 @@ class ModeloProductos{
 
 	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%' OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ");*/
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%'");
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR productos_almacen.titulo1 like '%$busqueda%' OR titulo like '%$busqueda%'OR productos_almacen.titular1 like '%$busqueda%'OR titular like '%$busqueda%' OR productos_almacen.descripcion1 like '%$busqueda%' OR descripcion like '%$busqueda%'");
 
 	  	$stmt-> execute();
 
