@@ -323,12 +323,6 @@ LISTAR PRODUCTOS
 							</h4>';
 					}else{
 
-							if($value["ruta1"] == null){
-								$ruta=$value["ruta"];		
-							}else{
-								$ruta=$value["ruta1"];
-							}
-
 							if($value["portada1"] == null){
 								$portada=$value["portada"];		
 							}else{
@@ -355,7 +349,7 @@ LISTAR PRODUCTOS
 
 						echo'<figure class="productsImg">
 								
-								<a href="'.$ruta.'" class="pixelProducto">
+								<a href="'.$value["ruta"].'" class="pixelProducto">
 									
 									<img src="'.$servidor.$portada.'" class="img-responsive">
 
@@ -369,7 +363,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$ruta.'" class="pixelProducto">
+									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
 										'.$titulo.'<br>
 
@@ -461,12 +455,6 @@ LISTAR PRODUCTOS
 
 						}else{
 
-							if($value["ruta1"] == null){
-								$ruta=$value["ruta"];		
-							}else{
-								$ruta=$value["ruta1"];
-							}
-
 							if($value["portada1"] == null){
 								$portada=$value["portada"];		
 							}else{
@@ -497,7 +485,7 @@ LISTAR PRODUCTOS
 							   
 							<figure>
 						
-								<a href="'.$ruta.'" class="pixelProducto">
+								<a href="'.$value["ruta"].'" class="pixelProducto">
 									
 									<img src="'.$servidor.$portada.'" class="img-responsive">
 								</a>
@@ -512,7 +500,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$ruta.'" class="pixelProducto">
+									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
 										'.$titulo.'<br>';
 	

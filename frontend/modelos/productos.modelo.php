@@ -198,11 +198,11 @@ class ModeloProductos{
 	  	MOSTRAR INFO PRODUCTO JOIN
 	  ===============================================*/
 
-	  static public function mdlMostrarInfoProductoJoin($valor, $bar){
+	  static public function mdlMostrarInfoProductoJoin($item, $valor, $bar){
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos.ruta = $valor or productos_almacen.ruta1 = $valor and productos_almacen.id_bar = $bar");
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos.ruta = :$item  and productos_almacen.id_bar = $bar");
 
-	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and id_bar = $bar and productos.$item = :$item ORDER BY $ordenar $modo LIMIT $base, $tope");*/
+	  	$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 	
 		$stmt-> execute();
 
@@ -574,19 +574,16 @@ class ModeloProductos{
 	=============================================*/
 	static public function mdlActualizarProducto($tabla, $datos){
 
-	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET titulo1 = :titulo1, id_categoria1 = :id_categoria1, id_subcategoria1 = :id_subcategoria1, tipo1 = :tipo1, ruta1 = :ruta1, titular1 = :titular1, descripcion1 = :descripcion1, precio1 = :precio1, portada1 = :portada1 WHERE id_producto = :id_producto and id_bar = :id_bar");
+	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET titulo1 = :titulo1, tipo1 = :tipo1, titular1 = :titular1, descripcion1 = :descripcion1, precio1 = :precio1, portada1 = :portada1 WHERE id_producto = :id_producto and id_bar = :id_bar");
 
 		$stmt -> bindParam(":titulo1", $datos["titulo1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":id_categoria1", $datos["id_categoria1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":id_subcategoria1", $datos["id_subcategoria1"], PDO::PARAM_STR);
 		$stmt -> bindParam(":tipo1", $datos["tipo1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":ruta1", $datos["ruta1"], PDO::PARAM_STR);
 		$stmt -> bindParam(":titular1", $datos["titular1"], PDO::PARAM_STR);
 		$stmt -> bindParam(":descripcion1", $datos["descripcion1"], PDO::PARAM_STR);
 		$stmt -> bindParam(":precio1", $datos["precio1"], PDO::PARAM_STR);
 		$stmt -> bindParam(":portada1", $datos["portada1"], PDO::PARAM_STR);
 		$stmt -> bindParam(":id_producto", $datos["id_producto"], PDO::PARAM_INT);
-		$stmt -> bindParam(":id_bar", $datos["id_bar"], PDO::PARAM_STR);
+		$stmt -> bindParam(":id_bar", $datos["id_bar"], PDO::PARAM_INT);
 		
 	
 		if($stmt -> execute()){

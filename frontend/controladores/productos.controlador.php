@@ -110,9 +110,9 @@ class ControladorProductos{
 	  MOSTRAR INFO PRODUCTOS JOIN
 	===============================================*/
 
-	static public function ctrMostrarInfoProductoJoin($valor, $bar){
+	static public function ctrMostrarInfoProductoJoin($item, $valor, $bar){
 
-		$respuesta= ModeloProductos::mdlMostrarInfoProductoJoin($valor, $bar);
+		$respuesta= ModeloProductos::mdlMostrarInfoProductoJoin($item, $valor, $bar);
 
 		return $respuesta;
 
@@ -480,13 +480,10 @@ class ControladorProductos{
 
 			if($imagen != null){
 
-				$datos = array("id_producto"=>$_POST["idProducto"],
+			$datos = array("id_producto"=>$_POST["idProducto"],
 						   "id_bar"=>$_POST["idBar"],
 						   "titulo1"=>$_POST["productoName"],
-						   "id_categoria1"=>$_POST["selectCategoriaEdit"],
-						   "id_subcategoria1"=>$_POST["selectSubCategoriaEdit"],
 						   "tipo1"=>$_POST["selectTipoEdit"],
-			               "ruta1"=>$_POST["rutaEdit"],
 			               "titular1"=>$_POST["codigoEdit"],
 			               "descripcion1"=>$_POST["descripcionEdit"],
 			               "precio1"=>$_POST["precioEdit"],
@@ -496,10 +493,7 @@ class ControladorProductos{
 			$datos = array("id_producto"=>$_POST["idProducto"],
 						   "id_bar"=>$_POST["idBar"],
 						   "titulo1"=>$_POST["productoName"],
-						   "id_categoria1"=>$_POST["selectCategoriaEdit"],
-						   "id_subcategoria1"=>$_POST["selectSubCategoriaEdit"],
 						   "tipo1"=>$_POST["selectTipoEdit"],
-			               "ruta1"=>$_POST["rutaEdit"],
 			               "titular1"=>$_POST["codigoEdit"],
 			               "descripcion1"=>$_POST["descripcionEdit"],
 			               "precio1"=>$_POST["precioEdit"],
@@ -530,7 +524,8 @@ class ControladorProductos{
 
 							if(isConfirm){
 									
-								 window.location = localStorage.getItem("rutaBares");
+								 //window.location = localStorage.getItem("rutaBares");
+								 history.back();
 
 							}
 						});

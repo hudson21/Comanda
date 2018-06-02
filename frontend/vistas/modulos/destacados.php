@@ -226,14 +226,8 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
 
 							<figure class="productsImg">';
-
-							if($value["ruta1"] == null){
-								$ruta=$value["ruta"];		
-							}else{
-								$ruta=$value["ruta1"];
-							}
 				
-								echo'<a href="'.$ruta.'" class="pixelProducto">';
+								echo'<a href="'.$value["ruta"].'" class="pixelProducto">';
 
 							if($value["portada1"] == null){
 								$portada=$value["portada"];		
@@ -419,12 +413,6 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 					  	if($_SESSION["tipo_usuario"] == 1){
 
-					  		if($value["ruta1"] == null){
-								$ruta=$value["ruta"];		
-							}else{
-								$ruta=$value["ruta1"];
-							}
-
 							if($value["portada1"] == null){
 								$portada=$value["portada"];		
 							}else{
@@ -455,7 +443,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 								   
 								<figure>
 							
-									<a href="'.$ruta.'" class="pixelProducto">
+									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
 										<img src="'.$servidor.$portada.'" class="img-responsive">
 									</a>
@@ -469,7 +457,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 								
 									<a href="'.$ruta.'" class="pixelProducto">
 										
-										'.$titulo.'<br>';	
+										'.$value["ruta"].'<br>';	
 									echo '</a>
 
 								</small>

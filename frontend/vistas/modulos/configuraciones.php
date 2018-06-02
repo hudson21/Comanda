@@ -593,10 +593,10 @@ if(!isset($_SESSION["validarSesion"])){
 				  <tr class="header">
 				    <th style="width:10%;">Id</th>
 				    <th style="width:30%;">Nombre</th>
-				    <th style="width:10%;">Id_Categoria</th>
-				    <th style="width:10%;">Id_Subcategoria</th>
+				    <!--<th style="width:10%;">Id_Categoria</th>
+				    <th style="width:10%;">Id_Subcategoria</th>-->
 				    <th style="width:25%;">Tipo</th>
-				    <th style="width:30%;">Ruta</th>
+				    <!--<th style="width:30%;">Ruta</th>-->
 				    <th style="width:10%;">Código</th>
 				    <th style="width:60%;">Descripcion</th>
 				    <th style="width:10%;">Precio</th>
@@ -619,9 +619,11 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'<tr>';
 
 			//onsubmit="return registroProducto()"
-		echo'<form method="POST" onsubmit="return actualizarProducto('.$value3["id"].')" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->';
-					
-			echo'<td style="font-size:13px">'.$value3["id"].'</td>';
+			//
+	echo'<form method="POST" onsubmit="return actualizarProducto('.$value3["id"].')" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->';
+
+		    echo'<td style="font-size:13px">'.$value3["id"].'</td>';
+
 			echo'<input type="hidden" value="'.$value3["id"].'" name="idProducto">';
 			echo'<input type="hidden" value="'.$value3["id_bar"].'" name="idBar">';
 
@@ -637,7 +639,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			</td>';
 
-			echo'<td>';
+			/*echo'<td>';
 
 				echo'<div class="form-group">
 						
@@ -674,13 +676,13 @@ if(!isset($_SESSION["validarSesion"])){
 							
 				</div>';
 
-			echo'</td>';
+			echo'</td>';*/
 
 
 			/*======================================
 			    SUBCATEGORIA      
 			========================================*/
-			echo'<td>';
+			/*echo'<td>';
 
 				echo'<div class="form-group">
 						
@@ -713,7 +715,7 @@ if(!isset($_SESSION["validarSesion"])){
 							
 				</div>';
 
-			echo'</td>';
+			echo'</td>';*/
 			
 
 			if($value3["tipo1"] == null){
@@ -744,7 +746,7 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'</td>';
 
 
-			if($value3["ruta1"] == null){
+			/*if($value3["ruta1"] == null){
 				$ruta=$value3["ruta"];		
 			}else{
 				$ruta=$value3["ruta1"];
@@ -753,7 +755,7 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'<td style="font-size:13px">
 
 			<input type="text" style="width:120px" class="form-control rutaEdit" id="rutaEdit'.$value3["id"].'" name="rutaEdit" value="'.$ruta.'">
-			</td>';
+			</td>';*/
 
 			if($value3["titular1"] == null){
 				$codigo=$value3["titular"];		
@@ -775,7 +777,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<textarea style="width:150px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
+			<textarea style="width:240px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
 			name="descripcionEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
 		
 
@@ -843,7 +845,7 @@ if(!isset($_SESSION["validarSesion"])){
 			}
 
 					
-			   echo'<button  type="submit'.$value3["id"].'" class="btn btn-default btn-success actualizarProducto'.$value3["id"].'" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
+			   echo'<button  type="submit"  class="btn btn-default btn-success actualizarProducto'.$value3["id"].'" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
 					  </button>
 		
 			</td>';
@@ -851,12 +853,11 @@ if(!isset($_SESSION["validarSesion"])){
 			$actualizarProducto = new ControladorProductos();
 			$actualizarProducto->ctrActualizarProducto();
 
-		echo'</form>';
-
+	echo'</form><!--ESTE ES EL CIERRE DEL FORM-->';
+					
 			echo'</tr>';
 			  
 			}
-
 			echo'</table>
 
 			</div>';

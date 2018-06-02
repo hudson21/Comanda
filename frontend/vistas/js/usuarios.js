@@ -1095,7 +1095,7 @@ function actualizarProducto(identity){
 	/*============================================================
 	VALIDAR LA RUTA        
 	==============================================================*/
-	var ruta = $("#rutaEdit"+identity).val();
+	/*var ruta = $("#rutaEdit"+identity).val();
 
 	if(ruta != ""){
 
@@ -1114,7 +1114,7 @@ function actualizarProducto(identity){
 		
 		return false;
 
-	}
+	}*/
 
 	/*============================================================
 		VALIDAR CÓDIGO DE BÚSQUEDA        

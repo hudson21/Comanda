@@ -53,14 +53,15 @@ INFO PRODUCTOS
 
 					 if($_SESSION["tipo_usuario"] == 0){
 
-					 	$infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
+					 $infoproducto = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
 					 
 					 }else{
 
 					 	$bar= $_SESSION["bar"];
 					 	$valor = $rutas[0];
+					 	$item = "ruta";
 
-					 	$infoproducto = ControladorProductos::ctrMostrarInfoProductoJoin($valor, $bar);
+					 	$infoproducto = ControladorProductos::ctrMostrarInfoProductoJoin($item ,$valor, $bar);
 					 }
 				  }
 				
@@ -81,9 +82,34 @@ INFO PRODUCTOS
 
 					echo '<div class="col-md-5 col-sm-6 col-xs-12 visorImg"> <!-- -->
 		  		
-					  		<figure class="visor">'; 
+					  		<figure class="visor">';
 
-					echo'<img  class="img-thumbnail" src="'.$servidor.$infoproducto["portada"].'" alt="'.$infoproducto["titulo"].'">';
+					 if(isset($_SESSION["validarSesion"])){
+
+				  		if($_SESSION["validarSesion"] == "ok"){
+
+					 		if($_SESSION["tipo_usuario"] == 0){ 
+
+					 			echo'<img  class="img-thumbnail" src="'.$servidor.$infoproducto["portada"].'" alt="'.$infoproducto["titulo"].'">';
+
+					 		}else{
+
+					 			if($infoproducto["portada1"] == null){
+					 				$portada = $infoproducto["portada"];
+					 			}else{
+					 				$portada = $infoproducto["portada1"];
+					 			}
+
+					 		 echo'<img  class="img-thumbnail" src="'.$servidor.$portada.'" alt="'.$infoproducto["titulo"].'">';
+
+					 		}
+					 	}
+					 }else{
+
+					 	echo'<img  class="img-thumbnail" src="'.$servidor.$infoproducto["portada"].'" alt="'.$infoproducto["titulo"].'">';
+					 }
+
+					
 
 					  		
 			              echo'</figure>
@@ -99,15 +125,7 @@ INFO PRODUCTOS
 
 		 <?php
 
-		 	if($infoproducto["tipo"] == "fisico"){
-
-		 		echo '<div class="col-md-7 col-sm-6 col-xs-12">';
-
-		 	}else{
-
-		 		echo '<div class="col-sm-6 col-xs-12">';
-
-		 	}
+		 	echo '<div class="col-md-7 col-sm-6 col-xs-12">';
 
 		 ?>
 		 
@@ -138,11 +156,11 @@ INFO PRODUCTOS
 
 		 		<h6>
 		 			
-		 			<a style="text-decoration:none; " class="dropdown-toggle pull-right text-muted" data-toggle="dropdown" href="" >
+		 			<!--<a style="text-decoration:none; " class="dropdown-toggle pull-right text-muted" data-toggle="dropdown" href="" >
 		 				
 		 				<i class="fa fa-plus"></i> Compartir
 
-		 			</a>
+		 			</a>-->
 
 		 			<ul class="dropdown-menu pull-right compartirRedes" 
 		 			    style="border:0px;box-shadow:none;margin:0px;">
@@ -180,65 +198,170 @@ INFO PRODUCTOS
 			 /*======================================
 			    TITULO DEL PRODUCTO       
 			 ========================================*/
-			 		
-			 echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';	
-			 			
-			 /*======================================
-			    PRECIO DEL PRODUCTO       
-			 ========================================*/
-
-			 if($infoproducto["precio"] == 0){
-
-			 	echo '<h2 class="text-muted">GRATIS</h2>';
-
-			 }else{
-
-			 	echo '<h2 class="text-muted">USD $'.$infoproducto["precio"].'</h2>';
-
-			 }
-
-			 /*======================================
-			    DESCRIPCION DEL PRODUCTO       
-			 ========================================*/
-
-			 echo '<p>'.$infoproducto["descripcion"].'</p>';
 
 			 if(isset($_SESSION["validarSesion"])){
 
-				  if($_SESSION["validarSesion"] == "ok"){
+				 if($_SESSION["validarSesion"] == "ok"){
 
-				  	 echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
-				  
+				  if($_SESSION["tipo_usuario"] == 0){
 
-		     echo'<hr>';
+				  	echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';
 
-		     echo'<!--===============================================
-		     BOTONES DE COMPRA
-		     ===================================================-->';
+				  	/*======================================
+			    		PRECIO DEL PRODUCTO       
+			 		========================================*/
+					 if($infoproducto["precio"] == 0){
 
-		     echo'<div class="row botonesCompra">
+					 	echo '<h2 class="text-muted">GRATIS</h2>';
 
-		     	
+					 }else{
 
-		     	<div class="col-md-6 col-xs-12">
+					 	echo '<h2 class="text-muted">USD $'.$infoproducto["precio"].'</h2>';
 
-							<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
-									  imagen="'.$servidor.$infoproducto["portada"].'"
-									  titulo="'.$infoproducto["titulo"].'"
-									  precio="'.$infoproducto["precio"].'" 
-									  tipo="'.$infoproducto["tipo"].'" >
+					 }
 
-								<small>AGREGAR AL CARRITO</small>
+					  echo '<p>'.$infoproducto["descripcion"].'</p>';
 
-								<i class="fa fa-shopping-cart col-md-0"></i>
+						
+						echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+							  
 
-								</button>
+					     echo'<hr>';
 
-							 </div>';
+					 echo'<!--===============================================
+						     BOTONES DE COMPRA
+						     ===================================================-->';
+
+						     echo'<div class="row botonesCompra">
+
+						     		<div class="col-md-6 col-xs-12">';
+
+									echo'<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
+													  imagen="'.$servidor.$infoproducto["portada"].'"
+													  titulo="'.$infoproducto["titulo"].'"
+													  precio="'.$infoproducto["precio"].'" 
+													  tipo="'.$infoproducto["tipo"].'" >';
+
+								    echo'<small>AGREGAR AL CARRITO</small>
+
+										<i class="fa fa-shopping-cart col-md-0"></i>
+
+									</button>
+
+								</div>';
+
+		  }else{
+
+				  	if($infoproducto["titulo1"] == null){
+						$titulo = $infoproducto["titulo"];
+					}else{
+						$titulo = $infoproducto["titulo1"];
+					}
+
+				  	echo '<h1 class="text-muted text-uppercase">'.$titulo.'</h1>';
+
+				  	if($infoproducto["precio1"] == null){
+
+						$precio=$infoproducto["precio"];		
+					}else{
+						$precio=$infoproducto["precio1"];
+					}
+
+					/*======================================
+			    		PRECIO DEL PRODUCTO       
+			 		========================================*/
+				 	if($precio == 0){
+
+				 		echo '<h2 class="text-muted">GRATIS</h2>';
+
+				 	}else{
+
+				 		echo '<h2 class="text-muted">USD $'.$precio.'</h2>';
+
+				 	}
+
+				 	/*======================================
+			    		DESCRIPCION DEL PRODUCTO       
+			 		========================================*/
+
+			 		if($infoproducto["descripcion1"] == null){
+						$descripcion=$infoproducto["descripcion"];		
+					}else{
+						$descripcion=$infoproducto["descripcion1"];
+					}
+
+					echo '<p>'.$descripcion.'</p>';
+
+			 		echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+							  
+
+					echo'<hr>'; 
+
+
+				echo'<!--===============================================
+						     BOTONES DE COMPRA
+				    ===================================================-->';
+
+						     echo'<div class="row botonesCompra">
+
+						     		<div class="col-md-6 col-xs-12">';
+
+						     if($infoproducto["tipo1"] == null){
+								$tipo=$infoproducto["tipo"];		
+							}else{
+								$tipo=$infoproducto["tipo1"];
+							}
+
+							echo'<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" 
+								idProducto="'.$infoproducto["id"].'" 
+								imagen="'.$servidor.$portada.'"
+								titulo="'.$titulo.'"
+								precio="'.$precio.'" 
+								tipo="'.$tipo.'" >';
+
+							echo'<small>AGREGAR AL CARRITO</small>
+
+					<i class="fa fa-shopping-cart col-md-0"></i>
+
+				</button>
+
+			</div>';
+
 			}
+		
 		}
 
-		     	?>
+
+			}else{
+
+				echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';
+
+				/*======================================
+			    	PRECIO DEL PRODUCTO       
+			 	========================================*/
+
+			 	if($infoproducto["precio"] == 0){
+
+			 		echo '<h2 class="text-muted">GRATIS</h2>';
+
+			 	}else{
+
+			 		echo '<h2 class="text-muted">USD $'.$infoproducto["precio"].'</h2>';
+
+			 	}
+
+			 	 echo '<p>'.$infoproducto["descripcion"].'</p>';
+
+				
+					echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+					  
+
+			     echo'<hr>';
+
+
+			}
+
+		    ?>
 		     	
 		     </div>
 
