@@ -613,31 +613,9 @@ $("#btnCheckout").click(function(){
 															 //ventana modal del checkout
 
 	var idUsuario = $(this).attr("idUsuario");
-	var peso = $(".cuerpoCarrito button");
 	var titulo = $(".cuerpoCarrito .tituloCarritoCompra");//Todas estas variables son arrays
 	var cantidad = $(".cuerpoCarrito .cantidadItem");
-	var subtotal = $(".cuerpoCarrito .subtotales span");
-	var tipoArray = [];
 	var cantidadPeso = [];
-
-
-	/*====================================================================  
-  		SUMA SUBTOTAL     
-	======================================================================*/
-	var sumaSubTotal = $(".sumaSubTotal span");
-	
-	$(".valorSubTotal").html($(sumaSubTotal).html());
-	$(".valorSubTotal").attr("valor",$(sumaSubTotal).html());
-
-	/*====================================================================  
-  		TASAS DE IMPUESTO     
-	======================================================================*/
-	var impuestoTotal = ($(".valorSubTotal").html() * $("#tasaImpuesto").val())/100;
-
-	$(".valorTotalImpuesto").html(impuestoTotal.toFixed(2));
-	$(".valorTotalImpuesto").attr("valor",impuestoTotal.toFixed(2));
-
-	sumaTotalCompra();
 
 	/*====================================================================  
   		VARIABLES ARRAY      
@@ -645,63 +623,12 @@ $("#btnCheckout").click(function(){
 
 	for (var i = 0; i < titulo.length; i++) {
 		
-		var pesoArray = $(peso[i]).attr("peso");
 		var tituloArray = $(titulo[i]).html();
 		var cantidadArray = $(cantidad[i]).val();
-		var subtotalArray = $(subtotal[i]).html();
 
+		$(".seleccioneLugarPreparacion").remove();
 
-		/*====================================================================  
-  			EVALUAR EL PESO DE ACUERDO A LA CANTIDAD DE PRODUCTOS      
-		======================================================================*/
-		cantidadPeso[i] = pesoArray * cantidadArray;
-		
-		function sumaArrayPeso(total, numero){
-
-			return total + numero;
-
-		}
-
-		var sumaTotalPeso = cantidadPeso.reduce(sumaArrayPeso);
-		//console.log("sumaTotalPeso", sumaTotalPeso);
-
-		/*====================================================================  Los td son las columnas
-  			MOSTRAR PRODUCTOS DEFINITIVOS A COMPRAR       
-		======================================================================*/
-		$(".listaProductos table.tablaProductos tbody").append('<tr>'+
-															   '<td class="valorTitulo">'+tituloArray+'</td>'+
-															   '<td class="valorCantidad">'+cantidadArray+'</td>'+
-															   '<td>$<span class="valorItem" valor="'+subtotalArray+'">'+subtotalArray+'</span></td>'+
-															   '</tr>');
-
-		/*====================================================================  
-  			SELECCIONAR PALAPA DE ENVÍO SI HAY PRODUCTOS FÍSICOS       
-		======================================================================*/
-		tipoArray.push($(cantidad[i]).attr("tipo"));
-		
-		function checkTipo(tipo){
-
-			return tipo == "virtual";
-		}
-
-		/*====================================================================  
-  			EXISTEN PRODUCTOS FÍSICOS     
-		======================================================================*/
-		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
-		
-		
-			/*if(tipoArray.find(checkTipo) == "fisico" && a == 0)*/
-
-			if(tipoArray.find(checkTipo) == "virtual"){
-
-				$(".seleccioneLugarPreparacion").remove();
-
-			}
-
-				
-			/*====================================================================  
-  				EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO      
-			======================================================================*/
+			
 			$("#seleccionarPreparacion").change(function(){
 				$(".alert").remove();
 			})
@@ -712,144 +639,6 @@ $("#btnCheckout").click(function(){
 			})
 } 
 
-})
-
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  SUMA TOTAL DE LA COMPRA       
-================================================*/
-function sumaTotalCompra(){
-
-	var sumaTotalTasas = Number($(".valorSubTotal").html())+
-						  Number($(".valorTotalEnvio").html())+
-						  Number($(".valorTotalImpuesto").html());
-
-	$(".valorTotalCompra").html(sumaTotalTasas.toFixed(2));
-	$(".valorTotalCompra").attr("valor",sumaTotalTasas.toFixed(2));
-
-}
-
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  MÉTODO DE PAGO PARA CAMBIO DE DIVISA      
-================================================*/
-
-var metodoPago = "paypal";
-divisas(metodoPago);
-
-$("input[name='pago']").change(function(){
-
-	var metodoPago = $(this).val();
-
-	divisas(metodoPago);
-
-
-})
-
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  FUNCIÓN PARA EL CAMBIO DE DIVISA      
-================================================*/
-function divisas(metodoPago){
-
-	$("#cambiarDivisa").html("");
-
-	if(metodoPago == "paypal"){
-
-		$("#cambiarDivisa").append('<option value="USD">USD</option>'+
-								   '<option value="EUR">EUR</option>'+
-								   '<option value="GBP">GBP</option>'+
-								   '<option value="MXN">MXN</option>'+
-								   '<option value="JPY">JPY</option>'+
-								   '<option value="CAD">CAD</option>'+
-								   '<option value="BRL">BRL</option>');
-
-	}else{
-
-		$("#cambiarDivisa").append('<option value="USD">USD</option>'+
-								   '<option value="PEN">PEN</option>'+
-								   '<option value="COP">COP</option>'+
-								   '<option value="MXN">MXN</option>'+
-								   '<option value="CLP">CLP</option>'+
-								   '<option value="ARS">ARS</option>'+
-								   '<option value="BRL">BRL</option>');
-	}
-}
-
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  CAMBIO DE DIVISA       
-================================================*/
-var divisaBase = "USD";
-
-$("#cambiarDivisa").change(function(){
-
-	$(".alert").remove();
-
-	if($("#seleccionarOrigen").val() == ""){
-
-		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
-
-		return;
-
-	}
-
-	if($("#seleccionarPreparacion").val() == ""){
-
-		$("#cambiarDivisa").after('<div class="alert alert-warning">No ha seleccionado el lugar de preparación</div>');
-
-		return;
-
-	}
-	
-	var divisa = $(this).val();
-
-	$.ajax({
-		url:"http://free.currencyconverterapi.com/api/v3/convert?q="+divisaBase+"_"+divisa+"&compact=y",
-		type:"GET",
-		cache: false,
-		contentType: false,
-		processData: false,
-		dataType:"jsonp",//Es la opción para poder traer información de otro servidor que está almacenado en otra URL
-		success:function(respuesta){
-			
-			var divisaString = JSON.stringify(respuesta);
-			var conversion = divisaString.substr(18,4);//Quitamos 18 caracteres y luego requerimos 4
-
-			if(divisa == "USD"){
-
-				conversion = 1;
-			}
-			
-			$(".cambioDivisa").html(divisa);
-
-			$(".valorSubtotal").html((Number(conversion) * Number($(".valorSubtotal").attr("valor"))).toFixed(2))
-	    	$(".valorTotalEnvio").html((Number(conversion) * Number($(".valorTotalEnvio").attr("valor"))).toFixed(2))
-	    	$(".valorTotalImpuesto").html((Number(conversion) * Number($(".valorTotalImpuesto").attr("valor"))).toFixed(2))
-	    	$(".valorTotalCompra").html((Number(conversion) * Number($(".valorTotalCompra").attr("valor"))).toFixed(2))
-
-	    	var valorItem = $(".valorItem");
-
-	    	for(var i = 0; i < valorItem.length; i++){
-
-	    		$(valorItem[i]).html((Number(conversion) * Number($(valorItem[i]).attr("valor"))).toFixed(2))
-	    	 }
-
-		}
-
-	})
 })
 
 
@@ -1046,11 +835,9 @@ $(".btnPagar ").click(function(){
 	$(".quitarItemCarrito").parent().parent().parent().remove();
 
 	var idProducto = $(".cuerpoCarrito button");
-	var imagen = $(".cuerpoCarrito img");
 	var titulo = $(".cuerpoCarrito .tituloCarritoCompra"); //De esta manera estamos generando un array de todos los elementos que tenemos dentro de cada una de las variables
-	var precio = $(".cuerpoCarrito .precioCarritoCompra span");
+
 	var cantidad = $(".cuerpoCarrito .cantidadItem");
-	var excepciones = $(".sumaCarrito excepcionesVal");
 
 	/*====================================================================
   		SI AÚN QUEDAN PRODUCTOS VOLVERLOS AGREGAR AL CARRITO (LOCALSTORAGE)        
