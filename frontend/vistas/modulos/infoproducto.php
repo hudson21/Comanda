@@ -75,46 +75,6 @@ INFO PRODUCTOS
 				//$multimedia = json_decode($infoproducto["multimedia"], true);
 
 				//var_dump($multimedia);
-
-				/*======================================
-				   VISOR DE IMAGENES       
-				========================================*/
-
-					echo '<div class="col-md-5 col-sm-6 col-xs-12 visorImg"> <!-- -->
-		  		
-					  		<figure class="visor">';
-
-					 if(isset($_SESSION["validarSesion"])){
-
-				  		if($_SESSION["validarSesion"] == "ok"){
-
-					 		if($_SESSION["tipo_usuario"] == 0){ 
-
-					 			echo'<img  class="img-thumbnail" src="'.$servidor.$infoproducto["portada"].'" alt="'.$infoproducto["titulo"].'">';
-
-					 		}else{
-
-					 			if($infoproducto["portada1"] == null){
-					 				$portada = $infoproducto["portada"];
-					 			}else{
-					 				$portada = $infoproducto["portada1"];
-					 			}
-
-					 		 echo'<img  class="img-thumbnail" src="'.$servidor.$portada.'" alt="'.$infoproducto["titulo"].'">';
-
-					 		}
-					 	}
-					 }else{
-
-					 	echo'<img  class="img-thumbnail" src="'.$servidor.$infoproducto["portada"].'" alt="'.$infoproducto["titulo"].'">';
-					 }
-
-					
-
-					  		
-			              echo'</figure>
-					
-					 </div>  '; 
 		
 			?>
 
@@ -124,6 +84,7 @@ INFO PRODUCTOS
 		 ===================================================-->
 
 		 <?php
+
 
 		 	echo '<div class="col-md-7 col-sm-6 col-xs-12">';
 
@@ -207,27 +168,13 @@ INFO PRODUCTOS
 
 				  	echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';
 
-				  	/*======================================
-			    		PRECIO DEL PRODUCTO       
-			 		========================================*/
-					 if($infoproducto["precio"] == 0){
-
-					 	echo '<h2 class="text-muted">GRATIS</h2>';
-
-					 }else{
-
-					 	echo '<h2 class="text-muted">USD $'.$infoproducto["precio"].'</h2>';
-
-					 }
-
 					  echo '<p>'.$infoproducto["descripcion"].'</p>';
 
-						
-						echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+					  echo'<hr>';
+
+						echo'<input style =" margin-bottom:15px" type="number" class=" form-control block cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'"  >';
 							  
-
-					     echo'<hr>';
-
+							
 					 echo'<!--===============================================
 						     BOTONES DE COMPRA
 						     ===================================================-->';
@@ -237,10 +184,7 @@ INFO PRODUCTOS
 						     		<div class="col-md-6 col-xs-12">';
 
 									echo'<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" idProducto="'.$infoproducto["id"].'" 
-													  imagen="'.$servidor.$infoproducto["portada"].'"
-													  titulo="'.$infoproducto["titulo"].'"
-													  precio="'.$infoproducto["precio"].'" 
-													  tipo="'.$infoproducto["tipo"].'" >';
+													  titulo="'.$infoproducto["titulo"].'"';
 
 								    echo'<small>AGREGAR AL CARRITO</small>
 
@@ -260,25 +204,7 @@ INFO PRODUCTOS
 
 				  	echo '<h1 class="text-muted text-uppercase">'.$titulo.'</h1>';
 
-				  	if($infoproducto["precio1"] == null){
-
-						$precio=$infoproducto["precio"];		
-					}else{
-						$precio=$infoproducto["precio1"];
-					}
-
-					/*======================================
-			    		PRECIO DEL PRODUCTO       
-			 		========================================*/
-				 	if($precio == 0){
-
-				 		echo '<h2 class="text-muted">GRATIS</h2>';
-
-				 	}else{
-
-				 		echo '<h2 class="text-muted">USD $'.$precio.'</h2>';
-
-				 	}
+				  	
 
 				 	/*======================================
 			    		DESCRIPCION DEL PRODUCTO       
@@ -292,11 +218,10 @@ INFO PRODUCTOS
 
 					echo '<p>'.$descripcion.'</p>';
 
-			 		echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
+					echo'<hr>';
+
+			 		echo'<input style =" margin-bottom:15px" type="number" class=" block form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
 							  
-
-					echo'<hr>'; 
-
 
 				echo'<!--===============================================
 						     BOTONES DE COMPRA
@@ -306,18 +231,10 @@ INFO PRODUCTOS
 
 						     		<div class="col-md-6 col-xs-12">';
 
-						     if($infoproducto["tipo1"] == null){
-								$tipo=$infoproducto["tipo"];		
-							}else{
-								$tipo=$infoproducto["tipo1"];
-							}
 
 							echo'<button style="margin-bottom:10px" class="btn btn-default btn-block btn-lg backColor agregarCarrito" 
 								idProducto="'.$infoproducto["id"].'" 
-								imagen="'.$servidor.$portada.'"
-								titulo="'.$titulo.'"
-								precio="'.$precio.'" 
-								tipo="'.$tipo.'" >';
+								titulo="'.$titulo.'">';
 
 							echo'<small>AGREGAR AL CARRITO</small>
 
@@ -336,24 +253,8 @@ INFO PRODUCTOS
 
 				echo '<h1 class="text-muted text-uppercase">'.$infoproducto["titulo"].'</h1>';
 
-				/*======================================
-			    	PRECIO DEL PRODUCTO       
-			 	========================================*/
-
-			 	if($infoproducto["precio"] == 0){
-
-			 		echo '<h2 class="text-muted">GRATIS</h2>';
-
-			 	}else{
-
-			 		echo '<h2 class="text-muted">USD $'.$infoproducto["precio"].'</h2>';
-
-			 	}
 
 			 	 echo '<p>'.$infoproducto["descripcion"].'</p>';
-
-				
-					echo'<input type="number" class="anchoBotonCantidad form-control cantidadProducto'.$infoproducto["id"].'" min="1" id="producto'.$infoproducto["id"].'" tipo="" precio="" >';
 					  
 
 			     echo'<hr>';

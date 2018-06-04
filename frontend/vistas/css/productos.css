@@ -104,6 +104,7 @@ VITRINA PRODUCTOS CUADRÍCULA
 .productos ul li div.enlaces{
 	padding:0;
 	padding-bottom:20px;
+	z-index:-100px;
 }
 
 .productos ul li div.enlaces button{

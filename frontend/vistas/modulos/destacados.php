@@ -158,13 +158,13 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 							 </button>
 
-							 <button type="button" class="col-xs-0 btn btn-default btnList" id="btnList'.$i.'">
+							 <!--<button type="button" class="col-xs-0 btn btn-default btnList" id="btnList'.$i.'">
 							 	
 								<i class="fa fa-list" aria-hidden="true"></i> 
 
 								<span class="col-xs-0 pull-right"> LIST</span>
 
-							 </button>
+							 </button>-->
 							
 						</div>		
 
@@ -223,13 +223,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 					  	if($_SESSION["tipo_usuario"] == 1){
 
-					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
-				
-								
-
-							echo'<h4 class="productsH4">
-					
-								<small>';
+					  		echo '<li  class=" col-md-3 col-sm-6 col-xs-12">';
 
 								if($value["titulo1"] == null){
 									$titulo = $value["titulo"];
@@ -237,7 +231,11 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 									$titulo = $value["titulo1"];
 								}
 									
-									echo'<a href="'.$ruta.'" class="pixelProducto">
+							echo'<h4 style="z-index:200px" class="productsH4">
+					
+								<small>';
+									
+									echo'<a href="'.$value["ruta"].'" class="">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>
 
@@ -253,11 +251,9 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 					  	}//FIN DEL TIPO USUARIO
 					  	else{
 
-					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
+					  		echo '<li  class=" col-md-3 col-sm-6 col-xs-12">';
 				
-								
-
-						echo'<h4 class="productsH4">
+							echo'<h4 class="productsH4">
 					
 								<small>';
 									
@@ -307,9 +303,9 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 				if($_SESSION["validarSesion"] == "ok"){
 
-					echo '<div class="tamañoDivEnlaces col-xs-6 enlaces">
+					echo '<div style="margin-bottom:10px; " class=" col-xs-6 enlaces">
 								
-								<div class=" tamañoDiv  ">
+								<div class="">
 									
 									<div  class="col-lg-12 col-xs-3 txtCantidad" name="txtCantidad">
 

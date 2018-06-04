@@ -208,15 +208,21 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     
 
    .productsH4{
-    position:absolute;
+    z-index:1000px;
   }
 
    .txtCantidad{
-    
-    margin-top:35px;
-    margin-left:30px;
+    margin-top:-15px;
+    margin-left:-15px;
     z-index:100;
     
+  }
+
+  .botonOrdenar{
+    position:absolute;
+    margin-top:-30px;
+    margin-left:110px;
+    z-index:100;
   }
 
   .anchoBotonCantidad{
@@ -245,19 +251,14 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     z-index:100;
   }
 
-  .botonOrdenar{
-    position:absolute;
-    margin-top:15px;
-    margin-left:155px;
-    z-index:100;
-  }
+  
   
   .margenAbajo{
     margin-bottom:5px;
   }
   
   .productsH4Productos{
-    position:absolute;
+    
     margin-top:15px;
   }
 }
@@ -327,44 +328,9 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   	text-shadow:2px 2px 1px #dadada;
   }
 
-  .productsImg{
-    width:100px;
-    float:left;
-    margin-bottom:30px;
-  }
 
   .productsH4{
-    position:absolute;
-    margin-left:122px;
-  }
-
-  .productsH2Gratis{
-    position:absolute;
-    margin-top:72px;
-    margin-left:55px;
-  }
-
-  .productsNuevo{
-    position:absolute;
-    margin-top:5px;
-  }
-
-  .productsDescuentoOferta{
-    position:absolute;
-    margin-top:5px;
-    margin-left:55px;
-  }
-
-  .productsOferta{
-    position:absolute;
-    margin-top:80px;
-    margin-left:30px;
-  }
-
-  .productsPrecio{
-    position:absolute;
-    margin-top:70px;
-    margin-left:30px;
+    text-align:center;
   }
 
   .productsEnlacesProductos{
@@ -379,35 +345,10 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     margin-left:30px;
   }
 
-  .productsPrecioProductos{
-    position:absolute;
-    margin-top:75px;
-    margin-left:30px;
-  }
-
   .productsNumero{
     position:absolute;
     margin-top:95px;
     margin-left:7px;
-  }
-
-  .productsEnlaces{
-    position:absolute;
-    margin-top:50px;
-    margin-left:110px;
-    z-index:100;
-  }
-
-  
-
-  .topBotones{
-    position:absolute;
-    margin-top:35px;
-  }
-
-  .margenBotonMas{
-    position:absolute;
-    margin-left:40px; 
   }
 
   h1{
@@ -415,18 +356,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     font-weight:bold;
   }
 
-  .posicionBotonMenos{
-    position:absolute;
-    margin-top:49px;
-    margin-left:0px;
-    z-index:100;
-    margin-right:7px;
-  }
-
   .txtCantidad{
-    position:absolute;
-    margin-top:50px;
-    margin-left:10px;
     z-index:100;
     margin-right:0px
   }
@@ -440,24 +370,15 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 
   .botonOrdenar{
     position:absolute;
-    margin-top:65px;
-    margin-left:88px;
+    margin-left:130px;
+    margin-top:-15px;
+    margin-bottom:10px;
     z-index:100;
   }
 
-  .tamañoBotonesMasyMenos{
-    width:32px; 
-    height:32px;
-    padding:0px;
-    font-weight:bold;
-  }
-
   .anchoBotonCantidad{
-    width:63px;
-  }
-
-  .tamañoDiv{
-    width:160px;
+    width:93px;
+    margin-left:30px;
   }
 
   .btn-circle {
@@ -477,5 +398,9 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
   line-height: 1.33;
   border-radius: 35px;
 }
+
+.margenAbajo{
+    margin-bottom:10px;
+  }
 
 }

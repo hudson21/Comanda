@@ -179,13 +179,7 @@ $cliente->setScopes(['profile','email']);*/
                     
 
                echo '<li>|</li>
-                     <li><a href="'.$url.'perfil">Ver Perfil</a></li>
-                     
-                     <li>|</li>
-                     <li><a href="'.$url.'pedidos/recibiendo" >Pedidos</a></li>
-
-                     <li>|</li>
-                     <li><a href="'.$url.'notificaciones" >Mensajes</a></li>';
+                     <li><a href="'.$url.'perfil">Ver Perfil</a></li>';
 
                      if($_SESSION["tipo_usuario"] == 0){
 

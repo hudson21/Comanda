@@ -9,31 +9,6 @@ $url = Ruta::ctrRuta();
 
 $ruta = $rutas[0];
 
-$banner = ControladorProductos::ctrMostrarBanner($ruta);
-
-$titulo1 = json_decode($banner["titulo1"],true);
-$titulo2 = json_decode($banner["titulo2"],true);
-$titulo3 = json_decode($banner["titulo3"],true);
-
-if($banner != null){
-
-echo '<figure class="banner">
-
-		<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%">	
-
-		<div class="textoBanner '.$banner["estilo"].'">
-			
-			<h1 style="color:'.$titulo1["color"].'">'.$titulo1["texto"].'</h1>
-
-			<h2 style="color:'.$titulo2["color"].'"><strong>'.$titulo2["texto"].'</strong></h2>
-
-			<h3 style="color:'.$titulo3["color"].'">'.$titulo3["texto"].'</h3>
-
-		</div>
-
-	</figure>';
-
-}
 
 ?>
 
@@ -82,13 +57,13 @@ BARRA PRODUCTOS
 
 					 </button>
 
-					 <button type="button" class="col-xs-0 btn btn-default btnList" id="btnList0">
+					<!-- <button type="button" class="col-xs-0 btn btn-default btnList" id="btnList0">
 					 	
 						<i class="fa fa-list" aria-hidden="true"></i> 
 
 						<span class="col-xs-0 pull-right"> LIST</span>
 
-					 </button>
+					 </button>-->
 					
 				</div>		
 
@@ -175,7 +150,7 @@ LISTAR PRODUCTOS
 
 			if($rutas[0] == "articulos-con-descuento"){
 
-				$item2 = "precio";
+				$item2 = null;
 				$valor2 = 0;
 				$ordenar = "id";
 
@@ -260,25 +235,13 @@ LISTAR PRODUCTOS
 
 					echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
-					echo'<figure class="productsImg">
-								
-								<a href="'.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4Productos productsH4">
+					echo'<h4 class="productsH4Productos productsH4">
 					
 								<small>
 									
 									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -294,25 +257,13 @@ LISTAR PRODUCTOS
 
 					if($_SESSION["tipo_usuario"] == 0){
 
-						echo'<figure class="productsImg">
-								
-								<a href="'.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4Productos productsH4">
+						echo'<h4 class="productsH4Productos productsH4">
 					
 								<small>
 									
 									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -323,49 +274,20 @@ LISTAR PRODUCTOS
 							</h4>';
 					}else{
 
-							if($value["portada1"] == null){
-								$portada=$value["portada"];		
-							}else{
-								$portada=$value["portada1"];
-							}
-
 							if($value["titulo1"] == null){
 								$titulo = $value["titulo"];
 							}else{
 								$titulo = $value["titulo1"];
 							}
 
-							if($value["precio1"] == null){
-								$precio=$value["precio"];		
-							}else{
-								$precio=$value["precio1"];
-							}
-
-							if($value["tipo1"] == null){
-								$tipo=$value["tipo"];		
-							}else{
-								$tipo=$value["tipo1"];
-							}
-
-						echo'<figure class="productsImg">
-								
-								<a href="'.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$portada.'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4Productos productsH4">
+						
+						echo'<h4 class="productsH4Productos ">
 					
 								<small>
 									
 									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$titulo.'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -394,10 +316,10 @@ LISTAR PRODUCTOS
 
 						   if($_SESSION["tipo_usuario"] == 1){
 
-								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$portada.'" titulo="'.$titulo.'" precio="'.$precio.'" tipo="'.$tipo.'"  data-toggle="tooltip">';
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$titulo.'"  data-toggle="tooltip">';
 							}else{
 
-								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">';
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$value["titulo"].'"  data-toggle="tooltip">';
 							}
 
 								    echo' <i style="color:white" class="fa fa-check"></i>
@@ -423,21 +345,9 @@ LISTAR PRODUCTOS
 
 						if($_SESSION["tipo_usuario"] == 0){
 
-							echo '<li class="col-xs-12">
+				echo '<li class="col-xs-12">
 					  
-				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-							   
-							<figure>
-						
-								<a href="'.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-								</a>
-							</figure>
-
-							<span class="productsNumero pull-left">'.$value["id"].'</span>
-
-					  	</div>
+				  	
 							  
 						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
 							
@@ -446,7 +356,7 @@ LISTAR PRODUCTOS
 								
 									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>';
+										'.$value["id"].". ".$value["titulo"].'<br>';
 	
 									echo '</a>
 
@@ -455,11 +365,6 @@ LISTAR PRODUCTOS
 
 						}else{
 
-							if($value["portada1"] == null){
-								$portada=$value["portada"];		
-							}else{
-								$portada=$value["portada1"];
-							}
 
 							if($value["titulo1"] == null){
 								$titulo = $value["titulo"];
@@ -467,33 +372,8 @@ LISTAR PRODUCTOS
 								$titulo = $value["titulo1"];
 							}
 
-							if($value["precio1"] == null){
-								$precio=$value["precio"];		
-							}else{
-								$precio=$value["precio1"];
-							}
-
-							if($value["tipo1"] == null){
-								$tipo=$value["tipo"];		
-							}else{
-								$tipo=$value["tipo1"];
-							}
-
 							echo '<li class="col-xs-12">
-					  
-				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-							   
-							<figure>
-						
-								<a href="'.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$portada.'" class="img-responsive">
-								</a>
-							</figure>
-
-							<span class="productsNumero pull-left">'.$value["id"].'</span>
-
-					  	</div>
+					 
 							  
 						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
 							
@@ -502,7 +382,7 @@ LISTAR PRODUCTOS
 								
 									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$titulo.'<br>';
+										'.$value["id"].". ".$value["titulo"].'<br>';
 	
 									echo '</a>
 
@@ -516,20 +396,7 @@ LISTAR PRODUCTOS
 
 						echo '<li class="col-xs-12">
 					  
-				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
-							   
-							<figure>
-						
-								<a href="'.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-								</a>
-							</figure>
-
-							<span class="productsNumero pull-left">'.$value["id"].'</span>
-
-					  	</div>
-							  
+				  		
 						<div class="col-lg-10 col-md-7 col-sm-8 col-xs-12">
 							
 							<h1>
@@ -537,7 +404,7 @@ LISTAR PRODUCTOS
 								
 									<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>';
+										'.$value["id"].". ".$value["titulo"].'<br>';
 	
 									echo '</a>
 
@@ -566,10 +433,10 @@ LISTAR PRODUCTOS
 
 							 if($_SESSION["tipo_usuario"] == 1){
 
-								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$portada.'" titulo="'.$titulo.'" precio="'.$precio.'" tipo="'.$tipo.'"  data-toggle="tooltip">';
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$titulo.'"  data-toggle="tooltip">';
 							}else{
 
-								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">';
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$value["titulo"].'" data-toggle="tooltip">';
 							}
 
 						echo'<i style="color:white" class="fa fa-check"></i>

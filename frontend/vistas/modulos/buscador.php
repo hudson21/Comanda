@@ -203,25 +203,13 @@ LISTAR PRODUCTOS
 
 						echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
-						echo'<figure class="productsImg">
-								
-								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4Productos productsH4">
+						echo'<h4 class="productsH4Productos productsH4">
 					
 								<small>
 									
 									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -239,25 +227,13 @@ LISTAR PRODUCTOS
 
 						  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
-						echo'<figure class="productsImg">
-								
-								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
-									
-									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4Productos productsH4">
+						echo'<h4 class="productsH4Productos productsH4">
 					
 								<small>
 									
 									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -267,7 +243,7 @@ LISTAR PRODUCTOS
 
 							</h4>';
 
-					  	echo '<div class="tamañoDivEnlaces col-xs-6 enlaces">
+					  	echo '<div class=" col-xs-6 enlaces">
 								
 								
 								<div  class="col-lg-12 col-xs-3 txtCantidad" name="txtCantidad">
@@ -279,7 +255,7 @@ LISTAR PRODUCTOS
 
 									<div class="botonOrdenar col-lg-1 col-xs-2">
 
-								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">
+								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$value["titulo"].'"  data-toggle="tooltip">
 
 								     <i style="color:white" class="fa fa-check"></i>
 								     </button>
@@ -294,25 +270,7 @@ LISTAR PRODUCTOS
 
 						  			echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
-						echo'<figure class="productsImg">';
-
-							echo'<a href="'.$url.$value["ruta"].'" class="pixelProducto">';
-
-							if($value["portada1"] == null){
-								$portada=$value["portada"];		
-							}else{
-								$portada=$value["portada1"];
-							}
-									
-						   echo'	<img src="'.$servidor.$portada.'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4Productos productsH4">
+						echo'<h4 class="productsH4Productos productsH4">
 					
 								<small>';
 
@@ -321,22 +279,10 @@ LISTAR PRODUCTOS
 								}else{
 									$titulo = $value["titulo1"];
 								}
-
-								if($value["precio1"] == null){
-									$precio=$value["precio"];		
-								}else{
-									$precio=$value["precio1"];
-								}
-
-								if($value["tipo1"] == null){
-									$tipo=$value["tipo"];		
-								}else{
-									$tipo=$value["tipo1"];
-								}
-									
+	
 								echo'<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
-										'.$titulo.'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -358,7 +304,7 @@ LISTAR PRODUCTOS
 
 									<div class="botonOrdenar col-lg-1 col-xs-2">
 
-								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$portada.'" titulo="'.$titulo.'" precio="'.$precio.'" tipo="'.$tipo.'"  data-toggle="tooltip">
+								     <button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$titulo.'" data-toggle="tooltip">
 
 								     <i style="color:white" class="fa fa-check"></i>
 								     </button>
