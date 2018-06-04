@@ -323,18 +323,7 @@
     // ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
   }
 
-  /*======================================
-           TABLA LINEA DE NOTIFICACIONES  
-  ========================================*/
-  $tabla13 = "notificaciones";
-
-  $tablaNotificaciones = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla13);
-
-  if($tablaNotificaciones == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla13);
-    // ControladorUsuarios::ctrPonerCerosIzquierda($tabla12, $columna);
-  }
+ 
 
 
   /*======================================

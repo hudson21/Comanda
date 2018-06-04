@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2018 a las 22:35:12
+-- Tiempo de generación: 04-06-2018 a las 23:42:54
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -94,7 +94,8 @@ INSERT INTO `cabecera_pedidos` (`no_pedido`, `id_usuario`, `nombre_usuario`, `or
 (000000022, 1, 'CARLOS HUDSON', 'Palapa 3', '', '', 0, 0, 0, 0, '2018-04-18 17:42:38'),
 (000000023, 1, 'CARLOS HUDSON', 'Palapa 3', 'BAR ITALIANO', '', 0, 0, 0, 0, '2018-04-18 17:42:42'),
 (000000024, 1, 'CARLOS HUDSON', 'Palapa 5', '', '', 0, 0, 0, 0, '2018-04-18 17:42:45'),
-(000000025, 1, 'CARLOS HUDSON', 'Palapa 3', '', 'Quiero todos estos productos :(. Pero soy pobreee :(', 0, 0, 0, 0, '2018-05-23 15:23:53');
+(000000025, 1, 'CARLOS HUDSON', 'Palapa 3', '', 'Quiero todos estos productos :(. Pero soy pobreee :(', 0, 0, 0, 0, '2018-05-23 15:23:53'),
+(000000026, 11, 'X ALFONSO', 'Palapa 1', 'BAR SOL', '', 0, 0, 0, 0, '2018-06-04 21:26:13');
 
 -- --------------------------------------------------------
 
@@ -187,42 +188,9 @@ INSERT INTO `linea_pedidos` (`id`, `id_producto`, `cantidad`, `no_pedido`, `fech
 (42, 432, 10, 000000025, '2018-04-16 20:30:48'),
 (43, 459, 4, 000000025, '2018-04-16 20:30:48'),
 (44, 469, 23, 000000026, '2018-04-17 18:57:48'),
-(45, 469, 3, 000000027, '2018-04-18 16:00:45');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `notificaciones`
---
-
-CREATE TABLE `notificaciones` (
-  `id` int(11) NOT NULL,
-  `no_usuario` int(11) NOT NULL,
-  `nombre_usuario` text COLLATE utf8_spanish_ci NOT NULL,
-  `no_pedido` int(9) UNSIGNED ZEROFILL DEFAULT NULL,
-  `tipo` int(11) NOT NULL,
-  `mensaje` text COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `notificaciones`
---
-
-INSERT INTO `notificaciones` (`id`, `no_usuario`, `nombre_usuario`, `no_pedido`, `tipo`, `mensaje`, `fecha`) VALUES
-(1, 11, 'CARLOS HUDSON', 000000001, 0, '', '2018-05-22 15:17:31'),
-(2, 11, 'CARLOS HUDSON', 000000002, 0, '', '2018-05-22 15:17:26'),
-(3, 11, 'X ALFONSO', NULL, 1, 'hola', '2018-05-22 14:50:00'),
-(4, 11, 'X ALFONSO', NULL, 1, 'ya me voy para mi casa', '2018-05-22 14:50:48'),
-(5, 1, 'CARLOS HUDSON', NULL, 1, 'ya se pueden ir todos', '2018-05-22 15:23:53'),
-(6, 11, 'X ALFONSO', NULL, 1, 'hello a todos. Como están ?', '2018-05-22 15:32:07'),
-(7, 1, 'CARLOS HUDSON', NULL, 1, 'bien y tu. Como te va en el trabajo ?', '2018-05-22 15:32:51'),
-(8, 1, 'CARLOS HUDSON', NULL, 1, 'Todos pueden salir antes de las 2pm', '2018-05-22 15:43:57'),
-(28, 11, 'X ALFONSO', 000000001, 0, '', '2018-05-23 20:21:53'),
-(29, 11, 'X ALFONSO', 000000002, 0, '', '2018-05-23 20:23:07'),
-(30, 11, 'X ALFONSO', 000000003, 0, '', '2018-05-23 20:23:36'),
-(31, 11, 'X ALFONSO', 000000004, 0, '', '2018-05-23 20:26:14'),
-(32, 11, 'X ALFONSO', NULL, 1, 'ya no tengo que ir a la peluqueria :)', '2018-05-23 20:29:15');
+(45, 469, 3, 000000027, '2018-04-18 16:00:45'),
+(46, 461, 23, 000000028, '2018-06-04 21:26:13'),
+(47, 1, 23, 000000028, '2018-06-04 21:26:13');
 
 -- --------------------------------------------------------
 
@@ -800,7 +768,7 @@ CREATE TABLE `productos_almacen` (
 
 INSERT INTO `productos_almacen` (`id_bar`, `id_producto`, `disponible`, `titulo1`, `titular1`, `descripcion1`) VALUES
 (1, 1, 1, 'falda personalizada', 'feo', 'Esto es un platillo nuevo'),
-(1, 2, 1, NULL, NULL, NULL),
+(1, 2, 1, 'me veo mal :(', 'carlos', 'Esto esta modificado'),
 (1, 3, 1, NULL, NULL, NULL),
 (1, 4, 1, NULL, NULL, NULL),
 (1, 5, 1, NULL, NULL, NULL),
@@ -1402,7 +1370,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `tipo_usuario`, `hotel`, `bar`, `password`, `nickname`, `fechaUsuario`) VALUES
 (1, 'CARLOS HUDSON', 0, 'finest', '', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'admin', '2018-05-22 14:39:40'),
-(11, 'X ALFONSO', 1, 'finest', '1', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-05-22 18:46:00');
+(11, 'X ALFONSO', 1, 'finest', '1', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-06-04 21:19:57');
 
 --
 -- Índices para tablas volcadas
@@ -1430,12 +1398,6 @@ ALTER TABLE `categorias`
 -- Indices de la tabla `linea_pedidos`
 --
 ALTER TABLE `linea_pedidos`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indices de la tabla `notificaciones`
---
-ALTER TABLE `notificaciones`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1490,7 +1452,7 @@ ALTER TABLE `almacenes`
 -- AUTO_INCREMENT de la tabla `cabecera_pedidos`
 --
 ALTER TABLE `cabecera_pedidos`
-  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -1502,13 +1464,7 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `linea_pedidos`
 --
 ALTER TABLE `linea_pedidos`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
-
---
--- AUTO_INCREMENT de la tabla `notificaciones`
---
-ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
