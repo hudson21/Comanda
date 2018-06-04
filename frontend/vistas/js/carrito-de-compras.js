@@ -253,138 +253,7 @@ $(".agregarCarrito").click(function(){
 })
 
 
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  AGREGAR AL CARRITO    LISTA     
-================================================*/
-$(".agregarCarritoLista").click(function(){
 
-	var idProducto = $(this).attr("idProducto");
-	var titulo = $(this).attr("titulo");
-	
-
-	var agregarAlCarrito = false;
-
-	/*====================================================================
-  		CAPTURAR DETALLES        
-	======================================================================*/
-		//---------------------------------------------EN LISTA
-
-		if($('.cantidadProductoLista'+idProducto).val() == ""){
-
-			swal({
-						title: "No hay una cantidad",
-						text: "",
-						type:"warning",
-						showCancelButton: false,
-						confirmButtonColor:"#DD6B55",
-						confirmButtonText:"Aceptar",
-						closeOnConfirm: false
-					})
-		
-		}else{
-
-			var valorCantidadLista = $('.cantidadProductoLista'+idProducto).val();
-
-			var expresion = /^[0-9]*$/;
-
-			if(!expresion.test(valorCantidadLista) ){
-
-				swal({
-						title: "Solo se permiten números",
-						text: "",
-						type:"warning",
-						showCancelButton: false,
-						confirmButtonColor:"#DD6B55",
-						confirmButtonText:"Aceptar",
-						closeOnConfirm: false
-						
-					})
-
-				document.getElementById('productoLista'+idProducto).value = "";
-				
-
-			}else{
-
-				agregarAlCarrito = true;
-
-			}
-		}
-
-
-	
-
-	/*====================================================================
-  		ALMACENAR EN EL LOCALSTORAGE LOS PRODUCTOS AGREGADOS AL CARRITO        
-	======================================================================*/
-	if(agregarAlCarrito){
-
-		/*====================================================================
-  			RECUPERAR ALMACENAMIENTO DEL LOCALSTORAGE        
-		======================================================================*/
-		if(localStorage.getItem("listaProductos") == null){ //Si la variable del localStorage está vacía o nula que la deje como está
-
-			listaCarrito = [];
-
-		}else{
-
-			listaCarrito.concat(localStorage.getItem("listaProductos"));
-		}
-
-		listaCarrito.push({"idProducto":idProducto,    
-					   	   "titulo":titulo,
-					   	   "cantidad":valorCantidadLista});
-
-		
-
-		localStorage.setItem("listaProductos", JSON.stringify(listaCarrito)); 
-		//EL JSON.stringgify es para poder convertir a cadena de texto un array
-
-		/*====================================================================
-  			ACTUALIZAR CESTA      
-		======================================================================*/
-		var cantidadCesta = Number($(".cantidadCesta").html()) + 1;
-		var sumaCesta = Number($(".sumaCesta").html()) + Number(precio);
-
-		$(".cantidadCesta").html(cantidadCesta);
-		$(".sumaCesta").html(sumaCesta);
-
-		localStorage.setItem("cantidadCesta", cantidadCesta);//Estamos almacenando estas nuevas variables en el localStorage
-		localStorage.setItem("sumaCesta", sumaCesta);//Estamos almacenando estas nuevas variables en el localStorage
-	
-		/*====================================================================
-  			MOSTRAR ALERTA DE QUE EL PRODUCTO YA FUE AGREGADO        
-		======================================================================*/
-		swal({
-				title: "",
-				text: "¡Se ha agregado un nuevo producto al carrito de compras",
-				type:"success",
-				showCancelButton: true,
-				confirmButtonColor:"#DD6B55",
-				cancelButtonText:"¡Seguir ordenando!",
-				confirmButtonText:"¡Ir a mi carrito de compras!",
-				closeOnConfirm: false,
-				icon: "success"
-											  
-			},
-
-		function(isConfirm){
-
-			if(isConfirm){
-				window.location = rutaOculta+"carrito-de-compras";
-			}else{
-
-				document.getElementById('productoLista'+idProducto).value = "";
-			}
-		});
-
-    }
-
-
-})
 
 /*==============================================
 /*==============================================
@@ -430,6 +299,7 @@ $(".quitarItemCarrito").click(function(){
 			localStorage.setItem("listaProductos", JSON.stringify(listaCarrito));
 
 			
+
 			cestaCarrito(listaCarrito.length); 
 	
 	}else{
@@ -492,8 +362,6 @@ $(".cantidadItem").change(function(){ //Dentro de cantidad item vamos a capturar
 
 			localStorage.setItem("listaProductos", JSON.stringify(listaCarrito)); 
 
-			sumaSubtotales();
-			cestaCarrito(listaCarrito.length);
 })
 
 /*==============================================
@@ -613,9 +481,14 @@ $("#btnCheckout").click(function(){
 															 //ventana modal del checkout
 
 	var idUsuario = $(this).attr("idUsuario");
+	var peso = $(".cuerpoCarrito button");
 	var titulo = $(".cuerpoCarrito .tituloCarritoCompra");//Todas estas variables son arrays
 	var cantidad = $(".cuerpoCarrito .cantidadItem");
+	var subtotal = $(".cuerpoCarrito .subtotales span");
+	var tipoArray = [];
 	var cantidadPeso = [];
+
+	
 
 	/*====================================================================  
   		VARIABLES ARRAY      
@@ -626,9 +499,35 @@ $("#btnCheckout").click(function(){
 		var tituloArray = $(titulo[i]).html();
 		var cantidadArray = $(cantidad[i]).val();
 
-		$(".seleccioneLugarPreparacion").remove();
+
+		/*====================================================================  Los td son las columnas
+  			MOSTRAR PRODUCTOS DEFINITIVOS A COMPRAR       
+		======================================================================*/
+		$(".listaProductos table.tablaProductos tbody").append('<tr>'+
+															   '<td class="valorTitulo">'+tituloArray+'</td>'+
+															   '<td class="valorCantidad">'+cantidadArray+'</td>'+
+															   '</tr>');
+
+		
+
+		/*====================================================================  
+  			EXISTEN PRODUCTOS FÍSICOS     
+		======================================================================*/
+		// El find es para poder encontrar un valor deseado dentro de un array ya sea texto o número
+		
+		
+			/*if(tipoArray.find(checkTipo) == "fisico" && a == 0)*/
 
 			
+
+			//$(".seleccioneLugarPreparacion").remove();
+
+			
+
+				
+			/*====================================================================  
+  				EVALUAR TASAS DE ENVÍO SI EL PRODUCTO ES FÍSICO      
+			======================================================================*/
 			$("#seleccionarPreparacion").change(function(){
 				$(".alert").remove();
 			})
@@ -640,7 +539,6 @@ $("#btnCheckout").click(function(){
 } 
 
 })
-
 
 /*==============================================
 /*==============================================
@@ -696,14 +594,14 @@ $(".btnPagar ").click(function(){
 
 	var tipo = $(this).attr("tipo");
 
-	if(tipo == "fisico" && $("#seleccionarOrigen").val() == ""){
+	if($("#seleccionarOrigen").val() == ""){
 
 		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
 		
 		return;
 	}
 
-	if(tipo == "fisico" && $("#seleccionarPreparacion").val() == ""){
+	if($("#seleccionarPreparacion").val() == ""){
 
 		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de preparación</div>');
 		
@@ -835,9 +733,11 @@ $(".btnPagar ").click(function(){
 	$(".quitarItemCarrito").parent().parent().parent().remove();
 
 	var idProducto = $(".cuerpoCarrito button");
+	var imagen = $(".cuerpoCarrito img");
 	var titulo = $(".cuerpoCarrito .tituloCarritoCompra"); //De esta manera estamos generando un array de todos los elementos que tenemos dentro de cada una de las variables
-
+	var precio = $(".cuerpoCarrito .precioCarritoCompra span");
 	var cantidad = $(".cuerpoCarrito .cantidadItem");
+	var excepciones = $(".sumaCarrito excepcionesVal");
 
 	/*====================================================================
   		SI AÚN QUEDAN PRODUCTOS VOLVERLOS AGREGAR AL CARRITO (LOCALSTORAGE)        
@@ -897,303 +797,6 @@ $(".btnPagar ").click(function(){
 }
 
 })
-
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
- 	QUITAR PRODUCTOS DE LA LISTA DE PEDIDOS   
-================================================*/
-$(".quitarItemPedido").click(function(){
-
-	//$(this).parent().parent().parent().remove();
-
-	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	//console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
-
-	swal({
-				title: "¿Desea eliminar este pedido?",
-				type: "warning",
-				showCancelButton: true,
-				confirmButtonColor:"#DD6B55",
-				confirmButtonText: "Aceptar",
-				closeOnConfirm: false
-			},
-
-		function(isConfirm){
-			  if (isConfirm) {	   
-				//window.location="index.php?idproducto="+idProductoPedidoEliminar+"&ruta=pedidos";
-
-			  var datos = new FormData();
-				datos.append("idProductoPedidoEliminar", idProductoPedidoEliminar);
-
-				$.ajax({
-						 url:rutaOculta+"ajax/usuarios.ajax.php",
-						 method:"POST",
-						 data: datos,
-						 cache: false,
-						 contentType: false,
-						 processData: false,
-						 success:function(respuesta){
-							//console.log("respuesta",respuesta);
-						 }
-
-			         })
-
-				window.location = localStorage.getItem("rutaPedido");
-
-			} 
-		});
-
-	/**/
-
-
-})
-
-/*===================================================
-/*===================================================
-/*===================================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*===================================================
-/*===================================================
- AGREGANDO Y QUITANDO CLASE A LOS BOTONES DE ESTADO   
-=====================================================*/
-
-var contarPedidos = localStorage.getItem("contarPedidos");
-//console.log("contarPedidos", contarPedidos);
-
-/*====================================================================
-  	EJECUTAR ACCIÓN DE CAMBIO DE ESTADO CON EL BOTÓN DE PREPARANDO        
-======================================================================*/
-	
-$(".btnPreparando").click(function(){
-
-	var repeticion =$(this).attr("repeticion");
-
-	for (var i = 1; i <= contarPedidos; i++) {
-
-	var datos = new FormData();
-	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	//console.log("idPedidoActualizar", idProductoPedidoEliminar);
-
-	datos.append("estadoPedido", 1);
-	datos.append("numeroPedido",idProductoPedidoEliminar);
-
-	$.ajax({
-			 url:rutaOculta+"ajax/usuarios.ajax.php",
-			 method:"POST",
-			 data: datos,
-			 cache: false,
-			 contentType: false,
-			 processData: false,
-			 success:function(respuesta){
-
-			 }
-
-			})
-
-		if(i==repeticion){
-
-			$("#preparando"+i).removeClass("fa-clock-o");
-			$("#preparando"+i).addClass("fa-check");
-
-			$("#listo"+i).addClass("fa-clock-o");
-
-		}
-	
-
-	}
-})
-
-/*====================================================================
-  	EJECUTAR ACCIONES CON EL BOTÓN DE LISTO        
-======================================================================*/
-
-$(".btnListo").click(function(){
-
-/*====================================================================
-  EJECUTAR ACCIÓN DE INSERCIÓN DE MENSAJE CON EL BOTÓN DE LISTO        
-======================================================================*/
-    var datos = new FormData();
-	var datos1 = new FormData();
-
-	var idProductoPedidoEliminar = $(this).attr("noPedido");
-	//console.log("idProductoPedidoEliminar", idProductoPedidoEliminar);
-	var nomUsuario = $(this).attr("nombreUsuario");
-	//console.log("nomUsuario", nomUsuario);
-	var noUsuario = $(this).attr("noUsuario");
-	//console.log("noUsuario", noUsuario);
-	var repeticion =$(this).attr("repeticion");
-	//console.log("repeticion", repeticion);
-
-	datos1.append("noUsuario", noUsuario);
-	datos1.append("nomUsuario", nomUsuario);
-	datos1.append("noPedido", idProductoPedidoEliminar);
-	datos1.append("tipo", 0);
-	datos1.append("mensaje", "");
-
-	$.ajax({
-			 url:rutaOculta+"ajax/usuarios.ajax.php",
-			 method:"POST",
-			 data: datos1,
-			 cache: false,
-			 contentType: false,
-			 processData: false,
-			 success:function(respuesta){
-
-			 }
-
-			})
-
- for (var i = 1; i <= contarPedidos; i++) {
-/*====================================================================
-  	EJECUTAR ACCIÓN DE CAMBIO DE ESTADO CON EL BOTÓN DE LISTO        
-======================================================================*/
-	datos.append("estadoPedido", 2);
-	datos.append("numeroPedido",idProductoPedidoEliminar);
-
-	$.ajax({
-			 url:rutaOculta+"ajax/usuarios.ajax.php",
-			 method:"POST",
-			 data: datos,
-			 cache: false,
-			 contentType: false,
-			 processData: false,
-			 success:function(respuesta){
-
-			 }
-
-			})
-
-		if(i==repeticion){
-
-			$("#preparando"+i).removeClass("fa-clock-o");
-			$("#preparando"+i).addClass("fa-check");
-
-			$("#listo"+i).removeClass("fa-clock-o");
-			$("#listo"+i).addClass("fa-check");
-
-		   document.getElementById("botonPreparando"+i).disabled=true;
-
-		}
-	}
-
-
-/*=========================================================
-     NOTIFICACIONES PUSH PARA LOS MENSAJES DE PEDIDOS     
-===========================================================*/
-var notifications = new FormData();
-
-notifications.append("userNotifications", localStorage.getItem("usuario"));
-
-		$.ajax({
-						
-			url:rutaOculta+"ajax/producto.ajax.php",
-			method: "POST",
-			data: notifications,	
-			cache: false,
-			contentType: false,
-			processData: false,
-			success:function(respuesta){
-
-			var not = JSON.parse(respuesta);
-			//console.log("not", not);
-
-			not.forEach(funcionForEach);
-
-			function funcionForEach(item, index){
-
-				//$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
-
-				if(item.id_usuario == localStorage.getItem("usuario")){
-
-					Push.create("Pedido Listo", {
-		              body: "El pedido "+item.no_pedido+" se encuentra listo",
-		              icon: rutaOculta+"vistas/img/plantilla/logo.jpg",
-
-		              onClick: function(){
-						window.location = rutaOculta+"notificaciones";
-						this.close();
-		    		  }
-
-	 				});
-
-				}		
-			}
-
-		}
-						
-	})
-})
-
-
-if(localStorage.getItem("tipoUsuario")==1){
-
-	var notifications = new FormData();
-
-	notifications.append("userNotifications", localStorage.getItem("usuario"));
-
-		$.ajax({
-						
-			url:rutaOculta+"ajax/producto.ajax.php",
-			method: "POST",
-			data: notifications,	
-			cache: false,
-			contentType: false,
-			processData: false,
-			success:function(respuesta){
-
-			var not = JSON.parse(respuesta);
-			//console.log("not", not);
-
-			not.forEach(funcionForEach);
-
-			function funcionForEach(item, index){
-
-				//$("#subcategoria").append('<option value="'+item.id+'">'+item.subcategoria+'</option>');
-
-				if(item.id_usuario == localStorage.getItem("usuario")){
-
-					Push.create("Pedido Listo", {
-		              body: "El pedido "+item.no_pedido+" se encuentra listo",
-		              icon: rutaOculta+"vistas/img/plantilla/logo.jpg",
-
-		              onClick: function(){
-						window.location = rutaOculta+"notificaciones";
-						this.close();
-		    		  }
-
-	 				});
-
-	 				/*=================================================================
-	 				    NO MOSTRAR DE NUEVO LOS MENSAJES QUE YA SE MOSTRARON UNA VEZ      
-	 				===================================================================*/
-	 				var noMostrar = new FormData();
-
-					noMostrar.append("deshabilitarMensaje", item.no_pedido);
-
-					$.ajax({
-						
-						url:rutaOculta+"ajax/usuarios.ajax.php",
-						method: "POST",
-						data: noMostrar,	
-						cache: false,
-						contentType: false,
-						processData: false,
-						success:function(respuesta){
-
-						}
-						
-					})
-
-				}		
-			}
-
-		}
-						
-	})
-}
-
 
 
 

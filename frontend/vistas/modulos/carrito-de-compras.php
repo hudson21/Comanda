@@ -152,15 +152,15 @@
 
 				<div class="listaProductos row">
 
-					<h4 class="text-center well text-muted text-uppercase">Productos a comprar</h4>
+					<h4 class="text-center well text-muted text-uppercase">Productos a confirmar</h4>
 
 					<table class="table table-striped tablaProductos">
 						
 						<thead>
 							
 							<tr>
-								<th>Producto</th>
-								<th>Cantidad</th>
+								<th >Producto</th>
+								<th >Cantidad</th>
 							
 							</tr>
 
@@ -179,32 +179,14 @@
 							
 							<tbody>
 								
-								<tr>
-									<td><strong>Total</strong></td>
-									<td><strong><span class="cambioDivisa">USD</span> $<span class="valorSubTotal" valor="0">0</span></strong></td>
-								</tr>
-
-								<tr style="display:none;">
-									<td>Envío</td>
-									<td><span class="cambioDivisa">USD</span> $<span class="valorTotalEnvio" valor="0">0</span></td>
-								</tr>
-
-							   <tr style="display:none;">
-									<td>Impuesto</td>
-									<td><span class="cambioDivisa">USD</span> $<span class="valorTotalImpuesto" valor="0">0</span></td>
-								</tr>
-
-								<tr style="display:none;">
-									<td><strong>Total</strong></td>
-									<td><strong><span class="cambioDivisa">USD</span> $<span class="valorTotalCompra" valor="0">0</span></strong></td>
-								</tr>
+				
 
 
 							</tbody>
 
 						</table>
 				
-						<div class="divisa">
+						<!--<div class="divisa">
 							
 							<select class="form-control" id="cambiarDivisa" name="divisa">
 								
@@ -214,7 +196,7 @@
 
 							<br>
 
-						</div>
+						</div>-->
 
 					</div>
 
