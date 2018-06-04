@@ -6,13 +6,13 @@ BANNER
 $a=0;
 $servidor = Ruta::ctrRutaServidor();
 
-$ruta = "sin-categoria";
+/*$ruta = "sin-categoria";
 
 $banner = ControladorProductos::ctrMostrarBanner($ruta);
 
 $titulo1 = json_decode($banner["titulo1"],true);
 $titulo2 = json_decode($banner["titulo2"],true);
-$titulo3 = json_decode($banner["titulo3"],true);
+$titulo3 = json_decode($banner["titulo3"],true);*/
 
 /*if($banner != null){
 
@@ -223,27 +223,11 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 					  	if($_SESSION["tipo_usuario"] == 1){
 
-					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
-
-							<figure class="productsImg">';
+					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 				
-								echo'<a href="'.$value["ruta"].'" class="pixelProducto">';
+								
 
-							if($value["portada1"] == null){
-								$portada=$value["portada"];		
-							}else{
-								$portada=$value["portada1"];
-							}
-									
-								 echo'<img src="'.$servidor.$portada.'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4">
+							echo'<h4 class="productsH4">
 					
 								<small>';
 
@@ -252,22 +236,10 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 								}else{
 									$titulo = $value["titulo1"];
 								}
-
-								if($value["precio1"] == null){
-									$precio=$value["precio"];		
-								}else{
-									$precio=$value["precio1"];
-								}
-
-								if($value["tipo1"] == null){
-									$tipo=$value["tipo"];		
-								}else{
-									$tipo=$value["tipo1"];
-								}
 									
 									echo'<a href="'.$ruta.'" class="pixelProducto">
 										
-										'.$titulo.'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -281,27 +253,17 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 					  	}//FIN DEL TIPO USUARIO
 					  	else{
 
-					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
-
-							<figure class="productsImg">';
+					  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 				
-								echo'<a href="'.$value["ruta"].'" class="pixelProducto">';
-									
-								 echo'<img src="'.$servidor.$value["portada"].'" class="img-responsive">
+								
 
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4">
+						echo'<h4 class="productsH4">
 					
 								<small>';
 									
 									echo'<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -318,27 +280,15 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 					}//FIN DE VALIDAR SESION
 					else{
 
-						echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">
-
-							<figure class="productsImg">';
+						echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 				
-								echo'<a href="'.$value["ruta"].'" class="pixelProducto">';
-									
-								 echo'<img src="'.$servidor.$value["portada"].'" class="img-responsive">
-
-								</a>
-
-							</figure>
-
-							<span class="productsNumero pull-right">'.$value["id"].'</span>
-
-							<h4 class="productsH4">
+						echo'<h4 class="productsH4">
 					
 								<small>';
 									
 									echo'<a href="'.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["titulo"].'<br>
+										'.$value["id"].". ".$value["titulo"].'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -372,10 +322,10 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 
 							if($_SESSION["tipo_usuario"] == 1){
 
-								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$portada.'" titulo="'.$titulo.'" precio="'.$precio.'" tipo="'.$tipo.'"  data-toggle="tooltip">';
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" titulo="'.$titulo.'"  data-toggle="tooltip">';
 							}else{
 
-								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'" imagen="'.$servidor.$value["portada"].'" titulo="'.$value["titulo"].'" precio="'.$value["precio"].'" tipo="'.$value["tipo"].'"  data-toggle="tooltip">';
+								echo'<button type="button" class="btn  btn-circle btn-lg agregarCarrito" idProducto="'.$value["id"].'"  titulo="'.$value["titulo"].'"   data-toggle="tooltip">';
 							}
 
 								   
