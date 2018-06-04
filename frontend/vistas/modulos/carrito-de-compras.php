@@ -42,7 +42,7 @@
 			===================================================-->
 			<div class="panel-heading cabeceraCarrito">
 
-				<div class="col-md-6 col-sm-7 col-xs-12 text-center">
+				<div class="col-md-3 col-sm-7 col-xs-12 text-center">
 
 					<h3>
 						<small>PRODUCTO</small>
@@ -50,26 +50,11 @@
 					
 				</div>
 
-				<div class="col-md-2 col-sm-7 col-xs-0 text-center">
 
-					<h3>
-						<small>PRECIO</small>
-					</h3>
-					
-				</div>
-
-				<div class="col-sm-2 col-xs-0 text-center">
+				<div class="col-md-5 col-sm-2 col-xs-0 text-center">
 
 					<h3>
 						<small>CANTIDAD</small>
-					</h3>
-					
-				</div>
-
-				<div class="col-sm-2 col-xs-0 text-center">
-
-					<h3>
-						<small>SUBTOTAL</small>
 					</h3>
 					
 				</div>
@@ -88,24 +73,7 @@
 			===================================================-->
 			<div class="panel-body sumaCarrito">
 
-				<div class="col-md-4 col-sm-6 col-xs-12 pull-right well total">
-
-								<div class="col-xs-6">
-						
-									<h4>TOTAL:</h4>
-
-							   </div>
-
-								<div class="col-xs-6">
-
-									<h4 class=" tamañoLetraSumaSubTotal sumaSubTotal">
-							
-
-									</h4>
-						
-							  </div>
-					
-					</div>
+				
 
 					<div class="excepciones">
 						

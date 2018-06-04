@@ -296,7 +296,7 @@ $cliente->setScopes(['profile','email']);*/
             
             <div style="margin-left:5px" class="cesta">
               
-               <p>TU CESTA <span class="cantidadCesta"></span> <br> USD $ <span class="sumaCesta"></span></p>
+               <p>TU CESTA <span class="cantidadCesta"></span> <br>  <span style="visibility:hidden;" class="sumaCesta"></span></p>
 
             </div>
 
