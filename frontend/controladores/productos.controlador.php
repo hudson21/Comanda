@@ -271,64 +271,6 @@ class ControladorProductos{
 
 		if(isset($_POST["categoria"])){
 
-			/*===================================================
-			    VALIDAR IMAGEN
-			=====================================================*/
-			$ruta = "";
-
-			if(isset($_FILES["datosImagenProducto"]["tmp_name"])){
-
-				$numero = ModeloProductos::mldContrarProductos();
-
-				if($numero == null){
-
-					$num = 1;
-				
-				}else{
-					$num = count($numero)+1;
-				}
-
-				/*===================================================
-			    	PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-				=====================================================*/
-				$directorio = "vistas/img/subirProductos/".$num."/"; 
-				//PARA ELIMINAR LA FOTO DEL PRODUCTO
-				if(is_dir($directorio)){
-
-					unlink($directorio);
-				}
-
-				//Creamos el directorio de la carpeta de la imagen con permisos de lectura y escritura
-				mkdir($directorio, 0755);
-
-
-				/*===================================================
-			    	GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-				=====================================================*/
-				//$aleatorio = mt_rand(100, 9999);
-
-				
-
-				$imagen = "vistas/img/subirProductos/".$num."/".$num.".jpeg";
-
-				/*===================================================
-			    	MODIFICAMOS TAMAÑO DE LA FOTO
-				=====================================================*/
-				list($ancho, $alto) = getimagesize($_FILES["datosImagenProducto"]["tmp_name"]);
-
-				$nuevoAncho = 500;
-				$nuevoAlto = 562;
-
-				$origen = imagecreatefromjpeg($_FILES["datosImagenProducto"]["tmp_name"]);
-
-				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-				imagejpeg($destino, $imagen);
-
-
-			}
 			$answer = ModeloProductos::mldContrarProductos();
 
 			if($answer == null){
@@ -341,7 +283,6 @@ class ControladorProductos{
 			}
 
 			
-
 			$rutaProducto = str_replace(" ", "-", $_POST["nombre_producto"]);
 
 
@@ -350,11 +291,8 @@ class ControladorProductos{
 						   "subcategoria" => $_POST["subcategoria"],
 						   "nombre_producto" => $_POST["nombre_producto"],
 						   "rutaProducto" => $rutaProducto,
-						   "codigo_busqueda" => $_POST["codigo_busqueda"],
-						   "tipo"=>"fisico",		
-						   "descripcion" => $_POST["descripcion"],
-						   "precio" => $_POST["precio"],
-						   "portada" => $imagen);
+						   "codigo_busqueda" => $_POST["codigo_busqueda"],		
+						   "descripcion" => $_POST["descripcion"]);
 
 			$tabla = "productos";
 

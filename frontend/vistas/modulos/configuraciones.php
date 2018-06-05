@@ -385,38 +385,10 @@ if(!isset($_SESSION["validarSesion"])){
 				//onsubmit="return registroProducto()"
 				echo'<form method="POST" onsubmit="return registroProducto()" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->
 		    			
-				<div class="col-md-3 col-sm-4 col-xs-12 text-center ">
-							<br>
-
-					<figure id="imgProducto">';
-							
-					//echo'<input type="hidden" value="'.$_SESSION.'">';
-
-				/*echo'<img src="'.$servidor.'vistas/img/productos/subirProductos/subirImagen.png" class="img-thumbnail">*/
-
-				echo'</figure>
-
-							<br>
-
-						
-					<!--<button type="button" class="btn btn-default" id="btnCambiarFoto">
-									
-						Subir foto de producto
-									
-					</button>-->
-
+				<div class="col-md-2 col-sm-4 col-xs-12 text-center ">';
 							
 
-					 <div id="subirImagenProducto">
-								
-						<input type="file" class="form-control" id="datosImagenProducto" name="datosImagenProducto">
-
-							<img class="previsualizar" src="">
-
-					 </div>
-
-				</div>
-
+				echo'</div>
 
 				<!--COMIENZO DE LOS CAMPOS DEL FORMULARIO-->
 				<div class="col-md-8 col-sm-12 col-xs-12">
@@ -497,17 +469,6 @@ if(!isset($_SESSION["validarSesion"])){
 								
 										<span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
 										<input type="text" class="form-control" id="descripcion" name="descripcion" value="">
-
-									</div>
-
-								<br>
-
-								<label class="control-label text-muted text-uppercase" for="precio">Precio:</label>
-
-								<div class="input-group">
-								
-										<span class="input-group-addon"><i class="glyphicon glyphicon-euro"></i></span>
-										<input type="number" class="form-control" id="precio" name="precio" value="">
 
 									</div>
 

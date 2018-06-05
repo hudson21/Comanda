@@ -886,42 +886,6 @@ function registroProducto(){
 		return false;
 	}
 
-
-	/*============================================================
-		VALIDAR PRECIO        
-	==============================================================*/
-	var precio = $("#precio").val();
-
-	if(precio != ""){
-
-		var expresion = /^[0-9. ]*$/;
-
-		if(!expresion.test(precio)){ //Sino cumple con la edxpresión regular
-
-			$("#precio").parent().after('<div class="alert alert-warning"><strong>ERROR:</strong>Solo se permiten números y puntos</div>');
-			
-			return false;
-		}
-
-	}else{
-
-		$("#precio").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
-		
-		return false;
-
-	}
-
-	/*============================================================
-		VALIDAR IMAGEN        
-	==============================================================*/
-	if($(".previsualizar").attr("src") == ""){
-
-		$(".previsualizar").parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> El campo de imagen es obligatorio</div>');
-
-		return false;
-	}
-
-	//console.log("rutaProducto", $("#rutaProducto").val());
 }
 
 

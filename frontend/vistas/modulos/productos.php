@@ -233,6 +233,8 @@ LISTAR PRODUCTOS
 
 				if(!isset($_SESSION["validarSesion"])){
 
+					$_SESSION["mostrarPaginacionProductos"] = true;
+
 					echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
 					echo'<h4 class="productsH4Productos productsH4">
@@ -257,6 +259,8 @@ LISTAR PRODUCTOS
 
 					if($_SESSION["tipo_usuario"] == 0){
 
+						$_SESSION["mostrarPaginacionProductos"] = true;
+
 						echo'<h4 class="productsH4Productos productsH4">
 					
 								<small>
@@ -272,7 +276,12 @@ LISTAR PRODUCTOS
 								</small>			
 
 							</h4>';
+
 					}else{
+
+						if($value["id_bar"] == $_SESSION["bar"]){
+
+							$_SESSION["mostrarPaginacionProductos"] = true;
 
 							if($value["titulo1"] == null){
 								$titulo = $value["titulo"];
@@ -296,6 +305,13 @@ LISTAR PRODUCTOS
 								</small>			
 
 							</h4>';
+
+						}else{
+
+							$_SESSION["mostrarPaginacionProductos"] = false;
+						}
+
+							
 					}
 				}
 					
@@ -474,6 +490,8 @@ LISTAR PRODUCTOS
 			
 			<?php
 
+			if($_SESSION["mostrarPaginacionProductos"] == true){
+
 				if(count($listaProductos) != 0){
 
 					$pagProductos = ceil(count($listaProductos)/12);
@@ -599,6 +617,9 @@ LISTAR PRODUCTOS
 					}
 
 				}
+			}
+
+				
 
 			?>
 
