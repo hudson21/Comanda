@@ -553,15 +553,9 @@ if(!isset($_SESSION["validarSesion"])){
 
 				  <tr class="header">
 				    <th style="width:10%;">Id</th>
-				    <th style="width:30%;">Nombre</th>
-				    <!--<th style="width:10%;">Id_Categoria</th>
-				    <th style="width:10%;">Id_Subcategoria</th>-->
-				    <th style="width:25%;">Tipo</th>
-				    <!--<th style="width:30%;">Ruta</th>-->
+				    <th style="width:20%;">Nombre</th>
 				    <th style="width:10%;">Código</th>
-				    <th style="width:60%;">Descripcion</th>
-				    <th style="width:10%;">Precio</th>
-				    <th style="width:10%;">Imagen</th>
+				    <th style="width:40%;">Descripcion</th>
 				    <th style="width:20%;">Acción</th>
 
 				  </tr>';
@@ -580,8 +574,6 @@ if(!isset($_SESSION["validarSesion"])){
 			echo'<tr>';
 
 			//onsubmit="return registroProducto()"
-			//
-	echo'<form method="POST" onsubmit="return actualizarProducto('.$value3["id"].')" enctype="multipart/form-data"> <!--El enctype es para poder cambiar luego las fotos-->';
 
 		    echo'<td style="font-size:13px">'.$value3["id"];
 
@@ -600,127 +592,10 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">'.$titulo.'
 
-			<input type="text" style="width:100px" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
+			<input type="text" style="width:120px" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
 
 			</td>';
 
-			/*echo'<td>';
-
-				echo'<div class="form-group">
-						
-				  <select identity = "'.$value3["id"].'" class="selectpicker form-control selectCategoriaEdit" name="selectCategoriaEdit" id="selectCategoriaEdit'.$value3["id"].'">';
-
-					$item="id";
-
-					if($value3["id_categoria1"] == null){
-						
-						$valor=$value3["id_categoria"];
-					
-					}else{
-
-						$valor=$value3["id_categoria1"];
-					}
-
-            		 
-
-					  $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
-
-                  	    echo'<option value='.$categorias["id"].'>'.$categorias["categoria"].'</option>';
-
-                  	  $categorias2 = ControladorProductos::ctrMostrarCategorias(null,null);
-											
-						foreach($categorias2 as $key => $value4){
-
-							if($value4["id"] != $categorias["id"]){
-
-								echo'<option value='.$value4["id"].'>'.$value4["categoria"].'</option>';
-							}	
-						}
-
-				echo'</select>
-							
-				</div>';
-
-			echo'</td>';*/
-
-
-			/*======================================
-			    SUBCATEGORIA      
-			========================================*/
-			/*echo'<td>';
-
-				echo'<div class="form-group">
-						
-				  <select  class="selectpicker form-control selectSubCategoriaEdit'.$value3["id"].'" name="selectSubCategoriaEdit" id="selectSubCategoriaEdit'.$value3["id"].'">';
-
-					$item="id";
-
-					if($value3["id_subcategoria1"] == null){
-						
-						$idSub=$value3["id_subcategoria"];
-					
-					}else{
-
-						$idSub=$value3["id_subcategoria1"];
-					}
-
-						$subcategorias = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria($valor);
-
-						foreach ($subcategorias as $key => $value5) {
-
-							if($value5["id"] == $idSub){
-								echo'<option value='.$value5["id"].'>'.$value5["subcategoria"].'</option>';
-							
-							}else{
-								echo'<option value='.$value5["id"].'>'.$value5["subcategoria"].'</option>';
-							}	
-						}
-
-				echo'</select>
-							
-				</div>';
-
-			echo'</td>';*/
-			
-
-			if($value3["tipo1"] == null){
-				$tipo=$value3["tipo"];		
-			}else{
-				$tipo=$value3["tipo1"];
-			}
-
-			echo'<td>';
-
-				echo'<div class="form-group">
-						
-				  <select style="width:80px" class="selectpicker form-control tipoEdit'.$value3["id"].'" name="selectTipoEdit" id="selectTipoEdit'.$value3["id"].'">';
-
-				  if($tipo == "fisico"){
-				  	echo'<option value='.$tipo.'>'.$tipo.'</option>';
-				  	echo'<option value="virtual">virtual</option>';
-				  
-				  }else{
-				  	echo'<option value='.$tipo.'>'.$tipo.'</option>';
-				  	echo'<option value="fisico">fisico</option>';
-				  }
-
-			echo'</select>
-							
-				</div>';
-
-			echo'</td>';
-
-
-			/*if($value3["ruta1"] == null){
-				$ruta=$value3["ruta"];		
-			}else{
-				$ruta=$value3["ruta1"];
-			}
-
-			echo'<td style="font-size:13px">
-
-			<input type="text" style="width:120px" class="form-control rutaEdit" id="rutaEdit'.$value3["id"].'" name="rutaEdit" value="'.$ruta.'">
-			</td>';*/
 
 			if($value3["titular1"] == null){
 				$codigo=$value3["titular"];		
@@ -730,7 +605,7 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<input type="text" style="width:60px"class="form-control codigoEdit" id="codigoEdit'.$value3["id"].'" name="codigoEdit" value="'.$codigo.'">
+			<input type="text" style="width:100px"class="form-control codigoEdit" id="codigoEdit'.$value3["id"].'" name="codigoEdit" value="'.$codigo.'">
 			</td>';
 
 
@@ -742,83 +617,22 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<textarea style="width:240px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
+			<textarea style="width:280px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
 			name="descripcionEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
 		
 
-			if($value3["precio1"] == null){
-				$precio=$value3["precio"];		
-			}else{
-				$precio=$value3["precio1"];
-			}
-
-			echo'<td style="font-size:13px">
-
-			<input type="text" class="form-control precioEdit" id="precioEdit'.$value3["id"].'" name="precioEdit"  value="'.$precio.'">
-			</td>';
-
-			if($value3["portada1"] == null){
-				$portada=$value3["portada"];		
-			}else{
-				$portada=$value3["portada1"];
-			}
-
-			echo'<td>
-
-				<figure id="imgProductoCambiar" class="imgProductoCambiar'.$value3["id"].'">';
-							
-					//echo'<input type="hidden" value="'.$_SESSION.'">';
-
-				echo'<img src="'.$servidor.$portada.'" class="img-thumbnail">';
-
-			echo'</figure>
-
-						<br>
-
-						<button type="button" class="btn btn-default btnCambiarFotoProducto"  identificacion="'.$value3["id"].'">
-									
-						Cambiar foto de producto
-									
-					</button>
-
-						
-					 <div id="cambiarImagenProducto" class="cambiarImagenProducto'.$value3["id"].'">
-								
-						<input type="file" class="form-control datoscambiarImagenProducto" id="datoscambiarImagenProducto'.$value3["id"].'" i="'.$value3["id"].'" name="datoscambiarImagenProducto">
-
-							<img class="previsualizar'.$value3["id"].'" src="">
-
-					 </div>
-
-
-				</td>';
-
 			echo'<td>';
 
-			if($value3["portada1"] == null){
-
-				$portada=$value3["portada"];
-
-				echo'<button type="button" style="margin-bottom:15px" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-times"></i>
+				echo'<button type="button" style="margin-right:5px" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-times"></i>
 					  </button>';
-
-			}else{
-				$portada=$value3["portada1"];
-
-				echo'<button type="button" style="margin-bottom:15px" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'" dirImage="'.$portada.'" ><i class="fa fa-times"></i>
-					  </button>'; 
-			}
-
-					
-			   echo'<button  type="submit"  class="btn btn-default btn-success actualizarProducto'.$value3["id"].'" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
+	
+			   echo'<button  type="button"  class="btn btn-default btn-success actualizarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
 					  </button>
 		
 			</td>';
 
 			$actualizarProducto = new ControladorProductos();
 			$actualizarProducto->ctrActualizarProducto();
-
-	echo'</form><!--ESTE ES EL CIERRE DEL FORM-->';
 					
 			echo'</tr>';
 			  

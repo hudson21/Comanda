@@ -225,6 +225,8 @@ LISTAR PRODUCTOS
 
 					</div>';
 
+				$_SESSION["mostrarPaginacionProductos"] = false;
+
 			}else{
 
 				echo '<ul class="grid0">';
@@ -279,7 +281,9 @@ LISTAR PRODUCTOS
 
 					}else{
 
-						if($value["id_bar"] == $_SESSION["bar"]){
+						if($_SESSION["bar"] == $value["id_bar"] ){
+
+							
 
 							$_SESSION["mostrarPaginacionProductos"] = true;
 
@@ -309,6 +313,7 @@ LISTAR PRODUCTOS
 						}else{
 
 							$_SESSION["mostrarPaginacionProductos"] = false;
+							break;
 						}
 
 							
