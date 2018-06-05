@@ -3,12 +3,13 @@
 $servidor = Ruta::ctrRutaServidor();
 
 $url = Ruta::ctrRuta();
+
+$_SESSION["mostrarPaginacionBuscador"] = false;
 ?>
 
 <!--===============================================
 BARRA DE PRODUCTOS
 ===================================================-->
-
 <div class="container-fluid well well-sm barraProductos">
 
    	<div class="container">

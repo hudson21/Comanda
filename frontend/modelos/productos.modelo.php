@@ -571,16 +571,13 @@ class ModeloProductos{
 	=============================================*/
 	static public function mdlActualizarProducto($tabla, $datos){
 
-	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET titulo1 = :titulo1, tipo1 = :tipo1, titular1 = :titular1, descripcion1 = :descripcion1, precio1 = :precio1, portada1 = :portada1 WHERE id_producto = :id_producto and id_bar = :id_bar");
+	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET titulo1 = :titulo1, titular1 = :titular1, descripcion1 = :descripcion1  WHERE id_producto = :id_producto and id_bar = :id_bar");
 
-		$stmt -> bindParam(":titulo1", $datos["titulo1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":tipo1", $datos["tipo1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":titular1", $datos["titular1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":descripcion1", $datos["descripcion1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":precio1", $datos["precio1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":portada1", $datos["portada1"], PDO::PARAM_STR);
-		$stmt -> bindParam(":id_producto", $datos["id_producto"], PDO::PARAM_INT);
-		$stmt -> bindParam(":id_bar", $datos["id_bar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":titulo1", $datos["nombreActualizar"], PDO::PARAM_STR);
+		$stmt -> bindParam(":titular1", $datos["codigoActualizar"], PDO::PARAM_STR);
+		$stmt -> bindParam(":descripcion1", $datos["descripcionActualizar"], PDO::PARAM_STR);
+		$stmt -> bindParam(":id_producto", $datos["noProductoActualizar"], PDO::PARAM_INT);
+		$stmt -> bindParam(":id_bar", $datos["noBarActualizar"], PDO::PARAM_INT);
 		
 	
 		if($stmt -> execute()){

@@ -554,6 +554,8 @@ if(!isset($_SESSION["validarSesion"])){
 				  <tr class="header">
 				    <th style="width:10%;">Id</th>
 				    <th style="width:20%;">Nombre</th>
+				    <th style="width:10%;">Id_Categoria</th>
+				    <th style="width:10%;">Id_Subcategoria</th>
 				    <th style="width:10%;">Código</th>
 				    <th style="width:40%;">Descripcion</th>
 				    <th style="width:20%;">Acción</th>
@@ -592,9 +594,42 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">'.$titulo.'
 
-			<input type="text" style="width:120px" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
+			<input type="text" style="width:170px" class="form-control" id="productoName'.$value3["id"].'" name="productoName" class="productoName" value="'.$titulo.'">
 
 			</td>';
+
+			echo'<td>';
+				
+					$item="id";
+					
+						
+					$valor=$value3["id_categoria"];
+					
+					
+            		 
+					  $categorias = ControladorProductos::ctrMostrarCategorias($item,$valor);
+                  	    echo $categorias["id"].". ".$categorias["categoria"];
+           
+				
+			echo'</td>';
+
+			echo'<td>';
+				
+					$item="id";
+					
+						
+					$idSub=$value3["id_subcategoria"];
+					
+					$subcategorias = ControladorProductos::ctrMostrarSubCategoriasByIdCategoria($valor);
+
+					foreach ($subcategorias as $key => $value5) {
+						
+						if($value5["id"] == $idSub){
+							echo $value5["id"].'. '.$value5["subcategoria"];
+						 }	
+					}
+				
+			echo'</td>';
 
 
 			if($value3["titular1"] == null){
@@ -617,22 +652,19 @@ if(!isset($_SESSION["validarSesion"])){
 
 			echo'<td style="font-size:13px">
 
-			<textarea style="width:280px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
+			<textarea style="width:380px; height:134px" class="form-control descripcionEdit"  id="descripcionEdit'.$value3["id"].'" 
 			name="descripcionEdit" value="'.$descripcion.'">'.$descripcion.'</textarea>';
 		
 
 			echo'<td>';
 
-				echo'<button type="button" style="margin-right:5px" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-times"></i>
+				echo'<button type="button" style="margin-right:5px; margin-bottom:10px;" class="btn btn-default btn-danger eliminarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-times"></i>
 					  </button>';
 	
 			   echo'<button  type="button"  class="btn btn-default btn-success actualizarProducto" noProducto="'.$value3["id"].'" id_bar="'.$value3["id_bar"].'"><i class="fa fa-refresh"></i>
 					  </button>
 		
 			</td>';
-
-			$actualizarProducto = new ControladorProductos();
-			$actualizarProducto->ctrActualizarProducto();
 					
 			echo'</tr>';
 			  

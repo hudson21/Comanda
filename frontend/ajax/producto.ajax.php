@@ -115,6 +115,28 @@ class AjaxProductos{
 		echo $respuesta;
 	}
 
+	/*========================================================
+	  ACTUALIZAR PRODUCTO ESPECÍFICO POR ID_PRODCUTO y ID_BAR          
+	==========================================================*/
+	public $noProductoActualizar;
+	public $noBarActualizar;
+	public $nombreActualizar;
+	public $codigoActualizar;
+	public $descripcionActualizar;
+
+	public function ajaxActualizarProductoEspecificoByIdAndBar(){
+
+		$datos = array("noProductoActualizar"=>$this->noProductoActualizar,
+					   "noBarActualizar"=>$this->noBarActualizar,
+					   "nombreActualizar"=>$this->nombreActualizar,
+					   "codigoActualizar"=>$this->codigoActualizar,
+					   "descripcionActualizar"=>$this->descripcionActualizar);
+
+		$respuesta = ControladorProductos::ctrActualizarProducto($datos);
+
+		echo $respuesta;
+	}
+
 }
 
 if(isset($_POST["valor"])){
@@ -182,4 +204,17 @@ if(isset($_POST["valor"])){
 		$eliminarProductoSinImagen -> noProductoEliminar = $_POST["noProductoEliminarSinImagen"];
 		$eliminarProductoSinImagen -> noBarEliminar = $_POST["noBarEliminarSinImagen"];
 		$eliminarProductoSinImagen -> ajaxEliminarProductoEspecificoByIdAndBarSinImagenActualizar();
+	}
+
+	/*========================================================
+	  ACTUALIZAR PRODUCTO ESPECÍFICO POR ID_PRODCUTO y ID_BAR          
+	==========================================================*/
+	if(isset($_POST["noBarActualizar"])){
+		$actualizarProducto = new AjaxProductos();
+		$actualizarProducto -> noProductoActualizar = $_POST["noProductoActualizar"];
+		$actualizarProducto -> noBarActualizar = $_POST["noBarActualizar"];
+		$actualizarProducto -> nombreActualizar = $_POST["nombreActualizar"];
+		$actualizarProducto -> codigoActualizar = $_POST["codigoActualizar"];
+		$actualizarProducto -> descripcionActualizar = $_POST["descripcionActualizar"];
+		$actualizarProducto -> ajaxActualizarProductoEspecificoByIdAndBar();
 	}

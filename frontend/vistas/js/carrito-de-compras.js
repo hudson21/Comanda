@@ -565,16 +565,6 @@ $(".btnPagar ").click(function(){
 		return;
 	}
 
-	var divisa = $("#cambiarDivisa").val();
-	var total = $(".valorTotalCompra").html();
-	var impuesto = $(".valorTotalImpuesto").html();
-	var envio = $(".valorTotalEnvio").html();
-	var subtotal = $(".valorSubtotal").html();
-	var titulo = $(".valorTitulo").html();
-	var cantidad = $(".valorCantidad").html();
-	var valorItem = $(".valorItem").html();
-
-
 })
 
 /*==============================================

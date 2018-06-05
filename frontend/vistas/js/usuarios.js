@@ -18,6 +18,7 @@ FORMATEAR LOS INPUTS
 $("input").focus(function(){
 
 	$(".alert").remove();//Cuando se esté arriba de cualquier input y se esté escribiendo se removerán las alertas que estén en la pantalla
+	$(".errores").remove();
 })
 
 $("#seleccionarBar").change(function(){ 
@@ -1014,7 +1015,8 @@ $(".eliminarProducto").click(function(){
 							  
 							  if (isConfirm) {
 
-							 	window.location = localStorage.getItem("rutaBares");			
+							 	//window.location = localStorage.getItem("rutaBares");
+							 	window.location = rutaOculta+"configuraciones";			
 							  } 
 						  })
 
@@ -1030,132 +1032,177 @@ $(".eliminarProducto").click(function(){
 })
 
 
-function actualizarProducto(identity){
+ $(".actualizarProducto").click(function(){
 
-	/*============================================================
-	VALIDAR EL NOMBRE        
+ 	var identity = $(this).attr("noProducto");
+ 	var noBar = $(this).attr("id_bar");
+
+ 	/*============================================================
+				VALIDAR EL NOMBRE        
 	==============================================================*/
-	var nombreProducto = $("#productoName"+identity).val();
+			var nombreProducto = $("#productoName"+identity).val();
+			validarNombre = true;
 
-	if(nombreProducto != ""){
+				if(nombreProducto != ""){
 
-		var expresion = /^[a-zA-Z0-9 ]*$/;
+					var expresion = /^[a-zA-Z0-9 ]*$/;
 
-		if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
+					if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
 
-			//$("#productoName"+identity).parent().after('<p class="errores" style="font-size:8px; color:red"><strong>ERROR:</strong> No se permiten caracteres especiales en el Nombre</p>');
-			
-			return false;
-		}
+						$("#productoName"+identity).after('<p class="errores" style="font-size:12px; color:red"><strong>ERROR:</strong> No se permiten caracteres especiales en el Nombre</p>');
+						
+					  return ;
 
-	}else{
+					  validarNombre = false;
+					}
 
-		//$("#productoName"+identity).parent().after('<p class="errores" style="font-size:8px; color:red"><strong>ATENCIÓN:</strong> Este campo es obligatorio</p>');
-		
-		return false;
+				}else{
 
-	}
+					$("#productoName"+identity).after('<p class="errores" style="font-size:12px; color:red"><strong>ATENCIÓN:</strong> Este campo es obligatorio</p>');
+					
+					return ;
 
-	/*============================================================
-	VALIDAR LA RUTA        
-	==============================================================*/
-	/*var ruta = $("#rutaEdit"+identity).val();
+					validarNombre = false;
 
-	if(ruta != ""){
-
-		var expresion = /^[a-zA-Z0-9 -]*$/;
-
-		if(!expresion.test(ruta)){ //Sino cumple con la edxpresión regular
-
-			//$("#rutaEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se  caracteres especiales en la Ruta</div>');
-			
-			return false;
-		}
-
-	}else{
-
-		//$("#rutaEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
-		
-		return false;
-
-	}*/
-
-	/*============================================================
-		VALIDAR CÓDIGO DE BÚSQUEDA        
-	==============================================================*/
-	var codigo = $("#codigoEdit"+identity).val();
-	//console.log("codigo", codigo);
-
-	if(codigo != ""){
-
-		var expresion = /^[a-zA-Z0-9]*$/;
-
-		if(!expresion.test(codigo)){ //Sino cumple con la edxpresión regular
-
-			//$("#codigoEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales en el Código</div>');
-			
-			return false;
-		}
-
-	}else{
-
-		//$("#codigoEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
-		
-		return false;
-
-	}
-
-	/*============================================================
-		VALIDAR DESCRIPCIÓN         
-	==============================================================*/
-	var descripcion = $("#descripcionEdit"+identity).val();
-	//console.log("descripcion", descripcion);
-
-	if(descripcion != ""){
-
-		var expresion = /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ,-@.+ ]*$/;
-
-		if(!expresion.test(descripcion)){ //Sino cumple con la edxpresión regular
-
-			//$("#descripcionEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong> No se permiten caracteres especiales en la Descripción</div>');
-			
-			return false;
-		}
-
-	}else{
-
-		//$("#descripcionEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
-		
-		return false;
-	}
+				}
 
 
-	/*============================================================
-		VALIDAR PRECIO        
-	==============================================================*/
-	var precio = $("#precioEdit"+identity).val();
+			/*============================================================
+				VALIDAR CÓDIGO DE BÚSQUEDA        
+			==============================================================*/
+			var codigo = $("#codigoEdit"+identity).val();
+			validarCodigo = true;
 
-	if(precio != ""){
+				if(codigo != ""){
 
-		var expresion = /^[0-9. ]*$/;
+					var expresion = /^[a-zA-Z0-9]*$/;
 
-		if(!expresion.test(precio)){ //Sino cumple con la edxpresión regular
+					if(!expresion.test(codigo)){ //Sino cumple con la edxpresión regular
 
-			//$("#precioEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ERROR:</strong>Solo se permiten números y puntos en el Precio</div>');
-			
-			return false;
-		}
+						$("#codigoEdit"+identity).after('<p class="errores" style="font-size:12px; color:red"><strong>ERROR:</strong> No se permiten caracteres especiales en el Código</p>');
+						
+						return;
 
-	}else{
+						validarCodigo = false;
+					}
 
-		//$("#precioEdit"+identity).parent().after('<div class="alert alert-warning"><strong>ATENCIÓN:</strong> Este campo es obligatorio</div>');
-		
-		return false;
+				}else{
 
-	}
+					$("#codigoEdit"+identity).after('<p class="errores" style="font-size:12px; color:red"><strong>ATENCIÓN:</strong> Este campo es obligatorio</p>');
+					
+					return;
+
+					validarCodigo = false;
+
+				}
+
+
+
+			/*============================================================
+				VALIDAR DESCRIPCIÓN         
+			==============================================================*/
+			var descripcion = $("#descripcionEdit"+identity).val();
+			validarDescripcion = true;
+
+				if(descripcion != ""){
+
+					var expresion = /^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ,:!"#$%&/()=?¡*´<>,-@.+ ]*$/;
+
+					if(!expresion.test(descripcion)){ //Sino cumple con la edxpresión regular
+
+						$("#descripcionEdit"+identity).after('<p class="errores" style="font-size:12px; color:red"><strong>ERROR:</strong> No se permiten caracteres especiales en la Descripción</p>');
+						
+						return ;
+
+						validarDescripcion = false;
+					}
+
+				}else{
+
+					$("#descripcionEdit"+identity).after('<p class="errores" style="font-size:12px; color:red"><strong>ATENCIÓN:</strong> Este campo es obligatorio</p>');
+					
+					return ;
+
+					validarDescripcion = false;
+				}
+
+
+ 	swal({
+		 title: "¿Desea actualizar este producto?",
+		 type: "warning",
+		 showCancelButton: true,
+		 confirmButtonColor:"#DD6B55",
+		 confirmButtonText: "Aceptar",
+		 closeOnConfirm: false
+	  },
+
+	   function(isConfirm){
+		  
+		  if (isConfirm) {
+		 
+		   var datosActualizar = new FormData();
+	  
+		   datosActualizar.append("noProductoActualizar",identity);
+		   datosActualizar.append("noBarActualizar",noBar);
+		   datosActualizar.append("nombreActualizar",nombreProducto);
+		   datosActualizar.append("codigoActualizar",codigo);
+		   datosActualizar.append("descripcionActualizar",descripcion);
+
+				   	
+					$.ajax({
+							 url:rutaOculta+"ajax/producto.ajax.php",
+							 method:"POST",
+							 data: datosActualizar,
+							 cache: false,
+							 contentType: false,
+							 processData: false,
+							 success:function(respuesta){
+							 	console.log("respuesta", respuesta);
+										
+									if(respuesta == "ok"){
+
+										swal({
+										 title: "El producto se ha actualizado satisfactoriamente",
+										 type: "success",
+										 showCancelButton: false,
+										 confirmButtonColor:"#DD6B55",
+										 confirmButtonText: "Aceptar",
+										 closeOnConfirm: false
+									  },
+
+									   function(isConfirm){
+										  
+										  if (isConfirm) {
+
+										 	//window.location = localStorage.getItem("rutaBares");
+										 	window.location = rutaOculta+"configuraciones";			
+										  } 
+									  })
+
+								}//FIN DEL IF OK
+
+						    }// FIN DE LA RESPUESTA
+
+						})//FIN DEL AJAX
+
+					
+
+	 			}//FIN DEL IF CONFIRM 
+
+   		})
+
+ })
 
 	
-}
+
+
+	
+
+
+	
+
+	
+
 
 
 
