@@ -212,7 +212,7 @@
   		//var_dump($rutas[0]); //Las rutas que están en la posición 0 son las amigables
   }else{
 
-  	// include "modulos/slide.php";
+  	 include "modulos/slide.php";
 
      include "modulos/destacados.php";
   }

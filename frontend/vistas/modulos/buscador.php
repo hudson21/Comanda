@@ -192,6 +192,8 @@ LISTAR PRODUCTOS
 								<h2>Aún no hay productos en esta sección</h2>
 
 						 </div>';
+
+						 $_SESSION["mostrarPaginacionBuscador"] = false;
 					
 					}else{
 
@@ -200,6 +202,8 @@ LISTAR PRODUCTOS
 				foreach ($productos as $key => $value) {
 					
 					if(!isset($_SESSION["validarSesion"])){
+
+						$_SESSION["mostrarPaginacionBuscador"] = true;
 
 						echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
@@ -236,6 +240,8 @@ LISTAR PRODUCTOS
 						if($_SESSION["validarSesion"] == "ok"){
 
 						  	if($_SESSION["tipo_usuario"] == 0){
+
+						  		$_SESSION["mostrarPaginacionBuscador"] = true;
 
 						  		echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
@@ -290,7 +296,11 @@ LISTAR PRODUCTOS
 
 						  	}else{
 
-						  		if($value["disponible"] == 1){
+						  		if($value["id_bar"] == $_SESSION["bar"]){
+
+						  			if($value["disponible"] == 1){
+
+						  				$_SESSION["mostrarPaginacionBuscador"] = true;
 
 						  			echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
@@ -368,7 +378,18 @@ LISTAR PRODUCTOS
 							</div>';
 
 						  }
-					}
+
+					}else{
+
+						$_SESSION["mostrarPaginacionBuscador"] = false;
+						echo '<div class="col-xs-12 error404 text-center">
+								<h1><small>¡Oops!</small></h1>
+								<h2>Aún no hay productos en esta sección</h2>
+						 </div>';
+						 break;
+					}	
+
+				}
 			}
 
 	}
@@ -390,6 +411,8 @@ LISTAR PRODUCTOS
 
 
 		 if(!isset($_SESSION["validarSesion"])){
+
+		 	$_SESSION["mostrarPaginacionBuscador"] = true;
 
 		 	echo '<li class="col-xs-12">
 					  
@@ -432,7 +455,11 @@ LISTAR PRODUCTOS
 			
 		 }else{
 
-		 	if($value["disponible"] == 1){
+		 	if($value["id_bar"] == $_SESSION["bar"]){
+
+		 		$_SESSION["mostrarPaginacionBuscador"] = true;
+
+		 		if($value["disponible"] == 1){
 
 		 		echo '<li class="col-xs-12">
 					  
@@ -596,10 +623,17 @@ LISTAR PRODUCTOS
 
 		 	}
 
+		 }else{
 
+		 	$_SESSION["mostrarPaginacionBuscador"] = false;
+						echo '<div class="col-xs-12 error404 text-center">
+								<h1><small>¡Oops!</small></h1>
+								<h2>Aún no hay productos en esta sección</h2>
+						 </div>';
+						 break;
 		 }
-
-				
+	
+	 }
 
 	 echo'</li>';
 
@@ -622,7 +656,9 @@ LISTAR PRODUCTOS
 
 					<?php
 
-					if(count($listaProductos) != 0){
+					if($_SESSION["mostrarPaginacionBuscador"] == true){
+
+						if(count($listaProductos) != 0){
 
 						$pagProductos = ceil(count($listaProductos)/12);
 						//El método ceil redondea los decimales al número entero mayor
@@ -754,7 +790,11 @@ LISTAR PRODUCTOS
 					    }
 					}
 
-					?>
+				}
+
+					
+
+			?>
 				</center>
 
 			  </div>

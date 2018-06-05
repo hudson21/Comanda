@@ -250,6 +250,8 @@ LISTAR PRODUCTOS
 
 					</div>';
 
+				$_SESSION["mostrarPaginacionProductos"] = false;
+
 			}else{
 
 				echo '<ul class="grid0">';
@@ -257,6 +259,8 @@ LISTAR PRODUCTOS
 					foreach ($productos as $key => $value) {
 
 				if(!isset($_SESSION["validarSesion"])){
+
+					$_SESSION["mostrarPaginacionProductos"] = true;
 
 					echo '<li style="margin-bottom:30px" class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
@@ -294,6 +298,8 @@ LISTAR PRODUCTOS
 
 					if($_SESSION["tipo_usuario"] == 0){
 
+						$_SESSION["mostrarPaginacionProductos"] = true;
+
 						echo'<figure class="productsImg">
 								
 								<a href="'.$value["ruta"].'" class="pixelProducto">
@@ -322,6 +328,10 @@ LISTAR PRODUCTOS
 
 							</h4>';
 					}else{
+
+						if($_SESSION["bar"] == $value["id_bar"] ){
+
+							$_SESSION["mostrarPaginacionProductos"] = true;
 
 							if($value["portada1"] == null){
 								$portada=$value["portada"];		
@@ -374,6 +384,14 @@ LISTAR PRODUCTOS
 								</small>			
 
 							</h4>';
+						}else{
+
+							$_SESSION["mostrarPaginacionProductos"] = false;
+							break;
+						}
+
+
+							
 					}
 				}
 					
@@ -423,6 +441,8 @@ LISTAR PRODUCTOS
 
 						if($_SESSION["tipo_usuario"] == 0){
 
+							$_SESSION["mostrarPaginacionProductos"] = true;
+
 							echo '<li class="col-xs-12">
 					  
 				  		<div class="col-lg-2 col-md-3 col-sm-4 col-xs-12">
@@ -455,7 +475,11 @@ LISTAR PRODUCTOS
 
 						}else{
 
-							if($value["portada1"] == null){
+							if($_SESSION["bar"] == $value["id_bar"] ){
+
+								$_SESSION["mostrarPaginacionProductos"] = true;
+
+								if($value["portada1"] == null){
 								$portada=$value["portada"];		
 							}else{
 								$portada=$value["portada1"];
@@ -508,11 +532,20 @@ LISTAR PRODUCTOS
 
 								</small>
 							</h1>';
+					}else{
+
+						$_SESSION["mostrarPaginacionProductos"] = false;
+							break;
+					}
+
+							
 
 						}
 
 
 					}else{
+
+						$_SESSION["mostrarPaginacionProductos"] = false;
 
 						echo '<li class="col-xs-12">
 					  
@@ -607,7 +640,9 @@ LISTAR PRODUCTOS
 			
 			<?php
 
-				if(count($listaProductos) != 0){
+				if($_SESSION["mostrarPaginacionProductos"] == true){
+
+					if(count($listaProductos) != 0){
 
 					$pagProductos = ceil(count($listaProductos)/12);
 
@@ -733,6 +768,10 @@ LISTAR PRODUCTOS
 
 				}
 
+			}
+
+
+				
 			?>
 
 			</center>

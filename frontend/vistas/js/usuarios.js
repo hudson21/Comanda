@@ -1050,7 +1050,8 @@ $(".eliminarProducto").click(function(){
 							  
 							  if (isConfirm) {
 
-							 	window.location = localStorage.getItem("rutaBares");			
+							 	//window.location = localStorage.getItem("rutaBares");
+							 	window.location = rutaOculta+"configuraciones";			
 							  } 
 						  })
 

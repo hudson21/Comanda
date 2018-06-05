@@ -381,7 +381,8 @@ class ControladorProductos{
 
 							if(isConfirm){
 									
-										  history.back();
+										  //history.back();
+										  window.location = rutaOculta+"configuraciones";
 
 							}
 						});
@@ -525,7 +526,8 @@ class ControladorProductos{
 							if(isConfirm){
 									
 								 //window.location = localStorage.getItem("rutaBares");
-								 history.back();
+								window.location = rutaOculta+"configuraciones";
+								 //history.back();
 
 							}
 						});
