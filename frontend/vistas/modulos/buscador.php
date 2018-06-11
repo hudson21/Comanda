@@ -167,7 +167,9 @@ LISTAR PRODUCTOS
 
 						  		$productos = ControladorProductos::ctrBuscarProductosPorBar($busqueda, $ordenar, $modo, $base, $tope, $_SESSION["bar"]);
 
-						  		
+						  		//var_dump($_SESSION["bar"]);echo '<br>';
+						  		//var_dump($productos);
+
 					   
 					   			$listaProductos = ControladorProductos::ctrListarProductosBusquedaPorBar($busqueda, $_SESSION["bar"]);
 						  	}
@@ -195,6 +197,7 @@ LISTAR PRODUCTOS
 								<h2>Aún no hay productos en esta sección</h2>
 
 						 </div>';
+						 $_SESSION["mostrarPaginacionBuscador"] = false;
 					
 					}else{
 
@@ -272,11 +275,11 @@ LISTAR PRODUCTOS
 
 							</div>';
 
-						  	}else{
+					}else{
 
-						  		if($value["id_bar"] == $_SESSION["bar"]){
+						  	if($value["id_bar"] == $_SESSION["bar"]){
 
-						  			if($value["disponible"] == 1){
+						  			//if($value["disponible"] == 1){
 
 						  			$_SESSION["mostrarPaginacionBuscador"] = true;
 
@@ -294,7 +297,7 @@ LISTAR PRODUCTOS
 	
 								echo'<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
-										'.$value["id"].". ".$value["titulo"].'<br>
+										'.$value["id"].". ".$titulo.'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
@@ -325,9 +328,11 @@ LISTAR PRODUCTOS
 
 							</div>';
 
-						  }
+						  //}
 
-					}else{
+					}
+
+					else{
 
 						$_SESSION["mostrarPaginacionBuscador"] = false;
 
@@ -344,10 +349,10 @@ LISTAR PRODUCTOS
 					}
 
 						  		
-					}
+				}
 			}
 
-	}
+	}//Fin del else
 	
 
 		echo'</li>';
@@ -732,6 +737,8 @@ LISTAR PRODUCTOS
 						echo '</ul>';
 					    }
 					}
+
+
 			}
 
 					

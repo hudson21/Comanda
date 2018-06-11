@@ -237,7 +237,7 @@ for($i = 0; $i < count($titulosModulos); $i ++){
 									
 									echo'<a href="'.$value["ruta"].'" class="">
 										
-										'.$value["id"].". ".$value["titulo"].'<br>
+										'.$value["id"].". ".$titulo.'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 

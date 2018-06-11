@@ -260,17 +260,6 @@
      ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla8);
   }
 
-  /*======================================
-           TABLA SLIDE 
-  ========================================*/
-  $tabla9 = "slide";
-
-  $tablaSlide = ControladorUsuarios::ctrMostrarRegistrosTablas($tabla9);
-
-  if($tablaSlide == null){
-
-     ControladorUsuarios::ctrAutoreiniciarValoresIdTablas($tabla9);
-  }
 
    /*======================================
            TABLA SUBCATEGORIAS

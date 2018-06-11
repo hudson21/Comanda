@@ -281,10 +281,9 @@ LISTAR PRODUCTOS
 
 					}else{
 
-						if($_SESSION["bar"] == $value["id_bar"] ){
+						if($value["disponible"] == 1 && $value["id_bar"] == $_SESSION["bar"]){
 
 							
-
 							$_SESSION["mostrarPaginacionProductos"] = true;
 
 							if($value["titulo1"] == null){
