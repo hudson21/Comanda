@@ -61,9 +61,9 @@ class ControladorProductos{
 	/*==============================================
 	  MOSTRAR PRODUCTOS POR BAR
 	===============================================*/
-	static public function ctrMostrarProductosPorBar($bar, $ordenar, $modo, $base, $tope, $item, $valor){
+	static public function ctrMostrarProductosPorBar($bar, $base, $tope, $item, $valor){
 
-		$respuesta= ModeloProductos::mdlMostrarProductosPorBar($bar, $ordenar, $modo, $base, $tope, $item, $valor);
+		$respuesta= ModeloProductos::mdlMostrarProductosPorBar($bar, $base, $tope, $item, $valor);
 
 		return $respuesta;
 	}

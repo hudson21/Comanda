@@ -175,10 +175,13 @@
     /*======================================
       URL'S AMIGABLES DE PRODUCTOS      
       ========================================*/
+      $item="id";
+
+      $valor=$rutas[0];
 
       $rutaProductos = ControladorProductos::ctrMostrarInfoProducto($item, $valor);
 
-      if($rutas[0]== $rutaProductos["ruta"]){
+      if($rutas[0]== $rutaProductos["id"]){
 
         $infoProducto = $rutas[0];
       }
@@ -214,7 +217,7 @@
 
   	// include "modulos/slide.php";
 
-     include "modulos/destacados.php";
+     //include "modulos/destacados.php";
   }
 
   /*======================================================================================

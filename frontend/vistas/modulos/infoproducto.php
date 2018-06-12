@@ -44,7 +44,7 @@ INFO PRODUCTOS
 			<?php
 
 			    
-			    $item = "ruta";
+			    $item = "id";
 			    $valor = $rutas[0];
 
 			    if(isset($_SESSION["validarSesion"])){
@@ -59,9 +59,9 @@ INFO PRODUCTOS
 
 					 	$bar= $_SESSION["bar"];
 					 	$valor = $rutas[0];
-					 	$item = "ruta";
+					 	$item = "id";
 
-					 	$infoproducto = ControladorProductos::ctrMostrarInfoProductoJoin($item ,$valor, $bar);
+					 	$infoproducto = ControladorProductos::ctrMostrarInfoProductoJoin($item, $valor, $bar);
 					 }
 				  }
 				

@@ -165,6 +165,7 @@ LISTAR PRODUCTOS
 						  		
 						  	}else{
 
+						  		$ordenar="titulo";
 						  		$productos = ControladorProductos::ctrBuscarProductosPorBar($busqueda, $ordenar, $modo, $base, $tope, $_SESSION["bar"]);
 
 						  		//var_dump($_SESSION["bar"]);echo '<br>';
@@ -216,7 +217,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$url.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>
 
@@ -228,7 +229,7 @@ LISTAR PRODUCTOS
 
 							</h4>';
 
-					}else{
+			}else{
 
 						if($_SESSION["validarSesion"] == "ok"){
 
@@ -242,7 +243,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$url.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>
 
@@ -277,9 +278,9 @@ LISTAR PRODUCTOS
 
 					}else{
 
-						  	if($value["id_bar"] == $_SESSION["bar"]){
+						  	if($value["id_bar"] == $_SESSION["bar"] ){
 
-						  			//if($value["disponible"] == 1){
+						  			if($value["disponible"] == 1){
 
 						  			$_SESSION["mostrarPaginacionBuscador"] = true;
 
@@ -295,7 +296,7 @@ LISTAR PRODUCTOS
 									$titulo = $value["titulo1"];
 								}
 	
-								echo'<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+								echo'<a href="'.$url.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$titulo.'<br>
 
@@ -328,7 +329,21 @@ LISTAR PRODUCTOS
 
 							</div>';
 
-						  //}
+						  }else{
+
+							$_SESSION["mostrarPaginacionBuscador"] = false;
+
+							echo '<div class="col-xs-12 error404 text-center">
+
+									<h1><small>¡Oops!</small></h1>
+
+									<h2>Aún no hay productos en esta sección</h2>
+
+							 </div>';
+
+							 break;
+
+						}
 
 					}
 
@@ -378,7 +393,7 @@ LISTAR PRODUCTOS
 							   
 							<figure>
 						
-								<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+								<a href="'.$url.$value["id"].'" class="pixelProducto">
 									
 									<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 								</a>
@@ -393,7 +408,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$url.$value["id"].'" class="pixelProducto">
 										
 										'.$value["titulo"].'<br>';
 	
@@ -421,7 +436,7 @@ LISTAR PRODUCTOS
 							   
 							<figure>
 						
-								<a href="'.$url.$value["ruta"].'" class="pixelProducto">';
+								<a href="'.$url.$value["id"].'" class="pixelProducto">';
 
 								if($value["portada1"] == null){
 								$portada=$value["portada"];		
@@ -460,7 +475,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$url.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$url.$value["id"].'" class="pixelProducto">
 										
 										'.$titulo.'<br>';
 	

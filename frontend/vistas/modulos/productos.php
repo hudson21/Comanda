@@ -126,7 +126,7 @@ LISTAR PRODUCTOS
 
 					}else{
 
-						$modo = "DESC";
+						$modo = "ASC";
 
 					}		
 
@@ -140,7 +140,7 @@ LISTAR PRODUCTOS
 				$rutas[1] = 1;
 				$base = 0;
 				$tope = 12;
-				$modo = "DESC";
+				$modo = "ASC";
 
 			}
 
@@ -168,7 +168,7 @@ LISTAR PRODUCTOS
 
 			}else{
 
-				$ordenar = "id";
+				$ordenar = "titulo";
 				$item1 = "ruta";
 				$valor1 = $rutas[0];
 
@@ -200,7 +200,7 @@ LISTAR PRODUCTOS
 
 					}else{
 
-						$productos = ControladorProductos::ctrMostrarProductosPorBar($_SESSION["bar"], $ordenar, $modo, $base, $tope, $item2, $valor2);
+						$productos = ControladorProductos::ctrMostrarProductosPorBar($_SESSION["bar"], $base, $tope, $item2, $valor2);
 
 						
 						$listaProductos = ControladorProductos::ctrListarProductos($ordenar, $item2, $valor2);
@@ -243,7 +243,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>
 
@@ -267,7 +267,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>
 
@@ -297,7 +297,7 @@ LISTAR PRODUCTOS
 					
 								<small>
 									
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>
 
@@ -374,7 +374,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>';
 	
@@ -400,7 +400,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>';
 	
@@ -422,7 +422,7 @@ LISTAR PRODUCTOS
 							<h1>
 								<small>
 								
-									<a href="'.$value["ruta"].'" class="pixelProducto">
+									<a href="'.$value["id"].'" class="pixelProducto">
 										
 										'.$value["id"].". ".$value["titulo"].'<br>';
 	
