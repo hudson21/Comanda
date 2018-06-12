@@ -319,7 +319,8 @@ class ControladorProductos{
 
 							if(isConfirm){
 									
-										  history.back();
+							// history.back();
+							 window.location = rutaOculta+"configuraciones";
 
 							}
 						});

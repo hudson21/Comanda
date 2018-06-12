@@ -52,13 +52,13 @@ BARRA DE PRODUCTOS
 					</button>
 
 
-					<button type="button" class="btn btn-default btnList" id="btnList0">
+					<!--<button type="button" class="btn btn-default btnList" id="btnList0">
 
 						<i class="fa fa-list" aria-hidden="true"></i>
 
 						<span class="visible-lg visible-md visible-sm pull-right">LIST</span>
 											
-					</button>
+					</button>-->
 										
 				</div>
 									

@@ -822,7 +822,7 @@ function registroProducto(){
 
 	if(nombreProducto != ""){
 
-		var expresion = /^[a-zA-Z0-9 ]*$/;
+		var expresion = /^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]*$/;
 
 		if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
 
@@ -847,7 +847,7 @@ function registroProducto(){
 
 	if(codigo != ""){
 
-		var expresion = /^[a-zA-Z0-9 ]*$/;
+		var expresion = /^[a-zA-Z0-9]*$/;
 
 		if(!expresion.test(codigo)){ //Sino cumple con la edxpresión regular
 
