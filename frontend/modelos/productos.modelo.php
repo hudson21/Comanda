@@ -598,5 +598,37 @@ class ModeloProductos{
 
 	}
 
+	/*===============================================
+		MOSTRAR LUGARES DE PREPARACION       
+	=================================================*/
+	static public function mdlMostrarLugaresPreparacion(){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM almacenes");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	  }
+
+	/*===============================================
+		MOSTRAR LUGARES DE ORIGEN       
+	=================================================*/
+	static public function mdlMostrarLugaresOrigen(){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM origenes");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	  }
+
 
 }

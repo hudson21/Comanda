@@ -69,6 +69,36 @@ class AjaxProductos{
 
 	}
 
+	/*===============================================
+		MOSTRAR LUGARES DE PREPARACION       
+	=================================================*/
+	public $lugarPreparacion;
+
+	public function ajaxMostrarLugaresPreparacion(){
+
+		$datos = $this->lugarPreparacion;
+
+		$respuesta = ControladorProductos::ctrMostrarLugaresPreparacion();
+
+		echo json_encode($respuesta);
+
+	}
+
+	/*===============================================
+		MOSTRAR LUGARES DE ORIGEN       
+	=================================================*/
+	public $lugarOrigen;
+
+	public function ajaxMostrarLugaresOrigen(){
+
+		$datos = $this->lugarOrigen;
+
+		$respuesta = ControladorProductos::ctrMostrarLugaresOrigen();
+
+		echo json_encode($respuesta);
+
+	}
+
 
 	/*===============================================
 		MOSTRAR NOTIFICACIONES PUSH DE PEDIDOS       
@@ -217,4 +247,18 @@ if(isset($_POST["valor"])){
 		$actualizarProducto -> codigoActualizar = $_POST["codigoActualizar"];
 		$actualizarProducto -> descripcionActualizar = $_POST["descripcionActualizar"];
 		$actualizarProducto -> ajaxActualizarProductoEspecificoByIdAndBar();
+	}
+
+	//MOSTRAR LUGARES DE PREPARACION
+	if(isset($_POST["lugarPreparacion"])){
+		$lugaresPrep = new AjaxProductos();
+		$lugaresPrep -> lugarPreparacion = $_POST["lugarPreparacion"];
+		$lugaresPrep -> ajaxMostrarLugaresPreparacion();
+	}
+
+	//MOSTRAR LUGARES DE ORIGEN
+	if(isset($_POST["lugarOrigen"])){
+		$lugaresPrep = new AjaxProductos();
+		$lugaresPrep -> lugarOrigen = $_POST["lugarOrigen"];
+		$lugaresPrep -> ajaxMostrarLugaresOrigen();
 	}

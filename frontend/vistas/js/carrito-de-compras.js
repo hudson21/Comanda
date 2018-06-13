@@ -417,15 +417,17 @@ $(".seleccioneLugarPreparacion").html('<select class="form-control" name="selecc
 							
 						'</select>');
 
+			
+
+
 			$(".formEnvio").show();
 
 			$(".btnPagar").attr("tipo","fisico");
 
 
 
-			 	$.ajax({
-						url:rutaOculta+"vistas/js/plugins/origenes.json",/*De esta manera estoy llamando a un archivo json a través
-		                    												de esta petición Ajax*/
+			 	/*$.ajax({
+						url:rutaOculta+"vistas/js/plugins/origenes.json",
 						type: "GET",
 						cache: false,
 						contentType: false,
@@ -443,29 +445,9 @@ $(".seleccioneLugarPreparacion").html('<select class="form-control" name="selecc
 							  }
 
 						    }
-						})
+						})*/
 
-					$.ajax({
-						url:rutaOculta+"vistas/js/plugins/preparacion.json",/*De esta manera estoy llamando a un archivo json a través
-		                    												de esta petición Ajax*/
-						type: "GET",
-						cache: false,
-						contentType: false,
-						processData:false,
-						dataType:"json",
-						success: function(respuesta){
-							
-							respuesta.forEach(seleccionarPalapa);
-
-							function seleccionarPalapa(item, index){
-
-								var bar = item.name;
-								var codigo = item.code;
-								$("#seleccionarPreparacion").append('<option value="'+codigo+'">'+bar+'</option>');
-							  }
-
-						    }
-							})
+					
 
 
 /*==============================================
@@ -476,6 +458,66 @@ $(".seleccioneLugarPreparacion").html('<select class="form-control" name="selecc
   CHECKOUT       
 ================================================*/
 $("#btnCheckout").click(function(){
+
+	//LUGARES DE ORIGEN
+	var datos1 = new FormData();
+
+			datos1.append("lugarOrigen", 1);
+
+			$.ajax({
+					
+					url:rutaOculta+"ajax/producto.ajax.php",
+					method: "POST",
+					data: datos1,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+
+					var origen = JSON.parse(respuesta);
+
+					origen.forEach(funcionForEach);
+
+					function funcionForEach(item, index){
+
+				$("#seleccionarOrigen").append('<option value="'+item.id+'">'+item.nombre+'</option>');
+					
+				  
+				}
+			}//FIN DE LA RESPUESTA
+					
+	 		});
+
+	//LUGARES DE PREPARACION
+	var datos = new FormData();
+
+			datos.append("lugarPreparacion", 1);
+
+			$.ajax({
+					
+					url:rutaOculta+"ajax/producto.ajax.php",
+					method: "POST",
+					data: datos,
+					cache: false,
+					contentType: false,
+					processData: false,
+					success:function(respuesta){
+
+					var preparacion = JSON.parse(respuesta);
+
+					preparacion.forEach(funcionForEach);
+
+					function funcionForEach(item, index){
+
+				$("#seleccionarPreparacion").append('<option value="'+item.id+'">'+item.bares+'</option>');
+					
+				  
+				}
+			}//FIN DE LA RESPUESTA
+					
+	 		});
+
+
 
 	$(".listaProductos table.tablaProductos tbody").html("");//Esto es para que no se repitan los productos nuevamente en la 
 															 //ventana modal del checkout
@@ -540,32 +582,7 @@ $("#btnCheckout").click(function(){
 
 })
 
-/*==============================================
-/*==============================================
-/*==============================================       =========> ESTO SIGNIFICA EL INICIO DE UN NUEVO MÓDULO
-/*==============================================
-/*==============================================
-  BOTÓN PAGAR       
-================================================*/
-$(".btnPagar ").click(function(){
 
-	var tipo = $(this).attr("tipo");
-
-	if(tipo == "fisico" && $("#seleccionarOrigen").val() == ""){
-
-		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
-
-		return;
-	}
-
-	if(tipo == "fisico" && $("#seleccionarPreparacion").val() == ""){
-
-		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de preparación</div>');
-
-		return;
-	}
-
-})
 
 /*==============================================
 /*==============================================
@@ -581,9 +598,6 @@ $(".btnPagar ").click(function(){
 	var combo = document.getElementById("seleccionarOrigen");
 	var combo1 = document.getElementById("seleccionarPreparacion");
 
-
-	var tipo = $(this).attr("tipo");
-
 	if($("#seleccionarOrigen").val() == ""){
 
 		$(".btnPagar").after('<div class="alert alert-warning">No ha seleccionado el lugar de origen</div>');
@@ -598,26 +612,12 @@ $(".btnPagar ").click(function(){
 		return;
 	}
 
-	if(tipo == "virtual" && combo == null || tipo == "fisico" && $("seleccionarOrigen").val() != "" 
-	|| tipo == "fisico" && $("seleccionarPreparacion").val() != ""){
 
-			swal({
-			title: "¡OK!",
-			text: "¡Sus productos ya se encuentran en la lista de pedidos!",
-			type:"success",
-			confirmButtonText:"Ok",
-			closeOnConfirm: false,
-			icon: "success"
-	             },
 
-	function(isConfirm){
+	if( $("#seleccionarOrigen").val() != "" && $("#seleccionarPreparacion").val() != ""){
 
-		if(isConfirm){
-					 window.location = rutaOculta+"pedidos/recibiendo";
-					 }
-				});
 
-	if(localStorage.getItem("listaProductos") != null){
+		if(localStorage.getItem("listaProductos") != null){
 
 	var listaCarrito = JSON.parse(localStorage.getItem("listaProductos"));
 	//console.log("listaCarrito", listaCarrito[1]);
@@ -723,9 +723,9 @@ $(".btnPagar ").click(function(){
 	$(".quitarItemCarrito").parent().parent().parent().remove();
 
 	var idProducto = $(".cuerpoCarrito button");
-	var imagen = $(".cuerpoCarrito img");
+	
 	var titulo = $(".cuerpoCarrito .tituloCarritoCompra"); //De esta manera estamos generando un array de todos los elementos que tenemos dentro de cada una de las variables
-	var precio = $(".cuerpoCarrito .precioCarritoCompra span");
+	
 	var cantidad = $(".cuerpoCarrito .cantidadItem");
 	var excepciones = $(".sumaCarrito excepcionesVal");
 
@@ -739,21 +739,20 @@ $(".btnPagar ").click(function(){
 		for(var i = 0; i < idProducto.length; i++){
 
 			var idProductoArray = $(idProducto[i]).attr("idProducto");
-			var imagenArray = $(imagen[i]).attr("src");
+			
 			var tituloArray = $(titulo[i]).html();
-			var precioArray = $(precio[i]).html();
-			var pesoArray = $(idProducto[i]).attr("peso");
-			var tipoArray = $(cantidad[i]).attr("tipo");
+			
+			
+			
 			var cantidadArray = $(cantidad[i]).val();
 			var excepcionesValor = $(excepciones).val();
 
 			//De esta manera estoy actualizando de nuevo las variables del localStorage
 			listaCarrito.push({"idProducto":idProductoArray,
-						   "imagen":imagenArray,
+						   
 						   "titulo":tituloArray,
-						   "precio":precioArray,
-					       "tipo":tipoArray,
-				           "peso":pesoArray,
+						   
+					       
 				           "excepciones":excepcionesValor,
 				           "cantidad":cantidadArray});	
 			}
@@ -782,11 +781,53 @@ $(".btnPagar ").click(function(){
 		$(".cabeceraCheckout").hide();
 
 	}
-}
+   }//SI LOCALSTORAGE ES DIFERENTE A NULL
 
-}
+   /*======================================
+         IMPRESIÓN DEL TICKET O LOS TICKETS    
+   ========================================*/
+   $.ajax({
 
-})
+		url: 'vistas/modulos/ticket.php',
+		method: 'POST',
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(respuesta){
+
+			/* if(respuesta==1){
+			      window.location = rutaOculta;
+			 }else{
+			      //console.log('response',response);
+			  }¨*/
+		}
+
+   	 });//FIN DEL AJAX*/
+
+		swal({
+			title: "¡OK!",
+			text: "¡Sus productos se enviaron con éxito!",
+			type:"success",
+			confirmButtonText:"Ok",
+			closeOnConfirm: false,
+			icon: "success"
+	       },
+
+	function(isConfirm){
+
+	if(isConfirm){
+			
+		window.location = rutaOculta;
+					 
+
+	 	 }//FIN DEL CONFIRM
+
+   	  });//FIN DEL SWALL
+
+    }//SI SELECCIONAR ORIGEN Y PREPARACION SON DIFERENTES DE VACÍO
+
+})//FIN DE LA FUNCIÓN CLICK BTNPAGAR
 
 
 

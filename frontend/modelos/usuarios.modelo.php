@@ -746,7 +746,7 @@ class ModeloUsuarios{
 	=================================================*/
 	static public function mdlMostrarAlmacenes($tabla, $datos){
 
-		$stmt = Conexion::conectar()->prepare("SELECT id from $tabla where id = :id");
+		$stmt = Conexion::conectar()->prepare("SELECT * from $tabla where id = :id");
 
 		$stmt -> bindParam(":id", $datos, PDO::PARAM_STR);
 

@@ -225,29 +225,7 @@ class ControladorUsuarios{
 			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $password1 
 			    	|| $respuesta["password"] == $password2 ){
 
-			    	/*if($respuesta["verificacion"] == 1){
-
-			    		echo '<script> 
-
-							swal({
-							  title: "¡NO HA VERIFICADO SU CORREO ELECTRÓNICO!",
-							  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo para verificar la dirección de correo electrónico '.$respuesta["email"].'!",
-							  type:"error",
-							  confirmButtonText:"Cerrar",
-							  closeOnConfirm: false,
-							  icon: "error"
-							},
-
-							function(isConfirm){
-
-								if(isConfirm){
-									history.back();
-								}
-							});
-
-				</script>';
-
-			    	}else{*/
+			    	
 
 			    $respuestaIdBar = ModeloUsuarios::mdlMostrarAlmacenes("almacenes", $respuesta["bar"]);
 
@@ -259,13 +237,17 @@ class ControladorUsuarios{
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
 			    		$_SESSION["password"] = $respuesta["password"]; 
-			    		
+			    		$_SESSION["nombreImpresora"] = $respuesta["nombre_impresora"];
+			    		$_SESSION["numeroCopias"] = $respuesta["numero_copias"];
 
 			    		echo '<script>
 
 			    		localStorage.setItem("bar","'.$respuestaIdBar["id"].'");
+			    		localStorage.setItem("nombreImpresora","'.$respuestaIdBar["nombre_impresora"].'");
+			    		localStorage.setItem("numeroCopias","'.$respuestaIdBar["numero_copias"].'");
 
 								window.location = localStorage.getItem("rutaActual");
+
 
 			    		</script>';
 
@@ -329,29 +311,7 @@ class ControladorUsuarios{
 
     		if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["passNickname"])){
 
-    			/*==========================================================
-    			 GENERAR CONTRASEÑA ALEATORIA       
-   				 ===========================================================*/
-   				/* function generarPassword($longitud){
-
-//======================================De esta manera podemos generar contraseñas aleatorias=============================
-   				 	$key = "";
-   				 	$pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
-
-   				 	$max = strlen($pattern)-1;
-
-   				 	for ($i = 0; $i < $longitud; $i++){
-
-   				 		$key .= $pattern{mt_rand(0,$max)}; //Con este método se pueden generar contraseñas aleatorias a través de la variable de pattern que está declarada arriba
-
-   				 	}
-
-   				 	return $key;
-   				 }*/
-
-   				 //$nuevaPassword = generarPassword(11);
-
-   				 //var_dump($nuevaPassword);
+    			
 
    				 $encriptar = crypt($_POST["passPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
@@ -566,56 +526,7 @@ class ControladorUsuarios{
 
 		if(isset($_POST["editarNombre"])){
 
-          /*=============================================
-			VALIDAR IMAGEN
-			=============================================*/
-
-			$ruta = "";
-
-		//	if(isset($_FILES["datosImagen"]["tmp_name"])){
-
-				/*=============================================
-				PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-				=============================================*/
-
-			/*	$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
-
-				if(!empty($_POST["fotoUsuario"])){
-
-					unlink($_POST["fotoUsuario"]);
-				
-				}else{
-
-					mkdir($directorio, 0755);
-
-				}*/
-
-				/*=============================================
-				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-				=============================================*/
-
-				/*$aleatorio = mt_rand(100, 999);
-
-				$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";*/
-
-				/*=============================================
-				MOFICAMOS TAMAÑO DE LA FOTO
-				=============================================*/
-
-				/*list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
-
-				$nuevoAncho = 500;
-				$nuevoAlto = 500;
-
-				$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
-
-				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-				imagejpeg($destino, $ruta);
-
-			}*/
+         
 
 
 
@@ -671,7 +582,20 @@ class ControladorUsuarios{
 				$_SESSION["nickname"] = $datos["nickname"];
 					if($_SESSION["tipo_usuario"] == 1){
 						$_SESSION["bar"] = $datos["bar"];
+
+					$respuestaIdBar = ModeloUsuarios::mdlMostrarAlmacenes("almacenes", $datos["bar"]);
+
+						echo'<script>
+
+						localStorage.setItem("bar","'.$respuestaIdBar["id"].'");
+			    		localStorage.setItem("nombreImpresora","'.$respuestaIdBar["nombre_impresora"].'");
+			    		localStorage.setItem("numeroCopias","'.$respuestaIdBar["numero_copias"].'");
+
+
+						</script>';
+
 					}
+					
 				$_SESSION["password"] = $datos["password"];
 
 				echo '<script> 

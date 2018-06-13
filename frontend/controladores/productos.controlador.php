@@ -380,5 +380,24 @@ class ControladorProductos{
 		return $respuesta;
 	}
 
+	/*===============================================
+		MOSTRAR LUGARES DE PREPARACION       
+	=================================================*/
+	static public function ctrMostrarLugaresPreparacion(){
+
+		$respuesta = ModeloProductos::mdlMostrarLugaresPreparacion();
+
+		return $respuesta;
+	}
+
+	/*===============================================
+		MOSTRAR LUGARES DE ORIGEN       
+	=================================================*/
+	static public function ctrMostrarLugaresOrigen(){
+
+		$respuesta = ModeloProductos::mdlMostrarLugaresOrigen();
+
+		return $respuesta;
+	}
 
 }
