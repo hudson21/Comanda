@@ -786,11 +786,17 @@ $(".btnPagar ").click(function(){
    /*======================================
          IMPRESIÓN DEL TICKET O LOS TICKETS    
    ========================================*/
-   $.ajax({
+   var datosImpresion = new FormData();
+
+   datosImpresion.append("pedidoImprimir", localStorage.getItem("numeroPedido"));
+
+   for (var i = 1; i <= localStorage.getItem("numeroCopias"); i++) {
+
+   		$.ajax({
 
 		url: 'vistas/modulos/ticket.php',
 		method: 'POST',
-		data: datos,
+		data: datosImpresion,
 		cache: false,
 		contentType: false,
 		processData: false,
@@ -804,6 +810,8 @@ $(".btnPagar ").click(function(){
 		}
 
    	 });//FIN DEL AJAX*/
+   }
+   
 
 		swal({
 			title: "¡OK!",
@@ -820,7 +828,6 @@ $(".btnPagar ").click(function(){
 			
 		window.location = rutaOculta;
 					 
-
 	 	 }//FIN DEL CONFIRM
 
    	  });//FIN DEL SWALL
