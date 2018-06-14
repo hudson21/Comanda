@@ -1,4 +1,4 @@
-<header id="menuDes" class="menuDesplegable">
+<header style="margin-top:-20px" id="menuDes" class="menuDesplegable">
     <div style="z-index:2000"  class="menu_bar">
       <a  class="bt-menu text-uppercase backColor"><span class="fa fa-cutlery"></span>Productos</a>
     </div>

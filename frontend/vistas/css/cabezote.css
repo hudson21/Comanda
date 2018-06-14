@@ -1,3 +1,4 @@
+
 /*------------------------------------------------
    MENU DESPLEGABLE
 ------------------------------------------------*/
@@ -136,11 +137,6 @@ header nav ul li .caret {
 /*------------------------------------------------
    HEADER
 ------------------------------------------------*/
-
-header #logotipo img{
-	padding:20px 60px;
-	padding-left:0px;
-}
 
 header #btnCategorias{
 	margin:20px 0;
@@ -291,9 +287,9 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
        HEADER
     ------------------------------------------------*/
     header #logotipo img{
-	padding:20px 60px;
+	padding:10px 60px;
 	padding-left:0px;
-	height:80px;
+	height:140px;
 	width:280px;
     }
 
@@ -389,7 +385,7 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
 	header #logotipo img{
 	padding:30px;
 	padding-bottom:10px;
-	height:82px;
+	height:140px;
 	width:260px;
 	
     }

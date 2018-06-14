@@ -286,7 +286,7 @@ $cliente->setScopes(['profile','email']);*/
 
 			      <a href="<?php echo $url;?>carrito-de-compras">
 
-			      	<button class="btn backColor btn-default pull-left " style="background:#C1CA2C;color:white;">
+			      	<button class="btn backColor btn-default pull-left " style="background:#C1CA2C;color:white; margin-bottom="10px">
                         	
                   <i class="fa fa-th-list "></i>
 
