@@ -689,7 +689,7 @@ $(".btnPagar ").click(function(){
 					contentType: false,
 					processData: false,
 					success:function(respuesta){
-						console.log("cabecera de pedidos", respuesta);
+						//console.log("cabecera de pedidos", respuesta);
 							
 					}
 
@@ -794,13 +794,14 @@ $(".btnPagar ").click(function(){
 
    		$.ajax({
 
-		url: 'vistas/modulos/ticket.php',
+		url: 'vistas/modulos/ticketRespaldo.php',
 		method: 'POST',
 		data: datosImpresion,
 		cache: false,
 		contentType: false,
 		processData: false,
 		success: function(respuesta){
+			console.log("respuesta", respuesta);
 
 			/* if(respuesta==1){
 			      window.location = rutaOculta;

@@ -20,10 +20,11 @@ class ControladorUsuarios{
 			//El crypt es un modo para encriptar las contraseñas a través de PHP
 
 				$datos = array("nombre"=>$_POST["regUsuario"],
+							   "tipo_usuario"=>1,
+							   "hotel"=>$_SESSION["hotel"],
+							   "bar"=>$_POST["seleccionarBar"],
 			                   "password"=>$encriptar,
-			                   "nickname"=>$_POST["regNickname"],
-			                   "foto"=>"",
-			                   "modo"=>"directo");
+			                   "nickname"=>$_POST["regNickname"]);
 
 			    $tabla = "usuarios";
 
@@ -171,11 +172,11 @@ class ControladorUsuarios{
   /*==========================================================
      MOSTRAR USUARIO       
   ============================================================*/
-  	static public function ctrMostrarUsuario($item, $valor){
+  	static public function ctrMostrarUsuario($valor){
 
   		$tabla = "usuarios";
 
-  		$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $item, $valor);
+  		$respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $valor);
 
   		return $respuesta;
 
@@ -212,43 +213,41 @@ class ControladorUsuarios{
 
 			    $respuesta = ModeloUsuarios::mdlMostrarUsuario($tabla, $valor);
 
-			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $encriptar){
+			   // if($respuesta["tipo_usuario"] == 0){
 
-			    	/*if($respuesta["verificacion"] == 1){
+			    	$password1 = $_POST["ingPassword"];
+			    
+			    //}else{
 
-			    		echo '<script> 
+			    	$password2 = crypt($_POST["ingPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
+			    //}
 
-							swal({
-							  title: "¡NO HA VERIFICADO SU CORREO ELECTRÓNICO!",
-							  text: "¡Por favor revise la bandeja de entrada o la carpeta de SPAM de su correo para verificar la dirección de correo electrónico '.$respuesta["email"].'!",
-							  type:"error",
-							  confirmButtonText:"Cerrar",
-							  closeOnConfirm: false,
-							  icon: "error"
-							},
+			    if($respuesta["nickname"] == $_POST["ingNickname"] && $respuesta["password"] == $password1 
+			    	|| $respuesta["password"] == $password2 ){
 
-							function(isConfirm){
+			    	
 
-								if(isConfirm){
-									history.back();
-								}
-							});
-
-				</script>';
-
-			    	}else{*/
+			    $respuestaIdBar = ModeloUsuarios::mdlMostrarAlmacenes("almacenes", $respuesta["bar"]);
 
 			    		$_SESSION["validarSesion"] = "ok";
 			    		$_SESSION["id"] = $respuesta["id"];
+			    		$_SESSION["hotel"] = $respuesta["hotel"];
+			    		$_SESSION["bar"] = $respuestaIdBar["id"];
+			    		$_SESSION["tipo_usuario"] = $respuesta["tipo_usuario"];
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
-			    		$_SESSION["foto"] = $respuesta["foto"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
 			    		$_SESSION["password"] = $respuesta["password"]; 
-			    		$_SESSION["modo"] = $respuesta["modo"]; 
+			    		$_SESSION["nombreImpresora"] = $respuesta["nombre_impresora"];
+			    		$_SESSION["numeroCopias"] = $respuesta["numero_copias"];
 
 			    		echo '<script>
 
+			    		localStorage.setItem("bar","'.$respuestaIdBar["id"].'");
+			    		localStorage.setItem("nombreImpresora","'.$respuestaIdBar["nombre_impresora"].'");
+			    		localStorage.setItem("numeroCopias","'.$respuestaIdBar["numero_copias"].'");
+
 								window.location = localStorage.getItem("rutaActual");
+
 
 			    		</script>';
 
@@ -312,29 +311,7 @@ class ControladorUsuarios{
 
     		if(preg_match('/^[a-zA-Z0-9]+$/', $_POST["passNickname"])){
 
-    			/*==========================================================
-    			 GENERAR CONTRASEÑA ALEATORIA       
-   				 ===========================================================*/
-   				/* function generarPassword($longitud){
-
-//======================================De esta manera podemos generar contraseñas aleatorias=============================
-   				 	$key = "";
-   				 	$pattern = "1234567890abcdefghijklmnopqrstuvwxyz";
-
-   				 	$max = strlen($pattern)-1;
-
-   				 	for ($i = 0; $i < $longitud; $i++){
-
-   				 		$key .= $pattern{mt_rand(0,$max)}; //Con este método se pueden generar contraseñas aleatorias a través de la variable de pattern que está declarada arriba
-
-   				 	}
-
-   				 	return $key;
-   				 }*/
-
-   				 //$nuevaPassword = generarPassword(11);
-
-   				 //var_dump($nuevaPassword);
+    			
 
    				 $encriptar = crypt($_POST["passPassword"], '$2a$07$asxx54ahjppf45sd87a5a4dDDGsystemdev$');
 
@@ -549,56 +526,7 @@ class ControladorUsuarios{
 
 		if(isset($_POST["editarNombre"])){
 
-          /*=============================================
-			VALIDAR IMAGEN
-			=============================================*/
-
-			$ruta = "";
-
-		//	if(isset($_FILES["datosImagen"]["tmp_name"])){
-
-				/*=============================================
-				PRIMERO PREGUNTAMOS SI EXISTE OTRA IMAGEN EN LA BD
-				=============================================*/
-
-			/*	$directorio = "vistas/img/usuarios/".$_POST["idUsuario"];
-
-				if(!empty($_POST["fotoUsuario"])){
-
-					unlink($_POST["fotoUsuario"]);
-				
-				}else{
-
-					mkdir($directorio, 0755);
-
-				}*/
-
-				/*=============================================
-				GUARDAMOS LA IMAGEN EN EL DIRECTORIO
-				=============================================*/
-
-				/*$aleatorio = mt_rand(100, 999);
-
-				$ruta = "vistas/img/usuarios/".$_POST["idUsuario"]."/".$aleatorio.".jpg";*/
-
-				/*=============================================
-				MOFICAMOS TAMAÑO DE LA FOTO
-				=============================================*/
-
-				/*list($ancho, $alto) = getimagesize($_FILES["datosImagen"]["tmp_name"]);
-
-				$nuevoAncho = 500;
-				$nuevoAlto = 500;
-
-				$origen = imagecreatefromjpeg($_FILES["datosImagen"]["tmp_name"]);
-
-				$destino = imagecreatetruecolor($nuevoAncho, $nuevoAlto);
-
-				imagecopyresized($destino, $origen, 0, 0, 0, 0, $nuevoAncho, $nuevoAlto, $ancho, $alto);
-
-				imagejpeg($destino, $ruta);
-
-			}*/
+         
 
 
 
@@ -612,12 +540,36 @@ class ControladorUsuarios{
 
 			}
 
-			$datos = array("nombre" => $_POST["editarNombre"],
-						   "nickname" => $_POST["editarNickname"],
-						   "password" => $password,
-						   "foto" => $ruta,
-						   "id" => $_POST["idUsuario"]);
+			if($_SESSION["tipo_usuario"] == 1){
 
+				if($_POST["modificarBar"] != ""){
+
+					$datos = array("nombre" => $_POST["editarNombre"],
+							   "nickname" => $_POST["editarNickname"],
+							   "password" => $password,
+							   "bar" => $_POST["modificarBar"],
+							   "id" => $_POST["idUsuario"]);
+				}else{
+
+					$datos = array("nombre" => $_POST["editarNombre"],
+							   "nickname" => $_POST["editarNickname"],
+							   "password" => $password,
+							   "bar" => "",
+							   "id" => $_POST["idUsuario"]);
+
+				}
+
+
+			}else{
+
+					$datos = array("nombre" => $_POST["editarNombre"],
+							   "nickname" => $_POST["editarNickname"],
+							   "password" => $password,
+							   "bar" => "",
+							   "id" => $_POST["idUsuario"]);
+			}
+
+			
 			$tabla = "usuarios";
 
 			$respuesta = ModeloUsuarios::mdlActualizarPerfil($tabla, $datos);
@@ -627,10 +579,24 @@ class ControladorUsuarios{
 				$_SESSION["validarSesion"] = "ok";
 				$_SESSION["id"] = $datos["id"];
 				$_SESSION["nombre"] = $datos["nombre"];
-				$_SESSION["foto"] = $datos["foto"];
 				$_SESSION["nickname"] = $datos["nickname"];
+					if($_SESSION["tipo_usuario"] == 1){
+						$_SESSION["bar"] = $datos["bar"];
+
+					$respuestaIdBar = ModeloUsuarios::mdlMostrarAlmacenes("almacenes", $datos["bar"]);
+
+						echo'<script>
+
+						localStorage.setItem("bar","'.$respuestaIdBar["id"].'");
+			    		localStorage.setItem("nombreImpresora","'.$respuestaIdBar["nombre_impresora"].'");
+			    		localStorage.setItem("numeroCopias","'.$respuestaIdBar["numero_copias"].'");
+
+
+						</script>';
+
+					}
+					
 				$_SESSION["password"] = $datos["password"];
-				$_SESSION["modo"] = $_POST["modoUsuario"];
 
 				echo '<script> 
 
@@ -821,35 +787,20 @@ class ControladorUsuarios{
 	/*===============================================
 		ELIMINAR USUARIO       
 	=================================================*/
-	public function ctrEliminarUsuario(){
-
-		if(isset($_GET["id"])){
+	public function ctrEliminarUsuario($datos){
 
 			$tabla1 = "usuarios";
-			$tabla2 = "comentarios";
-			$tabla3 = "compras";
-			$tabla4 = "deseos";
 
-			$id = $_GET["id"];
-
-			/*if($_GET["foto"] != ""){
-
-				unlink($_GET["foto"]);//Para que se vacíe la variable foto que está viajando por el POST
-				rmdir('vistas/img/usuarios/'.$_GET["id"]);//Esto es para poder borrar la carpeta donde está alojada la foto del usuario
-			}*/
+			$id = $datos;
 
 			$respuesta = ModeloUsuarios::mdlEliminarUsuario($tabla1, $id);
 
-			ModeloUsuarios::mdlEliminarComentarios($tabla2, $id);
+			return $respuesta;
 
-			ModeloUsuarios::mdlEliminarCompras($tabla3, $id);
-
-			ModeloUsuarios::mdlEliminarListaDeseos($tabla4, $id);
-
-			$url = Ruta::ctrRuta();
+			//$url = Ruta::ctrRuta();
 
 
-			if($respuesta == "ok"){
+			/*if($respuesta == "ok"){
 
 						echo'<script>
 
@@ -863,15 +814,15 @@ class ControladorUsuarios{
 
 								function(isConfirm){
 										 if (isConfirm) {	   
-										   window.location = "'.$url.'salir";
+										   window.location = "http://localhost/Comanda/frontend/salir";
 										  } 
 								});
 
 							  </script>';
 
-					}
+					}*/
 
-		}
+		
 	
 	}
 	/*============================================================================================================  
@@ -987,6 +938,32 @@ class ControladorUsuarios{
 	}
 
 	/*===============================================
+	   MOSTRAR CABECERA DE PEDIDOS POR ID DE USUARIO     
+	=================================================*/
+	static public function ctrMostrarCabeceraPedidosByUsuarioAndEstado($item, $estado){//ESTE SI LO USO
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosByUsuarioAndEstado($tabla, $item, $estado);
+
+		return $respuesta;
+
+	}
+
+	/*===============================================
+	   MOSTRAR CABECERA DE PEDIDOS POR NO.PEDIDO 
+	=================================================*/
+	static public function ctrMostrarCabeceraPedidosByNoPedido($numero){//ESTE SI LO USO
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosByNoPedido($tabla, $numero);
+
+		return $respuesta;
+
+	}
+
+	/*===============================================
 		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
 	=================================================*/
 	static public function ctrCambiarEstadoCabeceraPedidos($datos){
@@ -1024,25 +1001,14 @@ class ControladorUsuarios{
 
 	}
 
-	/*===============================================
-		MOSTRAR LOS MENSAJES DE LOS PEDIDOS HECHOS    
-	=================================================*/
-	static public function ctrMostrarMensajesByUsuario($datos){
-
-		$tabla = "notificaciones";
-
-		$respuesta = ModeloUsuarios::mdlMostrarMensajesByUsuario($tabla, $datos);
-
-		return $respuesta;
-
-	}
-
 	/*==============================================================
 		MOSTRAR LOS MENSAJES DE LA TABLA PEDIDOS POR TIPO DE MENSAJE     
 	================================================================*/
-	static public function ctrMostrarMensajesJoinUsuarios(){
+	static public function ctrMostrarMensajesByUsuario($item, $item1){
 
-		$respuesta = ModeloUsuarios::mdlMostrarMensajesJoinUsuarios();
+		$tabla = "notificaciones";
+
+		$respuesta = ModeloUsuarios::mdlMostrarMensajesByUsuario($tabla, $item, $item1);
 
 		return $respuesta;
 	}
@@ -1062,15 +1028,78 @@ class ControladorUsuarios{
 	/*===============================================
 		NO MOSTRAR DE NUEVO LAS NOTIFICACIONES PUSH     
 	=================================================*/
-	static public function ctrNoMostrarNotificacionesPush($datos, $tablaModelo, $item1, $item2){
+	static public function ctrNoMostrarNotificacionesPush($datos){
 
-		$tabla = $tablaModelo;
-
-		$respuesta = ModeloUsuarios::mdlNoMostrarNotificacionesPush($tabla, $datos, $item1, $item2);
+		$respuesta = ModeloUsuarios::mdlNoMostrarNotificacionesPush($datos);
 
 		return $respuesta;
 
 	}
 
+	/*=================================================================================
+	   VERIFICAR LOS PRODUCTOS EN ALMACEN       
+	===================================================================================*/
+	static public function ctrVerificarExistenciaProductosAlmacen($datos){
 
+	  $tabla = "productos_almacen";
+
+	  $respuesta = ModeloUsuarios::mdlVerificarExistenciaProductosAlmacen($tabla, $datos);
+
+	  return $respuesta;
+	}
+
+
+	/*=================================================================================
+	   MODIFICAR LOS PRODUCTOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	static public function ctrModificarProductosAlmacen($datos){
+
+	  $tabla = "productos_almacen";
+
+	  $respuesta = ModeloUsuarios::mdlModificarProductosAlmacen($tabla, $datos);
+
+	  return $respuesta;
+	}
+
+
+
+	/*=================================================================================
+	   INSERTAR LOS PRODUCTOS DESHABILITADOS EN LA TABLA PRODUCTOS_ALMACEN     
+	===================================================================================*/
+	static public function ctrInsertarProductosAlmacen($datos){
+
+	  $tabla = "productos_almacen";
+
+	  $respuesta = ModeloUsuarios::mdlInsertarProductosAlmacen($tabla, $datos);
+
+	  return $respuesta;
+
+	}
+
+	/*=================================================================================
+	   MOSTRAR FILA DE BAR POR LA COLUMNA DE ID   
+	===================================================================================*/
+	static public function ctrMostrarFilaBarById($datos){
+
+	  $tabla = "almacenes";
+
+	  $respuesta = ModeloUsuarios::mdlMostrarFilaBarById($tabla, $datos);
+
+	  return $respuesta;
+	}
+
+	/*=========================================================
+	          MOSTRAR TODOS LOS PEDIDOS
+	===========================================================*/
+	static public function ctrMostrarCabeceraPedidosTodos($estado){
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosTodos($tabla, $estado);
+
+		return $respuesta;
+
+	}
+
+	
 }

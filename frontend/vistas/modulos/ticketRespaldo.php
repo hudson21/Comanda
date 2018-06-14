@@ -1,18 +1,9 @@
 <?php
 
-session_start();
-
 require __DIR__ . '/ticket/autoload.php'; //Nota: si renombraste la carpeta a algo diferente de "ticket" cambia el nombre en esta línea
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\EscposImage;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-
-include "conexion.php";
-include "usuarios.controlador.php";
-include "usuarios.modelo.php";
-include "productos.controlador.php";
-include "productos.modelo.php";
-include "rutas.php";
 
 /*
 	Este ejemplo imprime un
@@ -26,13 +17,13 @@ include "rutas.php";
 	desde el panel de control
 */
 
-$nombre_impresora=$_SESSION["nombreImpresora"];
+$nombre_impresora = "ComandaPOS"; 
 
 
 $connector = new WindowsPrintConnector($nombre_impresora);
 $printer = new Printer($connector);
 #Mando un numero de respuesta para saber que se conecto correctamente.
-
+echo 1;
 /*
 	Vamos a imprimir un logotipo
 	opcional. Recuerda que esto
@@ -52,70 +43,59 @@ $printer->setJustification(Printer::JUSTIFY_CENTER);
 	Intentaremos cargar e imprimir
 	el logo
 */
-	
-//try{
-//	$logo = EscposImage::load("beloved_logo.png", false);
-//    $printer->bitImage($logo);
-//}catch(Exception $e){/*No hacemos nada si hay error*/}
+try{
+	$logo = EscposImage::load("geek.png", false);
+    $printer->bitImage($logo);
+}catch(Exception $e){/*No hacemos nada si hay error*/}
 
 /*
 	Ahora vamos a imprimir un encabezado
 */
 
-$numero_pedido = $_POST["pedidoImprimir"];
-
-$cabeceraPedidos=ControladorUsuarios::ctrMostrarCabeceraPedidosByNoPedido($numero_pedido);
-
-$printer->text("\n"."No.Pedido: ".$cabeceraPedidos["no_pedido"] . "\n");
-$printer->text("Mesero: ".$cabeceraPedidos["nombre_usuario"] . "\n");
-$printer->text("Lugar de Origen: " .$cabeceraPedidos["origen"]. "\n");
-$printer->text("Lugar de Preparación: " .$cabeceraPedidos["lugar_preparacion"]. "\n");
-$printer->text("Fecha: " . "");
+$printer->text("\n"."Nombre de la Empresa" . "\n");
+$printer->text("Direccion: Orquídeas #151" . "\n");
+$printer->text("Tel: 454664544" . "\n");
 #La fecha también
-date_default_timezone_set("America/Cancun");
+date_default_timezone_set("America/Mexico_City");
 $printer->text(date("Y-m-d H:i:s") . "\n");
 $printer->text("-----------------------------" . "\n");
 $printer->setJustification(Printer::JUSTIFY_LEFT);
-$printer->text("NOMBRE           CANTIDAD    .\n");
+$printer->text("CANT  DESCRIPCION    P.U   IMP.\n");
 $printer->text("-----------------------------"."\n");
 /*
 	Ahora vamos a imprimir los
 	productos
 */
 	/*Alinear a la izquierda para la cantidad y el nombre*/
-
-$lineaPedidos=ControladorUsuarios::ctrMostrarLineaPedidosByNoPedido($numero_pedido);
-
-$printer->setJustification(Printer::JUSTIFY_LEFT);
-
-foreach ($lineaPedidos as $key => $value) {
-
-$productos = ControladorProductos::ctrListarProductosJoinProductosAlmacen($value["id_producto"],$_SESSION["bar"]);
-
-	if($productos["titulo1"] == null){
-		$titulo = $productos["titulo"];
-	}else{
-		$titulo = $productos["titulo1"];
-	}
-
-		$printer->text($titulo."         ");
-		$printer->text($value["cantidad"]."\n");
-}
-
+	$printer->setJustification(Printer::JUSTIFY_LEFT);
+    $printer->text("Producto Galletas\n");
+    $printer->text( "2  pieza    10.00 20.00   \n");
+    $printer->text("Sabrtitas \n");
+    $printer->text( "3  pieza    10.00 30.00   \n");
+    $printer->text("Doritos \n");
+    $printer->text( "5  pieza    10.00 50.00   \n");
+    $printer->text("Producto Galletas\n");
+    $printer->text( "2  pieza    10.00 20.00   \n");
+    $printer->text("Sabrtitas \n");
+    $printer->text( "3  pieza    10.00 30.00   \n");
+    $printer->text("Doritos \n");
+    $printer->text( "5  pieza    10.00 50.00   \n");
+    $printer->text("Producto Galletas\n");
+    $printer->text( "2  pieza    10.00 20.00   \n");
+    $printer->text("Sabrtitas \n");
+    $printer->text( "3  pieza    10.00 30.00   \n");
+    $printer->text("Doritos \n");
+    $printer->text( "5  pieza    10.00 50.00   \n");
 /*
 	Terminamos de imprimir
 	los productos, ahora va el total
 */
-$printer->text( "\n\n");
 $printer->text("-----------------------------"."\n");
-$printer->setJustification(Printer::JUSTIFY_LEFT);
+$printer->setJustification(Printer::JUSTIFY_RIGHT);
+$printer->text("SUBTOTAL: $100.00\n");
+$printer->text("IVA: $16.00\n");
+$printer->text("TOTAL: $116.00\n");
 
-if($cabeceraPedidos["comentarios"] != null){
-
-$printer->text("COMENTARIOS: \n");
-$printer->text($cabeceraPedidos["comentarios"]."\n\n");
-
-}
 
 /*
 	Podemos poner también un pie de página

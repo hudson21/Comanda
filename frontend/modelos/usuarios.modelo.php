@@ -522,6 +522,25 @@ class ModeloUsuarios{
 	}
 
 	/*===============================================
+	   MOSTRAR CABECERA DE PEDIDOS POR NO.PEDIDO 
+	=================================================*/
+	static public function mdlMostrarCabeceraPedidosByNoPedido($tabla, $numero){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM  $tabla  WHERE no_pedido = :no_pedido ");
+
+		$stmt -> bindParam(":no_pedido", $numero, PDO::PARAM_INT);
+
+		$stmt -> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
+
+	/*===============================================
 		CAMBIAR EL ESTADO DE LA CABECERA DE PEDIDO     
 	=================================================*/
 	static public function mdlCambiarEstadoCabeceraPedidos($tabla, $datos){

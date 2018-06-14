@@ -237,8 +237,8 @@ class ControladorUsuarios{
 			    		$_SESSION["nombre"] = $respuesta["nombre"];
 			    		$_SESSION["nickname"] = $respuesta["nickname"]; 
 			    		$_SESSION["password"] = $respuesta["password"]; 
-			    		$_SESSION["nombreImpresora"] = $respuesta["nombre_impresora"];
-			    		$_SESSION["numeroCopias"] = $respuesta["numero_copias"];
+			    		$_SESSION["nombreImpresora"] = $respuestaIdBar["nombre_impresora"];
+			    		$_SESSION["numeroCopias"] = $respuestaIdBar["numero_copias"];
 
 			    		echo '<script>
 
@@ -945,6 +945,19 @@ class ControladorUsuarios{
 		$tabla = "cabecera_pedidos";
 
 		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosByUsuarioAndEstado($tabla, $item, $estado);
+
+		return $respuesta;
+
+	}
+
+	/*===============================================
+	   MOSTRAR CABECERA DE PEDIDOS POR NO.PEDIDO 
+	=================================================*/
+	static public function ctrMostrarCabeceraPedidosByNoPedido($numero){//ESTE SI LO USO
+
+		$tabla = "cabecera_pedidos";
+
+		$respuesta = ModeloUsuarios::mdlMostrarCabeceraPedidosByNoPedido($tabla, $numero);
 
 		return $respuesta;
 
