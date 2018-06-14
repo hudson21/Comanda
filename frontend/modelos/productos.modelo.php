@@ -313,7 +313,7 @@ class ModeloProductos{
 
 	  static public function mdlBuscarProductosPorBar( $busqueda, $ordenar, $modo, $base, $tope, $bar){
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR titulo like '%$busqueda%' OR titulo1 like '%$busqueda%'  OR titular like '%$busqueda%' OR titular1 like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE (productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar) and (id like '%$busqueda%' OR titulo like '%$busqueda%' OR ruta like '%$busqueda%' OR ruta1 like '%$busqueda%' OR titulo1 like '%$busqueda%'  OR titular like '%$busqueda%' OR titular1 like '%$busqueda%') ORDER BY $ordenar $modo LIMIT $base, $tope");
 
 
 	  /*$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR ruta like '%$busqueda%' OR productos_almacen.titulo1 like '%$busqueda%' OR productos_almacen.titular1 like '%$busqueda%'OR titular like '%$busqueda%' OR productos_almacen.descripcion1 like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");*/
@@ -335,7 +335,7 @@ class ModeloProductos{
 
 	  static public function mdlListarProductosBusquedaPorBar( $busqueda, $bar){
 
-	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and id like '%$busqueda%' OR titulo like '%$busqueda%' OR titulo1 like '%$busqueda%'  OR titular like '%$busqueda%' OR titular1 like '%$busqueda%'");
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE (productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar) and (id like '%$busqueda%' OR titulo like '%$busqueda%' OR ruta like '%$busqueda%' OR ruta1 like '%$busqueda%' OR titulo1 like '%$busqueda%'  OR titular like '%$busqueda%' OR titular1 like '%$busqueda%')");
 
 
 	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar or id like '%$busqueda%' OR ruta like '%$busqueda%' OR productos_almacen.titulo1 like '%$busqueda%' OR titulo like '%$busqueda%'OR productos_almacen.titular1 like '%$busqueda%'OR titular like '%$busqueda%' OR productos_almacen.descripcion1 like '%$busqueda%' OR descripcion like '%$busqueda%'");*/
@@ -573,8 +573,15 @@ class ModeloProductos{
 	=============================================*/
 	static public function mdlActualizarProducto($tabla, $datos){
 
-	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET titulo1 = :titulo1, titular1 = :titular1, descripcion1 = :descripcion1  WHERE id_producto = :id_producto and id_bar = :id_bar");
+		$rutaReplaceÑ = str_replace("ñ", "n", $datos["nombreActualizar"]);
+		$rutaReplaceÑ = str_replace("Ñ", "n", $datos["nombreActualizar"]);
+		$rutaReplaceÑ = str_replace("ñ", "N", $datos["nombreActualizar"]);
+		$rutaReplaceÑ = str_replace("Ñ", "N", $datos["nombreActualizar"]);
+		$result = str_replace(" ", "-", $rutaReplaceÑ);
 
+	$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET ruta1 = :ruta1, titulo1 = :titulo1, titular1 = :titular1, descripcion1 = :descripcion1  WHERE id_producto = :id_producto and id_bar = :id_bar");
+
+		$stmt -> bindParam(":ruta1", $result, PDO::PARAM_STR);
 		$stmt -> bindParam(":titulo1", $datos["nombreActualizar"], PDO::PARAM_STR);
 		$stmt -> bindParam(":titular1", $datos["codigoActualizar"], PDO::PARAM_STR);
 		$stmt -> bindParam(":descripcion1", $datos["descripcionActualizar"], PDO::PARAM_STR);

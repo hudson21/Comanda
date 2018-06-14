@@ -14,7 +14,10 @@ $("#buscador input").change(function(){
 
 	}else{
 
-		var evaluarBusqueda = busqueda.replace(/[áéíóúÁÉÍÓÚ ]/g, "-");
+		var evaluarBusqueda = "";
+		var evaluarÑ = busqueda.replace(/[ñÑ]/g, "n"); 
+			evaluarBusqueda = evaluarÑ.replace(/[áéíóúÁÉÍÓÚ ]/g, "-");
+
 
 		var rutaBuscador = $("#buscador a").attr("href");
 

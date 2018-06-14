@@ -278,13 +278,10 @@ LISTAR PRODUCTOS
 
 					}else{
 
-						  	if($value["id_bar"] == $_SESSION["bar"] ){
+						 
+						$_SESSION["mostrarPaginacionBuscador"] = true;
 
-						  			if($value["disponible"] == 1){
-
-						  			$_SESSION["mostrarPaginacionBuscador"] = true;
-
-						  			echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
+						echo '<li  class="margenAbajo col-md-3 col-sm-6 col-xs-12">';
 
 						echo'<h4 class="productsH4Productos productsH4">
 					
@@ -329,7 +326,10 @@ LISTAR PRODUCTOS
 
 							</div>';
 
-						  }else{
+						  //}
+
+
+						 /* else{
 
 							$_SESSION["mostrarPaginacionBuscador"] = false;
 
@@ -343,25 +343,11 @@ LISTAR PRODUCTOS
 
 							 break;
 
-						}
+						}*/
 
-					}
+					
 
-					else{
-
-						$_SESSION["mostrarPaginacionBuscador"] = false;
-
-						echo '<div class="col-xs-12 error404 text-center">
-
-								<h1><small>¡Oops!</small></h1>
-
-								<h2>Aún no hay productos en esta sección</h2>
-
-						 </div>';
-
-						 break;
-
-					}
+					
 
 						  		
 				}

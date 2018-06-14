@@ -1045,7 +1045,7 @@ $(".eliminarProducto").click(function(){
 
 				if(nombreProducto != ""){
 
-					var expresion = /^[a-zA-Z0-9 ]*$/;
+					var expresion = /^[a-zA-Z0-9ñÑ ]*$/;
 
 					if(!expresion.test(nombreProducto)){ //Sino cumple con la edxpresión regular
 

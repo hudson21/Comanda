@@ -300,7 +300,7 @@ LISTAR PRODUCTOS
 									
 									<a href="'.$value["id"].'" class="pixelProducto">
 										
-										'.$value["id"].". ".$value["titulo"].'<br>
+										'.$value["id"].". ".$titulo.'<br>
 
 										<span style="color:rgba(0,0,0,0)">-</span>';
 
