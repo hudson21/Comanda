@@ -251,9 +251,9 @@ class ModeloProductos{
 	  	/*==============================================
 	  		LISTAR PRODUCTOS EN PRODUCTOS_ALMACEN
 		===============================================*/
-	   static public function mdlListarProductosJoinProductosAlmacen($id_producto, $bar){
+	   static public function mdlListarProductosJoinProductosAlmacen($numeroProducto, $bar){
 
-	   	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE (productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and productos_almacen.id_producto = $id_producto)");
+	   	$stmt = Conexion::conectar()->prepare("SELECT * FROM productos inner join productos_almacen on productos.id = productos_almacen.id_producto WHERE productos_almacen.disponible = 1 and productos_almacen.id_bar = $bar and productos_almacen.id_producto = $numeroProducto");
 
 	  	/*$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_producto = $id_producto and id_bar = $bar");*/
 

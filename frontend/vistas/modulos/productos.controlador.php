@@ -136,9 +136,9 @@ class ControladorProductos{
 	  LISTAR PRODUCTOS EN PRODUCTOS_ALMACEN
 	===============================================*/
 
-	static public function ctrListarProductosJoinProductosAlmacen($id_producto, $bar){
+	static public function ctrListarProductosJoinProductosAlmacen($numeroProducto, $bar){
 
-		$respuesta = ModeloProductos::mdlListarProductosJoinProductosAlmacen($id_producto, $bar);
+		$respuesta = ModeloProductos::mdlListarProductosJoinProductosAlmacen($numeroProducto, $bar);
 
 		return $respuesta;
 

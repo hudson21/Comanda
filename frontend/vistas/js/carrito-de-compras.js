@@ -794,7 +794,7 @@ $(".btnPagar ").click(function(){
 
    		$.ajax({
 
-		url: 'vistas/modulos/ticketRespaldo.php',
+		url: 'vistas/modulos/ticket.php',
 		method: 'POST',
 		data: datosImpresion,
 		cache: false,

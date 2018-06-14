@@ -100,6 +100,8 @@ $productos = ControladorProductos::ctrListarProductosJoinProductosAlmacen($value
 
 		$printer->text($titulo."         ");
 		$printer->text($value["cantidad"]."\n");
+
+echo json_encode($productos);
 }
 
 /*
