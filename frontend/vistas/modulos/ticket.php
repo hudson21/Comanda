@@ -31,6 +31,8 @@ $nombre_impresora=$_SESSION["nombreImpresora"];
 
 $connector = new WindowsPrintConnector($nombre_impresora);
 $printer = new Printer($connector);
+
+echo 1;
 #Mando un numero de respuesta para saber que se conecto correctamente.
 
 /*
@@ -65,6 +67,8 @@ $printer->setJustification(Printer::JUSTIFY_CENTER);
 $numero_pedido = $_POST["pedidoImprimir"];
 
 $cabeceraPedidos=ControladorUsuarios::ctrMostrarCabeceraPedidosByNoPedido($numero_pedido);
+
+
 
 $printer->text("\n"."No.Pedido: ".$cabeceraPedidos["no_pedido"] . "\n");
 $printer->text("Mesero: ".$cabeceraPedidos["nombre_usuario"] . "\n");
@@ -101,7 +105,7 @@ $productos = ControladorProductos::ctrListarProductosJoinProductosAlmacen($value
 		$printer->text($titulo."         ");
 		$printer->text($value["cantidad"]."\n");
 
-echo json_encode($productos);
+
 }
 
 /*

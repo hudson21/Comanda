@@ -480,7 +480,7 @@ $("#btnCheckout").click(function(){
 
 					function funcionForEach(item, index){
 
-				$("#seleccionarOrigen").append('<option value="'+item.id+'">'+item.nombre+'</option>');
+				$("#seleccionarOrigen").append('<option value="'+item.nombre+'">'+item.nombre+'</option>');
 					
 				  
 				}
@@ -509,7 +509,7 @@ $("#btnCheckout").click(function(){
 
 					function funcionForEach(item, index){
 
-				$("#seleccionarPreparacion").append('<option value="'+item.id+'">'+item.bares+'</option>');
+				$("#seleccionarPreparacion").append('<option value="'+item.bares+'">'+item.bares+'</option>');
 					
 				  
 				}
@@ -582,6 +582,19 @@ $("#btnCheckout").click(function(){
 
 })
 
+/*======================================
+         PROBAR SELECT DE ORIGEN
+========================================*/
+/*$("#seleccionarOrigen").change(function(){
+	console.log("origen",$(this).val());
+})*/
+
+/*======================================
+         PROBAR SELECT DE PREPARACION
+========================================*/
+/*$("#seleccionarPreparacion").change(function(){
+	console.log("preparacion",$(this).val());	
+})*/
 
 
 /*==============================================
@@ -595,8 +608,8 @@ $(".btnPagar ").click(function(){
 
 	$(".alert").remove();
 
-	var combo = document.getElementById("seleccionarOrigen");
-	var combo1 = document.getElementById("seleccionarPreparacion");
+	var origen = $("#seleccionarOrigen").val();
+	var preparacion = $("#seleccionarPreparacion").val();
 
 	if($("#seleccionarOrigen").val() == ""){
 
@@ -631,7 +644,7 @@ $(".btnPagar ").click(function(){
 		
     		
 
-    		if(combo == null){
+    		/*if(combo == null){
     			var origen = "";
     		}
     		else{
@@ -643,7 +656,7 @@ $(".btnPagar ").click(function(){
     		}
     		else{
     			 preparacion = combo1.options[combo.selectedIndex].text;
-    		}
+    		}*/
 		
 			comentario = document.getElementById("comentario").value;
 
@@ -814,7 +827,7 @@ $(".btnPagar ").click(function(){
 		contentType: false,
 		processData: false,
 		success: function(respuesta){
-			console.log("respuesta", respuesta);
+			//console.log("respuesta", respuesta);
 
 			/* if(respuesta==1){
 			      window.location = rutaOculta;
