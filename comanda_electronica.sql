@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2018 a las 23:42:54
+-- Tiempo de generación: 15-06-2018 a las 16:36:16
 -- Versión del servidor: 10.1.31-MariaDB
 -- Versión de PHP: 7.2.4
 
@@ -30,20 +30,22 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `almacenes` (
   `id` int(11) NOT NULL,
-  `bares` text COLLATE utf8_spanish_ci NOT NULL
+  `bares` text COLLATE utf8_spanish_ci NOT NULL,
+  `nombre_impresora` text COLLATE utf8_spanish_ci NOT NULL,
+  `numero_copias` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
 --
 -- Volcado de datos para la tabla `almacenes`
 --
 
-INSERT INTO `almacenes` (`id`, `bares`) VALUES
-(1, 'BAR SOL'),
-(2, 'BAR LUNA'),
-(3, 'BAR ITALIANO'),
-(4, 'BAR ESPAÑOL'),
-(5, 'BAR FRANCÉS'),
-(6, 'BAR CHINO');
+INSERT INTO `almacenes` (`id`, `bares`, `nombre_impresora`, `numero_copias`) VALUES
+(1, 'BAR SOL', 'ComandaPOS', 1),
+(2, 'BAR LUNA', 'ComandaPOS', 2),
+(3, 'BAR ITALIANO', 'ComandaPOS', 1),
+(4, 'BAR ESPAÑOL', 'ComandaPOS', 1),
+(5, 'BAR FRANCÉS', 'ComandaPOS', 1),
+(6, 'BAR CHINO', 'ComandaPOS', 1);
 
 -- --------------------------------------------------------
 
@@ -64,38 +66,6 @@ CREATE TABLE `cabecera_pedidos` (
   `mensaje_confirmacion` int(11) NOT NULL,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `cabecera_pedidos`
---
-
-INSERT INTO `cabecera_pedidos` (`no_pedido`, `id_usuario`, `nombre_usuario`, `origen`, `lugar_preparacion`, `comentarios`, `mostrar`, `estado`, `disponible`, `mensaje_confirmacion`, `fecha`) VALUES
-(000000001, 11, 'X ALFONSO', 'Palapa 2', 'BAR LUNA', 'ouuuuuuuuuuuuuuuuyeahhhhhhhh', 1, 2, 0, 1, '2018-05-23 20:22:15'),
-(000000002, 11, 'X ALFONSO', 'Palapa 1', 'BAR SOL', 'zapatosssssssssssssssssssssssss', 1, 2, 0, 1, '2018-05-23 20:23:10'),
-(000000003, 11, 'X ALFONSO', 'Palapa 1', 'BAR SOL', 'dsadgfsafdsa', 1, 2, 0, 1, '2018-05-23 20:23:54'),
-(000000004, 11, 'X ALFONSO', '', '', '', 0, 2, 0, 1, '2018-05-23 20:26:19'),
-(000000005, 11, 'X ALFONSO', 'Palapa 3', 'BAR ITALIANO', '453454323', 1, 0, 0, 0, '2018-05-23 20:20:56'),
-(000000006, 11, 'X ALFONSO', 'Palapa 1', 'BAR SOL', 'wqwerwqer', 1, 0, 0, 0, '2018-05-23 20:20:53'),
-(000000007, 11, 'X ALFONSO', 'Palapa 2', 'BAR LUNA', 'sadfsdfasdfsaf', 1, 0, 0, 0, '2018-05-23 20:21:26'),
-(000000008, 11, 'X ALFONSO', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-05-23 20:21:24'),
-(000000009, 11, 'X ALFONSO', 'Palapa 2', 'BAR LUNA', 'holaaaaaaaaa', 1, 0, 0, 0, '2018-05-23 20:21:23'),
-(000000010, 1, 'CARLOS HUDSON', '', '', 'ruyruuyruytryt', 1, 0, 0, 0, '2018-04-18 17:42:04'),
-(000000011, 1, 'CARLOS HUDSON', 'Palapa 2', '', 'askjsajfjsaksa', 1, 0, 0, 0, '2018-04-18 17:42:02'),
-(000000012, 1, 'CARLOS HUDSON', 'Palapa 1', 'BAR SOL', 'kjhasljhalhsf', 1, 0, 0, 0, '2018-04-18 17:42:08'),
-(000000013, 1, 'CARLOS HUDSON', 'Palapa 1', '', '', 0, 0, 0, 0, '2018-04-18 17:42:12'),
-(000000014, 1, 'CARLOS HUDSON', 'Palapa 1', '', '', 0, 0, 0, 0, '2018-04-18 17:42:14'),
-(000000015, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-04-18 17:42:17'),
-(000000016, 1, 'CARLOS HUDSON', 'Palapa 1', '', 'jjjkhlñgjlkfjg', 1, 0, 0, 0, '2018-04-18 17:42:20'),
-(000000017, 1, 'CARLOS HUDSON', 'Palapa 2', '', '', 0, 0, 0, 0, '2018-04-18 17:42:23'),
-(000000018, 1, 'CARLOS HUDSON', 'Palapa 5', '', '', 0, 0, 0, 0, '2018-04-18 17:42:26'),
-(000000019, 1, 'CARLOS HUDSON', 'Palapa 6', '', '', 0, 0, 0, 0, '2018-04-18 17:42:29'),
-(000000020, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 1, '2018-05-23 15:23:49'),
-(000000021, 1, 'CARLOS HUDSON', 'Palapa 2', 'BAR LUNA', '', 0, 0, 0, 0, '2018-04-18 17:42:35'),
-(000000022, 1, 'CARLOS HUDSON', 'Palapa 3', '', '', 0, 0, 0, 0, '2018-04-18 17:42:38'),
-(000000023, 1, 'CARLOS HUDSON', 'Palapa 3', 'BAR ITALIANO', '', 0, 0, 0, 0, '2018-04-18 17:42:42'),
-(000000024, 1, 'CARLOS HUDSON', 'Palapa 5', '', '', 0, 0, 0, 0, '2018-04-18 17:42:45'),
-(000000025, 1, 'CARLOS HUDSON', 'Palapa 3', '', 'Quiero todos estos productos :(. Pero soy pobreee :(', 0, 0, 0, 0, '2018-05-23 15:23:53'),
-(000000026, 11, 'X ALFONSO', 'Palapa 1', 'BAR SOL', '', 0, 0, 0, 0, '2018-06-04 21:26:13');
 
 -- --------------------------------------------------------
 
@@ -139,58 +109,28 @@ CREATE TABLE `linea_pedidos` (
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
+-- --------------------------------------------------------
+
 --
--- Volcado de datos para la tabla `linea_pedidos`
+-- Estructura de tabla para la tabla `origenes`
 --
 
-INSERT INTO `linea_pedidos` (`id`, `id_producto`, `cantidad`, `no_pedido`, `fecha`) VALUES
-(1, 465, 3, 000000001, '2018-03-29 21:12:36'),
-(2, 464, 1, 000000001, '2018-03-30 14:40:31'),
-(3, 466, 1, 000000001, '2018-03-30 16:22:41'),
-(4, 402, 1, 000000002, '2018-04-02 16:39:12'),
-(5, 466, 1, 000000003, '2018-04-02 16:40:18'),
-(6, 466, 1, 000000004, '2018-04-02 18:29:47'),
-(7, 464, 1, 000000005, '2018-04-02 18:31:33'),
-(8, 401, 1, 000000006, '2018-04-03 17:24:49'),
-(9, 466, 1, 000000007, '2018-04-03 17:24:49'),
-(10, 404, 1, 000000008, '2018-04-03 17:24:49'),
-(11, 403, 1, 000000008, '2018-04-03 17:24:49'),
-(12, 466, 1, 000000009, '2018-04-04 16:06:40'),
-(13, 404, 1, 000000010, '2018-04-04 16:18:19'),
-(14, 402, 1, 000000011, '2018-04-04 18:08:42'),
-(15, 465, 1, 000000012, '2018-04-09 15:38:57'),
-(16, 466, 1, 000000012, '2018-04-09 15:38:57'),
-(17, 404, 1, 000000013, '2018-04-10 17:04:54'),
-(18, 403, 1, 000000013, '2018-04-10 17:04:54'),
-(19, 402, 1, 000000013, '2018-04-10 17:04:54'),
-(20, 401, 1, 000000014, '2018-04-10 20:29:08'),
-(21, 470, 1, 000000015, '2018-04-11 21:50:02'),
-(22, 403, 1, 000000016, '2018-04-11 22:09:08'),
-(23, 2, 1, 000000016, '2018-04-11 22:09:08'),
-(24, 404, 1, 000000016, '2018-04-11 22:09:08'),
-(25, 403, 1, 000000017, '2018-04-11 22:15:44'),
-(26, 402, 1, 000000017, '2018-04-11 22:15:44'),
-(27, 402, 1, 000000018, '2018-04-11 22:16:15'),
-(28, 401, 2, 000000019, '2018-04-12 21:24:55'),
-(29, 1, 3, 000000020, '2018-04-12 21:25:49'),
-(30, 1, 2, 000000021, '2018-04-12 21:27:30'),
-(31, 2, 3, 000000021, '2018-04-12 21:27:30'),
-(32, 4, 5, 000000021, '2018-04-12 21:27:30'),
-(33, 402, 2, 000000022, '2018-04-12 21:41:54'),
-(34, 403, 3, 000000022, '2018-04-12 21:41:54'),
-(35, 3, 64, 000000022, '2018-04-12 21:41:54'),
-(36, 470, 1, 000000023, '2018-04-16 18:30:17'),
-(37, 486, 136, 000000024, '2018-04-16 20:26:21'),
-(38, 379, 10, 000000024, '2018-04-16 20:26:21'),
-(39, 376, 2, 000000024, '2018-04-16 20:26:21'),
-(40, 396, 15, 000000025, '2018-04-16 20:30:48'),
-(41, 490, 100, 000000025, '2018-04-16 20:30:48'),
-(42, 432, 10, 000000025, '2018-04-16 20:30:48'),
-(43, 459, 4, 000000025, '2018-04-16 20:30:48'),
-(44, 469, 23, 000000026, '2018-04-17 18:57:48'),
-(45, 469, 3, 000000027, '2018-04-18 16:00:45'),
-(46, 461, 23, 000000028, '2018-06-04 21:26:13'),
-(47, 1, 23, 000000028, '2018-06-04 21:26:13');
+CREATE TABLE `origenes` (
+  `id` int(11) NOT NULL,
+  `nombre` text COLLATE utf8_spanish_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `origenes`
+--
+
+INSERT INTO `origenes` (`id`, `nombre`) VALUES
+(1, 'Palapa 1'),
+(2, 'Palapa 2'),
+(3, 'Palapa 3'),
+(4, 'Palapa 4'),
+(5, 'Palapa 5'),
+(6, 'Palapa 6');
 
 -- --------------------------------------------------------
 
@@ -215,7 +155,7 @@ CREATE TABLE `plantilla` (
 --
 
 INSERT INTO `plantilla` (`id`, `barraSuperior`, `textoSuperior`, `colorFondo`, `colorTexto`, `logo`, `icono`, `redesSociales`, `fecha`) VALUES
-(1, '#000000', '#ffffff', '#C1CA2C', '#ffffff', 'vistas/img/plantilla/logo.jpg', 'vistas/img/plantilla/icono.png', '[\r\n\r\n	{\r\n		\"red\": \"fa-facebook\",\r\n		\"estilo\": \"facebookBlanco\",\r\n		\"url\": \"http://facebook.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-youtube\",\r\n		\"estilo\": \"youtubeBlanco\",\r\n		\"url\": \"http://youtube.com\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-twitter\",\r\n		\"estilo\": \"twitterBlanco\",\r\n		\"url\": \"http://twitter.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-google-plus\",\r\n		\"estilo\": \"googleBlanco\",\r\n		\"url\": \"http://google.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-instagram\",\r\n		\"estilo\": \"instagramBlanco\",\r\n		\"url\": \"http://instagram.com/\"\r\n	}\r\n]', '2018-02-16 15:50:47');
+(1, '#000000', '#ffffff', '#C1CA2C', '#ffffff', 'vistas/img/plantilla/beloved_logo.png', 'vistas/img/plantilla/icono.png', '[\r\n\r\n	{\r\n		\"red\": \"fa-facebook\",\r\n		\"estilo\": \"facebookBlanco\",\r\n		\"url\": \"http://facebook.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-youtube\",\r\n		\"estilo\": \"youtubeBlanco\",\r\n		\"url\": \"http://youtube.com\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-twitter\",\r\n		\"estilo\": \"twitterBlanco\",\r\n		\"url\": \"http://twitter.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-google-plus\",\r\n		\"estilo\": \"googleBlanco\",\r\n		\"url\": \"http://google.com/\"\r\n	},\r\n\r\n	{\r\n		\"red\": \"fa-instagram\",\r\n		\"estilo\": \"instagramBlanco\",\r\n		\"url\": \"http://instagram.com/\"\r\n	}\r\n]', '2018-06-14 16:51:30');
 
 -- --------------------------------------------------------
 
@@ -240,7 +180,7 @@ CREATE TABLE `productos` (
 
 INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `ruta`, `titulo`, `titular`, `descripcion`, `fecha`) VALUES
 (1, 1, 1, 'falda-de-flores-1', 'Falda de Flores', 'fdf', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '0000-00-00 00:00:00'),
-(2, 1, 1, 'vestido-jean-1', 'Vestido Jean', 'vestido jean', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '0000-00-00 00:00:00'),
+(2, 1, 1, 'vestido-jean-1', 'Vestido Jean', 'ves', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '0000-00-00 00:00:00'),
 (3, 1, 1, 'vestido-clasico-1', 'Vestido Clásico', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '0000-00-00 00:00:00'),
 (4, 1, 3, 'top-dama-1', 'Top Dama', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '0000-00-00 00:00:00'),
 (5, 2, 6, 'semibotas-ejecutivas-1', 'Semibotas Ejecutivas', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', '0000-00-00 00:00:00'),
@@ -701,7 +641,7 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `ruta`, `titul
 (454, 5, 18, 'curso-de-canvas-y-javascript-49', 'Curso de canvas y Javascript', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (455, 5, 18, 'curso-de-bootstrap-51', 'Curso de Bootstrap', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (456, 1, 2, 'camiseta-playera-9', 'Camiseta Playera', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
-(457, 1, 1, 'falda-de-flores-11', 'Falda de Flores', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
+(457, 1, 1, 'falda-de-flores-11', 'falda de flores', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (458, 1, 1, 'vestido-jean-11', 'Vestido Jean', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (459, 1, 1, 'vestido-clasico-11', 'Vestido Clásico', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (460, 1, 3, 'top-dama-11', 'Top Dama', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
@@ -745,7 +685,8 @@ INSERT INTO `productos` (`id`, `id_categoria`, `id_subcategoria`, `ruta`, `titul
 (498, 5, 18, 'curso-de-jquery-55', 'Curso de jQuery', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (499, 5, 18, 'curso-de-canvas-y-javascript-55', 'Curso de canvas y Javascript', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
 (500, 5, 18, 'curso-de-bootstrap-57', 'Curso de Bootstrap', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate minus, consectetur beatae fugit odio iure repudiandae quia distinctio, id ducimus molestiae. Obcaecati, unde. Illo molestiae dolorum, saepe nisi enim iusto.', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto maxime quas modi, eveniet fugiat. Alias voluptatem cum consectetur nobis quod, excepturi recusandae, itaque facere minima officiis autem illum, perferendis provident!', '0000-00-00 00:00:00'),
-(501, 1, 1, 'RON-SIETE-ANOS', 'RON SIETE ANOS', 'r7a', 'este es un ron de la categoria de bebidas', '2018-06-02 16:23:12');
+(501, 1, 1, 'RON-SIETE-ANOS', 'RON SIETE ANOS', 'r7a', 'este es un ron de la categoria de bebidas', '2018-06-02 16:23:12'),
+(502, 1, 1, 'Piña-Colada', 'Piña Colada', 'pina', 'Esto es una piña colada', '2018-06-12 18:08:49');
 
 -- --------------------------------------------------------
 
@@ -757,548 +698,11 @@ CREATE TABLE `productos_almacen` (
   `id_bar` int(11) NOT NULL,
   `id_producto` int(11) NOT NULL,
   `disponible` int(11) NOT NULL,
+  `ruta1` text COLLATE utf8_spanish_ci,
   `titulo1` text COLLATE utf8_spanish_ci,
   `titular1` text COLLATE utf8_spanish_ci,
   `descripcion1` text COLLATE utf8_spanish_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `productos_almacen`
---
-
-INSERT INTO `productos_almacen` (`id_bar`, `id_producto`, `disponible`, `titulo1`, `titular1`, `descripcion1`) VALUES
-(1, 1, 1, 'falda personalizada', 'feo', 'Esto es un platillo nuevo'),
-(1, 2, 1, 'me veo mal :(', 'carlos', 'Esto esta modificado'),
-(1, 3, 1, NULL, NULL, NULL),
-(1, 4, 1, NULL, NULL, NULL),
-(1, 5, 1, NULL, NULL, NULL),
-(1, 6, 1, NULL, NULL, NULL),
-(1, 7, 1, NULL, NULL, NULL),
-(1, 8, 1, NULL, NULL, NULL),
-(1, 9, 1, NULL, NULL, NULL),
-(1, 10, 1, NULL, NULL, NULL),
-(1, 11, 1, NULL, NULL, NULL),
-(1, 12, 1, NULL, NULL, NULL),
-(1, 13, 1, NULL, NULL, NULL),
-(1, 14, 1, NULL, NULL, NULL),
-(1, 15, 1, NULL, NULL, NULL),
-(1, 16, 1, NULL, NULL, NULL),
-(1, 17, 1, NULL, NULL, NULL),
-(1, 18, 1, NULL, NULL, NULL),
-(1, 19, 1, NULL, NULL, NULL),
-(1, 20, 1, NULL, NULL, NULL),
-(1, 21, 1, NULL, NULL, NULL),
-(1, 22, 1, NULL, NULL, NULL),
-(1, 23, 1, NULL, NULL, NULL),
-(1, 24, 1, NULL, NULL, NULL),
-(1, 25, 1, NULL, NULL, NULL),
-(1, 26, 1, NULL, NULL, NULL),
-(1, 27, 1, NULL, NULL, NULL),
-(1, 28, 1, NULL, NULL, NULL),
-(1, 29, 1, NULL, NULL, NULL),
-(1, 30, 1, NULL, NULL, NULL),
-(1, 31, 1, NULL, NULL, NULL),
-(1, 32, 1, NULL, NULL, NULL),
-(1, 33, 1, NULL, NULL, NULL),
-(1, 34, 1, NULL, NULL, NULL),
-(1, 35, 1, NULL, NULL, NULL),
-(1, 36, 1, NULL, NULL, NULL),
-(1, 37, 1, NULL, NULL, NULL),
-(1, 38, 1, NULL, NULL, NULL),
-(1, 39, 1, NULL, NULL, NULL),
-(1, 40, 1, NULL, NULL, NULL),
-(1, 41, 1, NULL, NULL, NULL),
-(1, 42, 1, NULL, NULL, NULL),
-(1, 43, 1, NULL, NULL, NULL),
-(1, 44, 1, NULL, NULL, NULL),
-(1, 45, 1, NULL, NULL, NULL),
-(1, 46, 1, NULL, NULL, NULL),
-(1, 47, 1, NULL, NULL, NULL),
-(1, 48, 1, NULL, NULL, NULL),
-(1, 49, 1, NULL, NULL, NULL),
-(1, 50, 1, NULL, NULL, NULL),
-(1, 51, 1, NULL, NULL, NULL),
-(1, 52, 1, NULL, NULL, NULL),
-(1, 53, 1, NULL, NULL, NULL),
-(1, 54, 1, NULL, NULL, NULL),
-(1, 55, 1, NULL, NULL, NULL),
-(1, 56, 1, NULL, NULL, NULL),
-(1, 57, 1, NULL, NULL, NULL),
-(1, 58, 1, NULL, NULL, NULL),
-(1, 59, 1, NULL, NULL, NULL),
-(1, 60, 1, NULL, NULL, NULL),
-(1, 61, 1, NULL, NULL, NULL),
-(1, 62, 1, NULL, NULL, NULL),
-(1, 63, 1, NULL, NULL, NULL),
-(1, 64, 1, NULL, NULL, NULL),
-(1, 65, 1, NULL, NULL, NULL),
-(1, 66, 1, NULL, NULL, NULL),
-(1, 67, 1, NULL, NULL, NULL),
-(1, 68, 1, NULL, NULL, NULL),
-(1, 69, 1, NULL, NULL, NULL),
-(1, 70, 1, NULL, NULL, NULL),
-(1, 71, 1, NULL, NULL, NULL),
-(1, 72, 1, NULL, NULL, NULL),
-(1, 73, 1, NULL, NULL, NULL),
-(1, 74, 1, NULL, NULL, NULL),
-(1, 75, 1, NULL, NULL, NULL),
-(1, 76, 1, NULL, NULL, NULL),
-(1, 77, 1, NULL, NULL, NULL),
-(1, 78, 1, NULL, NULL, NULL),
-(1, 79, 1, NULL, NULL, NULL),
-(1, 80, 1, NULL, NULL, NULL),
-(1, 81, 1, NULL, NULL, NULL),
-(1, 82, 1, NULL, NULL, NULL),
-(1, 83, 1, NULL, NULL, NULL),
-(1, 84, 1, NULL, NULL, NULL),
-(1, 85, 1, NULL, NULL, NULL),
-(1, 86, 1, NULL, NULL, NULL),
-(1, 87, 1, NULL, NULL, NULL),
-(1, 88, 1, NULL, NULL, NULL),
-(1, 89, 1, NULL, NULL, NULL),
-(1, 90, 1, NULL, NULL, NULL),
-(1, 91, 1, NULL, NULL, NULL),
-(1, 92, 1, NULL, NULL, NULL),
-(1, 93, 1, NULL, NULL, NULL),
-(1, 94, 1, NULL, NULL, NULL),
-(1, 95, 1, NULL, NULL, NULL),
-(1, 96, 1, NULL, NULL, NULL),
-(1, 97, 1, NULL, NULL, NULL),
-(1, 98, 1, NULL, NULL, NULL),
-(1, 99, 1, NULL, NULL, NULL),
-(1, 100, 1, NULL, NULL, NULL),
-(1, 101, 1, NULL, NULL, NULL),
-(1, 102, 1, NULL, NULL, NULL),
-(1, 103, 1, NULL, NULL, NULL),
-(1, 104, 1, NULL, NULL, NULL),
-(1, 105, 1, NULL, NULL, NULL),
-(1, 106, 1, NULL, NULL, NULL),
-(1, 107, 1, NULL, NULL, NULL),
-(1, 108, 1, NULL, NULL, NULL),
-(1, 109, 1, NULL, NULL, NULL),
-(1, 110, 1, NULL, NULL, NULL),
-(1, 111, 1, NULL, NULL, NULL),
-(1, 112, 1, NULL, NULL, NULL),
-(1, 113, 1, NULL, NULL, NULL),
-(1, 114, 1, NULL, NULL, NULL),
-(1, 115, 1, NULL, NULL, NULL),
-(1, 116, 1, NULL, NULL, NULL),
-(1, 117, 1, NULL, NULL, NULL),
-(1, 118, 1, NULL, NULL, NULL),
-(1, 119, 1, NULL, NULL, NULL),
-(1, 120, 1, NULL, NULL, NULL),
-(1, 121, 1, NULL, NULL, NULL),
-(1, 122, 1, NULL, NULL, NULL),
-(1, 123, 1, NULL, NULL, NULL),
-(1, 124, 1, NULL, NULL, NULL),
-(1, 125, 1, NULL, NULL, NULL),
-(1, 126, 1, NULL, NULL, NULL),
-(1, 127, 1, NULL, NULL, NULL),
-(1, 128, 1, NULL, NULL, NULL),
-(1, 129, 1, NULL, NULL, NULL),
-(1, 130, 1, NULL, NULL, NULL),
-(1, 131, 1, NULL, NULL, NULL),
-(1, 132, 1, NULL, NULL, NULL),
-(1, 133, 1, NULL, NULL, NULL),
-(1, 134, 1, NULL, NULL, NULL),
-(1, 135, 1, NULL, NULL, NULL),
-(1, 136, 1, NULL, NULL, NULL),
-(1, 137, 1, NULL, NULL, NULL),
-(1, 138, 1, NULL, NULL, NULL),
-(1, 139, 1, NULL, NULL, NULL),
-(1, 140, 1, NULL, NULL, NULL),
-(1, 141, 1, NULL, NULL, NULL),
-(1, 142, 1, NULL, NULL, NULL),
-(1, 143, 1, NULL, NULL, NULL),
-(1, 144, 1, NULL, NULL, NULL),
-(1, 145, 1, NULL, NULL, NULL),
-(1, 146, 1, NULL, NULL, NULL),
-(1, 147, 1, NULL, NULL, NULL),
-(1, 148, 1, NULL, NULL, NULL),
-(1, 149, 1, NULL, NULL, NULL),
-(1, 150, 1, NULL, NULL, NULL),
-(1, 151, 1, NULL, NULL, NULL),
-(1, 152, 1, NULL, NULL, NULL),
-(1, 153, 1, NULL, NULL, NULL),
-(1, 154, 1, NULL, NULL, NULL),
-(1, 155, 1, NULL, NULL, NULL),
-(1, 156, 1, NULL, NULL, NULL),
-(1, 157, 1, NULL, NULL, NULL),
-(1, 158, 1, NULL, NULL, NULL),
-(1, 159, 1, NULL, NULL, NULL),
-(1, 160, 1, NULL, NULL, NULL),
-(1, 161, 1, NULL, NULL, NULL),
-(1, 162, 1, NULL, NULL, NULL),
-(1, 163, 1, NULL, NULL, NULL),
-(1, 164, 1, NULL, NULL, NULL),
-(1, 165, 1, NULL, NULL, NULL),
-(1, 166, 1, NULL, NULL, NULL),
-(1, 167, 1, NULL, NULL, NULL),
-(1, 168, 1, NULL, NULL, NULL),
-(1, 169, 1, NULL, NULL, NULL),
-(1, 170, 1, NULL, NULL, NULL),
-(1, 171, 1, NULL, NULL, NULL),
-(1, 172, 1, NULL, NULL, NULL),
-(1, 173, 1, NULL, NULL, NULL),
-(1, 174, 1, NULL, NULL, NULL),
-(1, 175, 1, NULL, NULL, NULL),
-(1, 176, 1, NULL, NULL, NULL),
-(1, 177, 1, NULL, NULL, NULL),
-(1, 178, 1, NULL, NULL, NULL),
-(1, 179, 1, NULL, NULL, NULL),
-(1, 180, 1, NULL, NULL, NULL),
-(1, 181, 1, NULL, NULL, NULL),
-(1, 182, 1, NULL, NULL, NULL),
-(1, 183, 1, NULL, NULL, NULL),
-(1, 184, 1, NULL, NULL, NULL),
-(1, 185, 1, NULL, NULL, NULL),
-(1, 186, 1, NULL, NULL, NULL),
-(1, 187, 1, NULL, NULL, NULL),
-(1, 188, 1, NULL, NULL, NULL),
-(1, 189, 1, NULL, NULL, NULL),
-(1, 190, 1, NULL, NULL, NULL),
-(1, 191, 1, NULL, NULL, NULL),
-(1, 192, 1, NULL, NULL, NULL),
-(1, 193, 1, NULL, NULL, NULL),
-(1, 194, 1, NULL, NULL, NULL),
-(1, 195, 1, NULL, NULL, NULL),
-(1, 196, 1, NULL, NULL, NULL),
-(1, 197, 1, NULL, NULL, NULL),
-(1, 198, 1, NULL, NULL, NULL),
-(1, 199, 1, NULL, NULL, NULL),
-(1, 200, 1, NULL, NULL, NULL),
-(1, 201, 1, NULL, NULL, NULL),
-(1, 202, 1, NULL, NULL, NULL),
-(1, 203, 1, NULL, NULL, NULL),
-(1, 204, 1, NULL, NULL, NULL),
-(1, 205, 1, NULL, NULL, NULL),
-(1, 206, 1, NULL, NULL, NULL),
-(1, 207, 1, NULL, NULL, NULL),
-(1, 208, 1, NULL, NULL, NULL),
-(1, 209, 1, NULL, NULL, NULL),
-(1, 210, 1, NULL, NULL, NULL),
-(1, 211, 1, NULL, NULL, NULL),
-(1, 212, 1, NULL, NULL, NULL),
-(1, 213, 1, NULL, NULL, NULL),
-(1, 214, 1, NULL, NULL, NULL),
-(1, 215, 1, NULL, NULL, NULL),
-(1, 216, 1, NULL, NULL, NULL),
-(1, 217, 1, NULL, NULL, NULL),
-(1, 218, 1, NULL, NULL, NULL),
-(1, 219, 1, NULL, NULL, NULL),
-(1, 220, 1, NULL, NULL, NULL),
-(1, 221, 1, NULL, NULL, NULL),
-(1, 222, 1, NULL, NULL, NULL),
-(1, 223, 1, NULL, NULL, NULL),
-(1, 224, 1, NULL, NULL, NULL),
-(1, 225, 1, NULL, NULL, NULL),
-(1, 226, 1, NULL, NULL, NULL),
-(1, 227, 1, NULL, NULL, NULL),
-(1, 228, 1, NULL, NULL, NULL),
-(1, 229, 1, NULL, NULL, NULL),
-(1, 230, 1, NULL, NULL, NULL),
-(1, 231, 1, NULL, NULL, NULL),
-(1, 232, 1, NULL, NULL, NULL),
-(1, 233, 1, NULL, NULL, NULL),
-(1, 234, 1, NULL, NULL, NULL),
-(1, 235, 1, NULL, NULL, NULL),
-(1, 236, 1, NULL, NULL, NULL),
-(1, 237, 1, NULL, NULL, NULL),
-(1, 238, 1, NULL, NULL, NULL),
-(1, 239, 1, NULL, NULL, NULL),
-(1, 240, 1, NULL, NULL, NULL),
-(1, 241, 1, NULL, NULL, NULL),
-(1, 242, 1, NULL, NULL, NULL),
-(1, 243, 1, NULL, NULL, NULL),
-(1, 244, 1, NULL, NULL, NULL),
-(1, 245, 1, NULL, NULL, NULL),
-(1, 246, 1, NULL, NULL, NULL),
-(1, 247, 1, NULL, NULL, NULL),
-(1, 248, 1, NULL, NULL, NULL),
-(1, 249, 1, NULL, NULL, NULL),
-(1, 250, 1, NULL, NULL, NULL),
-(1, 251, 1, NULL, NULL, NULL),
-(1, 252, 1, NULL, NULL, NULL),
-(1, 253, 1, NULL, NULL, NULL),
-(1, 254, 1, NULL, NULL, NULL),
-(1, 255, 1, NULL, NULL, NULL),
-(1, 256, 1, NULL, NULL, NULL),
-(1, 257, 1, NULL, NULL, NULL),
-(1, 258, 1, NULL, NULL, NULL),
-(1, 259, 1, NULL, NULL, NULL),
-(1, 260, 1, NULL, NULL, NULL),
-(1, 261, 1, NULL, NULL, NULL),
-(1, 262, 1, NULL, NULL, NULL),
-(1, 263, 1, NULL, NULL, NULL),
-(1, 264, 1, NULL, NULL, NULL),
-(1, 265, 1, NULL, NULL, NULL),
-(1, 266, 1, NULL, NULL, NULL),
-(1, 267, 1, NULL, NULL, NULL),
-(1, 268, 1, NULL, NULL, NULL),
-(1, 269, 1, NULL, NULL, NULL),
-(1, 270, 1, NULL, NULL, NULL),
-(1, 271, 1, NULL, NULL, NULL),
-(1, 272, 1, NULL, NULL, NULL),
-(1, 273, 1, NULL, NULL, NULL),
-(1, 274, 1, NULL, NULL, NULL),
-(1, 275, 1, NULL, NULL, NULL),
-(1, 276, 1, NULL, NULL, NULL),
-(1, 277, 1, NULL, NULL, NULL),
-(1, 278, 1, NULL, NULL, NULL),
-(1, 279, 1, NULL, NULL, NULL),
-(1, 280, 1, NULL, NULL, NULL),
-(1, 281, 1, NULL, NULL, NULL),
-(1, 282, 1, NULL, NULL, NULL),
-(1, 283, 1, NULL, NULL, NULL),
-(1, 284, 1, NULL, NULL, NULL),
-(1, 285, 1, NULL, NULL, NULL),
-(1, 286, 1, NULL, NULL, NULL),
-(1, 287, 1, NULL, NULL, NULL),
-(1, 288, 1, NULL, NULL, NULL),
-(1, 289, 1, NULL, NULL, NULL),
-(1, 290, 1, NULL, NULL, NULL),
-(1, 291, 1, NULL, NULL, NULL),
-(1, 292, 1, NULL, NULL, NULL),
-(1, 293, 1, NULL, NULL, NULL),
-(1, 294, 1, NULL, NULL, NULL),
-(1, 295, 1, NULL, NULL, NULL),
-(1, 296, 1, NULL, NULL, NULL),
-(1, 297, 1, NULL, NULL, NULL),
-(1, 298, 1, NULL, NULL, NULL),
-(1, 299, 1, NULL, NULL, NULL),
-(1, 300, 1, NULL, NULL, NULL),
-(1, 301, 1, NULL, NULL, NULL),
-(1, 302, 1, NULL, NULL, NULL),
-(1, 303, 1, NULL, NULL, NULL),
-(1, 304, 1, NULL, NULL, NULL),
-(1, 305, 1, NULL, NULL, NULL),
-(1, 306, 1, NULL, NULL, NULL),
-(1, 307, 1, NULL, NULL, NULL),
-(1, 308, 1, NULL, NULL, NULL),
-(1, 309, 1, NULL, NULL, NULL),
-(1, 310, 1, NULL, NULL, NULL),
-(1, 311, 1, NULL, NULL, NULL),
-(1, 312, 1, NULL, NULL, NULL),
-(1, 313, 1, NULL, NULL, NULL),
-(1, 314, 1, NULL, NULL, NULL),
-(1, 315, 1, NULL, NULL, NULL),
-(1, 316, 1, NULL, NULL, NULL),
-(1, 317, 1, NULL, NULL, NULL),
-(1, 318, 1, NULL, NULL, NULL),
-(1, 319, 1, NULL, NULL, NULL),
-(1, 320, 1, NULL, NULL, NULL),
-(1, 321, 1, NULL, NULL, NULL),
-(1, 322, 1, NULL, NULL, NULL),
-(1, 323, 1, NULL, NULL, NULL),
-(1, 324, 1, NULL, NULL, NULL),
-(1, 325, 1, NULL, NULL, NULL),
-(1, 326, 1, NULL, NULL, NULL),
-(1, 327, 1, NULL, NULL, NULL),
-(1, 328, 1, NULL, NULL, NULL),
-(1, 329, 1, NULL, NULL, NULL),
-(1, 330, 1, NULL, NULL, NULL),
-(1, 331, 1, NULL, NULL, NULL),
-(1, 332, 1, NULL, NULL, NULL),
-(1, 333, 1, NULL, NULL, NULL),
-(1, 334, 1, NULL, NULL, NULL),
-(1, 335, 1, NULL, NULL, NULL),
-(1, 336, 1, NULL, NULL, NULL),
-(1, 337, 1, NULL, NULL, NULL),
-(1, 338, 1, NULL, NULL, NULL),
-(1, 339, 1, NULL, NULL, NULL),
-(1, 340, 1, NULL, NULL, NULL),
-(1, 341, 1, NULL, NULL, NULL),
-(1, 342, 1, NULL, NULL, NULL),
-(1, 343, 1, NULL, NULL, NULL),
-(1, 344, 1, NULL, NULL, NULL),
-(1, 345, 1, NULL, NULL, NULL),
-(1, 346, 1, NULL, NULL, NULL),
-(1, 347, 1, NULL, NULL, NULL),
-(1, 348, 1, NULL, NULL, NULL),
-(1, 349, 1, NULL, NULL, NULL),
-(1, 350, 1, NULL, NULL, NULL),
-(1, 351, 1, NULL, NULL, NULL),
-(1, 352, 1, NULL, NULL, NULL),
-(1, 353, 1, NULL, NULL, NULL),
-(1, 354, 1, NULL, NULL, NULL),
-(1, 355, 1, NULL, NULL, NULL),
-(1, 356, 1, NULL, NULL, NULL),
-(1, 357, 1, NULL, NULL, NULL),
-(1, 358, 1, NULL, NULL, NULL),
-(1, 359, 1, NULL, NULL, NULL),
-(1, 360, 1, NULL, NULL, NULL),
-(1, 361, 1, NULL, NULL, NULL),
-(1, 362, 1, NULL, NULL, NULL),
-(1, 363, 1, NULL, NULL, NULL),
-(1, 364, 1, NULL, NULL, NULL),
-(1, 365, 1, NULL, NULL, NULL),
-(1, 366, 1, NULL, NULL, NULL),
-(1, 367, 1, NULL, NULL, NULL),
-(1, 368, 1, NULL, NULL, NULL),
-(1, 369, 1, NULL, NULL, NULL),
-(1, 370, 1, NULL, NULL, NULL),
-(1, 371, 1, NULL, NULL, NULL),
-(1, 372, 1, NULL, NULL, NULL),
-(1, 373, 1, NULL, NULL, NULL),
-(1, 374, 1, NULL, NULL, NULL),
-(1, 375, 1, NULL, NULL, NULL),
-(1, 376, 1, NULL, NULL, NULL),
-(1, 377, 1, NULL, NULL, NULL),
-(1, 378, 1, NULL, NULL, NULL),
-(1, 379, 1, NULL, NULL, NULL),
-(1, 380, 1, NULL, NULL, NULL),
-(1, 381, 1, NULL, NULL, NULL),
-(1, 382, 1, NULL, NULL, NULL),
-(1, 383, 1, NULL, NULL, NULL),
-(1, 384, 1, NULL, NULL, NULL),
-(1, 385, 1, NULL, NULL, NULL),
-(1, 386, 1, NULL, NULL, NULL),
-(1, 387, 1, NULL, NULL, NULL),
-(1, 388, 1, NULL, NULL, NULL),
-(1, 389, 1, NULL, NULL, NULL),
-(1, 390, 1, NULL, NULL, NULL),
-(1, 391, 1, NULL, NULL, NULL),
-(1, 392, 1, NULL, NULL, NULL),
-(1, 393, 1, NULL, NULL, NULL),
-(1, 394, 1, NULL, NULL, NULL),
-(1, 395, 1, NULL, NULL, NULL),
-(1, 396, 1, NULL, NULL, NULL),
-(1, 397, 1, NULL, NULL, NULL),
-(1, 398, 1, NULL, NULL, NULL),
-(1, 399, 1, NULL, NULL, NULL),
-(1, 400, 1, NULL, NULL, NULL),
-(1, 401, 1, NULL, NULL, NULL),
-(1, 402, 1, NULL, NULL, NULL),
-(1, 403, 1, NULL, NULL, NULL),
-(1, 404, 1, NULL, NULL, NULL),
-(1, 405, 1, NULL, NULL, NULL),
-(1, 406, 1, NULL, NULL, NULL),
-(1, 407, 1, NULL, NULL, NULL),
-(1, 408, 1, NULL, NULL, NULL),
-(1, 409, 1, NULL, NULL, NULL),
-(1, 410, 1, NULL, NULL, NULL),
-(1, 411, 1, NULL, NULL, NULL),
-(1, 412, 1, NULL, NULL, NULL),
-(1, 413, 1, NULL, NULL, NULL),
-(1, 414, 1, NULL, NULL, NULL),
-(1, 415, 1, NULL, NULL, NULL),
-(1, 416, 1, NULL, NULL, NULL),
-(1, 417, 1, NULL, NULL, NULL),
-(1, 418, 1, NULL, NULL, NULL),
-(1, 419, 1, NULL, NULL, NULL),
-(1, 420, 1, NULL, NULL, NULL),
-(1, 421, 1, NULL, NULL, NULL),
-(1, 422, 1, NULL, NULL, NULL),
-(1, 423, 1, NULL, NULL, NULL),
-(1, 424, 1, NULL, NULL, NULL),
-(1, 425, 1, NULL, NULL, NULL),
-(1, 426, 1, NULL, NULL, NULL),
-(1, 427, 1, NULL, NULL, NULL),
-(1, 428, 1, NULL, NULL, NULL),
-(1, 429, 1, NULL, NULL, NULL),
-(1, 430, 1, NULL, NULL, NULL),
-(1, 431, 1, NULL, NULL, NULL),
-(1, 432, 1, NULL, NULL, NULL),
-(1, 433, 1, NULL, NULL, NULL),
-(1, 434, 1, NULL, NULL, NULL),
-(1, 435, 1, NULL, NULL, NULL),
-(1, 436, 1, NULL, NULL, NULL),
-(1, 437, 1, NULL, NULL, NULL),
-(1, 438, 1, NULL, NULL, NULL),
-(1, 439, 1, NULL, NULL, NULL),
-(1, 440, 1, NULL, NULL, NULL),
-(1, 441, 1, NULL, NULL, NULL),
-(1, 442, 1, NULL, NULL, NULL),
-(1, 443, 1, NULL, NULL, NULL),
-(1, 444, 1, NULL, NULL, NULL),
-(1, 445, 1, NULL, NULL, NULL),
-(1, 446, 1, NULL, NULL, NULL),
-(1, 447, 1, NULL, NULL, NULL),
-(1, 448, 1, NULL, NULL, NULL),
-(1, 449, 1, NULL, NULL, NULL),
-(1, 450, 1, NULL, NULL, NULL),
-(1, 451, 1, NULL, NULL, NULL),
-(1, 452, 1, NULL, NULL, NULL),
-(1, 453, 1, NULL, NULL, NULL),
-(1, 454, 1, NULL, NULL, NULL),
-(1, 455, 1, NULL, NULL, NULL),
-(1, 456, 1, NULL, NULL, NULL),
-(1, 457, 1, NULL, NULL, NULL),
-(1, 458, 1, NULL, NULL, NULL),
-(1, 459, 1, NULL, NULL, NULL),
-(1, 460, 1, NULL, NULL, NULL),
-(1, 461, 1, NULL, NULL, NULL),
-(1, 462, 1, NULL, NULL, NULL),
-(1, 463, 1, NULL, NULL, NULL),
-(1, 464, 1, NULL, NULL, NULL),
-(1, 465, 1, NULL, NULL, NULL),
-(1, 466, 1, NULL, NULL, NULL),
-(1, 467, 1, NULL, NULL, NULL),
-(1, 468, 1, NULL, NULL, NULL),
-(1, 469, 1, NULL, NULL, NULL),
-(1, 470, 1, NULL, NULL, NULL),
-(1, 471, 1, NULL, NULL, NULL),
-(1, 472, 1, NULL, NULL, NULL),
-(1, 473, 1, NULL, NULL, NULL),
-(1, 474, 1, NULL, NULL, NULL),
-(1, 475, 1, NULL, NULL, NULL),
-(1, 476, 1, NULL, NULL, NULL),
-(1, 477, 1, NULL, NULL, NULL),
-(1, 478, 1, NULL, NULL, NULL),
-(1, 479, 1, NULL, NULL, NULL),
-(1, 480, 1, NULL, NULL, NULL),
-(1, 481, 1, NULL, NULL, NULL),
-(1, 482, 1, NULL, NULL, NULL),
-(1, 483, 1, NULL, NULL, NULL),
-(1, 484, 1, NULL, NULL, NULL),
-(1, 485, 1, NULL, NULL, NULL),
-(1, 486, 1, NULL, NULL, NULL),
-(1, 487, 1, NULL, NULL, NULL),
-(1, 488, 1, NULL, NULL, NULL),
-(1, 489, 1, NULL, NULL, NULL),
-(1, 490, 1, NULL, NULL, NULL),
-(1, 491, 1, NULL, NULL, NULL),
-(1, 492, 1, NULL, NULL, NULL),
-(1, 493, 1, NULL, NULL, NULL),
-(1, 494, 1, NULL, NULL, NULL),
-(1, 495, 1, NULL, NULL, NULL),
-(1, 496, 1, NULL, NULL, NULL),
-(1, 497, 1, NULL, NULL, NULL),
-(1, 498, 1, NULL, NULL, NULL),
-(1, 499, 1, NULL, NULL, NULL),
-(1, 500, 1, 'BLA BLA BLA', NULL, ''),
-(1, 501, 1, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `slide`
---
-
-CREATE TABLE `slide` (
-  `id` int(11) NOT NULL,
-  `imgFondo` text COLLATE utf8_spanish_ci NOT NULL,
-  `tipoSlide` text COLLATE utf8_spanish_ci NOT NULL,
-  `imgProducto` text COLLATE utf8_spanish_ci NOT NULL,
-  `estiloImgProducto` text COLLATE utf8_spanish_ci NOT NULL,
-  `estiloTextoSlide` text COLLATE utf8_spanish_ci NOT NULL,
-  `titulo1` text COLLATE utf8_spanish_ci NOT NULL,
-  `titulo2` text COLLATE utf8_spanish_ci NOT NULL,
-  `titulo3` text COLLATE utf8_spanish_ci NOT NULL,
-  `boton` text COLLATE utf8_spanish_ci NOT NULL,
-  `url` text COLLATE utf8_spanish_ci NOT NULL,
-  `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
-
---
--- Volcado de datos para la tabla `slide`
---
-
-INSERT INTO `slide` (`id`, `imgFondo`, `tipoSlide`, `imgProducto`, `estiloImgProducto`, `estiloTextoSlide`, `titulo1`, `titulo2`, `titulo3`, `boton`, `url`, `fecha`) VALUES
-(1, 'vistas/img/slide/default/back_default.jpg', 'slideOpcion1', 'vistas/img/slide/slide1/calzado.png', '{\"top\": \"15%\",\"right\": \"10%\",\"width\":\"45%\",\r\n\"left\":\"\"}', '{\"top\": \"20%\",\"right\": \"\",\"width\":\"40%\",\r\n\"left\":\"10%\"}', '{\"texto\":\"OFERTA ESPECIAL\",\"color\":\"#333\"}', '{\"texto\":\"50% DESCUENTO\",\"color\":\"#777\"}', '{\"texto\":\"ZAPATO DE PLAYA\",\"color\":\"#888\"}', '<button class=\"btn btn-default backColor text-uppercase\" style=\"background:#C1CA2C;color:white;\">\r\n								\r\n								VER PRODUCTO <span class=\"fa fa-chevron-right\"></span>\r\n								\r\n								</button>', '#', '2018-01-31 15:04:31'),
-(2, 'vistas/img/slide/default/back_default.jpg', 'slideOpcion2', 'vistas/img/slide/slide2/curso.png', '{\"top\":\"5%\",\"right\":\"\",\"width\":\"25%\",\"left\":\"15%\"}', '{\"top\": \"15%\",\"right\":\"15%\",\"width\":\"40%\",\"left\":\"\"}', '{\"texto\":\"CURSO A TU ALCANCE\",\"color\":\"#333\"}', '{\"texto\":\"30% DESCUENTO\",\"color\":\"#777\"}', '{\"texto\":\"COMPRALO YA\",\"color\":\"#888\"}', '<button class=\"btn btn-default backColor text-uppercase\" style=\"background:#C1CA2C;color:white;\">\r\n								\r\n								VER PRODUCTO <span class=\"fa fa-chevron-right\"></span>\r\n								\r\n								</button>', '#', '2018-01-31 15:21:38'),
-(3, 'vistas/img/slide/slide3/fondoplaya.jpg', 'slideOpcion2', 'vistas/img/slide/slide3/iphone.png', '{\"top\":\"5%\",\"right\":\"\",\"width\":\"25%\",\"left\":\"15%\"}', '{\"top\":\"20%\",\"right\":\"10%\",\"width\":\"40%\",\"left\":\"\"}', '{\"texto\":\"VIVE LA MEJOR EXPERIENCIA\",\"color\":\"#eee\"}', '{\"texto\":\"LA VIDA ES BELLA\",\"color\":\"#eee\"}', '{\"texto\":\"DISFRUTA\",\"color\":\"#eee\"}', '<button class=\"btn btn-default backColor text-uppercase\" style=\"background:#C1CA2C;color:white;\">\r\n								\r\n								VER PRODUCTO <span class=\"fa fa-chevron-right\"></span>\r\n								\r\n								</button>', '#', '2018-01-31 15:29:39'),
-(4, 'vistas/img/slide/slide4/fondo4.jpg', 'slideOpcion1', '', '', '{\"top\":\"20%\",\"right\":\"\",\"width\":\"40%\",\"left\":\"10%\"}', '{\"texto\":\"VINOS\",\"color\":\"#333\"}', '{\"texto\":\"LA ESCENCIA DEL SABOR\",\"color\":\"#777\"}', '{\"texto\":\"COMPRALO YA\",\"color\":\"#888\"}', '', '', '2018-01-31 15:35:20');
 
 -- --------------------------------------------------------
 
@@ -1370,7 +774,7 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nombre`, `tipo_usuario`, `hotel`, `bar`, `password`, `nickname`, `fechaUsuario`) VALUES
 (1, 'CARLOS HUDSON', 0, 'finest', '', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'admin', '2018-05-22 14:39:40'),
-(11, 'X ALFONSO', 1, 'finest', '1', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-06-04 21:19:57');
+(11, 'X ALFONSO', 1, 'finest', '1', '$2a$07$asxx54ahjppf45sd87a5auRajNP0zeqOkB9Qda.dSiTb2/n.wAC/2', 'alfonso', '2018-06-14 18:08:12');
 
 --
 -- Índices para tablas volcadas
@@ -1401,6 +805,12 @@ ALTER TABLE `linea_pedidos`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `origenes`
+--
+ALTER TABLE `origenes`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `plantilla`
 --
 ALTER TABLE `plantilla`
@@ -1417,12 +827,6 @@ ALTER TABLE `productos`
 --
 ALTER TABLE `productos_almacen`
   ADD PRIMARY KEY (`id_bar`,`id_producto`);
-
---
--- Indices de la tabla `slide`
---
-ALTER TABLE `slide`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `subcategorias`
@@ -1452,7 +856,7 @@ ALTER TABLE `almacenes`
 -- AUTO_INCREMENT de la tabla `cabecera_pedidos`
 --
 ALTER TABLE `cabecera_pedidos`
-  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `no_pedido` int(9) UNSIGNED ZEROFILL NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `categorias`
@@ -1464,7 +868,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de la tabla `linea_pedidos`
 --
 ALTER TABLE `linea_pedidos`
-  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(9) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `origenes`
+--
+ALTER TABLE `origenes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `plantilla`
@@ -1476,13 +886,7 @@ ALTER TABLE `plantilla`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=502;
-
---
--- AUTO_INCREMENT de la tabla `slide`
---
-ALTER TABLE `slide`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=503;
 
 --
 -- AUTO_INCREMENT de la tabla `subcategorias`

@@ -783,7 +783,20 @@ $(".btnPagar ").click(function(){
 	}
    }//SI LOCALSTORAGE ES DIFERENTE A NULL
 
-   /*======================================
+		swal({
+			title: "¡OK!",
+			text: "¡Sus productos se enviaron con éxito!",
+			type:"success",
+			confirmButtonText:"Ok",
+			closeOnConfirm: false,
+			icon: "success"
+	       },
+
+	function(isConfirm){
+
+	if(isConfirm){
+
+		/*======================================
          IMPRESIÓN DEL TICKET O LOS TICKETS    
    ========================================*/
    var datosImpresion = new FormData();
@@ -812,20 +825,6 @@ $(".btnPagar ").click(function(){
 
    	 });//FIN DEL AJAX*/
    }
-   
-
-		swal({
-			title: "¡OK!",
-			text: "¡Sus productos se enviaron con éxito!",
-			type:"success",
-			confirmButtonText:"Ok",
-			closeOnConfirm: false,
-			icon: "success"
-	       },
-
-	function(isConfirm){
-
-	if(isConfirm){
 			
 		window.location = rutaOculta;
 					 
