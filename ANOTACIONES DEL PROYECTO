@@ -89,4 +89,73 @@ admin.tiendaonline.com -> backend
 
 Debo de arreglar lo del boton del scrollUp
 
+www.bestjquery.com
+
+jquery flexslider
+
+/*$(function(){
+
+	 $.scrollUp({
+
+ 		scrollText:"",
+ 		scrollSpeed: 2000,
+ 		easingType: "easeOutQuint"
+ 	});
+
+});*/
+
+//$('[data-toggle="tooltip"]').tooltip();
+
+git checkout -b rama_nueva origin/rama_nueva
+
+iubenda.com
+
+sweetalert
+
+En el archivo de php.ini ubicado en xampp2/php/php.ini  
+Vas a buscar la palabra sendmail y vamos agregar esta línea
+
+sendmail_path="C:\xampp2\mailtodisk\mailtodisk.exe"
+
+
+https://getcomposer.org/download/ -->Para descargar e instalar el composer de PHP
+
+https://github.com/google/google-api-php-client  -->Instrucciones para instalar la API de google en nuestra web
+
+
+$jwtClass::$leeway = 1000; //Se modificó a 1000 segundos  en el verify.php línea 209
+
+Dentro de la tabla de compras vamos a tener los siguientes atributos
+
+id
+id_usuario
+id_producto
+envio 0  virtual
+envio 1  primera fase de entrega (despachando)
+envio 2  segunda fase de entrega (preparando)
+envio 3  tercera fase de entrega (listo)
+metodo
+direccion
+país
+fecha
+
+Dentro de la tabla de compras vamos a tener los siguientes atributos
+
+id
+id_usuario
+id_producto
+calificacion
+comentario
+fecha
+
+Información para la API de PAYPAL
+Sandbox account
+carlosmigu27-facilitator@hotmail.com
+
+Client ID
+AToKECqZagYfwlxYWpKhrRNnWxuTixzunwWQ-3p_DjGYFA4ZhCTrC0zdNrX6GHdSDDLAhcQrr8AO9CWC
+
+Secret
+EAeuMyFXGraiX6n_wLa_0kYfwzEcN427XB3CedkyNuiV7_cbLALOnHj11STRsmc9DtHnf-8GvHl_o8cT
+
 

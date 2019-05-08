@@ -1,9 +1,115 @@
 /*------------------------------------------------
+   MENU DESPLEGABLE
+------------------------------------------------*/
+* {
+	padding:0;
+	margin:0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+header nav ul li a:hover{
+	color:#fff;
+}
+
+.header2{
+	width:100%;
+}
+
+ 
+body {background:#FEFEFE;}
+ 
+.menu_bar {
+	display:none;
+}
+ 
+header {
+	width: 100%;
+	z-index:1000;
+}
+ 
+header nav {
+	background:#C1CA2C;
+	z-index:1000;
+	max-width: 2000px;
+	width:95%;
+	margin:20px auto;
+}
+ 
+header nav ul {
+	list-style:none;
+}
+ 
+header nav ul li {
+	display:inline-block;
+	position: relative;
+}
+ 
+header nav ul li:hover {
+	background:#000;
+}
+ 
+header nav ul li a {
+	color:#fff;
+	display:block;
+	text-decoration:none;
+	padding: 20px;
+}
+ 
+header nav ul li a span {
+	margin-right:10px;
+}
+ 
+header nav ul li:hover .children {
+	display:none;
+	
+}
+
+header nav ul li.submenu a {
+	cursor:pointer;
+}
+ 
+header nav ul li .children {
+	display: none;
+	background:#011826;
+	position: absolute;
+	width: 100%;
+	z-index:1000;
+}
+ 
+header nav ul li .children li {
+	display:block;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(255,255,255,.5);
+}
+ 
+header nav ul li .children li a {
+	display: block;
+}
+ 
+header nav ul li .children li a span {
+	float: right;
+	position: relative;
+	top:3px;
+	margin-right:0;
+	margin-left:0px;
+}
+ 
+header nav ul li .caret {
+	position: relative;
+	top:3px;
+	margin-left:10px;
+	margin-right:0px;
+}
+ 
+/*------------------------------------------------
    TOP
 ------------------------------------------------*/
 
 #top ul{
 	padding-top:8px;
+	padding-bottom:0px;
 }
 
 #top ul li{
@@ -97,6 +203,80 @@ header #categorias hr{
 	border :1px solid rgba(255,255,255,.3);
 }
 
+/*------------------------------------------------
+   VENTANAS MODALES
+------------------------------------------------*/
+
+.modalTitulo{
+	padding:5px 0px;
+}
+
+.modalTitulo h3{
+	text-align:center;
+	margin-top:-5px;
+	padding:15px 0px;
+	border-radius:5px 5px 0px 0px;
+}
+
+.modalFormulario .close{
+	position:absolute; /*La posición absoluta permite que podamos establecer coordenadas de ubicación a los elementos que queramos 
+	su posición*/
+	right:27px;
+	top:15px;
+	color:white;
+}
+
+.moddalFormulario .facebook, .modalFormulario .google{
+	cursor:pointer;
+}
+
+.modalFormulario .facebook p{
+	background:#46639f;
+}
+
+.modalFormulario .google p{
+ 	background:#d6513e;
+}
+
+.modalFormulario .facebook p, .modalFormulario .google p {
+	
+	color:white;
+	text-align:center;
+	line-height:40px;
+	padding:8px;
+	font-size:18px;
+	margin-top:10px;
+	margin-bottom:20px;
+}
+
+.modalFormulario p i{
+	margin-left:-25px;
+	margin-right:25px;
+	font-size:25px;
+}
+
+.modalFormulario form{
+	padding:20px;
+}
+
+.modalFormulario form hr{
+	border:1px solid #eee;
+}
+
+.modalFormulario form input[type="text"], 
+.modalFormulario form input[type="email"], 
+.modalFormulario form input[type="password"]{
+	padding:25px;
+}
+
+.modalFormulario form input[type="submit"]{
+	padding:15px;
+}
+
+.iubenda{
+	margin-top:10px;
+}
+
 /*
 Para generar un nuevo snippet nos vamos a Tools-Developer-New Snippet
 Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de atrás para adelante
@@ -121,6 +301,14 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     	padding-left:100px;
     	padding-right:15px;
     }
+
+    .modalFormulario .facebook p{
+	margin-right:-15px;
+	}
+
+	.btnCerrarCelular{
+		display:none;
+	}
 }
 /*------------------------------------------------
    ESCRITORIO MEDIANO O TABLET HORIZONTAL  (MD revisamos en 1024px)
@@ -140,6 +328,14 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     header #carrito {
     	padding-left:70px;
     }
+
+    .modalFormulario .facebook p{
+	margin-right:-15px;
+	}
+
+	.btnCerrarCelular{
+		display:none;
+	}
 
 }
 /*------------------------------------------------
@@ -166,6 +362,14 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
     header #carrito p{
     	display:none;
     }
+
+    .modalFormulario .facebook p{
+	margin-right:-15px;
+	}
+
+	.btnCerrarCelular{
+		display:none;
+	}
 
 }
 /*------------------------------------------------
@@ -216,6 +420,94 @@ Obervasión: Cuando usemos el snippet del breakpoint hay que seleccionarlo de at
       margin-bottom:10px;
     }
 
+    .modalFormulario .google p{
+	margin-top:-15px;
+	}
 
-    
+	body {
+		padding-top:80px;
+	}
+ 
+	.menu_bar {
+		display:block;
+		width:100%;
+		position: fixed;
+		top:0;
+		background:#E6344A;
+	}
+ 
+	.menu_bar .bt-menu {
+		display: block;
+		padding: 20px;
+		color: #fff;
+		overflow: hidden;
+		font-size: 25px;
+		font-weight: bold;
+		text-decoration: none;
+	}
+ 
+	.menu_bar span {
+		float: right;
+		font-size: 40px;
+	}
+
+	header{
+		z-index:1000;
+	}
+ 
+	header nav {
+		width: 80%;
+		height: calc(100% - 80px);
+		position: fixed;
+		left:-100%;
+		margin: 0;
+		overflow: scroll;
+		top:80px;
+		z-index:1000;
+	}
+ 
+	header nav ul li {
+		display: block;
+		border-bottom:1px solid rgba(255,255,255,.5);
+	}
+ 
+	header nav ul li a {
+		display: block;
+	}
+ 
+	header nav ul li:hover .children {
+		display: none;
+	}
+ 
+	header nav ul li .children {
+		width: 100%;
+		position: relative;
+	}
+ 
+	header nav ul li .children li a {
+		margin-left:20px;
+	}
+ 
+	header nav ul li .caret {
+		float: right;
+	}
+
+	.modalFormulario .close{
+	position:absolute; /*La posición absoluta permite que podamos establecer coordenadas de ubicación a los elementos que queramos 
+	su posición*/
+	right:27px;
+	top:50px;
+	color:white;
+	z-index:10000;
+	}
+
+	.btnPagarCelular{
+		margin-left:15px;
+	}
+
+	.btnCerrarCelular{
+		margin-left:80px;
+	}
+
+
 }

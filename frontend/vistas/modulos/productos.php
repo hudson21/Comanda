@@ -1,30 +1,53 @@
+<!--===============================================
+BANNER
+===================================================-->
+
 <?php
 
 $servidor = Ruta::ctrRutaServidor();
 
 $url = Ruta::ctrRuta();
 
-?>
+$ruta = $rutas[0];
 
-<!--===============================================
-BANNER
-===================================================-->
-<figure class="banner">
+$banner = ControladorProductos::ctrMostrarBanner($ruta);
+
+$titulo1 = json_decode($banner["titulo1"],true);
+$titulo2 = json_decode($banner["titulo2"],true);
+$titulo3 = json_decode($banner["titulo3"],true);
+
+if($banner != null){
+
+echo '<figure class="banner">
 	
-	<img src="http://localhost/Comanda/backend/vistas/img/banner/casaPalapaDefault.jpg" class="img-responsive" width="100%" >
+	<img src="'.$servidor.$banner["img"].'" class="img-responsive" width="100%" >
 
-	<div class="textoBanner textoDer">	
+	<div class="textoBanner '.$banner["estilo"].'">	
 
-		<h1 style="color:#fff">OFERTAS ESPECIALES</h1>
+		<h1 style="color:'.$titulo1["color"].'">'.$titulo1["texto"].'</h1>
 
-		<h2 style="color:#fff"><strong>50% Off</strong></h2>
+		<h2 style="color:'.$titulo2["color"].'"><strong>'.$titulo2["texto"].'</strong></h2>
 
-		<h3 style="color:#fff">Termina el 2 de Febrero</h3>
+		<h3 style="color:'.$titulo3["color"].'">'.$titulo3["texto"].'</h3>
 
 
 	</div>
 
-</figure>
+</figure>';
+}
+
+?>
+
+<script>
+
+      var url = window.location.href;
+      var indice = url.split("/");
+      //console.log("indice",indice);
+      
+      if(indice[7]=="recientes" || indice[7]=="antiguos"){
+
+      }
+ </script>
 
 <!--===============================================
 BARRA DE PRODUCTOS
@@ -46,9 +69,11 @@ BARRA DE PRODUCTOS
 
 					<ul class="dropdown-menu" role="menu">
 
-						<li><a href="#">Más reciente</a></li>
-						<li><a href="#">Más antiguo</a></li>
-						
+                    <?php
+
+						echo'<li><a href="'.$url.$rutas[0].'/1/recientes">Más reciente</a></li>
+						     <li><a href="'.$url.$rutas[0].'/1/antiguos">Más antiguo</a></li>';
+					?>						
 					</ul>
 
 				</div>
@@ -108,7 +133,7 @@ LISTAR PRODUCTOS
 					BREADCRUMB O MIGAS DE PAN
 					===================================================-->
 
-					<ul class="breadcrumb fondoBreadcrumb lead text-uppercase"
+					<ul class="breadcrumb fondoBreadcrumb  text-uppercase"
 					style="margin-bottom:0px; background:rgba(0,0,0,0);"> 
 
 					  <!--La clase lead es para colocar el texto más grande-->
@@ -128,6 +153,38 @@ LISTAR PRODUCTOS
 
 					if(isset($rutas[1])){
 
+						$_SESSION["ordenar"] = "DESC";
+
+						if(isset($rutas[2])){
+
+							if($rutas[2] == "antiguos"){
+
+								$modo = "ASC";
+								$_SESSION["ordenar"] == $modo;
+								//var_dump($_SESSION["ordenar"]);
+								
+							}else{
+
+								$modo = "DESC";
+								$_SESSION["ordenar"] == $modo;
+								//var_dump($_SESSION["ordenar"]);
+
+							}
+
+						}else{
+
+							if(isset($_SESSION["ordenar"])){
+
+								$modo = $_SESSION["ordenar"];
+							}else{
+
+								$modo = "DESC";
+								//var_dump($_SESSION["ordenar"]);
+
+							}
+								
+						     }
+
 						$base = ($rutas[1] - 1)*12;
 						$tope = 12;
 					}else{
@@ -135,6 +192,8 @@ LISTAR PRODUCTOS
 						$rutas[1] = 1;
 						$base = 0;
 						$tope = 12;
+						$modo = "DESC";
+						
 					}
 
 					/*===============================================================
@@ -187,10 +246,9 @@ LISTAR PRODUCTOS
 						}
 					} 
 
-					$base = 0;
-					$tope = 12;
+					
 
-					$productos = ControladorProductos::ctrMostrarProductos($ordenar, $item2, $valor2, $base, $tope);
+					$productos = ControladorProductos::ctrMostrarProductos($ordenar, $item2, $valor2, $base, $tope, $modo);
 
 					$listaProductos = ControladorProductos::ctrListarProductos($ordenar, $item2, $valor2);
 
@@ -215,7 +273,7 @@ LISTAR PRODUCTOS
 
 			 		<figure>
 			 		
-			 			<a href="'.$value["ruta"].'" class="pixelProducto">
+			 			<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 			 			
 			 			<img src="'.$servidor.$value["portada"].'" class="img-responsive">
 
@@ -223,13 +281,13 @@ LISTAR PRODUCTOS
 
 			 		</figure>
 
-
+					'.$value["id"].'
 
 			 	<h4>
 
 			 		<small>
 			 			
-			 			<a href="'.$value["ruta"].'" class="pixelProducto">
+			 			<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 
 			 			'.$value["titulo"].' <br>
 
@@ -344,7 +402,7 @@ LISTAR PRODUCTOS
 										}
 
 									    
-									  echo '<a href="'.$value["ruta"].'" class="pixelProducto">
+									  echo '<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 										
 											   <button type="button" class="btn btn-default btn-xs" 
 												data-toggle="tooltip" title="Ver producto">
@@ -381,7 +439,7 @@ LISTAR PRODUCTOS
 
 				   <figure>
 							
-					 <a href="'.$value["ruta"].'" class="pixelProducto">
+					 <a href="'.$url.$value["ruta"].'" class="pixelProducto">
 					 <img src="'.$servidor.$value["portada"].'" class="img-responsive"></a>
 
 				   </figure>
@@ -395,7 +453,7 @@ LISTAR PRODUCTOS
 							
 					<small>
 
-					 <a href="'.$value["ruta"].'" class="pixelProducto">'.$value["titulo"].' <br>';
+					 <a href="'.$url.$value["ruta"].'" class="pixelProducto">'.$value["titulo"].' <br>';
 
 					 if($value["nuevo"] != 0){
 
@@ -500,7 +558,7 @@ LISTAR PRODUCTOS
 						
 						}
 
-			    echo'<a href="'.$value["ruta"].'" class="pixelProducto">
+			    echo'<a href="'.$url.$value["ruta"].'" class="pixelProducto">
 								
 						  <button type="button" class="btn btn-default btn-xs" data-toggle="tooltip" title="Ver producto">
 
@@ -532,6 +590,8 @@ LISTAR PRODUCTOS
 
 					?>
 
+					<div class="clearfix"></div>
+
 				<center>
 
 					<!--===============================================
@@ -548,54 +608,131 @@ LISTAR PRODUCTOS
 
 					    if($pagProductos > 4){
 
-
 					    	/*==========================================================
 					    	  LOS BOTONES DE LAS PRIMERAS 4 PÁGINAS Y LA ÚLTIMA PÁGINA      
 					    	============================================================*/
 					    	if($rutas[1] == 1){
 
-					    	echo '  <ul class="pagination">'; 
+							echo '<ul class="pagination">';
+							
+							for($i = 1; $i <= 4; $i ++){
 
-					    	for ($i = 1; $i <= 4; $i++){
+								echo '<li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
 
-					    		echo '<li><a href="'.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
-					    	} 
+							}
 
-					    	echo' <li class="disabled"><a>...</a></li>
-								  <li><a href="'.$rutas[0].'/'.$pagProductos.'">'.$pagProductos.'</a> </li>
-								  <li><a href="'.$rutas[0].'/2"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+							echo ' <li class="disabled"><a>...</a></li>
+								   <li id="item'.$pagProductos.'"><a href="'.$url.$rutas[0].'/'.$pagProductos.'">'.$pagProductos.'</a></li>
+								   <li><a href="'.$url.$rutas[0].'/2"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
 
-					    	</ul>';
-					    }
+							</ul>';
+
+						}
+
+							  
+
+					    	  /*==========================================================
+					    	  LOS BOTONES DE LA PRIMERA MITAD DE PÁGINAS HACIA ABAJO   
+					    	  ============================================================*/
+
+					    	  else if($rutas[1] != $pagProductos && 
+					    	  		  $rutas[1] != 1 &&
+					    	  		  $rutas[1] < ($pagProductos/2) &&
+					    	  		  $rutas[1] < ($pagProductos-3)	){
+/*La primera condición es para saber si es diferente al total de páginas (en este caso 24)
+
+  La segunda condición es para saber si es diferente a 1 (para no estar al principio)
+
+  La tercera condición es para saber si es menor a la mitad de $pagProductos 
+
+  La cuarta condición es para saber si menor a pagProductos-3*/
+
+  								$numPagActual = $rutas[1];
+
+								echo '<ul class="pagination">
+									  <li><a href="'.$url.$rutas[0].'/'.($numPagActual-1).'"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li> ';
+							
+								for($i = $numPagActual; $i <= ($numPagActual+3); $i ++){
+
+									echo '<li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
+
+								}
+
+								echo ' <li class="disabled"><a>...</a></li>
+									   <li id="item'.$pagProductos.'"><a href="'.$url.$rutas[0].'/'.$pagProductos.'">'.$pagProductos.'</a></li>
+									   <li><a href="'.$url.$rutas[0].'/'.($numPagActual+1).'"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+
+								</ul>';
+					    	  }
+
+
+					    	  /*==========================================================
+					    	  LOS BOTONES DE LA PRIMERA MITAD DE PÁGINAS HACIA ARRIBA   
+					    	  ============================================================*/
+
+					    	  else if($rutas[1] != $pagProductos && 
+					    	  		  $rutas[1] != 1 &&
+					    	  		  $rutas[1] >= ($pagProductos/2) &&
+					    	  		  $rutas[1] < ($pagProductos-3)){
+
+					    	  		$numPagActual = $rutas[1];
+							
+								echo '<ul class="pagination">
+								   <li><a href="'.$url.$rutas[0].'/'.($numPagActual-1).'"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li> 
+								   <li id="item1"><a href="'.$url.$rutas[0].'/1">1</a></li>
+								   <li class="disabled"><a>...</a></li>
+								';
+							
+								for($i = $numPagActual; $i <= ($numPagActual+3); $i ++){
+
+									echo '<li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
+
+								}
+
+
+								echo '  <li><a href="'.$url.$rutas[0].'/'.($numPagActual+1).'"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+									</ul>';
+
+					    	  	}
+
+
+					    	  /*==========================================================
+					    	  LOS BOTONES DE LAS ÚLTIMAS 4 PÁGINAS Y LA PRIMERA PÁGINA 
+					    	  ============================================================*/
+					    	else{
+
+					    		$numPagActual = $rutas[1];
+
+							echo '<ul class="pagination">
+								   <li><a href="'.$url.$rutas[0].'/'.($numPagActual-1).'"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li> 
+								   <li id="item1"><a href="'.$url.$rutas[0].'/1">1</a></li>
+								   <li class="disabled"><a>...</a></li>
+								';
+							
+							for($i = ($pagProductos-3); $i <= $pagProductos; $i ++){
+
+								echo '<li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
+
+							}
+
+							echo ' </ul>';
+					    	}
 
 					    }else{
 
-					    	echo '  <ul class="pagination">'; 
+					    	echo '<ul class="pagination">';
+						
+						for($i = 1; $i <= $pagProductos; $i ++){
 
-					    	for ($i = 1; $i <= $pagProductos; $i++){
+							echo '<li id="item'.$i.'"><a href="'.$url.$rutas[0].'/'.$i.'">'.$i.'</a></li>';
 
-					    		echo '<li><a href="#">'.$i.'</a></li>';
-					    	} 
+						}
 
-					    	echo'</ul>';
+						echo '</ul>';
 					    }
-
 					}
 
 					?>
-
-				<!--	<ul class="pagination">
-						
-						<li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-						<li><a href="#">1</a></li>
-						<li><a href="#">2</a></li>
-						<li><a href="#">3</a></li>
-						<li><a href="#">4</a></li>
-						<li><a href="#">5</a></li>
-						<li><a class="disabled">...</a></li>
-						<li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-					</ul>   -->
-
 				</center>
 
 				</div>

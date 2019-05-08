@@ -7,7 +7,7 @@ class Ruta{
 	========================================*/
 	static public function ctrRuta(){
 
-		return "http://localhost/comanda/frontend/";
+		return "http://localhost/Comanda/frontend/";
 	}
 
 	/*======================================
@@ -16,6 +16,6 @@ class Ruta{
 
 	static public function ctrRutaServidor(){
 
-		return "http://localhost/comanda/backend/";
+		return "http://localhost/Comanda/backend/";
 	}
 }

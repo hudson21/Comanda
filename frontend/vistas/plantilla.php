@@ -1,16 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 	<meta charset="UTF-8">
+
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
 	<meta name="title" content="Comanda Electrónica">
+
 	<meta name="description" content="Esta es una página para un proyecto de residencia bla bla bla">
+
 	<meta name="keyword" content="tienda, vinos, licores,etc">
 
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 
+  <title>Comanda Electrónica</title>
 
+   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+  <script>
+    var OneSignal = window.OneSignal || [];
+    OneSignal.push(["init", {
+      appId: "7a9d5e07-08e4-47a0-82f1-b0e15ca782ad",
+      autoRegister: false, /* Set to true to automatically prompt visitors */
+      httpPermissionRequest: {
+        enable: true
+      },
+      notifyButton: {
+          enable: true /* Set to false to hide */
+      },
+      welcomeNotification: {
+        disable: true,
+        // "url": "" /* Leave commented for the notification to not open a window on Chrome and Firefox (on Safari, it opens to your webpage) */
+      }
+    }]);
+  </script>
+
+ 
 
 	<?php
+
+         session_start(); 
 
          $servidor = Ruta::ctrRutaServidor(); 
 
@@ -25,18 +54,28 @@
 	         //Esto me sirve para establecer una ruta uniforme en todo el proyecto
 
 	         $url = Ruta::ctrRuta();
-	         
+
+	        // require $_SERVER['DOCUMENT_ROOT'].'/comanda/frontend/vistas/css/plugins/bootstrap.min.css';
 	?>
     
      <!--=====================================
      	      =  PLUGINS DE CSS  =
      ======================================-->     
-	  <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
+	  
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/bootstrap.min.css">
+
     <link rel="stylesheet" src="<?php echo $url;?>vistas/css/plugins/font-awesome.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+  
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/flexslider.css">
+
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/plugins/sweetalert.css">
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu" >
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu+Condensed" >
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" >
+  
 
     <!--===============================================
      (CSS) HOJAS DE ESTILO PERSONALIZADAS
@@ -46,24 +85,37 @@
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/cabezote.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/slide.css">
     <link rel="stylesheet" href="<?php echo $url;?>vistas/css/productos.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/infoproducto.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/perfil.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/carrito-de-compras.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/fonts.css">
+    <link rel="stylesheet" href="<?php echo $url;?>vistas/css/pedidos.css">
+    
 
     
 	<!--=====================================
 	    	=  PLUGINS DE JAVASCRIPT    =
 	======================================-->
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>  
-	  <script src="<?php echo $url; ?>vistas/js/plugins/bootstrap.min.js"></script>
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.easing.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js" rel="text/javascript"></script>
-    <script src="<?php echo $url; ?>vistas/js/plugins/jquery.scrollUp.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+   <script src="<?php echo $url;?>vistas/js/plugins/jquery.min.js"></script>
 
-	<title>Comanda Electrónica</title>
-	
+   <script src="<?php echo $url;?>vistas/js/plugins/bootstrap.min.js"></script>
 
+   <script src="<?php echo $url;?>vistas/js/plugins/jquery.easing.js"></script>
+
+   <script src="<?php echo $url;?>vistas/js/plugins/jquery.scrollUp.js"></script>
+
+   <script src="<?php echo $url;?>vistas/js/plugins/jquery.flexslider.js"></script>
+
+   <script src="<?php echo $url;?>vistas/js/plugins/sweetalert.min.js"></script>
+
+   <script src="<?php echo $url;?>vistas/js/menu.js"></script>
+
+   
+
+     
 </head>
+
+
 <body>
 
 
@@ -81,10 +133,16 @@
 	<!--====  End of Section comment  ====-->
 
 <?php
+
   /*=============================================
   		=            CABEZOTE            =
   =============================================*/
   include "modulos/cabezote.php";
+
+  /*=============================================
+      =        MENU DESPLEGABLE          =
+  =============================================*/
+  //include "modulos/menudesplegable.php";
 
   /*======================================
       CONTENIDO DINÁMICO      
@@ -155,6 +213,11 @@
 
         include "modulos/infoproducto.php";
 
+      }else if($rutas[0] == "buscador" ||  $rutas[0] == "verificar" ||  $rutas[0] == "salir" ||  $rutas[0] == "perfil" 
+        ||  $rutas[0] == "carrito-de-compras" ||  $rutas[0] == "pedidos"){
+
+        include "modulos/".$rutas[0].".php";
+      
       }
 
       else{
@@ -166,12 +229,14 @@
   		//var_dump($rutas[0]); //Las rutas que están en la posición 0 son las amigables
   }else{
 
-  	  include "modulos/slide.php";
+  	// include "modulos/slide.php";
 
-      include "modulos/destacados.php";
+     include "modulos/destacados.php";
   }
     
 ?>
+
+<input type="hidden" value="<?php echo $url;?>" id="rutaOculta">
 
 <!--===============================================
      (JS) JAVASCRIPT PERSONALIZADAS
@@ -180,6 +245,36 @@
 <script src="<?php echo $url;?>vistas/js/cabezote.js"></script>
 <script src="<?php echo $url;?>vistas/js/plantilla.js"></script>
 <script src="<?php echo $url;?>vistas/js/slide.js"></script>
+<script src="<?php echo $url;?>vistas/js/buscador.js"></script>
+<script src="<?php echo $url;?>vistas/js/infoproducto.js"></script>
+<script src="<?php echo $url;?>vistas/js/usuarios.js"></script>
+<script src="<?php echo $url;?>vistas/js/registroFacebook.js"></script>
+<script src="<?php echo $url;?>vistas/js/carrito-de-compras.js"></script>
+
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '398752310585470',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.12'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
 
 </body>
 </html>

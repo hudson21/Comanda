@@ -16,7 +16,7 @@ $("#btnCategorias").click(function(){
    /*En este caso estamos le decimos que se abra después del cabezote*/
 		$("#cabezote").after($("#categorias").slideToggle("fast"))
 
-	}
-
-		
+	}		
 })
+
+

@@ -65,11 +65,11 @@ class ModeloProductos{
 	  	MOSTRAR PRODUCTOS
 	  ===============================================*/
 
-	  static public function mdlMostrarProductos($tabla, $ordenar, $item, $valor, $base, $tope){
+	  static public function mdlMostrarProductos($tabla, $ordenar, $item, $valor, $base, $tope, $modo){
 
 	  	if($item != null){
 
-	  			$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla WHERE $item = :$item ORDER BY $ordenar DESC LIMIT $base, $tope");
+	  			$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla WHERE $item = :$item ORDER BY $ordenar $modo LIMIT $base, $tope");
 
 	  			$stmt -> bindParam(":".$item, $valor, PDO::PARAM_STR);
 
@@ -80,7 +80,7 @@ class ModeloProductos{
 
 	  	}else{
 
-			  	$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla ORDER BY $ordenar DESC LIMIT $base, $tope");
+			  	$stmt = Conexion::conectar()->prepare("SELECT *FROM $tabla ORDER BY $ordenar $modo LIMIT $base, $tope");
 
 	  			$stmt-> execute();
 
@@ -144,4 +144,91 @@ class ModeloProductos{
 		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
 
 	  }
+
+
+	  /*==============================================
+	  	MOSTRAR BANNER
+	  ===============================================*/
+
+	  static public function mdlMostrarBanner($tabla, $ruta){
+
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE ruta = :ruta");
+
+       //EL bindParam me sirve para hacerle la asignación a una variable que esté utilizando
+		$stmt -> bindParam(":ruta",$ruta, PDO::PARAM_STR);
+
+		$stmt-> execute();
+
+		return $stmt -> fetch();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+	}
+
+	 /*==============================================
+	  	BUSCADOR
+	  ===============================================*/
+
+	  static public function mdlBuscarProductos($tabla, $busqueda, $ordenar, $modo, $base, $tope){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%'OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ORDER BY $ordenar $modo LIMIT $base, $tope");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+
+	  }
+
+	  /*==============================================
+	  	LISTAR PRODUCTOS BUSCADOR
+	  ===============================================*/
+
+	  static public function mdlListarProductosBusqueda($tabla, $busqueda){
+
+	  	$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id like '%$busqueda%' OR ruta like '%$busqueda%' OR titulo like '%$busqueda%' OR titular like '%$busqueda%' OR descripcion like '%$busqueda%' ");
+
+	  	$stmt-> execute();
+
+		return $stmt -> fetchAll();
+
+		$stmt -> close();
+
+		$stmt = null; //Podemos cerrar la conexión de la BD ´con mayor seguridad de esta forma
+
+
+	  }
+
+
+	/*==============================================
+	  ACTUALIZAR VISTA PRODUCTO
+	===============================================*/
+
+	static public function mdlActualizarVistaProducto($tabla, $datos, $item){ //Variable $item en producto.ajax.php
+
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item = :$item WHERE ruta = :ruta");
+
+		$stmt -> bindParam(":ruta", $datos["ruta"], PDO::PARAM_STR);
+		$stmt -> bindParam(":".$item, $datos["valor"], PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+
+			return "ok";
+		
+		}else{
+
+			return "error";	
+
+		}
+
+		$stmt -> close();
+
+		$stmt = null;
+
+	}
 }

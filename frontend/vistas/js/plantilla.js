@@ -2,16 +2,19 @@
     PLANTILLA
 =====================================================*/
 
+var rutaOculta = $("#rutaOculta").val();
+
 //Herramienta TOOLTIP
 
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip(); 
 });
+
  
 
 $.ajax({
 
-	url:"ajax/plantilla.ajax.php",
+	url:rutaOculta+"ajax/plantilla.ajax.php",
 	success:function(respuesta){
 
 		var colorFondo = JSON.parse(respuesta).colorFondo;
@@ -67,6 +70,16 @@ $("#btnList"+i).click(function(){
 
 }
 
+(function(){
+
+	 $.scrollUp({
+
+ 		scrollText:"",
+ 		scrollSpeed: 2000,
+ 		easingType: "easeOutQuint"
+ 	});
+
+});
 
 
 /*======================================
@@ -81,34 +94,21 @@ $(window).scroll(function(){
 
 	if(window.matchMedia("(min-width:768px)").matches){
 
-		if(scrollY < ($(".banner").offset().top)-140){ //Mientras que la posición del banner sea mejor que la del top
+		if($(".banner").html() !=  null){
 
-		//console.log("El valor es menor");
-
-		$(".banner img").css({"margin-top":-scrollY/3+"px"});
+			if(scrollY < ($(".banner").offset().top)-140){ //Mientras que la posición del banner sea mejor que la del top
+				//console.log("El valor es menor");
+			 $(".banner img").css({"margin-top":-scrollY/3+"px"});
 	
-	}else{
-
-		scrollY=0;
-
+		}else{
+				scrollY=0;
+			 }
+		}		
 	}
-	}
-
 })
 
 
-$(function(){
 
-	 $.scrollUp({
-
- 		scrollText:"",
- 		scrollSpeed: 2000,
- 		easingType: "easeOutQuint"
- 	});
-
-});
-
-//$('[data-toggle="tooltip"]').tooltip();
 
 /*======================================
   MIGAS DE PAN        
@@ -122,6 +122,21 @@ if(pagActiva != null){
 
 	$(".pagActiva").html(regPagActiva);
 }
+
+/*======================================
+  ENLACES PAGINACIÓN        
+========================================*/
+
+var url = window.location.href;
+
+var indice = url.split("/");
+
+//console.log("indice",indice);
+
+$("#item"+indice.pop()).addClass("active");
+
+
+
 
 
 
